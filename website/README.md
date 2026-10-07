@@ -25,7 +25,7 @@ The static pages use a small embedded browser script for search and goal filters
   and roadmap. Goal status is versioned editorial data, not live agent activity.
 - Package pages are generated from package READMEs; guides come from
   `docs/effect-port`. Edit those sources, then rebuild.
-- Progress comes from the three validation JSON reports under `docs/effect-port`.
+- Progress comes from the validation JSON reports under `docs/effect-port`.
   The builder checks recorded source hashes and stops if evidence is stale.
   Rerun relevant package checks and refresh their reports before rebuilding.
 - Styles and the original SVG mark are maintained in `dist/styles.css` and
@@ -52,3 +52,8 @@ The Site configuration is in `.openai/hosting.json`. Deploy through the Sites
 workflow using that existing project ID and preserve private access. Temporary
 preview/deployment files are ignored under the repository's `.sites-runtime/`.
 This directory is excluded from the core Dart package archive via `.pubignore`.
+
+Live acceptance update: two native Responses smoke checks passed on 7 October
+2026. The separate manual record is openai-live-validation.json; these checks
+are not added to the automated VM/Chrome totals. Broader live coverage remains
+a separate roadmap goal.
