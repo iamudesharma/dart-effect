@@ -48,6 +48,7 @@ ROUTES[(ROOT/'docs/effect-port/progress.md').resolve()] = '/progress/'
 ROUTES[(ROOT/'docs/effect-port/rename-validation.json').resolve()] = '/evidence/rename-validation.json'
 ROUTES[(ROOT/'docs/effect-port/sql-validation.json').resolve()] = '/evidence/sql-validation.json'
 ROUTES[(ROOT/'docs/effect-port/openai-validation.json').resolve()] = '/evidence/openai-validation.json'
+ROUTES[(ROOT/'docs/effect-port/openai-live-validation.json').resolve()] = '/evidence/openai-live-validation.json'
 
 def esc(value): return html.escape(str(value), quote=True)
 def link_url(url, file):
