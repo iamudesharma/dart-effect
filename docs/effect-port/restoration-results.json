@@ -1,0 +1,6 @@
+{
+  "passed": true,
+  "method": "Moved materialized upstream/docs-source/npm package aside, restored exclusively from checked local archives, verified entire reference pack.",
+  "command": "python3 tool/reference_snapshot.py restore",
+  "result": "Offline verify passed: 7054 files; npm 4.0.1; source 460272d30457f4697d8b8c52cad41caccbcace08; 4 recorded endpoint gaps."
+}

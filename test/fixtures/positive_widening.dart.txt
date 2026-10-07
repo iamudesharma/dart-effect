@@ -1,0 +1,7 @@
+import 'package:blot_effect/blot_effect.dart';
+final class Database {}
+void main() {
+  final Effect<int,String,Object> widened=Effect.environment<int,String,Database>((_) => 1);
+  // Accepted by Dart covariance; runtime rejects Object provision as a defect.
+  Runtime<Object>(Object()).runExit(widened);
+}

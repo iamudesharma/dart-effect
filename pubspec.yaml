@@ -1,0 +1,8 @@
+name: blot_effect
+description: Lazy typed Dart effects with structured concurrency, scoped resources and dependency provision.
+version: 0.1.0-dev.1
+environment:
+  sdk: '>=3.13.0 <4.0.0'
+dev_dependencies:
+  test: ^1.26.0
+  lints: ^6.0.0

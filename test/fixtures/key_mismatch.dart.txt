@@ -1,0 +1,5 @@
+import 'package:blot_effect/blot_effect.dart';
+void main() {
+  final key = ServiceKey<String>('name');
+  key.bind(42);
+}

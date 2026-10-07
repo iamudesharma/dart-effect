@@ -1,0 +1,8 @@
+.dart_tool/
+build/
+coverage/
+references/
+tool/
+.agents/
+AGENTS.md
+packages/

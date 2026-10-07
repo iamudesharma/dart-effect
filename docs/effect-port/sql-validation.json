@@ -1,0 +1,70 @@
+{
+  "started_at_utc": "2026-10-07T11:13:08.359952+00:00",
+  "images": {
+    "postgres": "postgres@sha256:18cfe3ef5e6815560c98237d6216d1e5119702fb0f3894c8785dd58b8bbe5d73",
+    "mysql": "mysql@sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242"
+  },
+  "suites": {
+    "blot_sql": {
+      "exit_code": 0,
+      "passed": 18,
+      "skipped": 0,
+      "failed": 0
+    },
+    "blot_postgres": {
+      "exit_code": 0,
+      "passed": 13,
+      "skipped": 0,
+      "failed": 0
+    },
+    "blot_mysql": {
+      "exit_code": 0,
+      "passed": 19,
+      "skipped": 0,
+      "failed": 0
+    }
+  },
+  "containers_removed": true,
+  "cleanup": [
+    {
+      "name": "blot-mysql-test-ce06c9a260",
+      "exit_code": 0
+    },
+    {
+      "name": "blot-postgres-test-ce06c9a260",
+      "exit_code": 0
+    }
+  ],
+  "finished_at_utc": "2026-10-07T11:13:48.493583+00:00",
+  "source_sha256": {
+    "lib/blot_effect.dart": "fddbf8053489731b5faa69a21444aecf990440faa2b899b606af4511fed6787c",
+    "lib/src/concurrency.dart": "89b943cf6ef37071a163d1318219cea9d2910a2642a497dda1f54814101fc109",
+    "lib/src/core.dart": "3b2ce4cf783ce8f0cd12b3f528852e4d8fe31ed2f7394af7c3019cb6bdc189dd",
+    "lib/src/services.dart": "44d65387bdf3dcdd1d78d3795894883e8cc81acd6784f047638a38043b05b269",
+    "lib/src/stream.dart": "fd18652226f16d09bd307fd9d6d954f32f854993cc0edf8ac2e36d885a945b97",
+    "packages/blot_mysql/lib/blot_mysql.dart": "e058c2fa9b88124f30b52d44a3f85cd6e299e74f28833b3b954d8cbdaa97e6f8",
+    "packages/blot_mysql/test/classification_test.dart": "85cc19dc77cc6afafab497358791ec0b825de30cddda6d2c34fe3d433740c43a",
+    "packages/blot_mysql/test/integration_test.dart": "9f23b107949d4fd6a33cb663c5b0e7208383f23503eaafa0926f3a4f23848c41",
+    "packages/blot_postgres/lib/blot_postgres.dart": "f083cc5d01edb8e8e96c151703351a5825aa13896ad32d4d9caa077edcd4d252",
+    "packages/blot_postgres/test/classification_test.dart": "edc60b38d947aaf167608e2a4a74b08fd71cb8d48093acbe244d1b51ed09539c",
+    "packages/blot_postgres/test/integration_test.dart": "8d42a98580b2f71cb2b6b436a2a35e92bbd27d227db42c45b6063d431f525cb2",
+    "packages/blot_sql/lib/blot_sql.dart": "4580e389b6727edc4aebf66f278d73b57fedc0c98d56a5a653da20d707a8e152",
+    "packages/blot_sql/test/sql_test.dart": "b2301871536e4f031f42736fc14761b1c2c091e1e911cba59b593a9d35e229fa",
+    "packages/blot_sql/test/support/driver_contract.dart": "0800399579555f818e53ac53405e77bda6bc3bf5bdf28e7ba0b3658514e7872b"
+  },
+  "portable_sql_chrome_tests": 18,
+  "core_vm_tests_rechecked": 107,
+  "core_chrome_tests_prior_unchanged_sources": 107,
+  "fixtures": 5,
+  "analyzer": "No issues found: root and three SQL packages",
+  "driver_versions": {
+    "postgres": "3.5.19",
+    "mysql_client_plus": "0.1.3"
+  },
+  "examples": {
+    "postgres": "Ran scoped Layer/Context example against isolated PostgreSQL: Hello from Blot",
+    "postgres_aot": "compiled",
+    "mysql_aot": "compiled",
+    "mysql_runtime_example": "not run against a production CA/hostname; adapter integration separately verified with pinned test certificate"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "upstream": {
+    "ref": [
+      1,
+      6,
+      6
+    ],
+    "deferred": [
+      true,
+      false,
+      1,
+      1,
+      1
+    ],
+    "queue": [
+      1,
+      2,
+      3
+    ],
+    "pubsub": [
+      [
+        7,
+        8
+      ],
+      [
+        7,
+        8
+      ]
+    ],
+    "semaphore": [
+      true,
+      42
+    ],
+    "stream": [
+      [
+        6,
+        8
+      ],
+      14
+    ]
+  },
+  "dart": {
+    "ref": [
+      1,
+      6,
+      6
+    ],
+    "deferred": [
+      true,
+      false,
+      1,
+      1,
+      1
+    ],
+    "queue": [
+      1,
+      2,
+      3
+    ],
+    "pubsub": [
+      [
+        7,
+        8
+      ],
+      [
+        7,
+        8
+      ]
+    ],
+    "semaphore": [
+      true,
+      42
+    ],
+    "stream": [
+      [
+        6,
+        8
+      ],
+      14
+    ]
+  },
+  "matched": true,
+  "scenarioCount": 6,
+  "scope": "original selected scenarios, not whole ecosystem equivalence"
+}

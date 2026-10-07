@@ -1,0 +1,41 @@
+# Dart/tool build output
+.dart_tool/
+build/
+coverage/
+tool/fixture_checks/
+__pycache__/
+*.pyc
+.DS_Store
+
+# Local upstream/npm reference evidence (never commit third-party snapshots)
+references/
+node_modules/
+tool/conformance/
+tool/reference_snapshot.py
+tool/ecosystem_inventory.py
+tool/test_catalog.py
+*.js
+*.mjs
+*.cjs
+*.ts
+*.tsx
+*.mts
+*.cts
+package.json
+package-lock.json
+npm-shrinkwrap.json
+yarn.lock
+pnpm-lock.yaml
+*.tgz
+*.tar.gz
+*.tar.xz
+*.zip
+
+# Generated npm ecosystem inventories stay local
+docs/effect-port/ecosystem-inventory.json
+docs/effect-port/upstream-test-catalog.json
+
+# Local credentials/configuration
+.env
+.env.*
+!.env.example

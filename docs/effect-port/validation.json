@@ -1,0 +1,49 @@
+{
+  "validated_at_utc": "2026-10-07T10:49:32.662714+00:00",
+  "sdk": "Dart 3.13.0 stable",
+  "platform": "macOS arm64 and Chrome",
+  "vm_tests": 107,
+  "chrome_tests": 107,
+  "concurrency_tests": 34,
+  "stream_tests": 26,
+  "analyzer": "No issues found",
+  "format": "21 files; no changes",
+  "fixtures": 5,
+  "runtime_conformance_observables": 14,
+  "foundation_conformance_records": 6,
+  "reference_files": 7054,
+  "ecosystem": {
+    "package_manifests": 39,
+    "ts_source_modules": 792,
+    "ts_tsx_test_files": 514,
+    "literal_test_declarations_approximate": 11376,
+    "partial_packages": [
+      "effect"
+    ],
+    "all_other_packages": "not_ported"
+  },
+  "unverified": [
+    "whole-ecosystem compatibility",
+    "external databases/providers/distributed recovery",
+    "platform/isolate/framework integrations",
+    "expanded concurrency/stream performance"
+  ],
+  "historical_benchmarks": "validation-phase0-3.json",
+  "source_sha256": {
+    "example/stream.dart": "f3d015f0d809033df18c74a44591346afc79266be272a2e31e304812af7cda25",
+    "lib/blot_effect.dart": "fddbf8053489731b5faa69a21444aecf990440faa2b899b606af4511fed6787c",
+    "lib/src/concurrency.dart": "89b943cf6ef37071a163d1318219cea9d2910a2642a497dda1f54814101fc109",
+    "lib/src/core.dart": "3b2ce4cf783ce8f0cd12b3f528852e4d8fe31ed2f7394af7c3019cb6bdc189dd",
+    "lib/src/services.dart": "44d65387bdf3dcdd1d78d3795894883e8cc81acd6784f047638a38043b05b269",
+    "lib/src/stream.dart": "fd18652226f16d09bd307fd9d6d954f32f854993cc0edf8ac2e36d885a945b97",
+    "test/concurrency_test.dart": "9c9a69ee8bfd7859d8176b2a7f1d5bd3b9846d9e4a79d80aaf22456bcf14e69c",
+    "test/review_test.dart": "05adb969a10d525f8b2e1aead18c2e4a16e7968320235ecb5ce5b57af8a61d7e",
+    "test/runtime_test.dart": "be9c76f7e0642aa4b3337f0f5d66c1932174a553589f60581c144d2869cee75e",
+    "test/services_test.dart": "b9cc69dca22b1851ff983e1bdf814a67a1aaf9dcf6e9056617a7168f4375fa60",
+    "test/stream_test.dart": "2dea3bb1dd8e3661e5ae78f0f6d4cb990d67c9807e9540561f614a314a3057e0",
+    "test/support/checkpoints.dart": "405b3a600f07a3e5814709af16176417fe9d186199e192dd8dd58426b7919b94",
+    "tool/conformance/compare.py": "f9629458b1e1188bb8226ed0fe998e2d2d145ebfa63b19605f31a7a35d4647e9",
+    "tool/conformance/foundation.dart": "cfd5cfd3216f207fe7cec99cb17dc0ec58c15e4b964ccbe872e6bd60bd44161a",
+    "tool/conformance/foundation.mjs": "a6fdfdb52e2456e5712ea833ff20e63dc60f1c087ea019dba4221f3ae3f7c9d5"
+  }
+}

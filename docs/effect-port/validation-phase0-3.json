@@ -1,0 +1,42 @@
+{
+  "validated_at_utc": "2026-10-07T10:17:53.286491+00:00",
+  "sdk": "Dart 3.13.0 stable",
+  "platform": "macOS arm64",
+  "vm_tests": 47,
+  "chrome_tests": 47,
+  "analyzer": "No issues found",
+  "format": "14 files, no changes",
+  "fixtures": 5,
+  "conformance_observables": 14,
+  "reference_files": 7054,
+  "benchmarks": {
+    "modes": [
+      "JIT",
+      "AOT"
+    ],
+    "samples": 11,
+    "warmups": 3,
+    "sourceFingerprintScope": [
+      "lib/src/core.dart",
+      "tool/benchmark.dart"
+    ],
+    "unmeasured": [
+      "layers",
+      "schedules",
+      "streams",
+      "per-operation allocations"
+    ]
+  },
+  "source_sha256": {
+    "lib/src/core.dart": "3b2ce4cf783ce8f0cd12b3f528852e4d8fe31ed2f7394af7c3019cb6bdc189dd",
+    "lib/src/services.dart": "44d65387bdf3dcdd1d78d3795894883e8cc81acd6784f047638a38043b05b269",
+    "lib/blot_effect.dart": "59bdf3a47caea128007b86233cb97064a89ce329893a3dd70d4093af36feedea",
+    "tool/benchmark.dart": "1b33ac26ae93037f038ac32f4ee62f53e54826368226faaedb4ade7c232df4e4",
+    "tool/reference_snapshot.py": "f78db710d63dc5f6e7e1dbb4686854168d962dcc1511b856f998e02c11d88171",
+    "pubspec.lock": "193cbfa448971f305da48999d86d6ca239741af03ffdd4704a0f65337f587766"
+  },
+  "unrun": [
+    "native Flutter/device/isolate tests",
+    "reference refresh (maintenance only)"
+  ]
+}

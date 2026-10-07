@@ -1,0 +1,3 @@
+dependency_overrides:
+  blot_effect:
+    path: ../..

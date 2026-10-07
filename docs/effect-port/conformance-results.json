@@ -1,0 +1,129 @@
+{
+  "upstream": {
+    "lazyBefore": 0,
+    "reexecution": [
+      2,
+      4
+    ],
+    "recovery": 7,
+    "defectRecovered": false,
+    "defectFailed": true,
+    "resources": [
+      {
+        "outcome": "success",
+        "success": true,
+        "trace": [
+          "acquire",
+          "use",
+          "release"
+        ]
+      },
+      {
+        "outcome": "failure",
+        "success": false,
+        "trace": [
+          "acquire",
+          "use",
+          "release"
+        ]
+      },
+      {
+        "outcome": "defect",
+        "success": false,
+        "trace": [
+          "acquire",
+          "use",
+          "release"
+        ]
+      }
+    ],
+    "race": "winner",
+    "cleanupFailure": true,
+    "interruptedResource": {
+      "failed": true,
+      "trace": [
+        "acquire",
+        "use",
+        "release"
+      ]
+    },
+    "raceCleanup": {
+      "value": 7,
+      "trace": [
+        "start",
+        "cleanup"
+      ]
+    },
+    "retryAttempts": 3,
+    "bounded": [
+      2,
+      4,
+      6
+    ]
+  },
+  "dart": {
+    "lazyBefore": 0,
+    "reexecution": [
+      2,
+      4
+    ],
+    "recovery": 7,
+    "defectRecovered": false,
+    "defectFailed": true,
+    "resources": [
+      {
+        "outcome": "success",
+        "success": true,
+        "trace": [
+          "acquire",
+          "use",
+          "release"
+        ]
+      },
+      {
+        "outcome": "failure",
+        "success": false,
+        "trace": [
+          "acquire",
+          "use",
+          "release"
+        ]
+      },
+      {
+        "outcome": "defect",
+        "success": false,
+        "trace": [
+          "acquire",
+          "use",
+          "release"
+        ]
+      }
+    ],
+    "race": "winner",
+    "cleanupFailure": true,
+    "interruptedResource": {
+      "failed": true,
+      "trace": [
+        "acquire",
+        "use",
+        "release"
+      ]
+    },
+    "raceCleanup": {
+      "value": 7,
+      "trace": [
+        "start",
+        "cleanup"
+      ]
+    },
+    "retryAttempts": 3,
+    "bounded": [
+      2,
+      4,
+      6
+    ]
+  },
+  "matched": true,
+  "scenarioCount": 14,
+  "scope": "original selected scenarios, not whole ecosystem equivalence"
+}

@@ -1,0 +1,17 @@
+import 'package:blot_effect/blot_effect.dart';
+sealed class AppError {}
+final class NetworkError extends AppError {}
+final class ParseError extends AppError {}
+final class Services {
+  final String endpoint;
+  Services(this.endpoint);
+}
+void main() {
+  final Effect<int, AppError, Services> first = Effect.fail<int, AppError, Services>(NetworkError());
+  final Effect<String, AppError, Services> composed = first.flatMap((n) => Effect.fail<String, AppError, Services>(ParseError()));
+  final Effect<String, AppError, Services> recovered = composed.catchAll((e) => Effect.succeed<String, AppError, Services>('fallback'));
+  final Effect<String, AppError, Services> service = Effect.environment<String, AppError, Services>((s) => s.endpoint);
+  final runtime = Runtime(Services('local'));
+  runtime.runExit(recovered);
+  runtime.runExit(service);
+}

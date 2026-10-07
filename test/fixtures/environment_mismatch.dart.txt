@@ -1,0 +1,7 @@
+import 'package:blot_effect/blot_effect.dart';
+final class Database {}
+void main() {
+  final runtime = Runtime(Unit.value);
+  final effect = Effect.succeed<int, String, Database>(1);
+  runtime.runExit(effect);
+}
