@@ -1,0 +1,12 @@
+name: effect_openai
+description: Lazy typed Effect integration for openai_dart, with scoped clients and cancellable requests and streams.
+version: 0.1.0-dev.1
+environment:
+  sdk: '>=3.13.0 <4.0.0'
+dependencies:
+  effect_core: ^0.1.0-dev.1
+  openai_dart: ^10.0.1
+dev_dependencies:
+  http: ^1.6.0
+  test: ^1.26.0
+  lints: ^6.0.0

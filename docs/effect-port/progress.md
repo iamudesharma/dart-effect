@@ -220,3 +220,18 @@ See `rename-validation.json` and the refreshed `sql-validation.json`. Earlier
 JSON validation and benchmark records retain their original names and hashes
 as historical evidence. The private GitHub repository is `iamudesharma/dart-effect`;
 the working branch is `dart-effect`. Node/npm sources and snapshots remain ignored.
+
+## OpenAI integration — 2026-10-07
+
+The user added openai_dart to the focused scope. `effect_openai` uses 10.0.1
+for lazy typed requests and scoped reusable streams, with independent abort
+signals, owned/borrowed SDK lifetimes, Layer/Context provision, typed SDK failures
+and generic endpoint wrappers. Primary helpers cover Responses, Chat, embeddings
+and moderation. No Node/npm source is included.
+
+Verified: 50 adapter VM tests (including eight actual loopback HTTP/SSE tests),
+42 adapter Chrome tests, 107 core VM regression tests, five analyzer fixtures,
+root/package analysis and formatting. The credential-free SDK example executed;
+it compiled to JavaScript, and the live example compiled to a native executable.
+Live OpenAI API/model acceptance was not run. Detailed contracts, test cases and
+remaining boundaries are in openai-adapter.md and openai-validation.json.

@@ -27,10 +27,13 @@ prerequisites are distinct from offline reference availability.
 
 Completion: advertised operations run; failures and unrun platform acceptance
 are recorded in progress/feature matrix. Current user scope is the reusable core,
-PostgreSQL and MySQL adapters using established pub.dev drivers. The full Node
+PostgreSQL and MySQL adapters using established pub.dev drivers, plus the
+user-selected openai_dart integration in packages/effect_openai. The full Node
 package inventory is historical context, not a porting checklist. Native SQL
 adapters live in packages/; keep driver dependencies/dart:io outside core lib/.
 Read docs/effect-port/sql-adapters.md for transaction/cancellation contracts.
 Use version dependencies plus local pubspec_overrides.yaml for development;
-verify each package independently. No package publication/deployment is authorized. The user authorized a private
+verify each package independently. OpenAI adapter contracts/tests:
+docs/effect-port/openai-adapter.md. Keep live API acceptance distinct from local
+HTTP/SSE fixtures; do not embed credentials or introduce Node sources. No package publication/deployment is authorized. The user authorized a private
 GitHub repository and branch push; never stage upstream/npm or Node source.

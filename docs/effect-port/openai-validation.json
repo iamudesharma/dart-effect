@@ -1,0 +1,46 @@
+{
+  "verified_at_utc": "2026-10-07T12:11:46.778615+00:00",
+  "sdk": "openai_dart 10.0.1",
+  "checks": {
+    "format": "passed; zero changes",
+    "analysis": "root and effect_openai passed",
+    "tests": {
+      "openai_vm": 50,
+      "openai_chrome": 42,
+      "core_vm_regression": 107
+    },
+    "analyzer_fixtures_passed": 5,
+    "credential_free_sdk_example": "executed; Hello from Effect OpenAI",
+    "web_example": "compiled to JavaScript",
+    "live_example": "compiled to native executable; not run"
+  },
+  "transport_acceptance": {
+    "local_http_sse_vm_tests": 8,
+    "real_sdk": true,
+    "real_loopback_sockets": true,
+    "live_openai_api": false,
+    "api_credentials_used": false
+  },
+  "limits": [
+    "Live service/model acceptance not run.",
+    "Chrome exercised synthetic HTTP SDK transports and lifecycle scenarios, not live browser API calls.",
+    "Generic SDK endpoints, persistent Realtime sessions, load and soak are not exhaustively tested."
+  ],
+  "source_sha256": {
+    "packages/effect_openai/example/live.dart": "457e71b4c17de7ccc3707795f9de1ef239d4f8fc19d23096bc2e0308972c1a63",
+    "packages/effect_openai/example/main.dart": "71417e416f555e7f9733a42dd0a6f3eff7f457230922a0fecf825b0a34953742",
+    "packages/effect_openai/lib/effect_openai.dart": "541e8da137e3e06ea4cd56bf561a290b6755b944608df7e06b4aa9f1eb126b31",
+    "packages/effect_openai/pubspec.lock": "318e568c393d0f2d2573e22c4c3aa8db8c13a4ff3fd6176b46b122d4f3f9e4f2",
+    "packages/effect_openai/test/client_test.dart": "80bd964d1d2456d31e9acc7e810881c0422929a4103c20201ab01597a76626f5",
+    "packages/effect_openai/test/http_integration_test.dart": "a478d4fc79e4876cc8d485e9ff24d63cca7462e66ecd28f850d6903b625b453c",
+    "packages/effect_openai/test/sdk_test.dart": "5f24c68114a9f86b3ac1346313a2c0cf34d0a1b8ecda3fa80a9737197bef1569",
+    "packages/effect_openai/test/support/fixtures.dart": "0dad3795f091f75a1b875715cde6691e2e581454540313e2c4f8a7929e260bac"
+  },
+  "clean_git_checkout": {
+    "offline_lockfile_resolution": "root and adapter passed",
+    "analysis": "passed",
+    "adapter_vm_tests_passed": 50,
+    "credential_free_example": "passed",
+    "temporary_checkout_removed": true
+  }
+}

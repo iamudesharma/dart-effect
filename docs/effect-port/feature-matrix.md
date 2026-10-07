@@ -69,3 +69,11 @@ Full ecosystem expansion was superseded by the user's focused Dart core and
 PostgreSQL/MySQL scope: [SQL adapter contracts](sql-adapters.md). Historical
 [all-package inventory/status](ecosystem-status.md),
 [expanded contracts](expansion-contracts.md), [detailed test cases](testing.md).
+
+## OpenAI integration
+
+The user extended scope to openai_dart. `effect_openai` provides HTTP Future and
+Stream integration, scoped SDK clients, per-run abort/drain, typed SDK failures
+and primary text/embedding/moderation helpers. Realtime sessions and automatic
+tool execution are not implemented. See [contracts and tests](openai-adapter.md);
+live API acceptance remains distinct from isolated HTTP/SSE transport validation.

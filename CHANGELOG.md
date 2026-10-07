@@ -33,3 +33,9 @@ Renamed the provisional `blot_effect`, `blot_sql`, `blot_postgres` and
 `effect_mysql`. Update both dependency names and package import paths.
 The public Effect and SQL API types are unchanged. Earlier JSON validation
 records retain the names and source hashes used when those checks ran.
+
+## OpenAI integration
+
+Added `effect_openai` for openai_dart 10.0.1: typed request helpers, reusable
+Responses/Chat streams, generic SDK endpoint wrappers, isolated abort state,
+scoped SDK ownership, typed failures, examples and transport/lifecycle tests.

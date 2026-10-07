@@ -4,7 +4,7 @@ An independent, Effect-inspired Dart package for lazy computations, typed expect
 failures, dependency provision and structured asynchronous concurrency. Version
 `0.1.0-dev.1` implements core runtime/services and an initial concurrency and
 stream foundation. Current scope is the reusable core plus PostgreSQL/MySQL
-adapters using established Dart drivers.
+adapters using established Dart drivers, plus an OpenAI SDK integration.
 Dart >=3.13.0; no runtime dependencies or unconditional `dart:io` imports.
 Not officially affiliated with Effect-TS and no full compatibility/parity claim.
 
@@ -89,7 +89,7 @@ required for normal builds; no references are automatically downloaded.
 Ref, Deferred, weighted Semaphore, SynchronizedRef, bounded Queue/PubSub and
 pull-based EffectStream/Sink now have executable tests. Stream adapters support
 native pause/cancel and bounded buffering. Schemas/configuration/caches,
-metrics/tracing and broader ecosystem integrations remain outside the current
+metrics/tracing and other ecosystem integrations remain outside the current
 focused scope; see [SQL adapters and detailed contracts](docs/effect-port/sql-adapters.md) and
 [detailed upstream-style test cases](docs/effect-port/testing.md). Only map/flatMap/defer chain depth is proved stack
 safe; deeply nesting region wrappers is not advertised as stack safe.
@@ -110,3 +110,8 @@ rollback; PostgreSQL discards the interrupted connection. Read the
 [adapter guide](docs/effect-port/sql-adapters.md) for TLS, API usage, local package
 consumption and test cases. `python3 tool/sql_integration.py` runs real isolated
 database suites and removes its test containers. These packages are not published.
+
+AI integration: `effect_openai` in `packages/effect_openai` uses `openai_dart`
+10.0.1. It provides lazy typed HTTP effects, scoped clients, Responses/Chat
+streams, independent abort signals and extensible wrappers for SDK endpoints.
+See the [AI adapter and detailed tests](docs/effect-port/openai-adapter.md).
