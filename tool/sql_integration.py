@@ -22,19 +22,19 @@ def run_suite(package,env):
  if result.returncode:print(result.stderr);raise RuntimeError(f'{package} failed; inspect build/{package}-integration.jsonl')
 try:
  call(['docker','info','--format','{{.ServerVersion}}'])
- with tempfile.TemporaryDirectory(prefix='blot-sql-') as temporary:
+ with tempfile.TemporaryDirectory(prefix='effect-sql-') as temporary:
   env=os.environ.copy();token=uuid.uuid4().hex[:10]
   for db,port in [('postgres',5432),('mysql',3306)]:
-   name=f'blot-{db}-test-{token}'
-   args=['docker','run','--detach','--name',name,'--label','blot.effect.test=true','--publish',f'127.0.0.1::{port}']
-   options={'POSTGRES_PASSWORD':'blot_test_password','POSTGRES_DB':'blot_test'} if db=='postgres' else {'MYSQL_ROOT_PASSWORD':'blot_test_password','MYSQL_DATABASE':'blot_test'}
+   name=f'effect-{db}-test-{token}'
+   args=['docker','run','--detach','--name',name,'--label','effect.effect.test=true','--publish',f'127.0.0.1::{port}']
+   options={'POSTGRES_PASSWORD':'effect_test_password','POSTGRES_DB':'effect_test'} if db=='postgres' else {'MYSQL_ROOT_PASSWORD':'effect_test_password','MYSQL_DATABASE':'effect_test'}
    for key,value in options.items():args += ['--env',f'{key}={value}']
    call(args+[IMAGES[db]]);created.append(name)
    mapped=call(['docker','port',name,f'{port}/tcp']).split(':')[-1]
-   env['BLOT_PG_PORT' if db=='postgres' else 'BLOT_MYSQL_PORT']=mapped
+   env['EFFECT_PG_PORT' if db=='postgres' else 'EFFECT_MYSQL_PORT']=mapped
    deadline=time.monotonic()+90
    while True:
-    health=['pg_isready','--username','postgres','--dbname','blot_test'] if db=='postgres' else ['mysqladmin','ping','--host','127.0.0.1','-pblot_test_password','--silent']
+    health=['pg_isready','--username','postgres','--dbname','effect_test'] if db=='postgres' else ['mysqladmin','ping','--host','127.0.0.1','-peffect_test_password','--silent']
     ready=subprocess.run(['docker','exec',name,*health],capture_output=True).returncode==0
     if ready:break
     if time.monotonic()>deadline:raise TimeoutError(f'{db} startup exceeded 90 seconds')
@@ -42,9 +42,9 @@ try:
    if db=='mysql':
     cert=pathlib.Path(temporary)/'server-cert.pem'
     call(['docker','cp',f'{name}:/var/lib/mysql/server-cert.pem',str(cert)])
-    env['BLOT_MYSQL_CERT_PATH']=str(cert)
+    env['EFFECT_MYSQL_CERT_PATH']=str(cert)
   (ROOT/'build').mkdir(exist_ok=True)
-  for package in ['blot_sql','blot_postgres','blot_mysql']:run_suite(package,env)
+  for package in ['effect_sql','effect_postgres','effect_mysql']:run_suite(package,env)
 finally:
  cleanup=[]
  for name in reversed(created):

@@ -1,4 +1,4 @@
-# Blot Effect project guidance
+# Effect Core project guidance
 
 Portable standalone package, Dart >=3.13.0. Read
 `docs/effect-port/architecture.md` first. The upstream/npm snapshot and Node

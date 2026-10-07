@@ -1,4 +1,4 @@
-import 'package:blot_effect/blot_effect.dart';
+import 'package:effect_core/effect_core.dart';
 final class Database {}
 void main() {
   final runtime = Runtime(Unit.value);

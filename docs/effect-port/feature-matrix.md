@@ -6,7 +6,7 @@ ignored inventories describe optional local evidence and will not resolve in a
 fresh clone. Dart and database tests do not require those files.
 
 Implemented means executable and tested, not complete Effect ecosystem parity.
-Pinned evidence is indexed in `references/effect/INDEX.md`. Blot is independent.
+Pinned evidence is indexed in `references/effect/INDEX.md`. Effect is independent.
 
 | Feature | Status | Validation/evidence |
 | --- | --- | --- |

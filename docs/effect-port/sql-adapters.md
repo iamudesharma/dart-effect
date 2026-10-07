@@ -6,7 +6,7 @@ ignored inventories describe optional local evidence and will not resolve in a
 fresh clone. Dart and database tests do not require those files.
 
 The user's latest instruction replaces the full-ecosystem request. Deliver the
-reusable `blot_effect` core and PostgreSQL/MySQL integrations backed by established
+reusable `effect_core` core and PostgreSQL/MySQL integrations backed by established
 Dart packages. “PG” is the PostgreSQL adapter, not a second package or a new wire
 protocol. The historical Node inventory is reference material, not a requirement
 to port unsupported JavaScript runtimes, frameworks or vendor integrations.
@@ -36,13 +36,13 @@ reference pack.
 
 | Package | Location | Runtime dependencies / platform |
 | --- | --- | --- |
-| blot_effect | Repository root | Zero runtime dependencies; VM and web portable |
-| blot_sql | packages/blot_sql | Core only; portable lease/transaction contracts and driver extension interface |
-| blot_postgres | packages/blot_postgres | Core + SQL + postgres; native Dart sockets |
-| blot_mysql | packages/blot_mysql | Core + SQL + mysql_client_plus; native Dart sockets/TLS |
+| effect_core | Repository root | Zero runtime dependencies; VM and web portable |
+| effect_sql | packages/effect_sql | Core only; portable lease/transaction contracts and driver extension interface |
+| effect_postgres | packages/effect_postgres | Core + SQL + postgres; native Dart sockets |
+| effect_mysql | packages/effect_mysql | Core + SQL + mysql_client_plus; native Dart sockets/TLS |
 
 Database adapters belong in an API/server process. Web clients call that API.
-Driver imports and `dart:io` remain outside core. `blot_sql` shares real lifecycle
+Driver imports and `dart:io` remain outside core. `effect_sql` shares real lifecycle
 behavior, not a placeholder implementation of every Effect SQL module. Query
 building, migrations, reactive queries, cursors/streaming and dialect abstraction
 are not advertised. Results are materialized by the underlying driver.
@@ -50,8 +50,8 @@ are not advertised. Results are materialized by the underlying driver.
 Packages remain local development candidates, not published on pub.dev. Their
 public dependencies use versions; checked-in `pubspec_overrides.yaml` files point
 to local sources for development and are excluded from consumer archives. To use
-an adapter in another local project, provide overrides for both `blot_effect`
-and `blot_sql` until those dependencies are published. Publication is separate.
+an adapter in another local project, provide overrides for both `effect_core`
+and `effect_sql` until those dependencies are published. Publication is separate.
 
 ## Query and API usage
 
@@ -158,7 +158,7 @@ our tests cover the Effect-to-driver lifecycle boundary independently.
 | Adapter classification tests | Selected native error codes and programmer-error distinction |
 
 The shared real-database contract is in
-[driver_contract.dart](../../packages/blot_sql/test/support/driver_contract.dart).
+[driver_contract.dart](../../packages/effect_sql/test/support/driver_contract.dart).
 It runs against actual PostgreSQL/MySQL processes, not mocked SQL results. Tests
 without explicit database environment variables are skipped and never counted
 as integration acceptance. The automated runner starts isolated pinned containers,
@@ -166,10 +166,10 @@ waits for readiness, copies/pins the MySQL public certificate, executes suites,
 and removes only containers it created even when a suite fails:
 
 ```sh
-# Install Dart package dependencies once in each packages/blot_* directory.
+# Install Dart package dependencies once in each packages/effect_* directory.
 python3 tool/sql_integration.py
 # Unit/portable coverage:
-cd packages/blot_sql && dart test test/sql_test.dart
+cd packages/effect_sql && dart test test/sql_test.dart
 # Use -p chrome for that portable suite; database adapters require the VM.
 ```
 

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:blot_effect/blot_effect.dart';
+import 'package:effect_core/effect_core.dart';
 import 'package:test/test.dart';
 
 Future<void> turn() => Future<void>.delayed(Duration.zero);

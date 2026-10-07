@@ -1,6 +1,6 @@
 ---
 name: dart-package-quality
-description: Review the standalone Blot package API, examples and portability.
+description: Review the standalone Effect package API, examples and portability.
 ---
 
 # dart-package-quality

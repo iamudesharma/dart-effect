@@ -5,10 +5,10 @@ npm inventories are deliberately ignored by Git. Links to `references/` and
 ignored inventories describe optional local evidence and will not resolve in a
 fresh clone. Dart and database tests do not require those files.
 
-The initially empty, non-Git workspace now contains `blot_effect 0.1.0-dev.1`, an
+The initially empty, non-Git workspace now contains `effect_core 0.1.0-dev.1`, an
 independent portable Dart package. Phases 0–3 have a working local development
-candidate with the limitations below. No publication, deployment, application
-migration, commit or push was performed. No existing application was present.
+candidate with the limitations below. At the phases 0–3 checkpoint, no publication, deployment, application
+migration, commit or push had been performed. No existing application was present.
 
 ## Phase 0 — local evidence
 
@@ -173,7 +173,7 @@ using established pub.dev drivers. PostgreSQL/PG is one adapter using postgres
 3.5.19. MySQL uses mysql_client_plus 0.1.3 after comparing current maintenance and
 adoption evidence. Other Node package integrations are outside current scope.
 
-Implemented optional blot_sql, blot_postgres and blot_mysql packages with bound
+Implemented optional effect_sql, effect_postgres and effect_mysql packages with bound
 parameters, a lazy bounded pool, typed driver-error classification, scoped service
 lifetimes, exclusive transactions, nested savepoints and expired handle checks.
 Transaction body child fibers/finalizers finish before commit or rollback. Failed
@@ -199,7 +199,24 @@ SQL API parity. Cursor streaming, migrations, query builders, production network
 partition/load/soak tests, production CA deployments and database-version matrices
 remain unimplemented or unverified as recorded in the adapter guide.
 
-PostgreSQL Layer/Context example executed against the isolated server and printed
-Hello from Blot. Both native adapter examples compiled to AOT executables. The
+The PostgreSQL Layer/Context example executed against the isolated server before
+the package rename. Both native adapter examples compiled to AOT executables. The
 MySQL CLI example was not run against a production CA/hostname; real adapter tests
 use an exact pinned test certificate and separately test default TLS rejection.
+
+## Package rename — 2026-10-07
+
+The public package family is now `effect_core`, `effect_sql`, `effect_postgres`
+and `effect_mysql`. Dependency names, entrypoints, imports, local overrides,
+examples, documentation and SQL acceptance tooling use these names. The core
+package remains at the repository root. Public API type names are unchanged.
+
+Analysis passed independently for all four packages. After the rename, all 157
+VM tests passed, including the isolated PostgreSQL and MySQL acceptance suites
+with no skips. Chrome passed 107 core and 18 portable SQL tests. Five analyzer
+fixtures passed, the web example compiled, all five core examples executed, and
+both native database examples compiled to AOT. Test containers were removed.
+See `rename-validation.json` and the refreshed `sql-validation.json`. Earlier
+JSON validation and benchmark records retain their original names and hashes
+as historical evidence. The private GitHub repository is `iamudesharma/dart-effect`;
+the working branch is `dart-effect`. Node/npm sources and snapshots remain ignored.

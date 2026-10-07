@@ -1,4 +1,4 @@
-# Blot Effect
+# Effect Core
 
 An independent, Effect-inspired Dart package for lazy computations, typed expected
 failures, dependency provision and structured asynchronous concurrency. Version
@@ -9,7 +9,7 @@ Dart >=3.13.0; no runtime dependencies or unconditional `dart:io` imports.
 Not officially affiliated with Effect-TS and no full compatibility/parity claim.
 
 ```dart
-import 'package:blot_effect/blot_effect.dart';
+import 'package:effect_core/effect_core.dart';
 
 Future<void> main() async {
   final runtime = Runtime(Unit.value);
@@ -99,9 +99,9 @@ Optional server database packages:
 
 | Package | Driver | Location |
 | --- | --- | --- |
-| blot_sql | Shared scoped query/transaction contracts; core dependency only | packages/blot_sql |
-| blot_postgres | postgres 3.5.19 | packages/blot_postgres |
-| blot_mysql | mysql_client_plus 0.1.3 | packages/blot_mysql |
+| effect_sql | Shared scoped query/transaction contracts; core dependency only | packages/effect_sql |
+| effect_postgres | postgres 3.5.19 | packages/effect_postgres |
+| effect_mysql | mysql_client_plus 0.1.3 | packages/effect_mysql |
 
 PG and PostgreSQL use the same adapter. Bound parameters, exclusive transactions,
 nested savepoints and cleanup integrate with Effect/Runtime/Layer. Native database

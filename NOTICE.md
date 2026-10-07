@@ -1,6 +1,6 @@
 # Attribution
 
-Blot Effect is an independent, Effect-inspired Dart implementation. Effect-TS
+Effect Core is an independent, Effect-inspired Dart implementation. Effect-TS
 source and tests are MIT licensed; their original notices remain in the local
 reference pack (`references/effect/licenses/` and upstream LICENSE).
 The pinned source informs behavioral contracts; this package does not claim

@@ -3,7 +3,7 @@ import 'dart:convert';
 
 /// Analyze isolated accepted/rejected programs with the actual installed SDK.
 Future<void> main() async {
-  final temporary = Directory.systemTemp.createTempSync('blot_fixtures_');
+  final temporary = Directory.systemTemp.createTempSync('effect_fixtures_');
   final configuration = File('.dart_tool/package_config.json');
   final packages =
       jsonDecode(configuration.readAsStringSync()) as Map<String, dynamic>;

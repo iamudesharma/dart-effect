@@ -26,7 +26,7 @@ source inventory counts, not implemented Dart modules or passing test counts.
 | `@effect/atom-react` | 5 | 1 | Outside current scope |
 | `@effect/atom-solid` | 3 | 1 | Outside current scope |
 | `@effect/atom-vue` | 1 | 1 | Outside current scope |
-| `effect` | 496 | 324 | Partial core in blot_effect |
+| `effect` | 496 | 324 | Partial core in effect_core |
 | `@effect/opentelemetry` | 10 | 3 | Outside current scope |
 | `@effect/platform-browser` | 18 | 12 | Outside current scope |
 | `@effect/platform-bun` | 23 | 6 | Outside current scope |
@@ -37,8 +37,8 @@ source inventory counts, not implemented Dart modules or passing test counts.
 | `@effect/sql-d1` | 2 | 2 | Outside current scope |
 | `@effect/sql-libsql` | 3 | 2 | Outside current scope |
 | `@effect/sql-mssql` | 5 | 4 | Outside current scope |
-| `@effect/sql-mysql2` | 3 | 7 | Dart query/transaction adapter in blot_mysql; broader upstream API not ported |
-| `@effect/sql-pg` | 11 | 16 | Dart query/transaction adapter in blot_postgres; underlying protocol delegated to postgres |
+| `@effect/sql-mysql2` | 3 | 7 | Dart query/transaction adapter in effect_mysql; broader upstream API not ported |
+| `@effect/sql-pg` | 11 | 16 | Dart query/transaction adapter in effect_postgres; underlying protocol delegated to postgres |
 | `@effect/sql-pglite` | 3 | 6 | Outside current scope |
 | `@effect/sql-sqlite-bun` | 3 | 1 | Outside current scope |
 | `@effect/sql-sqlite-do` | 3 | 2 | Outside current scope |

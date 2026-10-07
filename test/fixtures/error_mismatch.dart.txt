@@ -1,4 +1,4 @@
-import 'package:blot_effect/blot_effect.dart';
+import 'package:effect_core/effect_core.dart';
 void main() {
   final effect = Effect.succeed<int, String, Unit>(1);
   effect.flatMap((n) => Effect.fail<int, int, Unit>(42));

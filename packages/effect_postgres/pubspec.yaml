@@ -1,0 +1,12 @@
+name: effect_postgres
+description: Scoped Effect SQL postgres integration for Dart API services.
+version: 0.1.0-dev.1
+environment:
+  sdk: ">=3.13.0 <4.0.0"
+dependencies:
+  effect_core: ^0.1.0-dev.1
+  effect_sql: ^0.1.0-dev.1
+  postgres: ^3.5.19
+dev_dependencies:
+  test: ^1.26.0
+  lints: ^6.0.0

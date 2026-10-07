@@ -1,7 +1,8 @@
-# Blot Effect architecture
+# Effect Core architecture
 
-Design established before implementation. This repository was empty; the name
-`blot_effect` is provisional. Portable Dart 3.13 core, no runtime dependencies.
+Design established before implementation. The reusable runtime package is
+`effect_core`, with optional SQL adapters in the `effect_*` family.
+Portable Dart 3.13 core, no runtime dependencies.
 
 ## Type contract
 

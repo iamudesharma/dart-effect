@@ -1,6 +1,6 @@
 ---
 name: dart-effect-runtime
-description: Implement or review Blot lazy effects and fiber/resource lifecycles.
+description: Implement or review Effect lazy effects and fiber/resource lifecycles.
 ---
 
 # dart-effect-runtime

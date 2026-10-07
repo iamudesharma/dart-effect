@@ -1,5 +1,0 @@
-dependency_overrides:
-  blot_effect:
-    path: ../..
-  blot_sql:
-    path: ../blot_sql

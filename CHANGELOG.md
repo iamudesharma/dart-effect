@@ -18,10 +18,18 @@ was subsequently narrowed by the user to core, PostgreSQL and MySQL.
 Detailed upstream runner/case documentation and literal test catalogue added.
 
 
-Added optional blot_sql, blot_postgres and blot_mysql packages. PostgreSQL/PG
+Added optional effect_sql, effect_postgres and effect_mysql packages. PostgreSQL/PG
 uses postgres; MySQL uses mysql_client_plus. Bound queries, bounded leasing,
 transaction/savepoint callbacks, expired-handle checks, scope cleanup and typed
 error classification are implemented. MySQL rejects invalid TLS certificates
 by default and drains active work on interruption; PostgreSQL force-closes and
 discards an interrupted connection. Real database and portable lifecycle tests
 have an isolated pinned-image runner with teardown.
+
+## Package naming
+
+Renamed the provisional `blot_effect`, `blot_sql`, `blot_postgres` and
+`blot_mysql` packages to `effect_core`, `effect_sql`, `effect_postgres` and
+`effect_mysql`. Update both dependency names and package import paths.
+The public Effect and SQL API types are unchanged. Earlier JSON validation
+records retain the names and source hashes used when those checks ran.

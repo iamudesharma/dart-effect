@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:blot_effect/blot_effect.dart';
+import 'package:effect_core/effect_core.dart';
 
 Future<void> main() async {
   final runtime = Runtime(Unit.value);

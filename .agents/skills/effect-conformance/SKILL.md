@@ -1,6 +1,6 @@
 ---
 name: effect-conformance
-description: Derive independent lifecycle and type conformance scenarios for Blot.
+description: Derive independent lifecycle and type conformance scenarios for Effect.
 ---
 
 # effect-conformance
