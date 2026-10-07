@@ -83,5 +83,8 @@ OPENAI_API_KEY=... OPENAI_MODEL=... dart run example/live.dart
 
 See the repository's [adapter and detailed test guide](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/openai-adapter.md)
 for supported operations, scenarios and validation limits. Local socket tests use
-synthetic responses, not the live OpenAI service. Live API/model acceptance is a
-separate opt-in check; no API credential is checked into this repository.
+synthetic responses, not the live OpenAI service. Two native live Responses streams also passed using user-authorized ChatGPT plan
+access, including Unicode output and terminal completion. This is a limited smoke
+check; other endpoints and live browser transport remain unverified. See the
+adapter guide for the recorded evidence. No API credential is checked into this
+repository.

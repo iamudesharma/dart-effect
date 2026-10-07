@@ -81,10 +81,18 @@
     },
     {
       "id": "ai-live",
-      "title": "Live OpenAI acceptance",
-      "status": "awaiting-input",
+      "title": "Live OpenAI Responses smoke acceptance",
+      "status": "completed",
       "area": "Acceptance",
-      "detail": "Requires a supplied API key and a model enabled for the account. Local SDK transport tests have passed.",
+      "detail": "Two native live Responses streams passed with text, Unicode, terminal completion and awaited cleanup through user-authorized ChatGPT plan access.",
+      "proof": "/docs/openai/"
+    },
+    {
+      "id": "ai-broader",
+      "title": "Broader OpenAI live acceptance",
+      "status": "planned",
+      "area": "Acceptance",
+      "detail": "Other API endpoints, live browser transport, load/soak and failure injection remain unverified. ChatGPT plan access covers only eligible Responses requests.",
       "proof": "/docs/openai/"
     },
     {

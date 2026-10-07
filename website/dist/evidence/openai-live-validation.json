@@ -1,0 +1,49 @@
+{
+  "verified_at_utc": "2026-10-07T13:50:30.656952+00:00",
+  "evidence_kind": "observed temporary manual live acceptance",
+  "tested_commit": "5df8d5cf56612c990e1f40a945276f55645b5d14",
+  "sdk": "openai_dart 10.0.1",
+  "authentication": "Official Sign in with ChatGPT; user-authorized ChatGPT plan usage",
+  "live_checks": {
+    "authentication_and_model_catalog": "passed",
+    "responses_streams_passed": 2,
+    "normal_text_output": "passed",
+    "unicode_output": "passed",
+    "response_completed_terminal_event": "passed for both streams",
+    "runtime_and_client_shutdown": "awaited"
+  },
+  "transport": "Native Dart SDK and Effect adapter to public OpenAI Responses HTTP/SSE API",
+  "request_policy": {
+    "store": false,
+    "sdk_retries": 0,
+    "model_selection": "Visible account model catalog; exact model identifier was not retained"
+  },
+  "cleanup": {
+    "temporary_harnesses_deleted": true,
+    "temporary_consent_screenshot_deleted": true,
+    "credentials_persisted": false,
+    "test_client_authorization_revoked": false
+  },
+  "limits": [
+    "Only two short Responses streaming requests were exercised; not exhaustive endpoint or production acceptance.",
+    "Chat Completions, embeddings, moderation, retrieval, background cancellation and other generic endpoints were not tested live.",
+    "Live browser transport, Realtime, tool execution, load/soak and failure injection remain unverified.",
+    "Temporary harness was deleted as requested; this is a recorded manual observation, not a retained reproducible test suite.",
+    "The first harness had an input-construction error; the corrected harness passed. No adapter implementation changed."
+  ],
+  "source_sha256": {
+    "lib/effect_core.dart": "fddbf8053489731b5faa69a21444aecf990440faa2b899b606af4511fed6787c",
+    "lib/src/concurrency.dart": "89b943cf6ef37071a163d1318219cea9d2910a2642a497dda1f54814101fc109",
+    "lib/src/core.dart": "3b2ce4cf783ce8f0cd12b3f528852e4d8fe31ed2f7394af7c3019cb6bdc189dd",
+    "lib/src/services.dart": "44d65387bdf3dcdd1d78d3795894883e8cc81acd6784f047638a38043b05b269",
+    "lib/src/stream.dart": "fd18652226f16d09bd307fd9d6d954f32f854993cc0edf8ac2e36d885a945b97",
+    "packages/effect_openai/example/live.dart": "457e71b4c17de7ccc3707795f9de1ef239d4f8fc19d23096bc2e0308972c1a63",
+    "packages/effect_openai/example/main.dart": "71417e416f555e7f9733a42dd0a6f3eff7f457230922a0fecf825b0a34953742",
+    "packages/effect_openai/lib/effect_openai.dart": "541e8da137e3e06ea4cd56bf561a290b6755b944608df7e06b4aa9f1eb126b31",
+    "packages/effect_openai/pubspec.lock": "318e568c393d0f2d2573e22c4c3aa8db8c13a4ff3fd6176b46b122d4f3f9e4f2",
+    "packages/effect_openai/test/client_test.dart": "80bd964d1d2456d31e9acc7e810881c0422929a4103c20201ab01597a76626f5",
+    "packages/effect_openai/test/http_integration_test.dart": "a478d4fc79e4876cc8d485e9ff24d63cca7462e66ecd28f850d6903b625b453c",
+    "packages/effect_openai/test/sdk_test.dart": "5f24c68114a9f86b3ac1346313a2c0cf34d0a1b8ecda3fa80a9737197bef1569",
+    "packages/effect_openai/test/support/fixtures.dart": "0dad3795f091f75a1b875715cde6691e2e581454540313e2c4f8a7929e260bac"
+  }
+}

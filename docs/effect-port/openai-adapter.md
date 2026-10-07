@@ -98,7 +98,28 @@ dart compile exe example/live.dart -o ../../build/openai-live-example
 The credential-free example uses Layer/Context and an actual SDK with a synthetic
 HTTP response. The live example reads OPENAI_API_KEY and OPENAI_MODEL only at runtime,
 uses one Responses request, disables SDK retries and stored responses, and limits
-requested output. Its compilation is not live-service acceptance. No live OpenAI
-request has been run for this change. API access, real model output, production
-TLS/proxy behavior, browser live transport, load/soak and every generic endpoint
-remain separate acceptance checks. See openai-validation.json for executed results.
+requested output. Its compilation is not live-service acceptance. The API-key example was compiled but was not used for the live run.
+See openai-validation.json for local suite results and the live record below.
+
+
+## Live Responses smoke acceptance — 7 October 2026
+
+Two native live Responses streams passed through the actual `openai_dart` SDK and
+Effect adapter using user-authorized [Sign in with ChatGPT](https://developers.openai.com/siwc/token-sharing-open-source).
+The account model catalog was accessed with the authorized OAuth credential.
+Both requests produced non-empty output and a `response.completed` event; the
+second also passed its Unicode output assertion. Runtime and client shutdown
+were awaited. Requests disabled stored responses and SDK retries.
+
+The temporary harness and consent screenshot were deleted as requested. Tokens
+were held in process memory, not saved to files or Git. The test client's ChatGPT
+authorization was not revoked by that local cleanup. The exact model identifier
+was not retained. [openai-live-validation.json](openai-live-validation.json) records
+the observed result, tested commit and implementation hashes; it is a manual
+acceptance record, not a retained automated test suite.
+
+This completes a **two-request native Responses smoke check**, not all OpenAI
+acceptance. ChatGPT plan inference has [preview limitations](https://developers.openai.com/siwc/token-sharing-open-source/preview-limitations).
+Other endpoints, live browser requests, Realtime, tool execution, failure injection,
+and load/soak remain unverified. The first temporary harness had an input-construction
+error; correcting it required no adapter implementation change.
