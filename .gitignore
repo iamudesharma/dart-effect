@@ -39,3 +39,6 @@ docs/effect-port/upstream-test-catalog.json
 .env
 .env.*
 !.env.example
+
+# Local website previews and private Sites source checkout
+.sites-runtime/

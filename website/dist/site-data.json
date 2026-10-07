@@ -1,0 +1,111 @@
+{
+  "packages": [
+    {
+      "name": "effect_core",
+      "slug": "effect-core",
+      "icon": "E",
+      "text": "Lazy effects, typed failures and structured concurrency. The foundation for every service.",
+      "platform": "VM + web",
+      "vm": 107,
+      "chrome": 107
+    },
+    {
+      "name": "effect_sql",
+      "slug": "effect-sql",
+      "icon": "SQL",
+      "text": "Shared connection lifetimes, exclusive transactions and nested savepoints.",
+      "platform": "Portable contracts",
+      "vm": 18,
+      "chrome": 18
+    },
+    {
+      "name": "effect_postgres",
+      "slug": "effect-postgres",
+      "icon": "PG",
+      "text": "PostgreSQL and PG through the established postgres Dart driver.",
+      "platform": "Native server",
+      "vm": 13,
+      "chrome": null
+    },
+    {
+      "name": "effect_mysql",
+      "slug": "effect-mysql",
+      "icon": "MY",
+      "text": "MySQL with prepared binding, scoped connections and explicit TLS behavior.",
+      "platform": "Native server",
+      "vm": 19,
+      "chrome": null
+    },
+    {
+      "name": "effect_openai",
+      "slug": "effect-openai",
+      "icon": "AI",
+      "text": "Typed OpenAI requests, Responses and Chat streams, cancellation and scoped clients.",
+      "platform": "VM + web",
+      "vm": 50,
+      "chrome": 42
+    }
+  ],
+  "goals": [
+    {
+      "id": "site",
+      "title": "Project website and documentation",
+      "status": "completed",
+      "area": "Website",
+      "detail": "Overview, package guides, verified progress and a roadmap in one place.",
+      "proof": "/progress/"
+    },
+    {
+      "id": "core",
+      "title": "Reusable Effect runtime",
+      "status": "completed",
+      "area": "Core",
+      "detail": "Lazy effects, typed failures, resources, services, concurrency and streams.",
+      "proof": "/packages/effect-core/"
+    },
+    {
+      "id": "sql",
+      "title": "PostgreSQL and MySQL integrations",
+      "status": "completed",
+      "area": "SQL",
+      "detail": "Established Dart drivers, scoped connections, transactions and real database acceptance.",
+      "proof": "/packages/effect-postgres/"
+    },
+    {
+      "id": "ai",
+      "title": "OpenAI SDK integration",
+      "status": "completed",
+      "area": "AI",
+      "detail": "Typed requests, Responses and Chat streams, scoped clients and local HTTP/SSE acceptance.",
+      "proof": "/packages/effect-openai/"
+    },
+    {
+      "id": "ai-live",
+      "title": "Live OpenAI acceptance",
+      "status": "awaiting-input",
+      "area": "Acceptance",
+      "detail": "Requires a supplied API key and a model enabled for the account. Local SDK transport tests have passed.",
+      "proof": "/docs/openai/"
+    },
+    {
+      "id": "production",
+      "title": "Production database acceptance",
+      "status": "planned",
+      "area": "Acceptance",
+      "detail": "Production CA chains, failover, network partitions and longer load/soak checks remain unverified.",
+      "proof": "/docs/sql/"
+    },
+    {
+      "id": "release",
+      "title": "First pub.dev release",
+      "status": "planned",
+      "area": "Release",
+      "detail": "Package publication is not scheduled. Review the development APIs and release process before publishing.",
+      "proof": "/docs/getting-started/"
+    }
+  ],
+  "vm_tests": 207,
+  "browser_tests": 167,
+  "recorded_at": "2026-10-07",
+  "source_evidence_verified": true
+}

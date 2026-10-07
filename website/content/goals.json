@@ -1,0 +1,9 @@
+[
+  {"id":"site","title":"Project website and documentation","status":"completed","area":"Website","detail":"Overview, package guides, verified progress and a roadmap in one place.","proof":"/progress/"},
+  {"id":"core","title":"Reusable Effect runtime","status":"completed","area":"Core","detail":"Lazy effects, typed failures, resources, services, concurrency and streams.","proof":"/packages/effect-core/"},
+  {"id":"sql","title":"PostgreSQL and MySQL integrations","status":"completed","area":"SQL","detail":"Established Dart drivers, scoped connections, transactions and real database acceptance.","proof":"/packages/effect-postgres/"},
+  {"id":"ai","title":"OpenAI SDK integration","status":"completed","area":"AI","detail":"Typed requests, Responses and Chat streams, scoped clients and local HTTP/SSE acceptance.","proof":"/packages/effect-openai/"},
+  {"id":"ai-live","title":"Live OpenAI acceptance","status":"awaiting-input","area":"Acceptance","detail":"Requires a supplied API key and a model enabled for the account. Local SDK transport tests have passed.","proof":"/docs/openai/"},
+  {"id":"production","title":"Production database acceptance","status":"planned","area":"Acceptance","detail":"Production CA chains, failover, network partitions and longer load/soak checks remain unverified.","proof":"/docs/sql/"},
+  {"id":"release","title":"First pub.dev release","status":"planned","area":"Release","detail":"Package publication is not scheduled. Review the development APIs and release process before publishing.","proof":"/docs/getting-started/"}
+]
