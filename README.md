@@ -1,12 +1,44 @@
-# Effect Core
+# effect_core
 
-An independent, Effect-inspired Dart package for lazy computations, typed expected
-failures, dependency provision and structured asynchronous concurrency. Version
-`0.0.1` implements core runtime/services and an initial concurrency and
-stream foundation. Current scope is the reusable core plus PostgreSQL/MySQL
-adapters using established Dart drivers, plus an OpenAI SDK integration.
-Dart >=3.13.0; no runtime dependencies or unconditional `dart:io` imports.
-Not officially affiliated with Effect-TS and no full compatibility/parity claim.
+Lazy, typed asynchronous effects for Dart and Flutter. Describe a computation,
+compose it with other effects, and run it with explicit ownership of its resources.
+
+**Release candidate: `0.0.1`. These packages are not published on pub.dev yet.**
+The hosted installation commands below apply after publication. For development
+now, use the local overrides described below.
+
+## Features
+
+- Lazy, reusable effects with typed expected failures.
+- Fibers, bounded concurrency, cancellation and awaited cleanup.
+- Scoped resources, dependency contexts and service layers.
+- Retry schedules, clocks, logging and same-isolate state primitives.
+- Pull-based streams and sinks with early exit and bounded buffering.
+- No runtime dependencies; core works on the Dart VM and web.
+
+## Installation
+
+Requires Dart **3.13 or later**. After publication, run:
+
+```sh
+dart pub add effect_core
+# In a Flutter project:
+flutter pub add effect_core
+```
+
+Or add these dependencies to `pubspec.yaml`:
+
+```yaml
+dependencies:
+  effect_core: ^0.0.1
+```
+
+Then run `dart pub get` or `flutter pub get`. Your Flutter installation must
+include a compatible Dart SDK.
+
+## Quick start
+
+Save as `bin/main.dart` and run `dart run bin/main.dart`:
 
 ```dart
 import 'package:effect_core/effect_core.dart';
@@ -14,104 +46,174 @@ import 'package:effect_core/effect_core.dart';
 Future<void> main() async {
   final runtime = Runtime(Unit.value);
   final program = Effect.sync<int, String, Unit>(() => 21)
-      .flatMap((n) => Effect.succeed(n * 2));
-  print(await runtime.runFuture(program)); // 42
-  await runtime.shutdown();
+      .flatMap((value) => Effect.succeed(value * 2));
+
+  try {
+    print(await runtime.runFuture(program)); // 42
+  } finally {
+    await runtime.shutdown();
+  }
 }
 ```
 
-Effects run lazily and evaluate again on each run. Use `runExit` to inspect
-`Success` or `Failure`; causes distinguish `Expected`, `Defect` (with stack trace),
-`Interrupted`, and sequential cleanup failures. `catchAll` and `retry` recover
-only a standalone expected failure. A shared sealed error family and explicit
-aggregate environment compose differing errors and services.
+Constructing `program` does not execute it. Each run evaluates it again.
+`Effect<A, E, R>` describes the returned value `A`, expected error `E`, and
+required environment `R`. `Unit` represents an empty environment.
 
-`R` has a typed selector through `Effect.environment`, but Dart covariance allows
-widening R. It is requirement documentation with runtime checks, not a complete
-static proof of provision. `Context` uses typed identity keys; missing services
-are defects. Prefer `key.bind(value)` for direct compile-time value checking;
-`Context.add` also checks the key's actual runtime type after generic widening.
+## Handle expected failures
 
-`fromFuture` takes a factory, not an already running Future. Without an abort hook,
-interruption ends the fiber's wait while underlying I/O can continue. Hooks are
-awaited. Allocate per-run cancellation state with `defer`. Acquisition and
-finalization are protected: timeout/interrupt/shutdown await cleanup, so their
-elapsed time can exceed a requested timeout. Custom `asyncExit` callbacks must
-cooperate with cancellation or evaluate interruptible effects. Fibers run in the
-same isolate and do not accelerate CPU work.
+Use `runExit` when your API or UI needs to handle the result explicitly:
 
-Use `acquireUseRelease`, `scoped` and `forkScoped` for resource lifetimes.
-`fork` ends with its parent; `forkScoped` is additionally bounded by its scope.
-`race` selects first success, waits after an initial failure, and awaits loser
-cleanup. `traverse` limits active fibers and preserves input result order.
+```dart
+import 'package:effect_core/effect_core.dart';
 
-Layers memoize by identity within a construction scope, sharing in-flight
-acquisition and detecting cycles. `Layer.use` owns the service lifetime. Failed
-construction invalidates the scope's memo domain and releases resources after
-protected acquisitions finish; do not retain earlier Context values across that
-failure. Build a complete graph before using its services. The first environment
-supplied to a shared node determines its construction inputs.
+Future<void> main() async {
+  final runtime = Runtime(Unit.value);
+  final request = Effect.fail<int, String, Unit>('Record not found');
 
-Runnable examples:
-
-```sh
-dart pub get
-dart run example/retry.dart       # fresh cancellable adapter and retry policy
-dart run example/resources.dart   # scoped service acquire/release
-dart run example/bounded.dart     # bounded ordered processing
-dart run example/services.dart    # dependency graph and typed service composition
-dart run example/stream.dart      # reusable bounded stream and early-exit sink
+  try {
+    final result = await runtime.runExit(request);
+    switch (result) {
+      case Success(:final value):
+        print(value);
+      case Failure(:final cause):
+        if (cause case Expected<String>(:final error)) {
+          print(error); // Record not found
+        } else {
+          print('Request ended with ${cause.runtimeType}');
+        }
+    }
+  } finally {
+    await runtime.shutdown();
+  }
+}
 ```
 
-Development verification (SDK/pub dependencies installed first):
+Expected failures, programmer defects and interruption remain distinct.
+`catchAll` and retry recover only a standalone expected failure; they do not
+silently recover defects, interruption or composite cleanup failures.
+
+## Own a resource with a layer
+
+```dart
+import 'package:effect_core/effect_core.dart';
+
+Future<void> main() async {
+  final service = ServiceKey<String>('greeting');
+  final layer = Layer.resource<String, String>(
+    service,
+    Effect.sync<String, String, Context>(() => 'Hello from Effect'),
+    (_) => Effect.sync<Unit, String, Context>(() {
+      print('Resource released');
+      return Unit.value;
+    }),
+  );
+  final runtime = Runtime(Context());
+
+  try {
+    print(await runtime.runFuture(layer.use(service.effect<String>())));
+  } finally {
+    await runtime.shutdown();
+  }
+}
+```
+
+`Layer.use` owns the constructed service scope. The runtime waits for owned child
+fibers and finalizers before returning. For an application-wide service, keep the
+scope alive for the application's lifetime rather than rebuilding it per query.
+
+## Transform a stream
+
+```dart
+import 'package:effect_core/effect_core.dart';
+
+Future<void> main() async {
+  final runtime = Runtime(Unit.value);
+  final stream = EffectStream.fromIterable<int, String, Unit>([1, 2, 3, 4])
+      .map((value) => value * 2)
+      .filter((value) => value > 4)
+      .buffer(2);
+
+  try {
+    print(await runtime.runFuture(stream.runCollect())); // [6, 8]
+  } finally {
+    await runtime.shutdown();
+  }
+}
+```
+
+`runCollect` retains every output value. Use a streaming sink or early-exit sink
+when collecting an entire stream would use too much memory.
+
+## Use with Flutter or an API server
+
+Core has no Flutter dependency. A widget/controller or server service can create
+its own `Runtime`, run effects from asynchronous handlers, and await `shutdown`
+when that owner closes. Flutter's synchronous `dispose` cannot itself await;
+provide an asynchronous close lifecycle in the runtime's owner.
+
+For database and AI services, add only the integration you need:
+
+| Package | Purpose | Platform |
+| --- | --- | --- |
+| effect_sql | Shared SQL driver/transaction contracts | VM and web with a compatible driver |
+| effect_postgres | PostgreSQL/PG through `postgres` | Native VM; intended for server-side use |
+| effect_mysql | MySQL through `mysql_client_plus` | Native VM; intended for server-side use |
+| effect_openai | Typed SDK HTTP requests and streams | VM and web; keep API secrets server-side |
+
+## Lifecycle and type boundaries
+
+Cancellation is cooperative. Without a cancellation hook, an underlying Future
+can continue after the fiber stops waiting. Timeout and shutdown await protected
+cleanup, so cleanup can extend the elapsed time. Fibers share an isolate and do
+not provide CPU parallelism.
+
+Dart generic covariance means `R` documents requirements but is not a complete
+static proof of service provision. Context key presence is checked at runtime.
+Use explicit common error families and aggregate environments when composing
+services. Only map/flatMap/defer instruction chains have the advertised stack
+safety proof; arbitrary deeply nested region wrappers do not.
+
+## Local development before publication
+
+With access to the repository, clone it and add a `pubspec_overrides.yaml` beside
+your application's pubspec. Replace `/path/to/effect_dart` with your checkout:
+
+```yaml
+dependency_overrides:
+  effect_core:
+    path: /path/to/effect_dart
+```
+
+Keep the version dependencies above in `pubspec.yaml`, then run `dart pub get`.
+The repository already contains overrides for its own examples. The source
+repository is currently private; repository access is required.
+
+## Examples and testing
+
+In a repository checkout, run:
 
 ```sh
-dart format --output=none --set-exit-if-changed lib test example tool
 dart analyze
 dart test
 dart test -p chrome
-dart run tool/check_fixtures.dart
-dart compile js example/web.dart -o build/web-smoke.js
+dart run example/retry.dart
+dart run example/resources.dart
+dart run example/bounded.dart
+dart run example/services.dart
+dart run example/stream.dart
+dart run example/web.dart
 ```
 
-The GitHub repository contains Dart packages, tests, examples and development
-support. Upstream/npm snapshots, Node source/tooling, node_modules and generated
-npm inventories are excluded by `.gitignore`. A checkout needs no Node installation
-to analyze or test the Dart packages. Optional historical cross-language evidence
-and its reference-verification tooling apply only when the separately retained
-local reference pack and ignored conformance directory are present. They are not
-required for normal builds; no references are automatically downloaded.
+The release validation recorded 107 VM and 107 Chrome tests for core. Type
+accept/reject fixtures are checked with `dart run tool/check_fixtures.dart` from
+the repository root. Native database and AI checks are separate from core tests.
 
-[Architecture](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/architecture.md),
-[feature matrix and roadmap](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/feature-matrix.md),
-[validation/progress](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/progress.md), and
-[benchmarks](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/benchmarks.md) record supported behavior and limits.
-Ref, Deferred, weighted Semaphore, SynchronizedRef, bounded Queue/PubSub and
-pull-based EffectStream/Sink now have executable tests. Stream adapters support
-native pause/cancel and bounded buffering. Schemas/configuration/caches,
-metrics/tracing and other ecosystem integrations remain outside the current
-focused scope; see [SQL adapters and detailed contracts](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/sql-adapters.md) and
-[detailed upstream-style test cases](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/testing.md). Only map/flatMap/defer chain depth is proved stack
-safe; deeply nesting region wrappers is not advertised as stack safe.
+## Documentation and license
 
+- [Package guide](https://effect-dart.ginjustice4.chatgpt.site/docs/runtime/)
+- [Verification and progress](https://effect-dart.ginjustice4.chatgpt.site/progress/)
+- [Source repository](https://github.com/iamudesharma/dart-effect)
 
-Optional server database packages:
-
-| Package | Driver | Location |
-| --- | --- | --- |
-| effect_sql | Shared scoped query/transaction contracts; core dependency only | packages/effect_sql |
-| effect_postgres | postgres 3.5.19 | packages/effect_postgres |
-| effect_mysql | mysql_client_plus 0.1.3 | packages/effect_mysql |
-
-PG and PostgreSQL use the same adapter. Bound parameters, exclusive transactions,
-nested savepoints and cleanup integrate with Effect/Runtime/Layer. Native database
-imports remain outside core. MySQL interruption drains pending work before
-rollback; PostgreSQL discards the interrupted connection. Read the
-[adapter guide](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/sql-adapters.md) for TLS, API usage, local package
-consumption and test cases. `python3 tool/sql_integration.py` runs real isolated
-database suites and removes its test containers. These packages are not published.
-
-AI integration: `effect_openai` in `packages/effect_openai` uses `openai_dart`
-10.0.1. It provides lazy typed HTTP effects, scoped clients, Responses/Chat
-streams, independent abort signals and extensible wrappers for SDK endpoints.
-See the [AI adapter and detailed tests](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/openai-adapter.md).
+MIT; see [LICENSE](LICENSE). Independent and Effect-inspired; not affiliated
+with Effect-TS. The advertised scope is documented here, not full upstream parity.

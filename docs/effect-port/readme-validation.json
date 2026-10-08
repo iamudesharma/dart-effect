@@ -1,0 +1,163 @@
+{
+  "snippets": [
+    {
+      "package": "effect_core",
+      "snippet": 1,
+      "compiled": true,
+      "executed": true,
+      "output": "42"
+    },
+    {
+      "package": "effect_core",
+      "snippet": 2,
+      "compiled": true,
+      "executed": true,
+      "output": "Record not found"
+    },
+    {
+      "package": "effect_core",
+      "snippet": 3,
+      "compiled": true,
+      "executed": true,
+      "output": "Resource released\nHello from Effect"
+    },
+    {
+      "package": "effect_core",
+      "snippet": 4,
+      "compiled": true,
+      "executed": true,
+      "output": "[6, 8]"
+    },
+    {
+      "package": "effect_mysql",
+      "snippet": 1,
+      "compiled": true,
+      "executed": false
+    },
+    {
+      "package": "effect_mysql",
+      "snippet": 2,
+      "compiled": true,
+      "executed": false
+    },
+    {
+      "package": "effect_openai",
+      "snippet": 1,
+      "compiled": true,
+      "executed": false
+    },
+    {
+      "package": "effect_openai",
+      "snippet": 2,
+      "compiled": true,
+      "executed": false
+    },
+    {
+      "package": "effect_openai",
+      "snippet": 3,
+      "compiled": true,
+      "executed": false
+    },
+    {
+      "package": "effect_postgres",
+      "snippet": 1,
+      "compiled": true,
+      "executed": false
+    },
+    {
+      "package": "effect_postgres",
+      "snippet": 2,
+      "compiled": true,
+      "executed": false
+    },
+    {
+      "package": "effect_sql",
+      "snippet": 1,
+      "compiled": true,
+      "executed": true,
+      "output": "Hello from Effect"
+    },
+    {
+      "package": "effect_sql",
+      "snippet": 2,
+      "compiled": true,
+      "executed": false
+    }
+  ],
+  "limits": "Native database and API-key examples compiled only; portable core/SQL mains executed. No new live API acceptance claimed.",
+  "readme_sha256": {
+    "README.md": "19622213af45256103d8f33df8530a93e8f5bdef4d37051b0d8a1ad441071da5",
+    "packages/effect_mysql/README.md": "3c60838423aa58122151c9a8d4722fdab6ce9b335fa7ecf4c9ffbfac9ed0a7c9",
+    "packages/effect_openai/README.md": "11160acbdff986893de0b9ac8138ec270d6ffbb428d262d3676407dd1cd5e6a4",
+    "packages/effect_postgres/README.md": "eaa2f5b92c7e6b2e7eb787ef9c4aa0d162fd8f993ae871d1a5165ea49816d512",
+    "packages/effect_sql/README.md": "d1afabcd3e93920e2aba2c09483b0972f58475e7e5ffd20ae5bd63ebbddb84df"
+  },
+  "verified_at_utc": "2026-10-08T14:23:40.245510+00:00",
+  "publish_dry_runs": {
+    "finished_at_utc": "2026-10-08T14:25:07.357803+00:00",
+    "packages": [
+      {
+        "package": "effect_core",
+        "version": "0.0.1",
+        "checks": {
+          "resolution": 0,
+          "analysis": 0,
+          "publish_dry_run": 0
+        },
+        "dependency_override_hint": false,
+        "zero_warnings": true,
+        "archive_has_required_files": true
+      },
+      {
+        "package": "effect_mysql",
+        "version": "0.0.1",
+        "checks": {
+          "resolution": 0,
+          "analysis": 0,
+          "publish_dry_run": 0
+        },
+        "dependency_override_hint": true,
+        "zero_warnings": true,
+        "archive_has_required_files": true
+      },
+      {
+        "package": "effect_openai",
+        "version": "0.0.1",
+        "checks": {
+          "resolution": 0,
+          "analysis": 0,
+          "publish_dry_run": 0
+        },
+        "dependency_override_hint": true,
+        "zero_warnings": true,
+        "archive_has_required_files": true
+      },
+      {
+        "package": "effect_postgres",
+        "version": "0.0.1",
+        "checks": {
+          "resolution": 0,
+          "analysis": 0,
+          "publish_dry_run": 0
+        },
+        "dependency_override_hint": true,
+        "zero_warnings": true,
+        "archive_has_required_files": true
+      },
+      {
+        "package": "effect_sql",
+        "version": "0.0.1",
+        "checks": {
+          "resolution": 0,
+          "analysis": 0,
+          "publish_dry_run": 0
+        },
+        "dependency_override_hint": true,
+        "zero_warnings": true,
+        "archive_has_required_files": true
+      }
+    ],
+    "temporary_exports_removed": true,
+    "published": false
+  }
+}
