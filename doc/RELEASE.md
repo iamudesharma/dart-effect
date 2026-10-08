@@ -1,7 +1,18 @@
-# Preparing version 0.0.1
+# Version 0.0.1 publication
 
-All five packages start at 0.0.1. This checkout is a release candidate; nothing
-has been published. Native database examples require database credentials. The
+All five packages were published to pub.dev as **0.0.1 on 8 October 2026**,
+after explicit user authorization. Published archives were downloaded and verified
+against the release sources. A fresh consumer installed all five using hosted
+dependencies, without local overrides. See
+[publication evidence](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/publication-0.0.1.json).
+
+Packages: [core](https://pub.dev/packages/effect_core),
+[SQL](https://pub.dev/packages/effect_sql),
+[PostgreSQL](https://pub.dev/packages/effect_postgres),
+[MySQL](https://pub.dev/packages/effect_mysql), and
+[OpenAI](https://pub.dev/packages/effect_openai).
+
+Native database examples require database credentials. The
 OpenAI API-key example requires OPENAI_API_KEY and OPENAI_MODEL; it is compiled
 here, not run against a live API. Two prior native Responses smoke requests using
 ChatGPT plan access are recorded separately and are not exhaustive acceptance.
@@ -27,18 +38,21 @@ The standalone exports avoid root exclusions being inherited by nested packages.
 excluded from archives. Driver tests carry their contract helper locally rather
 than importing a sibling package's test directory.
 
-## Publication order (requires separate authorization)
+## Publication order
 
 1. effect_core 0.0.1
 2. effect_sql 0.0.1
 3. effect_postgres, effect_mysql and effect_openai 0.0.1
 
-The dependent packages currently resolve the new versions with local overrides.
-A dry-run hint about those overrides is expected before the dependencies are on
-pub.dev. After each dependency is actually published, remove the overrides in an
-isolated release checkout and rerun hosted dependency resolution, tests and the
-dry run before publishing the next package. Do not bypass validation or treat a
-local override as proof that hosted resolution works.
+For this release, core was published first, then SQL. Each adapter resolved
+its dependencies directly from pub.dev before its final analysis, tests, dry run
+and publication. The PostgreSQL/MySQL acceptance runner exercised real databases
+and examples against hosted core/SQL, with no skips and successful teardown.
+
+For future versions, remove local overrides in an isolated release checkout after
+each dependency is published and repeat hosted resolution, tests and the dry run.
+Future publication still requires explicit authorization. Do not bypass validation
+or treat local overrides as proof that hosted resolution works.
 
 Production database failover/load/soak, broader live OpenAI endpoints and browser
 live transport remain outside recorded acceptance. Retain those limits in the
