@@ -5,5 +5,9 @@ references/
 tool/
 .agents/
 AGENTS.md
-packages/
+# Keep package directories traversable so their own .pubignore can reset rules.
+packages/**/*.*
+packages/**/LICENSE
 website/
+pubspec.lock
+docs/

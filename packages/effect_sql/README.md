@@ -2,7 +2,7 @@
 
 Shared scoped SQL effects for Dart API services. No native driver dependencies; a SqlDriver extension interface and bounded lease/transaction lifecycle.
 
-Independent Effect-inspired development package, version 0.1.0-dev.1.
+Independent Effect-inspired development package, version 0.0.1.
 No publication or full upstream SQL-module parity is claimed.
 
 Execute with SqlClient.execute, compose with Effect map/flatMap, and inspect

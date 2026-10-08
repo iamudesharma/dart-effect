@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0-dev.1
+## 0.0.1
 
 Initial independent Dart port. Typed error families and concrete aggregate
 environments replace TypeScript union inference. No generator DSL or ecosystem

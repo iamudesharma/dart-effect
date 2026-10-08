@@ -1,10 +1,14 @@
 name: effect_sql
 description: Scoped Effect SQL sql integration for Dart API services.
-version: 0.1.0-dev.1
+version: 0.0.1
 environment:
   sdk: ">=3.13.0 <4.0.0"
 dependencies:
-  effect_core: ^0.1.0-dev.1
+  effect_core: ^0.0.1
 dev_dependencies:
   test: ^1.26.0
   lints: ^6.0.0
+
+homepage: https://effect-dart.ginjustice4.chatgpt.site
+repository: https://github.com/iamudesharma/dart-effect/tree/dart-effect/packages/effect_sql
+issue_tracker: https://github.com/iamudesharma/dart-effect/issues

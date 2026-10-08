@@ -2,7 +2,7 @@
 
 An independent, Effect-inspired Dart package for lazy computations, typed expected
 failures, dependency provision and structured asynchronous concurrency. Version
-`0.1.0-dev.1` implements core runtime/services and an initial concurrency and
+`0.0.1` implements core runtime/services and an initial concurrency and
 stream foundation. Current scope is the reusable core plus PostgreSQL/MySQL
 adapters using established Dart drivers, plus an OpenAI SDK integration.
 Dart >=3.13.0; no runtime dependencies or unconditional `dart:io` imports.
@@ -82,16 +82,16 @@ and its reference-verification tooling apply only when the separately retained
 local reference pack and ignored conformance directory are present. They are not
 required for normal builds; no references are automatically downloaded.
 
-[Architecture](docs/effect-port/architecture.md),
-[feature matrix and roadmap](docs/effect-port/feature-matrix.md),
-[validation/progress](docs/effect-port/progress.md), and
-[benchmarks](docs/effect-port/benchmarks.md) record supported behavior and limits.
+[Architecture](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/architecture.md),
+[feature matrix and roadmap](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/feature-matrix.md),
+[validation/progress](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/progress.md), and
+[benchmarks](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/benchmarks.md) record supported behavior and limits.
 Ref, Deferred, weighted Semaphore, SynchronizedRef, bounded Queue/PubSub and
 pull-based EffectStream/Sink now have executable tests. Stream adapters support
 native pause/cancel and bounded buffering. Schemas/configuration/caches,
 metrics/tracing and other ecosystem integrations remain outside the current
-focused scope; see [SQL adapters and detailed contracts](docs/effect-port/sql-adapters.md) and
-[detailed upstream-style test cases](docs/effect-port/testing.md). Only map/flatMap/defer chain depth is proved stack
+focused scope; see [SQL adapters and detailed contracts](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/sql-adapters.md) and
+[detailed upstream-style test cases](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/testing.md). Only map/flatMap/defer chain depth is proved stack
 safe; deeply nesting region wrappers is not advertised as stack safe.
 
 
@@ -107,11 +107,11 @@ PG and PostgreSQL use the same adapter. Bound parameters, exclusive transactions
 nested savepoints and cleanup integrate with Effect/Runtime/Layer. Native database
 imports remain outside core. MySQL interruption drains pending work before
 rollback; PostgreSQL discards the interrupted connection. Read the
-[adapter guide](docs/effect-port/sql-adapters.md) for TLS, API usage, local package
+[adapter guide](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/sql-adapters.md) for TLS, API usage, local package
 consumption and test cases. `python3 tool/sql_integration.py` runs real isolated
 database suites and removes its test containers. These packages are not published.
 
 AI integration: `effect_openai` in `packages/effect_openai` uses `openai_dart`
 10.0.1. It provides lazy typed HTTP effects, scoped clients, Responses/Chat
 streams, independent abort signals and extensible wrappers for SDK endpoints.
-See the [AI adapter and detailed tests](docs/effect-port/openai-adapter.md).
+See the [AI adapter and detailed tests](https://github.com/iamudesharma/dart-effect/blob/dart-effect/docs/effect-port/openai-adapter.md).
