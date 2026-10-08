@@ -18,10 +18,12 @@ Its temporary MySQL CA certificate validates the loopback hostname; the
 PostgreSQL fixture deliberately uses plaintext loopback. Neither proves a
 production network or production certificate deployment.
 
-From a clean checkout, run `dart pub publish --dry-run` in each package directory.
+From a clean checkout, run `python3 tool/package_dry_run.py`. The runner exports
+five standalone package directories, analyzes each one, and invokes
+`dart pub publish --dry-run` for each.
 Inspect the listed archive: pubspec, LICENSE, README, CHANGELOG and lib must be
 present. Core excludes monorepo children and development/reference materials.
-Each nested .pubignore resets inherited exclusions. Overrides and lockfiles are
+The standalone exports avoid root exclusions being inherited by nested packages. Overrides and lockfiles are
 excluded from archives. Driver tests carry their contract helper locally rather
 than importing a sibling package's test directory.
 

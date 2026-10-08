@@ -1,5 +1,3 @@
-# Reset exclusions inherited from the monorepo root.
-!**
 .dart_tool/
 build/
 pubspec.lock
