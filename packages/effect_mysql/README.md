@@ -2,7 +2,7 @@
 
 MySQL effects for Dart API services. Uses package:mysql_client_plus. MySQL ? placeholders bind binary prepared statements. TLS certificates are rejected by default when untrusted.
 
-Independent Effect-inspired development package, version 0.1.0-dev.1.
+Independent Effect-inspired development package, version 0.0.1.
 No publication or full upstream SQL-module parity is claimed.
 
 Execute with SqlClient.execute, compose with Effect map/flatMap, and inspect

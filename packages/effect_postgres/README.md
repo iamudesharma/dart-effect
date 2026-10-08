@@ -2,7 +2,7 @@
 
 PostgreSQL effects for Dart API services. Uses package:postgres. PostgreSQL $1 placeholders; configurable driver codecs and TLS settings.
 
-Independent Effect-inspired development package, version 0.1.0-dev.1.
+Independent Effect-inspired development package, version 0.0.1.
 No publication or full upstream SQL-module parity is claimed.
 
 Execute with SqlClient.execute, compose with Effect map/flatMap, and inspect

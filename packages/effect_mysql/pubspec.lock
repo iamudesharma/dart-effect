@@ -95,14 +95,14 @@ packages:
       path: "../.."
       relative: true
     source: path
-    version: "0.1.0-dev.1"
+    version: "0.0.1"
   effect_sql:
     dependency: "direct main"
     description:
       path: "../effect_sql"
       relative: true
     source: path
-    version: "0.1.0-dev.1"
+    version: "0.0.1"
   file:
     dependency: transitive
     description:

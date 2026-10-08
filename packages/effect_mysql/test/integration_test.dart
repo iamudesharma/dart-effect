@@ -7,7 +7,7 @@ import 'package:effect_core/effect_core.dart';
 import 'package:effect_mysql/effect_mysql.dart';
 import 'package:test/test.dart';
 
-import '../../effect_sql/test/support/driver_contract.dart';
+import 'support/driver_contract.dart';
 
 void main() {
   final port = Platform.environment['EFFECT_MYSQL_PORT'];

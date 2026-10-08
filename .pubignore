@@ -7,3 +7,5 @@ tool/
 AGENTS.md
 packages/
 website/
+pubspec.lock
+docs/

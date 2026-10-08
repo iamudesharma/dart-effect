@@ -24,12 +24,22 @@ try:
  call(['docker','info','--format','{{.ServerVersion}}'])
  with tempfile.TemporaryDirectory(prefix='effect-sql-') as temporary:
   env=os.environ.copy();token=uuid.uuid4().hex[:10]
+  tls=pathlib.Path(temporary)/'tls';tls.mkdir(mode=0o755)
+  call(['openssl','req','-x509','-newkey','rsa:2048','-nodes','-days','1','-subj','/CN=Effect Test CA','-keyout',str(tls/'ca-key.pem'),'-out',str(tls/'ca.pem')])
+  call(['openssl','req','-newkey','rsa:2048','-nodes','-subj','/CN=localhost','-keyout',str(tls/'server-key.pem'),'-out',str(tls/'server.csr')])
+  (tls/'extensions').write_text('subjectAltName=DNS:localhost,IP:127.0.0.1\nextendedKeyUsage=serverAuth\n')
+  call(['openssl','x509','-req','-in',str(tls/'server.csr'),'-CA',str(tls/'ca.pem'),'-CAkey',str(tls/'ca-key.pem'),'-CAcreateserial','-days','1','-extfile',str(tls/'extensions'),'-out',str(tls/'server-cert.pem')])
+  for file in ['ca.pem','server-key.pem','server-cert.pem']:(tls/file).chmod(0o644)
   for db,port in [('postgres',5432),('mysql',3306)]:
    name=f'effect-{db}-test-{token}'
    args=['docker','run','--detach','--name',name,'--label','effect.effect.test=true','--publish',f'127.0.0.1::{port}']
    options={'POSTGRES_PASSWORD':'effect_test_password','POSTGRES_DB':'effect_test'} if db=='postgres' else {'MYSQL_ROOT_PASSWORD':'effect_test_password','MYSQL_DATABASE':'effect_test'}
    for key,value in options.items():args += ['--env',f'{key}={value}']
-   call(args+[IMAGES[db]]);created.append(name)
+   command=[]
+   if db=='mysql':
+    args += ['--volume',f'{tls}:/effect-test-tls:ro']
+    command=['--ssl-ca=/effect-test-tls/ca.pem','--ssl-cert=/effect-test-tls/server-cert.pem','--ssl-key=/effect-test-tls/server-key.pem']
+   call(args+[IMAGES[db],*command]);created.append(name)
    mapped=call(['docker','port',name,f'{port}/tcp']).split(':')[-1]
    env['EFFECT_PG_PORT' if db=='postgres' else 'EFFECT_MYSQL_PORT']=mapped
    deadline=time.monotonic()+90
@@ -40,11 +50,20 @@ try:
     if time.monotonic()>deadline:raise TimeoutError(f'{db} startup exceeded 90 seconds')
     time.sleep(1)
    if db=='mysql':
-    cert=pathlib.Path(temporary)/'server-cert.pem'
-    call(['docker','cp',f'{name}:/var/lib/mysql/server-cert.pem',str(cert)])
-    env['EFFECT_MYSQL_CERT_PATH']=str(cert)
+    env['EFFECT_MYSQL_CERT_PATH']=str(tls/'server-cert.pem')
   (ROOT/'build').mkdir(exist_ok=True)
   for package in ['effect_sql','effect_postgres','effect_mysql']:run_suite(package,env)
+  examples={
+   'effect_postgres':{'PGHOST':'127.0.0.1','PGPORT':env['EFFECT_PG_PORT'],'PGDATABASE':'effect_test','PGUSER':'postgres','PGPASSWORD':'effect_test_password','PGSSLMODE':'disable'},
+   'effect_mysql':{'MYSQL_HOST':'127.0.0.1','MYSQL_PORT':env['EFFECT_MYSQL_PORT'],'MYSQL_DATABASE':'effect_test','MYSQL_USER':'root','MYSQL_PASSWORD':'effect_test_password','MYSQL_CA':str(tls/'ca.pem')},
+  }
+  report['examples']={}
+  for package,settings in examples.items():
+   result=subprocess.run(['dart','run','example/main.dart'],cwd=ROOT/'packages'/package,env={**env,**settings},text=True,capture_output=True,timeout=60)
+   passed=result.returncode==0 and result.stdout.strip()=='Hello from Effect'
+   report['examples'][package]={'exit_code':result.returncode,'expected_greeting':passed}
+   print(package,'example',report['examples'][package],flush=True)
+   if not passed:raise RuntimeError(f'{package} example failed')
 finally:
  cleanup=[]
  for name in reversed(created):

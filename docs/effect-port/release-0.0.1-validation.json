@@ -1,0 +1,414 @@
+{
+  "verified_at_utc": "2026-10-08T14:12:40.077701+00:00",
+  "version": "0.0.1",
+  "implementation_checks": [
+    {
+      "check": "effect_mysql-format",
+      "command": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "lib",
+        "test",
+        "example"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "effect_mysql-analyze",
+      "command": [
+        "dart",
+        "analyze"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "effect_openai-format",
+      "command": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "lib",
+        "test",
+        "example"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "effect_openai-analyze",
+      "command": [
+        "dart",
+        "analyze"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "effect_openai-vm",
+      "command": [
+        "dart",
+        "test",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "effect_openai-example",
+      "command": [
+        "dart",
+        "run",
+        "example/main.dart"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "effect_openai-live-compile",
+      "command": [
+        "dart",
+        "compile",
+        "exe",
+        "example/live.dart",
+        "-o",
+        "/Volumes/AppleExpanded/Code/effect_dart/build/release/openai-live"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "effect_postgres-format",
+      "command": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "lib",
+        "test",
+        "example"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "effect_postgres-analyze",
+      "command": [
+        "dart",
+        "analyze"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "effect_sql-format",
+      "command": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "lib",
+        "test"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "effect_sql-analyze",
+      "command": [
+        "dart",
+        "analyze"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "core-chrome",
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "chrome",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "sql-chrome",
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "chrome",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "openai-chrome",
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "chrome",
+        "test/client_test.dart",
+        "test/sdk_test.dart",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "core-example-bounded",
+      "command": [
+        "dart",
+        "run",
+        "example/bounded.dart"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "core-example-resources",
+      "command": [
+        "dart",
+        "run",
+        "example/resources.dart"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "core-example-retry",
+      "command": [
+        "dart",
+        "run",
+        "example/retry.dart"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "core-example-services",
+      "command": [
+        "dart",
+        "run",
+        "example/services.dart"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "core-example-stream",
+      "command": [
+        "dart",
+        "run",
+        "example/stream.dart"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "core-example-web",
+      "command": [
+        "dart",
+        "run",
+        "example/web.dart"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "core-web-compile",
+      "command": [
+        "dart",
+        "compile",
+        "js",
+        "example/web.dart",
+        "-o",
+        "/Volumes/AppleExpanded/Code/effect_dart/build/release/core-web.js"
+      ],
+      "exit_code": 0
+    },
+    {
+      "check": "openai-web-compile",
+      "command": [
+        "dart",
+        "compile",
+        "js",
+        "example/main.dart",
+        "-o",
+        "/Volumes/AppleExpanded/Code/effect_dart/build/release/openai-web.js"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "core_analysis": "passed",
+  "core_format": "passed with zero changes",
+  "analyzer_fixtures_passed": 5,
+  "suites": {
+    "core_vm": {
+      "passed": 107,
+      "skipped": 0,
+      "failed": 0
+    },
+    "core_chrome": {
+      "passed": 107,
+      "skipped": 0,
+      "failed": 0
+    },
+    "sql_chrome": {
+      "passed": 18,
+      "skipped": 0,
+      "failed": 0
+    },
+    "openai_vm": {
+      "passed": 50,
+      "skipped": 0,
+      "failed": 0
+    },
+    "openai_chrome": {
+      "passed": 42,
+      "skipped": 0,
+      "failed": 0
+    },
+    "effect_sql": {
+      "exit_code": 0,
+      "passed": 18,
+      "skipped": 0,
+      "failed": 0
+    },
+    "effect_postgres": {
+      "exit_code": 0,
+      "passed": 13,
+      "skipped": 0,
+      "failed": 0
+    },
+    "effect_mysql": {
+      "exit_code": 0,
+      "passed": 19,
+      "skipped": 0,
+      "failed": 0
+    }
+  },
+  "vm_total": 207,
+  "chrome_total": 167,
+  "examples": {
+    "core_executed": [
+      "bounded",
+      "resources",
+      "retry",
+      "services",
+      "stream",
+      "web"
+    ],
+    "database_executed": {
+      "effect_postgres": {
+        "exit_code": 0,
+        "expected_greeting": true
+      },
+      "effect_mysql": {
+        "exit_code": 0,
+        "expected_greeting": true
+      }
+    },
+    "openai_credential_free": "passed",
+    "openai_api_key_example": "native compiled; not executed without credentials",
+    "web_compilation": [
+      "core web",
+      "OpenAI credential-free example"
+    ]
+  },
+  "database_containers_removed": true,
+  "standalone_packages": {
+    "finished_at_utc": "2026-10-08T14:11:35.238799+00:00",
+    "packages": [
+      {
+        "package": "effect_core",
+        "version": "0.0.1",
+        "checks": {
+          "resolution": 0,
+          "analysis": 0,
+          "publish_dry_run": 0
+        },
+        "dependency_override_hint": false,
+        "zero_warnings": true,
+        "archive_has_required_files": true
+      },
+      {
+        "package": "effect_mysql",
+        "version": "0.0.1",
+        "checks": {
+          "resolution": 0,
+          "analysis": 0,
+          "publish_dry_run": 0
+        },
+        "dependency_override_hint": true,
+        "zero_warnings": true,
+        "archive_has_required_files": true
+      },
+      {
+        "package": "effect_openai",
+        "version": "0.0.1",
+        "checks": {
+          "resolution": 0,
+          "analysis": 0,
+          "publish_dry_run": 0
+        },
+        "dependency_override_hint": true,
+        "zero_warnings": true,
+        "archive_has_required_files": true
+      },
+      {
+        "package": "effect_postgres",
+        "version": "0.0.1",
+        "checks": {
+          "resolution": 0,
+          "analysis": 0,
+          "publish_dry_run": 0
+        },
+        "dependency_override_hint": true,
+        "zero_warnings": true,
+        "archive_has_required_files": true
+      },
+      {
+        "package": "effect_sql",
+        "version": "0.0.1",
+        "checks": {
+          "resolution": 0,
+          "analysis": 0,
+          "publish_dry_run": 0
+        },
+        "dependency_override_hint": true,
+        "zero_warnings": true,
+        "archive_has_required_files": true
+      }
+    ],
+    "temporary_exports_removed": true,
+    "published": false
+  },
+  "live_acceptance": {
+    "repeated_this_release_run": false,
+    "historical_record": "openai-live-validation.json",
+    "native_responses_streams_previously_passed": 2,
+    "limits": "No new live API or browser acceptance; historical live record retains original hashes."
+  },
+  "publish_order": [
+    "effect_core",
+    "effect_sql",
+    "effect_postgres/effect_mysql/effect_openai"
+  ],
+  "published": false,
+  "remaining_gates": [
+    "Hosted dependency resolution for new 0.0.1 dependencies must be checked after their publication; current validation used isolated local overrides.",
+    "API-key example requires credentials and an enabled model; two prior ChatGPT-plan Responses smoke checks are separate evidence.",
+    "Production failover, broader provider endpoints, live browser transport and load/soak are not exhaustively verified.",
+    "pub.dev ownership, name availability and additional server checks remain publication-time gates."
+  ],
+  "source_sha256": {
+    "lib/effect_core.dart": "fddbf8053489731b5faa69a21444aecf990440faa2b899b606af4511fed6787c",
+    "lib/src/concurrency.dart": "89b943cf6ef37071a163d1318219cea9d2910a2642a497dda1f54814101fc109",
+    "lib/src/core.dart": "3b2ce4cf783ce8f0cd12b3f528852e4d8fe31ed2f7394af7c3019cb6bdc189dd",
+    "lib/src/services.dart": "44d65387bdf3dcdd1d78d3795894883e8cc81acd6784f047638a38043b05b269",
+    "lib/src/stream.dart": "fd18652226f16d09bd307fd9d6d954f32f854993cc0edf8ac2e36d885a945b97",
+    "packages/effect_mysql/lib/effect_mysql.dart": "00d4c211c0937643c7ed81edcc3ab73a0d4116598d658ecf57f14090807e3b21",
+    "packages/effect_mysql/pubspec.yaml": "518de9ea498a3d19716c7ce16f4b14bf9c4396bffd0ac2e6e04094827f5f61b2",
+    "packages/effect_openai/lib/effect_openai.dart": "541e8da137e3e06ea4cd56bf561a290b6755b944608df7e06b4aa9f1eb126b31",
+    "packages/effect_openai/pubspec.yaml": "cb52ea56580ea164edcbb5b4f09cedc7b1d318b1f96531a02eb6c4979b62c93c",
+    "packages/effect_postgres/lib/effect_postgres.dart": "7508113de951b01e0e50dfbb0699a36602f7b7d4f5f344d89b5106ef557fe4cc",
+    "packages/effect_postgres/pubspec.yaml": "ffb284d5176748690d99fcd1eee5c58e35551d0a020a47ee094ffa524d40976c",
+    "packages/effect_sql/lib/effect_sql.dart": "de50d3b88d491a374c6f0927900bebc9f98c4ad3178c691fb355bdf3b9317689",
+    "packages/effect_sql/pubspec.yaml": "7a16161ab23fe3d9075fece2e9d0edcdad63e5b735323ce9623b542382b95926",
+    "pubspec.yaml": "59e19a6a41857b54f2c17622b3190503eb632b24013df290bf98d36f00175272"
+  }
+}

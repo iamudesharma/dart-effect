@@ -8,7 +8,7 @@ import 'package:effect_postgres/effect_postgres.dart';
 import 'package:postgres/postgres.dart' as pg;
 import 'package:test/test.dart';
 
-import '../../effect_sql/test/support/driver_contract.dart';
+import 'support/driver_contract.dart';
 
 void main() {
   final port = Platform.environment['EFFECT_PG_PORT'];
