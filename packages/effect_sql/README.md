@@ -3,9 +3,8 @@
 Driver-independent SQL effects: bounded connection leasing, parameterized queries,
 exclusive transactions and nested savepoints with scoped cleanup.
 
-**Release candidate: `0.0.1`. These packages are not published on pub.dev yet.**
-The hosted installation commands below apply after publication. For development
-now, use the local overrides described below.
+**Initial release: `0.0.1`.** Use the hosted dependencies below, or the local
+overrides for source development.
 
 ## Features and platform support
 
@@ -17,7 +16,7 @@ database credentials to clients.
 
 ## Installation
 
-Requires Dart **3.13 or later**. After publication, run:
+Requires Dart **3.13 or later**. Run:
 
 ```sh
 dart pub add effect_core effect_sql
@@ -145,7 +144,7 @@ Keep one pool for its owner lifetime, bound `maxConnections`, and await
 session's queries. Cancellation guarantees depend on the driver's hook: work must
 settle before rollback or connection reuse, and draining may take time.
 
-## Local development before publication
+## Local development
 
 With access to the repository, clone it and add a `pubspec_overrides.yaml` beside
 your application's pubspec. Replace `/path/to/effect_dart` with your checkout:
