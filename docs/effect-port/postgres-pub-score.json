@@ -100,5 +100,12 @@
     "url": "https://pub.dev/packages/effect_postgres/versions/0.0.2",
     "archive_sha256": "2734d1a506c1dd94cc50c8ee4e0826e5cf5586171a3a83441715938c3d56f3f8",
     "archive_matches_release_sources": true
+  },
+  "hosted_analysis_check": {
+    "checked_at_utc": "2026-10-09T02:28:12.770689+00:00",
+    "analyzed_version": "0.0.2",
+    "granted_points": 70,
+    "max_points": 160,
+    "patch_analysis_pending": false
   }
 }
