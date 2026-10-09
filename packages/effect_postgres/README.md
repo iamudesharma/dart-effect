@@ -3,7 +3,7 @@
 PostgreSQL / PG queries and transactions as lazy, typed Effect computations, backed by
 [`postgres`](https://pub.dev/packages/postgres).
 
-**Initial release: `0.0.1`.** Use the hosted dependencies below, or the local
+**Current release: `0.0.2`.** Use the hosted dependencies below, or the local
 overrides for source development.
 
 ## Features and platform support
@@ -33,7 +33,7 @@ Or add these dependencies to `pubspec.yaml`:
 ```yaml
 dependencies:
   effect_core: ^0.0.1
-  effect_postgres: ^0.0.1
+  effect_postgres: ^0.0.2
   postgres: ^3.5.19
 ```
 

@@ -11,8 +11,15 @@ export 'package:effect_sql/effect_sql.dart';
 
 /// PostgreSQL/PG is one adapter. Driver settings and codecs remain available.
 final class PostgresDriver implements SqlDriver {
+  /// Configures a driver without opening a database connection.
+  ///
+  /// [settings] controls the underlying driver's TLS, timeouts and codecs.
   PostgresDriver(this.endpoint, {this.settings});
+
+  /// Server address, database and authentication used for new connections.
   final pg.Endpoint endpoint;
+
+  /// Optional connection policy passed to [pg.Connection.open].
   final pg.ConnectionSettings? settings;
   @override
   Future<SqlConnection> open() async =>
@@ -40,8 +47,20 @@ final class PostgresDriver implements SqlDriver {
   }
 }
 
+/// Factories for bounded PostgreSQL pools and scoped dependency layers.
+///
+/// Queries use PostgreSQL's positional parameters (`$1`, `$2`, and so on).
+/// Pools open connections lazily, when their effects are executed.
 final class PostgresClient {
+  /// Context key provided by [layer] for access to its scoped SQL client.
   static final key = ServiceKey<SqlClient>('PostgresClient');
+
+  /// Creates an application-owned pool with at most [maxConnections] leases.
+  ///
+  /// Construction performs no network I/O. [maxConnections] must be positive.
+  /// [settings] is forwarded to the PostgreSQL driver for each connection.
+  /// Await runtime shutdown before awaiting [SqlClient.shutdown] when the
+  /// application's owner closes. Cancellation discards the affected connection.
   static SqlClient create(
     pg.Endpoint endpoint, {
     pg.ConnectionSettings? settings,
@@ -50,6 +69,12 @@ final class PostgresClient {
     PostgresDriver(endpoint, settings: settings),
     maxConnections: maxConnections,
   );
+
+  /// Provides a fresh pool under [key] for each layer construction scope.
+  ///
+  /// Use [Layer.use] to retain the pool while the application effect runs and
+  /// await its cleanup when that scope closes. Connections are opened lazily;
+  /// [settings] and [maxConnections] have the same meaning as in [create].
   static Layer<SqlFailure> layer(
     pg.Endpoint endpoint, {
     pg.ConnectionSettings? settings,
