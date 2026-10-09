@@ -1,0 +1,57 @@
+{
+  "started_at_utc": "2026-10-09T03:13:44.225223+00:00",
+  "images": {
+    "postgres": "postgres@sha256:18cfe3ef5e6815560c98237d6216d1e5119702fb0f3894c8785dd58b8bbe5d73",
+    "mysql": "mysql@sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242"
+  },
+  "suites": {
+    "effect_postgres": {
+      "exit_code": 0,
+      "passed": 3,
+      "skipped": 0,
+      "failed": 0
+    },
+    "effect_mysql": {
+      "exit_code": 0,
+      "passed": 3,
+      "skipped": 0,
+      "failed": 0
+    }
+  },
+  "scope": "Isolated root/intermediate CA chains, unrelated-root and hostname rejection; not production infrastructure acceptance.",
+  "success": true,
+  "cleanup": [
+    {
+      "name": "effect-tls-mysql-wrong-host-6d8d4dae54",
+      "exit_code": 0
+    },
+    {
+      "name": "effect-tls-mysql-valid-6d8d4dae54",
+      "exit_code": 0
+    },
+    {
+      "name": "effect-tls-postgres-wrong-host-6d8d4dae54",
+      "exit_code": 0
+    },
+    {
+      "name": "effect-tls-postgres-valid-6d8d4dae54",
+      "exit_code": 0
+    }
+  ],
+  "containers_removed": true,
+  "source_sha256": {
+    "lib/effect_core.dart": "fddbf8053489731b5faa69a21444aecf990440faa2b899b606af4511fed6787c",
+    "lib/src/concurrency.dart": "89b943cf6ef37071a163d1318219cea9d2910a2642a497dda1f54814101fc109",
+    "lib/src/core.dart": "3b2ce4cf783ce8f0cd12b3f528852e4d8fe31ed2f7394af7c3019cb6bdc189dd",
+    "lib/src/services.dart": "44d65387bdf3dcdd1d78d3795894883e8cc81acd6784f047638a38043b05b269",
+    "lib/src/stream.dart": "fd18652226f16d09bd307fd9d6d954f32f854993cc0edf8ac2e36d885a945b97",
+    "packages/effect_mysql/lib/effect_mysql.dart": "00d4c211c0937643c7ed81edcc3ab73a0d4116598d658ecf57f14090807e3b21",
+    "packages/effect_mysql/test/tls_acceptance_test.dart": "12d56dfbc9baed2b6760743f375a1473937e4ca30a1f2d9095aefff2e24e3c59",
+    "packages/effect_openai/lib/effect_openai.dart": "541e8da137e3e06ea4cd56bf561a290b6755b944608df7e06b4aa9f1eb126b31",
+    "packages/effect_postgres/lib/effect_postgres.dart": "420be850327ea0d1c5feb52b950ba5593330c46ac22eb17b332255b054b7e8e1",
+    "packages/effect_postgres/test/tls_acceptance_test.dart": "cb3b98c0ff2459174bc442a2bd2b8a99ffb25c3999f145216d7d65f5b5ab7fc1",
+    "packages/effect_sql/lib/effect_sql.dart": "de50d3b88d491a374c6f0927900bebc9f98c4ad3178c691fb355bdf3b9317689",
+    "tool/sql_tls_acceptance.py": "d3f03d69774dba305de0fc8aa5c87a8d9367264de23a9e580c2a88776756edc2"
+  },
+  "finished_at_utc": "2026-10-09T03:14:39.431706+00:00"
+}
