@@ -22,6 +22,10 @@ The static pages use a small embedded browser script for search and goal filters
 
 - Edit `content/getting-started.md` and `content/goals.json` for the introduction
   and roadmap. Goal status is versioned editorial data, not live agent activity.
+  Roadmap phases distinguish released scope, ordered next priorities and future
+  proposals. Upcoming goals require prerequisites and completion criteria.
+  After editing goals, run `python3 website/roadmap.py --write` to update the root
+  README, then build and check the site. The build rejects a stale README roadmap.
 - Package pages are generated from package READMEs; guides come from
   `docs/effect-port`. Edit those sources, then rebuild.
 - Progress comes from the validation JSON reports under `docs/effect-port`.
@@ -72,3 +76,12 @@ The publication-update build generated 15 routes. The checker passed for all 16
 HTML pages, including local routes, assets, anchors, search data, heading structure
 and embedded script syntax. No Dart runtime tests were rerun for this site-only
 update; the site presents the dated package release and PostgreSQL patch evidence.
+
+## Roadmap update on 9 October 2026
+
+Six milestones are delivered, none is in progress, two are planned, one awaits
+API-enabled test access, and four are future proposals. Each future milestone
+has prerequisites and completion criteria; no release dates are promised.
+The root README and hosted roadmap share `content/goals.json`. Filters include
+proposals and hide groups with no matching goals. The existing recorded package
+test counts remain distinct from this documentation-only validation.
