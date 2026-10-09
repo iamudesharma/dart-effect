@@ -62,7 +62,7 @@ The [shared roadmap](https://effect-dart.ginjustice4.chatgpt.site/roadmap/)
 and [README progress table](https://effect-dart.ginjustice4.chatgpt.site/packages/effect-core/#roadmap-and-progress) separate delivered
 scope, next priorities and future proposals. Next priorities are production SQL
 acceptance, broader OpenAI live acceptance (awaiting API-enabled access), and
-runnable API/Flutter integration guides. None is currently in progress.
+runnable API/Flutter integration guides. SQL acceptance is in progress; isolated CA-chain and hostname checks passed. Connection-loss recovery is next. See the [ordered acceptance plan](acceptance-plan.md).
 
 Future proposals include queue strategies/graceful end, replay PubSub, stream
 merging/grouping/time operators and Sink leftovers; structured schema issues and

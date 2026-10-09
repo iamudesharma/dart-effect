@@ -85,3 +85,14 @@ has prerequisites and completion criteria; no release dates are promised.
 The root README and hosted roadmap share `content/goals.json`. Filters include
 proposals and hide groups with no matching goals. The existing recorded package
 test counts remain distinct from this documentation-only validation.
+
+## Sequential SQL acceptance update on 9 October 2026
+
+Production SQL acceptance is in progress. SQL-P1 (isolated root/intermediate
+CA trust and hostname rejection) passed six real-driver checks with no skips;
+connection-loss/pool recovery is next. Ordered completion criteria are in
+`docs/effect-port/acceptance-plan.md`. The new evidence is displayed separately
+from the 207/167 dated release totals. The build generated 16 routes and the
+checker passed for 17 HTML pages. Maintained Dart analysis, core VM tests, type
+fixtures and adapter classification checks passed; existing real transaction
+suites were not rerun in this TLS-only task.

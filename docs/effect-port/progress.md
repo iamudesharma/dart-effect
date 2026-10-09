@@ -235,3 +235,17 @@ root/package analysis and formatting. The credential-free SDK example executed;
 it compiled to JavaScript, and the live example compiled to a native executable.
 Live OpenAI API/model acceptance was not run. Detailed contracts, test cases and
 remaining boundaries are in openai-adapter.md and openai-validation.json.
+
+## Next-priority work — 9 October 2026
+
+Production SQL acceptance is in progress. The first task, isolated trusted CA
+chains and hostname verification, passed three PostgreSQL and three MySQL tests
+with zero skips/failures. All four owned containers were removed. No package
+runtime code changed and no release was published.
+
+The [ordered acceptance plan](acceptance-plan.md) defines the remaining recovery,
+network-fault, soak and version-matrix tasks. Core 107 VM tests and five type
+fixtures passed; both adapter analyzers and classification suites passed (2 PG,
+7 MySQL). Broad root analysis encountered old ignored build/readme-checks source
+errors; maintained lib/test/example/tool analysis passed independently. Existing
+real transaction suites were not rerun in this TLS-only task.

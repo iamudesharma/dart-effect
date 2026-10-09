@@ -178,3 +178,12 @@ See [sql-validation.json](sql-validation.json) for real executed counts and imag
 digests. TLS rejection is tested; production CA chains, failover, long-running
 network partitions, load/soak behavior and cross-version database compatibility
 are not established by these bounded development tests.
+
+## Next-priority acceptance
+
+The [sequential acceptance plan](acceptance-plan.md) tracks the remaining work.
+Trusted root/intermediate CA-chain acceptance, unrelated-root rejection and
+hostname mismatch passed on both real drivers (six tests, no skips). This is
+isolated TLS acceptance, not verification of a production CA provider or HA
+topology. [TLS evidence](sql-tls-validation.json) is separate from the initial
+release totals. Connection-loss recovery is the next task.

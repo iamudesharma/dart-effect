@@ -126,13 +126,45 @@
     {
       "id": "production",
       "title": "Production database acceptance",
-      "status": "planned",
+      "status": "active",
       "area": "Acceptance",
-      "detail": "Production CA chains, failover, network partitions and longer load/soak checks remain unverified.",
-      "proof": "/docs/sql/",
+      "detail": "Trusted root/intermediate CA chains and hostname rejection passed for both drivers. Connection loss, network interruption, load/soak and version coverage remain open.",
+      "proof": "/docs/acceptance-plan/",
       "phase": "next",
       "dependency": "A reproducible database version matrix and isolated TLS/failover test environments.",
-      "acceptance": "Record PostgreSQL and MySQL CA verification, interrupted transactions, failover, network partitions and soak results, including cleanup and rollback outcomes."
+      "acceptance": "Record PostgreSQL and MySQL CA verification, interrupted transactions, failover, network partitions and soak results, including cleanup and rollback outcomes.",
+      "tasks": [
+        {
+          "id": "SQL-P1",
+          "title": "Trusted CA chains and hostname verification",
+          "status": "completed"
+        },
+        {
+          "id": "SQL-P2",
+          "title": "Connection loss and pool recovery",
+          "status": "planned"
+        },
+        {
+          "id": "SQL-P3",
+          "title": "Bounded network interruption",
+          "status": "planned"
+        },
+        {
+          "id": "SQL-P4",
+          "title": "Bounded load and soak",
+          "status": "planned"
+        },
+        {
+          "id": "SQL-P5",
+          "title": "Database version matrix",
+          "status": "planned"
+        },
+        {
+          "id": "SQL-P6",
+          "title": "SQL acceptance review",
+          "status": "planned"
+        }
+      ]
     },
     {
       "id": "ai-broader",

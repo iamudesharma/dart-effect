@@ -31,8 +31,8 @@ def readme_section(goals):
         'package runs, real PostgreSQL/MySQL acceptance and two native live '
         'Responses smoke checks. Broader live AI, production database and native '
         'Flutter acceptance remain open.', '', *rows, '',
-        'Next priorities are ordered above; work has not started on those '
-        'milestones. Broader OpenAI acceptance needs an API-enabled test account. '
+        'Next priorities are ordered above; production SQL acceptance is in progress. '
+        'Trusted CA-chain and hostname checks passed for both drivers; recovery, network faults and soak remain open. Broader OpenAI acceptance needs an API-enabled test account. '
         'Future proposals need API design and scope agreement before implementation; '
         'they have no promised release version or date.', '',
         'Follow the [detailed roadmap](https://effect-dart.ginjustice4.chatgpt.site/roadmap/) '
