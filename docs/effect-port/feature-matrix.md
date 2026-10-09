@@ -58,12 +58,17 @@ advertised performance feature; only concurrent callers share in-flight builds.
 
 ## Roadmap
 
-The initial phase 4 contracts now execute. Remaining breadth includes queue
-strategies/batches/graceful end, partitioned permits, replay PubSub, stream
-parallelism/merging/grouping/time operators and Sink leftovers.
-Phase 5 adds structured schema issues and encode/decode round trips, configuration,
-cache lifetime, and optional observability adapters. Phase 6 isolates sendability
-and platform concerns outside the core dependency graph.
+The [shared roadmap](https://effect-dart.ginjustice4.chatgpt.site/roadmap/)
+and [README progress table](https://effect-dart.ginjustice4.chatgpt.site/packages/effect-core/#roadmap-and-progress) separate delivered
+scope, next priorities and future proposals. Next priorities are production SQL
+acceptance, broader OpenAI live acceptance (awaiting API-enabled access), and
+runnable API/Flutter integration guides. None is currently in progress.
+
+Future proposals include queue strategies/graceful end, replay PubSub, stream
+merging/grouping/time operators and Sink leftovers; structured schema issues and
+encode/decode round trips, configuration and cache lifetime; optional metrics and
+tracing; and Flutter/isolate helpers outside the core dependency graph. These are
+unimplemented ideas to prioritize and design, not committed phase deliveries.
 
 Full ecosystem expansion was superseded by the user's focused Dart core and
 PostgreSQL/MySQL scope: [SQL adapter contracts](sql-adapters.md). Historical

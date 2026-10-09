@@ -75,7 +75,8 @@
       "status": "completed",
       "area": "Website",
       "detail": "Overview, package guides, verified progress and a roadmap in one place.",
-      "proof": "/progress/"
+      "proof": "/progress/",
+      "phase": "delivered"
     },
     {
       "id": "core",
@@ -83,7 +84,8 @@
       "status": "completed",
       "area": "Core",
       "detail": "Lazy effects, typed failures, resources, services, concurrency and streams.",
-      "proof": "/packages/effect-core/"
+      "proof": "/packages/effect-core/",
+      "phase": "delivered"
     },
     {
       "id": "sql",
@@ -91,7 +93,8 @@
       "status": "completed",
       "area": "SQL",
       "detail": "Established Dart drivers, scoped connections, transactions and real database acceptance.",
-      "proof": "/packages/effect-postgres/"
+      "proof": "/packages/effect-postgres/",
+      "phase": "delivered"
     },
     {
       "id": "ai",
@@ -99,7 +102,8 @@
       "status": "completed",
       "area": "AI",
       "detail": "Typed requests, Responses and Chat streams, scoped clients and local HTTP/SSE acceptance.",
-      "proof": "/packages/effect-openai/"
+      "proof": "/packages/effect-openai/",
+      "phase": "delivered"
     },
     {
       "id": "ai-live",
@@ -107,23 +111,8 @@
       "status": "completed",
       "area": "Acceptance",
       "detail": "Two native live Responses streams passed with text, Unicode, terminal completion and awaited cleanup through user-authorized ChatGPT plan access.",
-      "proof": "/docs/openai/"
-    },
-    {
-      "id": "ai-broader",
-      "title": "Broader OpenAI live acceptance",
-      "status": "planned",
-      "area": "Acceptance",
-      "detail": "Other API endpoints, live browser transport, load/soak and failure injection remain unverified. ChatGPT plan access covers only eligible Responses requests.",
-      "proof": "/docs/openai/"
-    },
-    {
-      "id": "production",
-      "title": "Production database acceptance",
-      "status": "planned",
-      "area": "Acceptance",
-      "detail": "Production CA chains, failover, network partitions and longer load/soak checks remain unverified.",
-      "proof": "/docs/sql/"
+      "proof": "/docs/openai/",
+      "phase": "delivered"
     },
     {
       "id": "release",
@@ -131,7 +120,85 @@
       "status": "completed",
       "area": "Release",
       "detail": "All five packages are published on pub.dev. PostgreSQL 0.0.2 includes documented public APIs and a verified 160/160 score.",
-      "proof": "/packages/"
+      "proof": "/packages/",
+      "phase": "delivered"
+    },
+    {
+      "id": "production",
+      "title": "Production database acceptance",
+      "status": "planned",
+      "area": "Acceptance",
+      "detail": "Production CA chains, failover, network partitions and longer load/soak checks remain unverified.",
+      "proof": "/docs/sql/",
+      "phase": "next",
+      "dependency": "A reproducible database version matrix and isolated TLS/failover test environments.",
+      "acceptance": "Record PostgreSQL and MySQL CA verification, interrupted transactions, failover, network partitions and soak results, including cleanup and rollback outcomes."
+    },
+    {
+      "id": "ai-broader",
+      "title": "Broader OpenAI live acceptance",
+      "status": "awaiting-input",
+      "area": "Acceptance",
+      "detail": "Other API endpoints, live browser transport, load/soak and failure injection remain unverified. ChatGPT plan access covers only eligible Responses requests.",
+      "proof": "/docs/openai/",
+      "phase": "next",
+      "dependency": "An API-enabled test account and a server-side credential are required; ChatGPT subscription access is not general API coverage.",
+      "acceptance": "Record successful and failed live requests for supported endpoints, browser transport through a safe test backend, cancellation and bounded load/soak; retain endpoint-specific evidence."
+    },
+    {
+      "id": "examples",
+      "title": "Runnable API and Flutter integration guides",
+      "status": "planned",
+      "phase": "next",
+      "area": "Examples",
+      "detail": "Show application-owned runtimes, shared service layers, safe read retry, SQL transactions and server-side OpenAI access.",
+      "dependency": "Existing released packages; a Flutter device target for native acceptance.",
+      "acceptance": "Run the API example and Flutter lifecycle journey, including owner shutdown and interruption; publish commands and platform-specific results.",
+      "proof": "/docs/getting-started/"
+    },
+    {
+      "id": "foundation",
+      "title": "Typed configuration, schemas and cache lifetimes",
+      "status": "proposed",
+      "phase": "later",
+      "area": "Core",
+      "detail": "Explore structured schema issues, encode/decode round trips, configuration loading and scoped cache expiry.",
+      "dependency": "Agree on a small Dart-native API and lifecycle contracts before implementation.",
+      "acceptance": "Independent issue/round-trip tests, deterministic expiry tests and documented error/resource behavior.",
+      "proof": "/docs/features/"
+    },
+    {
+      "id": "streams",
+      "title": "Broader streams and coordination primitives",
+      "status": "proposed",
+      "phase": "later",
+      "area": "Core",
+      "detail": "Consider queue strategies, graceful end, replay PubSub, stream merging/grouping/time operators and Sink leftovers.",
+      "dependency": "Prioritize operators from actual application needs and define backpressure and cancellation contracts.",
+      "acceptance": "Independent bounded-buffer, early-exit, interruption and exactly-once cleanup scenarios for each advertised operator.",
+      "proof": "/docs/features/"
+    },
+    {
+      "id": "observability",
+      "title": "Optional metrics and tracing adapters",
+      "status": "proposed",
+      "phase": "later",
+      "area": "Observability",
+      "detail": "Expose useful service and fiber observations without adding runtime dependencies to core.",
+      "dependency": "Select Dart observability interfaces and decide privacy, overhead and exporter boundaries.",
+      "acceptance": "Verify successful/failed/interrupted spans, scoped exporter cleanup and measured overhead.",
+      "proof": "/docs/features/"
+    },
+    {
+      "id": "platform",
+      "title": "Flutter and isolate integration helpers",
+      "status": "proposed",
+      "phase": "later",
+      "area": "Platform",
+      "detail": "Explore Flutter owner lifetimes and explicit isolate sendability helpers outside the portable core.",
+      "dependency": "Define ownership and supported platform contracts; choose real device acceptance targets.",
+      "acceptance": "Run native Flutter disposal journeys and isolate sendability/error propagation tests; record unsupported platforms.",
+      "proof": "/docs/features/"
     }
   ],
   "vm_tests": 207,
