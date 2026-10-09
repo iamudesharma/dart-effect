@@ -4,9 +4,8 @@ Typed OpenAI SDK requests and streams as lazy Effect computations. Uses
 [`openai_dart`](https://pub.dev/packages/openai_dart) 10.0.1 with scoped clients,
 per-run cancellation and explicit error handling.
 
-**Release candidate: `0.0.1`. These packages are not published on pub.dev yet.**
-The hosted installation commands below apply after publication. For development
-now, use the local overrides described below.
+**Initial release: `0.0.1`.** Use the hosted dependencies below, or the local
+overrides for source development.
 
 ## Features and platform support
 
@@ -25,7 +24,7 @@ this adapter. The SDK entrypoint is re-exported.
 
 ## Installation
 
-Requires Dart **3.13 or later**. After publication, run:
+Requires Dart **3.13 or later**. Run:
 
 ```sh
 dart pub add effect_core effect_openai
@@ -203,7 +202,7 @@ generation or billing stopped. `cancelResponse` calls the separate server-side
 cancellation operation for background responses. SDK buffers and `runCollect`
 are not hard memory bounds.
 
-## Local development before publication
+## Local development
 
 With access to the repository, clone it and add a `pubspec_overrides.yaml` beside
 your application's pubspec. Replace `/path/to/effect_dart` with your checkout:

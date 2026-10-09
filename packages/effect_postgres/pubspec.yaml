@@ -1,6 +1,6 @@
 name: effect_postgres
-description: Scoped Effect SQL postgres integration for Dart API services.
-version: 0.0.1
+description: Lazy typed PostgreSQL effects with bounded connection pools, scoped transactions and resource cleanup for Dart API services.
+version: 0.0.2
 environment:
   sdk: ">=3.13.0 <4.0.0"
 dependencies:

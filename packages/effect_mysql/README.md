@@ -3,9 +3,8 @@
 MySQL queries and transactions as lazy, typed Effect computations, backed by
 [`mysql_client_plus`](https://pub.dev/packages/mysql_client_plus).
 
-**Release candidate: `0.0.1`. These packages are not published on pub.dev yet.**
-The hosted installation commands below apply after publication. For development
-now, use the local overrides described below.
+**Initial release: `0.0.1`.** Use the hosted dependencies below, or the local
+overrides for source development.
 
 ## Features and platform support
 
@@ -21,7 +20,7 @@ from Flutter clients.
 
 ## Installation
 
-Requires Dart **3.13 or later**. After publication, run:
+Requires Dart **3.13 or later**. Run:
 
 ```sh
 dart pub add effect_core effect_mysql
@@ -128,7 +127,7 @@ raw diagnostic causes may contain sensitive information. Use `runExit` to handle
 expected failures separately from defects and interruption. Transactions are not
 automatically replayed after transient failures.
 
-## Local development before publication
+## Local development
 
 With access to the repository, clone it and add a `pubspec_overrides.yaml` beside
 your application's pubspec. Replace `/path/to/effect_dart` with your checkout:

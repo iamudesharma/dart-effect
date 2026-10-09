@@ -3,9 +3,8 @@
 Lazy, typed asynchronous effects for Dart and Flutter. Describe a computation,
 compose it with other effects, and run it with explicit ownership of its resources.
 
-**Release candidate: `0.0.1`. These packages are not published on pub.dev yet.**
-The hosted installation commands below apply after publication. For development
-now, use the local overrides described below.
+**Initial release: `0.0.1`.** Use the hosted dependencies below, or the local
+overrides for source development.
 
 ## Features
 
@@ -18,7 +17,7 @@ now, use the local overrides described below.
 
 ## Installation
 
-Requires Dart **3.13 or later**. After publication, run:
+Requires Dart **3.13 or later**. Run:
 
 ```sh
 dart pub add effect_core
@@ -174,7 +173,7 @@ Use explicit common error families and aggregate environments when composing
 services. Only map/flatMap/defer instruction chains have the advertised stack
 safety proof; arbitrary deeply nested region wrappers do not.
 
-## Local development before publication
+## Local development
 
 With access to the repository, clone it and add a `pubspec_overrides.yaml` beside
 your application's pubspec. Replace `/path/to/effect_dart` with your checkout:
