@@ -93,5 +93,12 @@
     "packages/effect_postgres/pubspec.yaml": "9a1b3af861db3fb76816021477187dee48d77284fe0dfbf6523715815433ba75",
     "packages/effect_postgres/README.md": "c70d234a9af08ec76f0b1d7ae5e2f15c6e3a70493f840df8625df288fbc10f0a",
     "packages/effect_postgres/analysis_options.yaml": "5366239453ed4f78b7b2d0c38f9cd84ac1cf866b497c01d95a08ddfa299fbc73"
+  },
+  "publication": {
+    "version": "0.0.2",
+    "published_at_utc": "2026-10-09T02:21:41.813667Z",
+    "url": "https://pub.dev/packages/effect_postgres/versions/0.0.2",
+    "archive_sha256": "2734d1a506c1dd94cc50c8ee4e0826e5cf5586171a3a83441715938c3d56f3f8",
+    "archive_matches_release_sources": true
   }
 }
