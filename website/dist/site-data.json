@@ -7,7 +7,11 @@
       "text": "Lazy effects, typed failures and structured concurrency. The foundation for every service.",
       "platform": "VM + web",
       "vm": 107,
-      "chrome": 107
+      "chrome": 107,
+      "version": "0.0.1",
+      "url": "https://pub.dev/packages/effect_core",
+      "published_at_utc": "2026-10-08T15:08:23.416288Z",
+      "archive_sha256": "9541ef371ce42040aba7938c0649905f91f2a100ba805bd7278ee70a145c73de"
     },
     {
       "name": "effect_sql",
@@ -16,7 +20,11 @@
       "text": "Shared connection lifetimes, exclusive transactions and nested savepoints.",
       "platform": "Portable contracts",
       "vm": 18,
-      "chrome": 18
+      "chrome": 18,
+      "version": "0.0.1",
+      "url": "https://pub.dev/packages/effect_sql",
+      "published_at_utc": "2026-10-08T15:08:53.400834Z",
+      "archive_sha256": "c6629bdd2334bab340f4928d2a0aa2ec39b624827931f9c3fc949425aaad9b68"
     },
     {
       "name": "effect_postgres",
@@ -25,7 +33,13 @@
       "text": "PostgreSQL and PG through the established postgres Dart driver.",
       "platform": "Native server",
       "vm": 13,
-      "chrome": null
+      "chrome": null,
+      "version": "0.0.2",
+      "url": "https://pub.dev/packages/effect_postgres",
+      "published_at_utc": "2026-10-09T02:21:41.813667Z",
+      "archive_sha256": "2734d1a506c1dd94cc50c8ee4e0826e5cf5586171a3a83441715938c3d56f3f8",
+      "pub_points": 160,
+      "score_url": "https://pub.dev/packages/effect_postgres/score"
     },
     {
       "name": "effect_mysql",
@@ -34,7 +48,11 @@
       "text": "MySQL with prepared binding, scoped connections and explicit TLS behavior.",
       "platform": "Native server",
       "vm": 19,
-      "chrome": null
+      "chrome": null,
+      "version": "0.0.1",
+      "url": "https://pub.dev/packages/effect_mysql",
+      "published_at_utc": "2026-10-08T15:11:01.784218Z",
+      "archive_sha256": "2e7fa258c96d139b9449d494c1d6946ed011f6c01edae069a183618bc6a9c510"
     },
     {
       "name": "effect_openai",
@@ -43,7 +61,11 @@
       "text": "Typed OpenAI requests, Responses and Chat streams, cancellation and scoped clients.",
       "platform": "VM + web",
       "vm": 50,
-      "chrome": 42
+      "chrome": 42,
+      "version": "0.0.1",
+      "url": "https://pub.dev/packages/effect_openai",
+      "published_at_utc": "2026-10-08T15:09:20.473855Z",
+      "archive_sha256": "2a7c1f2c621f22d3958a46cee6b9856248c539a25a0a664a29157ce303243bef"
     }
   ],
   "goals": [
@@ -106,14 +128,15 @@
     {
       "id": "release",
       "title": "First pub.dev release",
-      "status": "planned",
+      "status": "completed",
       "area": "Release",
-      "detail": "Package publication is not scheduled. Review the development APIs and release process before publishing.",
-      "proof": "/docs/getting-started/"
+      "detail": "All five packages are published on pub.dev. PostgreSQL 0.0.2 includes documented public APIs and a verified 160/160 score.",
+      "proof": "/packages/"
     }
   ],
   "vm_tests": 207,
   "browser_tests": 167,
-  "recorded_at": "2026-10-07",
-  "source_evidence_verified": true
+  "recorded_at": "2026-10-09",
+  "source_evidence_verified": true,
+  "releases_verified_at": "2026-10-09T02:47:16.262912+00:00"
 }

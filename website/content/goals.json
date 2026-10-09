@@ -58,9 +58,9 @@
   {
     "id": "release",
     "title": "First pub.dev release",
-    "status": "planned",
+    "status": "completed",
     "area": "Release",
-    "detail": "Package publication is not scheduled. Review the development APIs and release process before publishing.",
-    "proof": "/docs/getting-started/"
+    "detail": "All five packages are published on pub.dev. PostgreSQL 0.0.2 includes documented public APIs and a verified 160/160 score.",
+    "proof": "/packages/"
   }
 ]

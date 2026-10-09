@@ -1,0 +1,133 @@
+{
+  "verified_at_utc": "2026-10-08T15:11:39.054908+00:00",
+  "packages": [
+    {
+      "name": "effect_core",
+      "version": "0.0.1",
+      "url": "https://pub.dev/packages/effect_core",
+      "published_at_utc": "2026-10-08T15:08:23.416288Z",
+      "archive_sha256": "9541ef371ce42040aba7938c0649905f91f2a100ba805bd7278ee70a145c73de",
+      "verified_source_files": 21,
+      "archive_source_match": true,
+      "no_node_or_local_overrides": true
+    },
+    {
+      "name": "effect_sql",
+      "version": "0.0.1",
+      "url": "https://pub.dev/packages/effect_sql",
+      "published_at_utc": "2026-10-08T15:08:53.400834Z",
+      "archive_sha256": "c6629bdd2334bab340f4928d2a0aa2ec39b624827931f9c3fc949425aaad9b68",
+      "verified_source_files": 7,
+      "archive_source_match": true,
+      "no_node_or_local_overrides": true
+    },
+    {
+      "name": "effect_postgres",
+      "version": "0.0.1",
+      "url": "https://pub.dev/packages/effect_postgres",
+      "published_at_utc": "2026-10-08T15:10:29.338478Z",
+      "archive_sha256": "7500d1bd50e7cb9c965e7b3ce5ad95ffb18c3f4284a6ac0e14f04124d8cca8e9",
+      "verified_source_files": 9,
+      "archive_source_match": true,
+      "no_node_or_local_overrides": true
+    },
+    {
+      "name": "effect_mysql",
+      "version": "0.0.1",
+      "url": "https://pub.dev/packages/effect_mysql",
+      "published_at_utc": "2026-10-08T15:11:01.784218Z",
+      "archive_sha256": "2e7fa258c96d139b9449d494c1d6946ed011f6c01edae069a183618bc6a9c510",
+      "verified_source_files": 9,
+      "archive_source_match": true,
+      "no_node_or_local_overrides": true
+    },
+    {
+      "name": "effect_openai",
+      "version": "0.0.1",
+      "url": "https://pub.dev/packages/effect_openai",
+      "published_at_utc": "2026-10-08T15:09:20.473855Z",
+      "archive_sha256": "2a7c1f2c621f22d3958a46cee6b9856248c539a25a0a664a29157ce303243bef",
+      "verified_source_files": 11,
+      "archive_source_match": true,
+      "no_node_or_local_overrides": true
+    }
+  ],
+  "dependency_overrides_used": false,
+  "core_vm_tests_passed": 107,
+  "openai_vm_tests_passed": 50,
+  "openai_credential_free_example_passed": true,
+  "sql_acceptance": {
+    "started_at_utc": "2026-10-08T15:09:26.909502+00:00",
+    "images": {
+      "postgres": "postgres@sha256:18cfe3ef5e6815560c98237d6216d1e5119702fb0f3894c8785dd58b8bbe5d73",
+      "mysql": "mysql@sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242"
+    },
+    "suites": {
+      "effect_sql": {
+        "exit_code": 0,
+        "passed": 18,
+        "skipped": 0,
+        "failed": 0
+      },
+      "effect_postgres": {
+        "exit_code": 0,
+        "passed": 13,
+        "skipped": 0,
+        "failed": 0
+      },
+      "effect_mysql": {
+        "exit_code": 0,
+        "passed": 19,
+        "skipped": 0,
+        "failed": 0
+      }
+    },
+    "containers_removed": true,
+    "examples": {
+      "effect_postgres": {
+        "exit_code": 0,
+        "expected_greeting": true
+      },
+      "effect_mysql": {
+        "exit_code": 0,
+        "expected_greeting": true
+      }
+    },
+    "cleanup": [
+      {
+        "name": "effect-mysql-test-ad1e7ce88a",
+        "exit_code": 0
+      },
+      {
+        "name": "effect-postgres-test-ad1e7ce88a",
+        "exit_code": 0
+      }
+    ],
+    "source_sha256": {
+      "packages/effect_mysql/lib/effect_mysql.dart": "00d4c211c0937643c7ed81edcc3ab73a0d4116598d658ecf57f14090807e3b21",
+      "packages/effect_mysql/test/classification_test.dart": "e01ece38645ec79c5eca7edeba7ba36dc889cd9d1fa5ea3c2a644ebbcbb0aecf",
+      "packages/effect_mysql/test/integration_test.dart": "1f590e7704533c5b9da2ab1058d0398083aa92384530179b017467015912651e",
+      "packages/effect_mysql/test/support/driver_contract.dart": "de103e8be491f0b17b0f73c07f92dbdc89360e1753ad1229ce69cd0aecc12880",
+      "packages/effect_postgres/lib/effect_postgres.dart": "7508113de951b01e0e50dfbb0699a36602f7b7d4f5f344d89b5106ef557fe4cc",
+      "packages/effect_postgres/test/classification_test.dart": "6f79c0b4250190ba5b226ea224912a3f033f103f4e9d3dcf2d1ab22be0e6e964",
+      "packages/effect_postgres/test/integration_test.dart": "42f8af9ce7e81df190fd933ae18cf6c7af2bbae4e0e00e687b859361cd192adf",
+      "packages/effect_postgres/test/support/driver_contract.dart": "de103e8be491f0b17b0f73c07f92dbdc89360e1753ad1229ce69cd0aecc12880",
+      "packages/effect_sql/lib/effect_sql.dart": "de50d3b88d491a374c6f0927900bebc9f98c4ad3178c691fb355bdf3b9317689",
+      "packages/effect_sql/test/sql_test.dart": "b70ebaa7c75d0a41e61e05f759fc66e8ea2ee1dac5043a873dd26e382845cf71",
+      "packages/effect_sql/test/support/driver_contract.dart": "de103e8be491f0b17b0f73c07f92dbdc89360e1753ad1229ce69cd0aecc12880"
+    },
+    "finished_at_utc": "2026-10-08T15:10:17.891787+00:00"
+  },
+  "limits": "No new live OpenAI API acceptance. Browser and platform acceptance remains as recorded in the prior release validation.",
+  "consumer_smoke": {
+    "hosted_resolution": true,
+    "analysis_exit_code": 0,
+    "execution_exit_code": 0,
+    "local_overrides": false,
+    "scope": "Core computation plus adapter construction and shutdown; no external requests.",
+    "source_sha256": "8c4deb4a39321faf2f4b17b01e05debe33df3a5d5b60b2cd65ca62aabb1e8f15"
+  },
+  "all_publish_dry_runs_zero_warnings": true,
+  "publication_authorized_by_user": true,
+  "temporary_release_directories_removed": true
+}

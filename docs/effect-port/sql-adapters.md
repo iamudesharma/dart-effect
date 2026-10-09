@@ -47,11 +47,12 @@ behavior, not a placeholder implementation of every Effect SQL module. Query
 building, migrations, reactive queries, cursors/streaming and dialect abstraction
 are not advertised. Results are materialized by the underlying driver.
 
-Packages remain local development candidates, not published on pub.dev. Their
-public dependencies use versions; checked-in `pubspec_overrides.yaml` files point
-to local sources for development and are excluded from consumer archives. To use
-an adapter in another local project, provide overrides for both `effect_core`
-and `effect_sql` until those dependencies are published. Publication is separate.
+The packages are published on pub.dev: core/SQL/MySQL 0.0.1 and PostgreSQL
+0.0.2. Public dependencies use hosted version constraints, so consumer apps do
+not need local overrides. PostgreSQL 0.0.2 is a documentation-only patch and
+has a verified 160/160 pub.dev score. See the package READMEs for installation.
+Checked-in `pubspec_overrides.yaml` files select local sources for development
+and are excluded from consumer archives.
 
 ## Query and API usage
 

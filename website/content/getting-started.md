@@ -2,26 +2,24 @@
 
 Effect Dart is an independent, Effect-inspired toolkit for Dart API services and applications. Start with a lazy computation, then add the services your application needs.
 
-## Get the development source
+## Install from pub.dev
 
-The packages are development candidates at 0.1.0-dev.1. They are **not published on pub.dev**. The source repository is currently private; repository access is required.
+All five packages are published. Start with `effect_core` 0.0.1; add only the integrations your application uses. PostgreSQL's current documentation patch is 0.0.2, and the other packages are 0.0.1.
 
 ```sh
-git clone --branch dart-effect https://github.com/iamudesharma/dart-effect.git
-cd dart-effect
-dart pub get
-dart run example/resources.dart
+dart pub add effect_core
 ```
 
-Use the core package directly in this checkout. To use it from another local app, point a dependency at your checkout:
+In a Flutter project, use `flutter pub add effect_core`. Your Flutter installation must include Dart 3.13 or later. Core has no runtime dependencies and works on the VM and web.
+
+Or add the hosted dependency to your application's `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  effect_core:
-    path: ../dart-effect
+  effect_core: ^0.0.1
 ```
 
-Dart 3.13 or later is required. Core has no runtime dependencies and works on the VM and web.
+Run `dart pub get` or `flutter pub get`. No repository checkout or local overrides are needed for the published packages.
 
 ## Write a lazy computation
 
@@ -58,20 +56,53 @@ if (exit case Failure<int, String>(cause: Expected(:final error))) {
 
 ## Add database or AI services
 
-Local adapters use version dependencies and development overrides. Another application must override their unpublished core dependencies too:
+Choose the service you need:
+
+```sh
+dart pub add effect_postgres postgres
+# Or add MySQL / OpenAI:
+dart pub add effect_mysql
+dart pub add effect_openai
+```
+
+The full set of current version constraints is shown below; most applications need only a subset:
 
 ```yaml
 dependencies:
-  effect_postgres:
-    path: ../dart-effect/packages/effect_postgres
-dependency_overrides:
-  effect_core:
-    path: ../dart-effect
-  effect_sql:
-    path: ../dart-effect/packages/effect_sql
+  effect_core: ^0.0.1
+  effect_sql: ^0.0.1
+  effect_postgres: ^0.0.2
+  postgres: ^3.5.19
+  effect_mysql: ^0.0.1
+  effect_openai: ^0.0.1
 ```
 
-For MySQL, use `effect_mysql`. For OpenAI, use `effect_openai` and override `effect_core`; it does not depend on SQL. Follow the package guides for connection settings, ownership and cancellation contracts.
+PostgreSQL and MySQL are native adapters intended for backend/API services. Keep database credentials and production OpenAI API keys on the backend; Flutter and browser clients should call that API. Follow the package guides for connection settings, ownership, errors and cancellation.
+
+## Work on the source locally
+
+The source repository is currently private; repository access is required for contribution. Published dependencies can be used without that access.
+
+```sh
+git clone --branch dart-effect https://github.com/iamudesharma/dart-effect.git
+cd dart-effect
+dart pub get
+dart run example/resources.dart
+```
+
+For local changes, keep version dependencies and add `pubspec_overrides.yaml` beside your application's pubspec. Replace `/path/to/effect_dart` with your checkout:
+
+```yaml
+dependency_overrides:
+  effect_core:
+    path: /path/to/effect_dart
+  effect_sql:
+    path: /path/to/effect_dart/packages/effect_sql
+  effect_postgres:
+    path: /path/to/effect_dart/packages/effect_postgres
+```
+
+Override only the packages you are developing and their local dependencies. The repository's own package directories include development overrides.
 
 ## Keep lifetimes explicit
 
