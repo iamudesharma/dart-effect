@@ -1,6 +1,7 @@
 """Shared roadmap rendering for the repository README and static website."""
 from pathlib import Path
 import json
+import datetime
 import sys
 
 HERE = Path(__file__).resolve().parent
@@ -13,6 +14,11 @@ PHASES = {'delivered': 'Released', 'next': 'Next priorities',
           'later': 'Future proposals'}
 
 
+def roadmap_date(goals):
+    date = datetime.date.fromisoformat(max(g.get("updated_at", "2026-10-09") for g in goals))
+    return f"{date.day} {date.strftime('%B %Y')}"
+
+
 def readme_section(goals):
     counts = {status: sum(g['status'] == status for g in goals)
               for status in LABELS}
@@ -21,7 +27,7 @@ def readme_section(goals):
              for g in goals]
     return '\n'.join([
         START, '## Roadmap and progress', '',
-        '**Roadmap updated: 9 October 2026.** All five packages are published: '
+        f'**Roadmap updated: {roadmap_date(goals)}.** All five packages are published: '
         '`effect_core`, `effect_sql`, `effect_mysql` and `effect_openai` at '
         '`0.0.1`; `effect_postgres` at `0.0.2`.', '',
         f"**{counts['completed']} delivered milestones · {counts['active']} in progress · "

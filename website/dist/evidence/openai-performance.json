@@ -1,0 +1,3060 @@
+{
+  "started_at_utc": "2026-10-10T02:57:50.378263+00:00",
+  "sdk": "Dart SDK version: 3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+  "host": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "architecture": "arm64",
+  "timing_mode": "AOT",
+  "method": "3 fresh processes per implementation/workload, alternating SDK/Effect order; 3 warmup and 9 measured batches per process; same local HTTP/SSE fixture and SDK config, retries disabled; setup/shutdown and GC excluded from timing. No live API or Flutter frame measurement.",
+  "timing": {
+    "request-json": {
+      "sdk": {
+        "medianBatchMicros": 15049,
+        "p95BatchMicros": 15437,
+        "processMedianMicros": [
+          15053,
+          15025,
+          15059
+        ],
+        "raw": [
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "request-json",
+            "samplesMicros": [
+              15302,
+              15053,
+              15565,
+              14985,
+              15023,
+              15230,
+              15437,
+              15007,
+              14891
+            ],
+            "warmups": 3,
+            "requests": 1200,
+            "peakServerRequests": 1,
+            "rssBytes": 21774336,
+            "maxRssBytes": 21774336,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "request-json",
+            "samplesMicros": [
+              15112,
+              15104,
+              15049,
+              14488,
+              15025,
+              14868,
+              14867,
+              14847,
+              15226
+            ],
+            "warmups": 3,
+            "requests": 1200,
+            "peakServerRequests": 1,
+            "rssBytes": 21823488,
+            "maxRssBytes": 21823488,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "request-json",
+            "samplesMicros": [
+              15075,
+              15107,
+              15059,
+              15312,
+              15069,
+              15032,
+              14909,
+              14915,
+              14601
+            ],
+            "warmups": 3,
+            "requests": 1200,
+            "peakServerRequests": 1,
+            "rssBytes": 21823488,
+            "maxRssBytes": 21823488,
+            "openFixtureSockets": 0
+          }
+        ]
+      },
+      "effect": {
+        "medianBatchMicros": 16512,
+        "p95BatchMicros": 17292,
+        "processMedianMicros": [
+          16698,
+          16167,
+          16656
+        ],
+        "raw": [
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "request-json",
+            "samplesMicros": [
+              16512,
+              16789,
+              16698,
+              16749,
+              16355,
+              16666,
+              17292,
+              16772,
+              16416
+            ],
+            "warmups": 3,
+            "requests": 1200,
+            "peakServerRequests": 1,
+            "rssBytes": 21839872,
+            "maxRssBytes": 21839872,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "request-json",
+            "samplesMicros": [
+              16455,
+              16091,
+              16450,
+              16260,
+              16351,
+              16001,
+              16167,
+              16159,
+              15957
+            ],
+            "warmups": 3,
+            "requests": 1200,
+            "peakServerRequests": 1,
+            "rssBytes": 21823488,
+            "maxRssBytes": 21823488,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "request-json",
+            "samplesMicros": [
+              16602,
+              16660,
+              16705,
+              16547,
+              17255,
+              17443,
+              16656,
+              16261,
+              15985
+            ],
+            "warmups": 3,
+            "requests": 1200,
+            "peakServerRequests": 1,
+            "rssBytes": 21757952,
+            "maxRssBytes": 21757952,
+            "openFixtureSockets": 0
+          }
+        ]
+      },
+      "effectToSdkMedianRatio": 1.0972157618446408
+    },
+    "request-delayed": {
+      "sdk": {
+        "medianBatchMicros": 254274,
+        "p95BatchMicros": 259088,
+        "processMedianMicros": [
+          254221,
+          254681,
+          253291
+        ],
+        "raw": [
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "request-delayed",
+            "samplesMicros": [
+              253901,
+              255931,
+              257826,
+              249729,
+              251764,
+              252759,
+              254221,
+              254274,
+              255195
+            ],
+            "warmups": 3,
+            "requests": 240,
+            "peakServerRequests": 1,
+            "rssBytes": 21856256,
+            "maxRssBytes": 21856256,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "request-delayed",
+            "samplesMicros": [
+              250337,
+              253398,
+              254791,
+              253676,
+              259088,
+              259844,
+              256430,
+              254443,
+              254681
+            ],
+            "warmups": 3,
+            "requests": 240,
+            "peakServerRequests": 1,
+            "rssBytes": 21839872,
+            "maxRssBytes": 21839872,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "request-delayed",
+            "samplesMicros": [
+              257528,
+              253291,
+              252775,
+              255294,
+              250673,
+              251988,
+              252332,
+              255499,
+              257440
+            ],
+            "warmups": 3,
+            "requests": 240,
+            "peakServerRequests": 1,
+            "rssBytes": 21839872,
+            "maxRssBytes": 21839872,
+            "openFixtureSockets": 0
+          }
+        ]
+      },
+      "effect": {
+        "medianBatchMicros": 255509,
+        "p95BatchMicros": 258266,
+        "processMedianMicros": [
+          254783,
+          255509,
+          256467
+        ],
+        "raw": [
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "request-delayed",
+            "samplesMicros": [
+              256634,
+              254569,
+              255742,
+              256510,
+              258266,
+              254783,
+              252199,
+              253019,
+              253962
+            ],
+            "warmups": 3,
+            "requests": 240,
+            "peakServerRequests": 1,
+            "rssBytes": 21839872,
+            "maxRssBytes": 21839872,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "request-delayed",
+            "samplesMicros": [
+              256096,
+              257220,
+              255385,
+              254155,
+              258076,
+              253022,
+              255509,
+              251840,
+              258149
+            ],
+            "warmups": 3,
+            "requests": 240,
+            "peakServerRequests": 1,
+            "rssBytes": 21823488,
+            "maxRssBytes": 21823488,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "request-delayed",
+            "samplesMicros": [
+              257072,
+              256771,
+              256467,
+              259115,
+              257467,
+              254230,
+              253428,
+              254434,
+              253706
+            ],
+            "warmups": 3,
+            "requests": 240,
+            "peakServerRequests": 1,
+            "rssBytes": 21757952,
+            "maxRssBytes": 21757952,
+            "openFixtureSockets": 0
+          }
+        ]
+      },
+      "effectToSdkMedianRatio": 1.0048569653208743
+    },
+    "bounded-8": {
+      "sdk": {
+        "medianBatchMicros": 23714,
+        "p95BatchMicros": 25550,
+        "processMedianMicros": [
+          23658,
+          23622,
+          23869
+        ],
+        "raw": [
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "bounded-8",
+            "samplesMicros": [
+              23648,
+              23658,
+              23785,
+              23844,
+              23601,
+              23492,
+              23803,
+              23961,
+              23527
+            ],
+            "warmups": 3,
+            "requests": 2400,
+            "peakServerRequests": 1,
+            "rssBytes": 21905408,
+            "maxRssBytes": 21905408,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "bounded-8",
+            "samplesMicros": [
+              23492,
+              23788,
+              23574,
+              23615,
+              24312,
+              23714,
+              23622,
+              23608,
+              23765
+            ],
+            "warmups": 3,
+            "requests": 2400,
+            "peakServerRequests": 1,
+            "rssBytes": 21774336,
+            "maxRssBytes": 21774336,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "bounded-8",
+            "samplesMicros": [
+              23794,
+              23697,
+              23956,
+              23554,
+              23628,
+              25550,
+              25788,
+              23869,
+              24197
+            ],
+            "warmups": 3,
+            "requests": 2400,
+            "peakServerRequests": 1,
+            "rssBytes": 21774336,
+            "maxRssBytes": 21774336,
+            "openFixtureSockets": 0
+          }
+        ]
+      },
+      "effect": {
+        "medianBatchMicros": 25204,
+        "p95BatchMicros": 25538,
+        "processMedianMicros": [
+          25251,
+          25076,
+          25232
+        ],
+        "raw": [
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "bounded-8",
+            "samplesMicros": [
+              25368,
+              25251,
+              25004,
+              25547,
+              25506,
+              24864,
+              25167,
+              25420,
+              25120
+            ],
+            "warmups": 3,
+            "requests": 2400,
+            "peakServerRequests": 1,
+            "rssBytes": 28213248,
+            "maxRssBytes": 28213248,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "bounded-8",
+            "samplesMicros": [
+              25284,
+              25005,
+              24942,
+              25065,
+              25345,
+              24883,
+              25204,
+              25076,
+              25089
+            ],
+            "warmups": 3,
+            "requests": 2400,
+            "peakServerRequests": 1,
+            "rssBytes": 28196864,
+            "maxRssBytes": 28196864,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "bounded-8",
+            "samplesMicros": [
+              25515,
+              25283,
+              25538,
+              25133,
+              25232,
+              25113,
+              25328,
+              25209,
+              25128
+            ],
+            "warmups": 3,
+            "requests": 2400,
+            "peakServerRequests": 1,
+            "rssBytes": 28213248,
+            "maxRssBytes": 28213248,
+            "openFixtureSockets": 0
+          }
+        ]
+      },
+      "effectToSdkMedianRatio": 1.0628320823142448
+    },
+    "stream-fold": {
+      "sdk": {
+        "medianBatchMicros": 13205,
+        "p95BatchMicros": 13390,
+        "processMedianMicros": [
+          12566,
+          13209,
+          13340
+        ],
+        "raw": [
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "stream-fold",
+            "samplesMicros": [
+              12611,
+              12496,
+              12768,
+              12892,
+              12759,
+              12513,
+              12544,
+              12566,
+              12541
+            ],
+            "warmups": 3,
+            "requests": 60,
+            "peakServerRequests": 1,
+            "rssBytes": 21807104,
+            "maxRssBytes": 21807104,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "stream-fold",
+            "samplesMicros": [
+              13209,
+              13075,
+              13361,
+              13205,
+              13372,
+              13062,
+              13164,
+              13241,
+              13327
+            ],
+            "warmups": 3,
+            "requests": 60,
+            "peakServerRequests": 1,
+            "rssBytes": 22003712,
+            "maxRssBytes": 22003712,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "stream-fold",
+            "samplesMicros": [
+              13390,
+              13287,
+              13340,
+              13366,
+              13118,
+              13369,
+              13402,
+              13317,
+              13249
+            ],
+            "warmups": 3,
+            "requests": 60,
+            "peakServerRequests": 1,
+            "rssBytes": 21839872,
+            "maxRssBytes": 21839872,
+            "openFixtureSockets": 0
+          }
+        ]
+      },
+      "effect": {
+        "medianBatchMicros": 23083,
+        "p95BatchMicros": 23649,
+        "processMedianMicros": [
+          22875,
+          22984,
+          23348
+        ],
+        "raw": [
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "stream-fold",
+            "samplesMicros": [
+              22684,
+              22751,
+              22875,
+              23287,
+              22874,
+              23083,
+              23649,
+              22918,
+              22835
+            ],
+            "warmups": 3,
+            "requests": 60,
+            "peakServerRequests": 1,
+            "rssBytes": 25853952,
+            "maxRssBytes": 25853952,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "stream-fold",
+            "samplesMicros": [
+              23167,
+              23179,
+              22883,
+              22940,
+              23038,
+              22984,
+              23000,
+              22981,
+              22853
+            ],
+            "warmups": 3,
+            "requests": 60,
+            "peakServerRequests": 1,
+            "rssBytes": 26181632,
+            "maxRssBytes": 26181632,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "stream-fold",
+            "samplesMicros": [
+              23271,
+              23311,
+              23354,
+              23348,
+              23386,
+              23459,
+              23181,
+              23670,
+              23219
+            ],
+            "warmups": 3,
+            "requests": 60,
+            "peakServerRequests": 1,
+            "rssBytes": 26411008,
+            "maxRssBytes": 26411008,
+            "openFixtureSockets": 0
+          }
+        ]
+      },
+      "effectToSdkMedianRatio": 1.7480499810677774
+    },
+    "failures": {
+      "sdk": {
+        "medianBatchMicros": 16080,
+        "p95BatchMicros": 16309,
+        "processMedianMicros": [
+          16170,
+          16050,
+          16010
+        ],
+        "raw": [
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "failures",
+            "samplesMicros": [
+              16170,
+              16220,
+              16080,
+              16425,
+              16090,
+              16309,
+              16141,
+              15925,
+              16182
+            ],
+            "warmups": 3,
+            "requests": 1200,
+            "peakServerRequests": 1,
+            "rssBytes": 21807104,
+            "maxRssBytes": 21807104,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "failures",
+            "samplesMicros": [
+              15058,
+              14179,
+              16134,
+              16050,
+              16076,
+              15879,
+              15888,
+              16075,
+              16122
+            ],
+            "warmups": 3,
+            "requests": 1200,
+            "peakServerRequests": 1,
+            "rssBytes": 21823488,
+            "maxRssBytes": 21823488,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "failures",
+            "samplesMicros": [
+              16229,
+              15969,
+              16160,
+              16010,
+              15964,
+              15926,
+              16300,
+              16106,
+              15771
+            ],
+            "warmups": 3,
+            "requests": 1200,
+            "peakServerRequests": 1,
+            "rssBytes": 21807104,
+            "maxRssBytes": 21807104,
+            "openFixtureSockets": 0
+          }
+        ]
+      },
+      "effect": {
+        "medianBatchMicros": 17391,
+        "p95BatchMicros": 18008,
+        "processMedianMicros": [
+          17761,
+          17427,
+          17318
+        ],
+        "raw": [
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "failures",
+            "samplesMicros": [
+              17761,
+              18062,
+              17693,
+              17866,
+              18008,
+              17820,
+              17387,
+              17472,
+              16757
+            ],
+            "warmups": 3,
+            "requests": 1200,
+            "peakServerRequests": 1,
+            "rssBytes": 21823488,
+            "maxRssBytes": 21823488,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "failures",
+            "samplesMicros": [
+              18006,
+              17439,
+              17427,
+              17178,
+              17318,
+              17299,
+              17439,
+              17427,
+              15983
+            ],
+            "warmups": 3,
+            "requests": 1200,
+            "peakServerRequests": 1,
+            "rssBytes": 21741568,
+            "maxRssBytes": 21741568,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "failures",
+            "samplesMicros": [
+              17391,
+              17378,
+              17376,
+              17318,
+              17410,
+              17197,
+              17220,
+              17192,
+              17207
+            ],
+            "warmups": 3,
+            "requests": 1200,
+            "peakServerRequests": 1,
+            "rssBytes": 21839872,
+            "maxRssBytes": 21839872,
+            "openFixtureSockets": 0
+          }
+        ]
+      },
+      "effectToSdkMedianRatio": 1.0815298507462687
+    },
+    "request-cancel": {
+      "sdk": {
+        "medianBatchMicros": 7811,
+        "p95BatchMicros": 8155,
+        "processMedianMicros": [
+          7856,
+          7811,
+          7749
+        ],
+        "raw": [
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "request-cancel",
+            "samplesMicros": [
+              8081,
+              7783,
+              8079,
+              7919,
+              7804,
+              7692,
+              7856,
+              7884,
+              7757
+            ],
+            "warmups": 3,
+            "requests": 360,
+            "peakServerRequests": 1,
+            "rssBytes": 21757952,
+            "maxRssBytes": 21757952,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "request-cancel",
+            "samplesMicros": [
+              7720,
+              7967,
+              7811,
+              8051,
+              8155,
+              7282,
+              6464,
+              7862,
+              7738
+            ],
+            "warmups": 3,
+            "requests": 360,
+            "peakServerRequests": 1,
+            "rssBytes": 21790720,
+            "maxRssBytes": 21790720,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "request-cancel",
+            "samplesMicros": [
+              7732,
+              7749,
+              7657,
+              8219,
+              7739,
+              8010,
+              7825,
+              8135,
+              7670
+            ],
+            "warmups": 3,
+            "requests": 360,
+            "peakServerRequests": 1,
+            "rssBytes": 21659648,
+            "maxRssBytes": 21659648,
+            "openFixtureSockets": 0
+          }
+        ]
+      },
+      "effect": {
+        "medianBatchMicros": 7917,
+        "p95BatchMicros": 8414,
+        "processMedianMicros": [
+          7898,
+          7974,
+          7766
+        ],
+        "raw": [
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "request-cancel",
+            "samplesMicros": [
+              7661,
+              7966,
+              7787,
+              7898,
+              7770,
+              8089,
+              7928,
+              7688,
+              7920
+            ],
+            "warmups": 3,
+            "requests": 360,
+            "peakServerRequests": 1,
+            "rssBytes": 21807104,
+            "maxRssBytes": 21807104,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "request-cancel",
+            "samplesMicros": [
+              7988,
+              8414,
+              7974,
+              7917,
+              7742,
+              8017,
+              7973,
+              7744,
+              7990
+            ],
+            "warmups": 3,
+            "requests": 360,
+            "peakServerRequests": 1,
+            "rssBytes": 21676032,
+            "maxRssBytes": 21676032,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "request-cancel",
+            "samplesMicros": [
+              6665,
+              9809,
+              7792,
+              7737,
+              7766,
+              7705,
+              7953,
+              8136,
+              7760
+            ],
+            "warmups": 3,
+            "requests": 360,
+            "peakServerRequests": 1,
+            "rssBytes": 21741568,
+            "maxRssBytes": 21741568,
+            "openFixtureSockets": 0
+          }
+        ]
+      },
+      "effectToSdkMedianRatio": 1.0135706055562668
+    },
+    "stream-early": {
+      "sdk": {
+        "medianBatchMicros": 9327,
+        "p95BatchMicros": 9915,
+        "processMedianMicros": [
+          9253,
+          9368,
+          9429
+        ],
+        "raw": [
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "stream-early",
+            "samplesMicros": [
+              9107,
+              9217,
+              9148,
+              9915,
+              9253,
+              9293,
+              9297,
+              9253,
+              9318
+            ],
+            "warmups": 3,
+            "requests": 360,
+            "peakServerRequests": 1,
+            "rssBytes": 21676032,
+            "maxRssBytes": 21676032,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "stream-early",
+            "samplesMicros": [
+              9511,
+              9308,
+              9368,
+              9440,
+              9222,
+              9264,
+              9159,
+              9700,
+              9393
+            ],
+            "warmups": 3,
+            "requests": 360,
+            "peakServerRequests": 1,
+            "rssBytes": 21676032,
+            "maxRssBytes": 21676032,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "sdk",
+            "workload": "stream-early",
+            "samplesMicros": [
+              9341,
+              9481,
+              9297,
+              10051,
+              9429,
+              9445,
+              9468,
+              9386,
+              9327
+            ],
+            "warmups": 3,
+            "requests": 360,
+            "peakServerRequests": 1,
+            "rssBytes": 21774336,
+            "maxRssBytes": 21774336,
+            "openFixtureSockets": 0
+          }
+        ]
+      },
+      "effect": {
+        "medianBatchMicros": 9966,
+        "p95BatchMicros": 10216,
+        "processMedianMicros": [
+          9980,
+          9966,
+          9964
+        ],
+        "raw": [
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "stream-early",
+            "samplesMicros": [
+              10072,
+              10216,
+              9980,
+              10194,
+              10241,
+              9813,
+              9878,
+              9910,
+              9944
+            ],
+            "warmups": 3,
+            "requests": 360,
+            "peakServerRequests": 1,
+            "rssBytes": 21872640,
+            "maxRssBytes": 21872640,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "stream-early",
+            "samplesMicros": [
+              9980,
+              9900,
+              9984,
+              9828,
+              9966,
+              9817,
+              9975,
+              10042,
+              9718
+            ],
+            "warmups": 3,
+            "requests": 360,
+            "peakServerRequests": 1,
+            "rssBytes": 21790720,
+            "maxRssBytes": 21790720,
+            "openFixtureSockets": 0
+          },
+          {
+            "mode": "AOT",
+            "implementation": "effect",
+            "workload": "stream-early",
+            "samplesMicros": [
+              9850,
+              9887,
+              9964,
+              9767,
+              10047,
+              9954,
+              10032,
+              10147,
+              10106
+            ],
+            "warmups": 3,
+            "requests": 360,
+            "peakServerRequests": 1,
+            "rssBytes": 21790720,
+            "maxRssBytes": 21790720,
+            "openFixtureSockets": 0
+          }
+        ]
+      },
+      "effectToSdkMedianRatio": 1.0685107751688645
+    }
+  },
+  "memory": {
+    "sdk": [
+      {
+        "mode": "JIT-heap-diagnostic",
+        "implementation": "sdk",
+        "snapshots": [
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 18524848,
+              "heapCapacity": 28966912,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601100486",
+            "rssBytes": 387694592
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 18979232,
+              "heapCapacity": 59260928,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601100832",
+            "rssBytes": 421953536
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19078496,
+              "heapCapacity": 52117504,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601101141",
+            "rssBytes": 421445632
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19197072,
+              "heapCapacity": 54214656,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601101421",
+            "rssBytes": 420446208
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19261792,
+              "heapCapacity": 54214656,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601101689",
+            "rssBytes": 421806080
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19355264,
+              "heapCapacity": 56000512,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601101954",
+            "rssBytes": 420036608
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19416432,
+              "heapCapacity": 53690368,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601102219",
+            "rssBytes": 420904960
+          }
+        ],
+        "collectedWeakReferences": 0,
+        "positiveControlRetained": true,
+        "requests": 1855,
+        "openFixtureSockets": 0,
+        "note": "Requested GC is diagnostic and not timed. Heap is main-isolate used/capacity/external; RSS includes VM/compiler/service/server. Fixed finite run is not universal leak freedom.",
+        "postWarmupHeapUsedDeltaBytes": 891584,
+        "postWarmupExternalDeltaBytes": 0,
+        "gcObserved": true
+      },
+      {
+        "mode": "JIT-heap-diagnostic",
+        "implementation": "sdk",
+        "snapshots": [
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 18524832,
+              "heapCapacity": 29491200,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601105259",
+            "rssBytes": 391675904
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 18979216,
+              "heapCapacity": 60784640,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601105606",
+            "rssBytes": 423493632
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19078480,
+              "heapCapacity": 52805632,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601105905",
+            "rssBytes": 423116800
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19197072,
+              "heapCapacity": 54509568,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601106198",
+            "rssBytes": 422428672
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19261456,
+              "heapCapacity": 55214080,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601106477",
+            "rssBytes": 421527552
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19356592,
+              "heapCapacity": 55345152,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601106751",
+            "rssBytes": 421330944
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19416080,
+              "heapCapacity": 54624256,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601107016",
+            "rssBytes": 420200448
+          }
+        ],
+        "collectedWeakReferences": 0,
+        "positiveControlRetained": true,
+        "requests": 1855,
+        "openFixtureSockets": 0,
+        "note": "Requested GC is diagnostic and not timed. Heap is main-isolate used/capacity/external; RSS includes VM/compiler/service/server. Fixed finite run is not universal leak freedom.",
+        "postWarmupHeapUsedDeltaBytes": 891248,
+        "postWarmupExternalDeltaBytes": 0,
+        "gcObserved": true
+      },
+      {
+        "mode": "JIT-heap-diagnostic",
+        "implementation": "sdk",
+        "snapshots": [
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 18525376,
+              "heapCapacity": 28966912,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601109980",
+            "rssBytes": 392101888
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 18979760,
+              "heapCapacity": 59572224,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601110333",
+            "rssBytes": 423362560
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19079008,
+              "heapCapacity": 52477952,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601110647",
+            "rssBytes": 423477248
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19197600,
+              "heapCapacity": 54558720,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601110938",
+            "rssBytes": 422117376
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19262304,
+              "heapCapacity": 54214656,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601111207",
+            "rssBytes": 421593088
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19357456,
+              "heapCapacity": 54738944,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601111473",
+            "rssBytes": 422690816
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19416944,
+              "heapCapacity": 54788096,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601111730",
+            "rssBytes": 421593088
+          }
+        ],
+        "collectedWeakReferences": 0,
+        "positiveControlRetained": true,
+        "requests": 1855,
+        "openFixtureSockets": 0,
+        "note": "Requested GC is diagnostic and not timed. Heap is main-isolate used/capacity/external; RSS includes VM/compiler/service/server. Fixed finite run is not universal leak freedom.",
+        "postWarmupHeapUsedDeltaBytes": 891568,
+        "postWarmupExternalDeltaBytes": 0,
+        "gcObserved": true
+      }
+    ],
+    "effect": [
+      {
+        "mode": "JIT-heap-diagnostic",
+        "implementation": "effect",
+        "snapshots": [
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19120224,
+              "heapCapacity": 33161216,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601114897",
+            "rssBytes": 391757824
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19662912,
+              "heapCapacity": 42713088,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601115301",
+            "rssBytes": 420036608
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19776064,
+              "heapCapacity": 33275904,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601115635",
+            "rssBytes": 418267136
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19942032,
+              "heapCapacity": 57606144,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601115948",
+            "rssBytes": 420741120
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 20020048,
+              "heapCapacity": 49119232,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601116241",
+            "rssBytes": 424476672
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 20113728,
+              "heapCapacity": 47579136,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601116545",
+            "rssBytes": 426082304
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 20170016,
+              "heapCapacity": 46252032,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601116834",
+            "rssBytes": 401817600
+          }
+        ],
+        "collectedWeakReferences": 540,
+        "positiveControlRetained": true,
+        "requests": 1855,
+        "openFixtureSockets": 0,
+        "note": "Requested GC is diagnostic and not timed. Heap is main-isolate used/capacity/external; RSS includes VM/compiler/service/server. Fixed finite run is not universal leak freedom.",
+        "postWarmupHeapUsedDeltaBytes": 1049792,
+        "postWarmupExternalDeltaBytes": 0,
+        "gcObserved": true
+      },
+      {
+        "mode": "JIT-heap-diagnostic",
+        "implementation": "effect",
+        "snapshots": [
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19120480,
+              "heapCapacity": 33685504,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601121984",
+            "rssBytes": 343982080
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19663200,
+              "heapCapacity": 42713088,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601122614",
+            "rssBytes": 375914496
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19776256,
+              "heapCapacity": 32718848,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601122948",
+            "rssBytes": 371834880
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19943536,
+              "heapCapacity": 56557568,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601123255",
+            "rssBytes": 374145024
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 20021520,
+              "heapCapacity": 49676288,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601123561",
+            "rssBytes": 376635392
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 20111664,
+              "heapCapacity": 47857664,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601123897",
+            "rssBytes": 377700352
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 20170128,
+              "heapCapacity": 45973504,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601124284",
+            "rssBytes": 380076032
+          }
+        ],
+        "collectedWeakReferences": 540,
+        "positiveControlRetained": true,
+        "requests": 1855,
+        "openFixtureSockets": 0,
+        "note": "Requested GC is diagnostic and not timed. Heap is main-isolate used/capacity/external; RSS includes VM/compiler/service/server. Fixed finite run is not universal leak freedom.",
+        "postWarmupHeapUsedDeltaBytes": 1049648,
+        "postWarmupExternalDeltaBytes": 0,
+        "gcObserved": true
+      },
+      {
+        "mode": "JIT-heap-diagnostic",
+        "implementation": "effect",
+        "snapshots": [
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19120624,
+              "heapCapacity": 33685504,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601128121",
+            "rssBytes": 343474176
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19662704,
+              "heapCapacity": 43515904,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601128783",
+            "rssBytes": 377143296
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19776592,
+              "heapCapacity": 32718848,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601129140",
+            "rssBytes": 374718464
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19943584,
+              "heapCapacity": 56803328,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601129446",
+            "rssBytes": 376340480
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 20020256,
+              "heapCapacity": 49676288,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601129739",
+            "rssBytes": 380223488
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 20113904,
+              "heapCapacity": 48103424,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601130026",
+            "rssBytes": 376913920
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 20170224,
+              "heapCapacity": 45694976,
+              "externalUsage": 224
+            },
+            "classes": {
+              "StreamController": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Response": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Operation": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "EffectOpenAIClient": {
+                "instances": 1,
+                "bytes": 48
+              },
+              "OpenAIClient": {
+                "instances": 1,
+                "bytes": 256
+              },
+              "Scope": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber": {
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "gcTimestamp": "1791601130310",
+            "rssBytes": 377307136
+          }
+        ],
+        "collectedWeakReferences": 540,
+        "positiveControlRetained": true,
+        "requests": 1855,
+        "openFixtureSockets": 0,
+        "note": "Requested GC is diagnostic and not timed. Heap is main-isolate used/capacity/external; RSS includes VM/compiler/service/server. Fixed finite run is not universal leak freedom.",
+        "postWarmupHeapUsedDeltaBytes": 1049600,
+        "postWarmupExternalDeltaBytes": 0,
+        "gcObserved": true
+      }
+    ]
+  },
+  "success": true,
+  "source_sha256": {
+    "lib/effect_core.dart": "fddbf8053489731b5faa69a21444aecf990440faa2b899b606af4511fed6787c",
+    "lib/src/concurrency.dart": "89b943cf6ef37071a163d1318219cea9d2910a2642a497dda1f54814101fc109",
+    "lib/src/core.dart": "3b2ce4cf783ce8f0cd12b3f528852e4d8fe31ed2f7394af7c3019cb6bdc189dd",
+    "lib/src/services.dart": "44d65387bdf3dcdd1d78d3795894883e8cc81acd6784f047638a38043b05b269",
+    "lib/src/stream.dart": "fd18652226f16d09bd307fd9d6d954f32f854993cc0edf8ac2e36d885a945b97",
+    "packages/effect_openai/lib/effect_openai.dart": "541e8da137e3e06ea4cd56bf561a290b6755b944608df7e06b4aa9f1eb126b31",
+    "packages/effect_openai/pubspec.lock": "ef55d559bc62aafc4f4982912cab0d844df03f792b2f8e705b485797e1c69a2e",
+    "packages/effect_openai/tool/performance.dart": "2610d3a08007a18929bbced3853ef316a5339d5dee0f0a4300dbb350ca531b34",
+    "tool/openai_performance.py": "7aef7eb10ac1738cc0ec85f67787026e583ac0c576180f3ed79790773d617076"
+  },
+  "finished_at_utc": "2026-10-10T02:58:50.608330+00:00"
+}

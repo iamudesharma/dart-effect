@@ -249,3 +249,15 @@ fixtures passed; both adapter analyzers and classification suites passed (2 PG,
 7 MySQL). Broad root analysis encountered old ignored build/readme-checks source
 errors; maintained lib/test/example/tool analysis passed independently. Existing
 real transaction suites were not rerun in this TLS-only task.
+
+## OpenAI performance evidence — 10 October 2026
+
+Added [AOT timing and memory evidence](openai-performance.md), with direct SDK
+comparisons, repeated VM post-GC owner checks, and six native macOS Flutter
+profile runs. The adapter has measurable overhead, especially per-event SSE
+interpretation; no speedup or universal leak freedom is claimed. Fifty VM and
+42 Chrome adapter tests passed, plus 107 core tests and five type fixtures.
+Maintained and broad root analysis passed after generated build probes and the
+separate Flutter profile template were excluded from core analysis. The native
+runner analyzes its generated Flutter lib independently. No runtime source or
+package version changed, and no package was republished.

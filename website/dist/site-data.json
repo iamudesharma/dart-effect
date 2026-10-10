@@ -124,6 +124,16 @@
       "phase": "delivered"
     },
     {
+      "id": "ai-performance",
+      "title": "OpenAI performance and bounded retention evidence",
+      "status": "completed",
+      "phase": "delivered",
+      "area": "Performance",
+      "detail": "Repeated native AOT comparisons against direct openai_dart, VM post-GC owner checks, and macOS Flutter profile runs. Measurable adapter overhead and remaining live/mobile limits are documented.",
+      "proof": "/docs/openai-performance/",
+      "updated_at": "2026-10-10"
+    },
+    {
       "id": "production",
       "title": "Production database acceptance",
       "status": "active",
@@ -235,7 +245,7 @@
   ],
   "vm_tests": 207,
   "browser_tests": 167,
-  "recorded_at": "2026-10-09",
+  "recorded_at": "2026-10-10",
   "source_evidence_verified": true,
   "releases_verified_at": "2026-10-09T02:47:16.262912+00:00"
 }

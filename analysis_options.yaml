@@ -3,3 +3,6 @@ analyzer:
   exclude:
     - references/**
     - test/fixtures/**
+    # Generated probes and the separate Flutter profile template are not core.
+    - build/**
+    - benchmarks/**

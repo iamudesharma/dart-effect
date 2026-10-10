@@ -1,0 +1,643 @@
+{
+  "started_at_utc": "2026-10-10T03:07:34.653635+00:00",
+  "flutter": "Flutter 3.47.0 \u2022 channel stable \u2022 https://github.com/flutter/flutter.git\nFramework \u2022 revision 4cf2416426 (8 weeks ago) \u2022 2026-08-11 11:53:49 -0700\nEngine \u2022 hash 59d54a2b2896a6bbf356c94b7fac7b9e235bdacd (revision 5f77625673) (1 months ago) \u2022 2026-08-11 16:38:36.000Z\nTools \u2022 Dart 3.13.0 \u2022 DevTools 2.60.0",
+  "scope": "Native macOS profile-mode minimal animation with loopback workloads, 3 SDK and 3 Effect runs, alternating order; no live API or mobile/web device proof.",
+  "runs": {
+    "sdk": [
+      {
+        "implementation": "sdk",
+        "mode": "Flutter native profile",
+        "platform": "macos",
+        "frames": 367,
+        "durationMicros": 6308441,
+        "batches": 96,
+        "buildP95Micros": 478,
+        "rasterP95Micros": 599,
+        "buildOver16_67ms": 0,
+        "rasterOver16_67ms": 0,
+        "beforeHeap": {
+          "heap": {
+            "type": "MemoryUsage",
+            "heapUsage": 6989840,
+            "heapCapacity": 10272768,
+            "externalUsage": 736
+          },
+          "classes": {
+            "Response": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "OpenAIClient": {
+              "instances": 1,
+              "bytes": 80
+            },
+            "EffectOpenAIClient": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "_Operation": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Fiber": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "FiberContext": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Scope": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "StreamController": {
+              "instances": 0,
+              "bytes": 0
+            }
+          },
+          "gcTimestamp": "1791601685169",
+          "rssBytes": 162037760
+        },
+        "afterHeap": {
+          "heap": {
+            "type": "MemoryUsage",
+            "heapUsage": 7058416,
+            "heapCapacity": 16793600,
+            "externalUsage": 640
+          },
+          "classes": {
+            "Response": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "OpenAIClient": {
+              "instances": 1,
+              "bytes": 80
+            },
+            "EffectOpenAIClient": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "_Operation": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Fiber": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "FiberContext": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Scope": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "StreamController": {
+              "instances": 0,
+              "bytes": 0
+            }
+          },
+          "gcTimestamp": "1791601691472",
+          "rssBytes": 171786240
+        },
+        "requests": 6365,
+        "openFixtureSockets": 0,
+        "note": "Minimal animated macOS UI with same loopback workload; descriptive 60 Hz stage threshold, not a real application/device frame guarantee. GC outside frame timing."
+      },
+      {
+        "implementation": "sdk",
+        "mode": "Flutter native profile",
+        "platform": "macos",
+        "frames": 387,
+        "durationMicros": 6640535,
+        "batches": 102,
+        "buildP95Micros": 419,
+        "rasterP95Micros": 612,
+        "buildOver16_67ms": 0,
+        "rasterOver16_67ms": 0,
+        "beforeHeap": {
+          "heap": {
+            "type": "MemoryUsage",
+            "heapUsage": 6989776,
+            "heapCapacity": 9748480,
+            "externalUsage": 736
+          },
+          "classes": {
+            "Response": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "OpenAIClient": {
+              "instances": 1,
+              "bytes": 80
+            },
+            "EffectOpenAIClient": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "_Operation": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Fiber": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "FiberContext": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Scope": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "StreamController": {
+              "instances": 0,
+              "bytes": 0
+            }
+          },
+          "gcTimestamp": "1791601764461",
+          "rssBytes": 160792576
+        },
+        "afterHeap": {
+          "heap": {
+            "type": "MemoryUsage",
+            "heapUsage": 7060976,
+            "heapCapacity": 13647872,
+            "externalUsage": 640
+          },
+          "classes": {
+            "Response": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "OpenAIClient": {
+              "instances": 1,
+              "bytes": 80
+            },
+            "EffectOpenAIClient": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "_Operation": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Fiber": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "FiberContext": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Scope": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "StreamController": {
+              "instances": 0,
+              "bytes": 0
+            }
+          },
+          "gcTimestamp": "1791601771085",
+          "rssBytes": 172130304
+        },
+        "requests": 6750,
+        "openFixtureSockets": 0,
+        "note": "Minimal animated macOS UI with same loopback workload; descriptive 60 Hz stage threshold, not a real application/device frame guarantee. GC outside frame timing."
+      },
+      {
+        "implementation": "sdk",
+        "mode": "Flutter native profile",
+        "platform": "macos",
+        "frames": 388,
+        "durationMicros": 6597543,
+        "batches": 102,
+        "buildP95Micros": 401,
+        "rasterP95Micros": 548,
+        "buildOver16_67ms": 0,
+        "rasterOver16_67ms": 0,
+        "beforeHeap": {
+          "heap": {
+            "type": "MemoryUsage",
+            "heapUsage": 6989776,
+            "heapCapacity": 9977856,
+            "externalUsage": 736
+          },
+          "classes": {
+            "Response": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "OpenAIClient": {
+              "instances": 1,
+              "bytes": 80
+            },
+            "EffectOpenAIClient": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "_Operation": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Fiber": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "FiberContext": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Scope": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "StreamController": {
+              "instances": 0,
+              "bytes": 0
+            }
+          },
+          "gcTimestamp": "1791601810695",
+          "rssBytes": 161792000
+        },
+        "afterHeap": {
+          "heap": {
+            "type": "MemoryUsage",
+            "heapUsage": 7061040,
+            "heapCapacity": 12075008,
+            "externalUsage": 640
+          },
+          "classes": {
+            "Response": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "OpenAIClient": {
+              "instances": 1,
+              "bytes": 80
+            },
+            "EffectOpenAIClient": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "_Operation": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Fiber": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "FiberContext": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Scope": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "StreamController": {
+              "instances": 0,
+              "bytes": 0
+            }
+          },
+          "gcTimestamp": "1791601817277",
+          "rssBytes": 176029696
+        },
+        "requests": 6750,
+        "openFixtureSockets": 0,
+        "note": "Minimal animated macOS UI with same loopback workload; descriptive 60 Hz stage threshold, not a real application/device frame guarantee. GC outside frame timing."
+      }
+    ],
+    "effect": [
+      {
+        "implementation": "effect",
+        "mode": "Flutter native profile",
+        "platform": "macos",
+        "frames": 391,
+        "durationMicros": 6607596,
+        "batches": 90,
+        "buildP95Micros": 438,
+        "rasterP95Micros": 720,
+        "buildOver16_67ms": 0,
+        "rasterOver16_67ms": 0,
+        "beforeHeap": {
+          "heap": {
+            "type": "MemoryUsage",
+            "heapUsage": 7030048,
+            "heapCapacity": 10797056,
+            "externalUsage": 736
+          },
+          "classes": {
+            "Response": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "OpenAIClient": {
+              "instances": 1,
+              "bytes": 80
+            },
+            "EffectOpenAIClient": {
+              "instances": 1,
+              "bytes": 48
+            },
+            "_Operation": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Fiber": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "FiberContext": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Scope": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "StreamController": {
+              "instances": 0,
+              "bytes": 0
+            }
+          },
+          "gcTimestamp": "1791601711179",
+          "rssBytes": 162840576
+        },
+        "afterHeap": {
+          "heap": {
+            "type": "MemoryUsage",
+            "heapUsage": 7114992,
+            "heapCapacity": 21512192,
+            "externalUsage": 640
+          },
+          "classes": {
+            "Response": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "OpenAIClient": {
+              "instances": 1,
+              "bytes": 80
+            },
+            "EffectOpenAIClient": {
+              "instances": 1,
+              "bytes": 48
+            },
+            "_Operation": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Fiber": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "FiberContext": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Scope": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "StreamController": {
+              "instances": 0,
+              "bytes": 0
+            }
+          },
+          "gcTimestamp": "1791601717776",
+          "rssBytes": 171753472
+        },
+        "requests": 5980,
+        "openFixtureSockets": 0,
+        "note": "Minimal animated macOS UI with same loopback workload; descriptive 60 Hz stage threshold, not a real application/device frame guarantee. GC outside frame timing."
+      },
+      {
+        "implementation": "effect",
+        "mode": "Flutter native profile",
+        "platform": "macos",
+        "frames": 391,
+        "durationMicros": 6659800,
+        "batches": 96,
+        "buildP95Micros": 376,
+        "rasterP95Micros": 591,
+        "buildOver16_67ms": 0,
+        "rasterOver16_67ms": 0,
+        "beforeHeap": {
+          "heap": {
+            "type": "MemoryUsage",
+            "heapUsage": 7030048,
+            "heapCapacity": 10797056,
+            "externalUsage": 736
+          },
+          "classes": {
+            "Response": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "OpenAIClient": {
+              "instances": 1,
+              "bytes": 80
+            },
+            "EffectOpenAIClient": {
+              "instances": 1,
+              "bytes": 48
+            },
+            "_Operation": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Fiber": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "FiberContext": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Scope": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "StreamController": {
+              "instances": 0,
+              "bytes": 0
+            }
+          },
+          "gcTimestamp": "1791601737645",
+          "rssBytes": 161808384
+        },
+        "afterHeap": {
+          "heap": {
+            "type": "MemoryUsage",
+            "heapUsage": 7114768,
+            "heapCapacity": 16793600,
+            "externalUsage": 640
+          },
+          "classes": {
+            "Response": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "OpenAIClient": {
+              "instances": 1,
+              "bytes": 80
+            },
+            "EffectOpenAIClient": {
+              "instances": 1,
+              "bytes": 48
+            },
+            "_Operation": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Fiber": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "FiberContext": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Scope": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "StreamController": {
+              "instances": 0,
+              "bytes": 0
+            }
+          },
+          "gcTimestamp": "1791601744291",
+          "rssBytes": 170016768
+        },
+        "requests": 6365,
+        "openFixtureSockets": 0,
+        "note": "Minimal animated macOS UI with same loopback workload; descriptive 60 Hz stage threshold, not a real application/device frame guarantee. GC outside frame timing."
+      },
+      {
+        "implementation": "effect",
+        "mode": "Flutter native profile",
+        "platform": "macos",
+        "frames": 368,
+        "durationMicros": 6319271,
+        "batches": 90,
+        "buildP95Micros": 388,
+        "rasterP95Micros": 583,
+        "buildOver16_67ms": 0,
+        "rasterOver16_67ms": 0,
+        "beforeHeap": {
+          "heap": {
+            "type": "MemoryUsage",
+            "heapUsage": 7029952,
+            "heapCapacity": 10797056,
+            "externalUsage": 736
+          },
+          "classes": {
+            "Response": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "OpenAIClient": {
+              "instances": 1,
+              "bytes": 80
+            },
+            "EffectOpenAIClient": {
+              "instances": 1,
+              "bytes": 48
+            },
+            "_Operation": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Fiber": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "FiberContext": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Scope": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "StreamController": {
+              "instances": 0,
+              "bytes": 0
+            }
+          },
+          "gcTimestamp": "1791601857283",
+          "rssBytes": 160645120
+        },
+        "afterHeap": {
+          "heap": {
+            "type": "MemoryUsage",
+            "heapUsage": 7111920,
+            "heapCapacity": 13123584,
+            "externalUsage": 640
+          },
+          "classes": {
+            "Response": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "OpenAIClient": {
+              "instances": 1,
+              "bytes": 80
+            },
+            "EffectOpenAIClient": {
+              "instances": 1,
+              "bytes": 48
+            },
+            "_Operation": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Fiber": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "FiberContext": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "Scope": {
+              "instances": 0,
+              "bytes": 0
+            },
+            "StreamController": {
+              "instances": 0,
+              "bytes": 0
+            }
+          },
+          "gcTimestamp": "1791601863596",
+          "rssBytes": 175226880
+        },
+        "requests": 5980,
+        "openFixtureSockets": 0,
+        "note": "Minimal animated macOS UI with same loopback workload; descriptive 60 Hz stage threshold, not a real application/device frame guarantee. GC outside frame timing."
+      }
+    ]
+  },
+  "success": true,
+  "source_sha256": {
+    "benchmarks/openai_flutter/lib/main.dart": "47fd6ad2a176b8e9772c78d245b872763923e0119d00fd181d9ceb2841fdf337",
+    "benchmarks/openai_flutter/pubspec.yaml": "720d4983d0f5096e5abc59b8b752b7d146cf90b7f37a263a1a07d6ff115806e9",
+    "lib/effect_core.dart": "fddbf8053489731b5faa69a21444aecf990440faa2b899b606af4511fed6787c",
+    "lib/src/concurrency.dart": "89b943cf6ef37071a163d1318219cea9d2910a2642a497dda1f54814101fc109",
+    "lib/src/core.dart": "3b2ce4cf783ce8f0cd12b3f528852e4d8fe31ed2f7394af7c3019cb6bdc189dd",
+    "lib/src/services.dart": "44d65387bdf3dcdd1d78d3795894883e8cc81acd6784f047638a38043b05b269",
+    "lib/src/stream.dart": "fd18652226f16d09bd307fd9d6d954f32f854993cc0edf8ac2e36d885a945b97",
+    "packages/effect_openai/lib/effect_openai.dart": "541e8da137e3e06ea4cd56bf561a290b6755b944608df7e06b4aa9f1eb126b31",
+    "packages/effect_openai/tool/performance.dart": "2610d3a08007a18929bbced3853ef316a5339d5dee0f0a4300dbb350ca531b34",
+    "tool/openai_flutter_performance.py": "ec40c6064029d0a05a2bf83f987527f87262f172a2932978fdb5acea48781128"
+  },
+  "finished_at_utc": "2026-10-10T03:11:04.034457+00:00"
+}
