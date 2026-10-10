@@ -9,3 +9,5 @@ packages/
 website/
 pubspec.lock
 docs/
+
+benchmarks/

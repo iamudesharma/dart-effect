@@ -96,3 +96,11 @@ from the 207/167 dated release totals. The build generated 16 routes and the
 checker passed for 17 HTML pages. Maintained Dart analysis, core VM tests, type
 fixtures and adapter classification checks passed; existing real transaction
 suites were not rerun in this TLS-only task.
+
+## Performance evidence update on 10 October 2026
+
+The OpenAI performance guide includes repeated native AOT SDK/Effect comparisons,
+post-GC retention checkpoints and six real macOS Flutter profile runs. Progress
+links to this guide, with raw evidence downloadable separately from functional
+release totals. Runtime and benchmark source hashes are verified by the build;
+failed or partial benchmark reports cannot be displayed as completed acceptance.

@@ -1,0 +1,14 @@
+name: effect_openai_profile
+publish_to: none
+environment:
+  sdk: '>=3.13.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  effect_core:
+    path: ../..
+  effect_openai:
+    path: ../../packages/effect_openai
+dependency_overrides:
+  effect_core:
+    path: ../..

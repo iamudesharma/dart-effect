@@ -1,0 +1,77 @@
+{
+  "verified_at_utc": "2026-10-10T03:06:09.011819+00:00",
+  "scope": "OpenAI benchmark functional guard checks; existing VM/Chrome correctness suites; no live API acceptance.",
+  "checks": {
+    "openai_analyze": {
+      "exit_code": 0
+    },
+    "openai_vm": {
+      "passed": 50,
+      "skipped": 0,
+      "failed": 0,
+      "exit_code": 0
+    },
+    "openai_chrome": {
+      "passed": 42,
+      "skipped": 0,
+      "failed": 0,
+      "exit_code": 0
+    },
+    "core_analyze_maintained_directories": {
+      "exit_code": 0,
+      "directories": [
+        "lib",
+        "test",
+        "example",
+        "tool"
+      ]
+    },
+    "core_vm": {
+      "passed": 107,
+      "skipped": 0,
+      "failed": 0,
+      "exit_code": 0
+    },
+    "type_fixtures": {
+      "passed": 5,
+      "exit_code": 0
+    },
+    "format": {
+      "files": 30,
+      "changed": 0,
+      "exit_code": 0
+    },
+    "core_analyze": {
+      "exit_code": 0,
+      "note": "Generated build probes and the separate Flutter template are explicitly excluded; their runner analyzes generated Flutter lib independently."
+    },
+    "openai_example": {
+      "exit_code": 0,
+      "output": "Hello from Effect OpenAI"
+    },
+    "native_profile_retained_classes": {
+      "passed": true,
+      "runs": 6,
+      "classes": [
+        "_Operation",
+        "Fiber",
+        "FiberContext",
+        "Scope"
+      ],
+      "observed_service_gc": true
+    }
+  },
+  "source_sha256": {
+    "lib/effect_core.dart": "fddbf8053489731b5faa69a21444aecf990440faa2b899b606af4511fed6787c",
+    "lib/src/concurrency.dart": "89b943cf6ef37071a163d1318219cea9d2910a2642a497dda1f54814101fc109",
+    "lib/src/core.dart": "3b2ce4cf783ce8f0cd12b3f528852e4d8fe31ed2f7394af7c3019cb6bdc189dd",
+    "lib/src/services.dart": "44d65387bdf3dcdd1d78d3795894883e8cc81acd6784f047638a38043b05b269",
+    "lib/src/stream.dart": "fd18652226f16d09bd307fd9d6d954f32f854993cc0edf8ac2e36d885a945b97",
+    "packages/effect_openai/lib/effect_openai.dart": "541e8da137e3e06ea4cd56bf561a290b6755b944608df7e06b4aa9f1eb126b31",
+    "packages/effect_openai/test/client_test.dart": "80bd964d1d2456d31e9acc7e810881c0422929a4103c20201ab01597a76626f5",
+    "packages/effect_openai/test/http_integration_test.dart": "a478d4fc79e4876cc8d485e9ff24d63cca7462e66ecd28f850d6903b625b453c",
+    "packages/effect_openai/test/sdk_test.dart": "5f24c68114a9f86b3ac1346313a2c0cf34d0a1b8ecda3fa80a9737197bef1569",
+    "packages/effect_openai/test/support/fixtures.dart": "0dad3795f091f75a1b875715cde6691e2e581454540313e2c4f8a7929e260bac",
+    "analysis_options.yaml": "e30cd08abf28af7ba2f5129cce32ab6852c509eca116c2f451432b045aa7a9c4"
+  }
+}

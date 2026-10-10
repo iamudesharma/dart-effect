@@ -248,3 +248,13 @@ MIT; see [LICENSE](LICENSE). Independent and Effect-inspired; not affiliated
 with Effect-TS. The advertised scope is documented here, not full upstream parity.
 
 This is an independent adapter for a third-party SDK, not an official OpenAI SDK.
+
+## Performance and memory validation
+
+The adapter adds typed failures and awaited resource ownership; it does not
+claim faster HTTP requests. AOT loopback comparisons and post-GC lifecycle
+checks are recorded in the [performance guide](https://effect-dart.ginjustice4.chatgpt.site/docs/openai-performance/).
+Measured overhead varies by workload, including higher per-event SSE overhead.
+Closed owners and closure payloads were collectible in the tested finite runs;
+this is not universal leak freedom or live API/mobile acceptance. Keep one
+application-scoped client/runtime and await their shutdown at the owner boundary.

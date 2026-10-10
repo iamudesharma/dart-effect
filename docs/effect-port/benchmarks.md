@@ -18,7 +18,10 @@ Raw samples, mean, min and p90 are retained in benchmark-jit.json and
 benchmark-aot.json. Process-wide current/maximum RSS is reported there; it is
 not per-operation allocation attribution. No agreed regression budget exists.
 The effects are slower in these workloads; lifecycle control has an overhead.
-Stream benchmarks remain deferred because streams are not implemented.
+At this historical phases 0–3 checkpoint, streams were not yet implemented;
+these recordings do not describe current streaming support. For current OpenAI
+HTTP/SSE timing, post-GC retention and native Flutter profile evidence, see the
+[OpenAI performance guide](openai-performance.md).
 
 Reproduce:
 

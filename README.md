@@ -176,9 +176,9 @@ safety proof; arbitrary deeply nested region wrappers do not.
 <!-- roadmap:start -->
 ## Roadmap and progress
 
-**Roadmap updated: 9 October 2026.** All five packages are published: `effect_core`, `effect_sql`, `effect_mysql` and `effect_openai` at `0.0.1`; `effect_postgres` at `0.0.2`.
+**Roadmap updated: 10 October 2026.** All five packages are published: `effect_core`, `effect_sql`, `effect_mysql` and `effect_openai` at `0.0.1`; `effect_postgres` at `0.0.2`.
 
-**6 delivered milestones · 1 in progress · 1 planned · 1 awaiting input · 4 future proposals.**
+**7 delivered milestones · 1 in progress · 1 planned · 1 awaiting input · 4 future proposals.**
 
 Recorded validation includes 207 VM and 167 browser tests across dated package runs, real PostgreSQL/MySQL acceptance and two native live Responses smoke checks. Broader live AI, production database and native Flutter acceptance remain open.
 
@@ -190,6 +190,7 @@ Recorded validation includes 207 VM and 167 browser tests across dated package r
 | Released | OpenAI SDK integration | Delivered |
 | Released | Live OpenAI Responses smoke acceptance | Delivered |
 | Released | First pub.dev release | Delivered |
+| Released | OpenAI performance and bounded retention evidence | Delivered |
 | Next priorities | Production database acceptance | In progress |
 | Next priorities | Broader OpenAI live acceptance | Awaiting input |
 | Next priorities | Runnable API and Flutter integration guides | Planned |
