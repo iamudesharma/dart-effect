@@ -178,7 +178,7 @@ safety proof; arbitrary deeply nested region wrappers do not.
 
 **Roadmap updated: 10 October 2026.** All five packages are published: `effect_core`, `effect_sql`, `effect_mysql` and `effect_openai` at `0.0.1`; `effect_postgres` at `0.0.2`.
 
-**7 delivered milestones · 1 in progress · 1 planned · 1 awaiting input · 4 future proposals.**
+**8 delivered milestones · 1 in progress · 1 planned · 1 awaiting input · 4 future proposals.**
 
 Recorded validation includes 207 VM and 167 browser tests across dated package runs, real PostgreSQL/MySQL acceptance and two native live Responses smoke checks. Broader live AI, production database and native Flutter acceptance remain open.
 
@@ -191,6 +191,7 @@ Recorded validation includes 207 VM and 167 browser tests across dated package r
 | Released | Live OpenAI Responses smoke acceptance | Delivered |
 | Released | First pub.dev release | Delivered |
 | Released | OpenAI performance and bounded retention evidence | Delivered |
+| Released | Core and SQL performance and bounded retention | Delivered |
 | Next priorities | Production database acceptance | In progress |
 | Next priorities | Broader OpenAI live acceptance | Awaiting input |
 | Next priorities | Runnable API and Flutter integration guides | Planned |
@@ -247,3 +248,7 @@ the repository root. Native database and AI checks are separate from core tests.
 
 MIT; see [LICENSE](LICENSE). Independent and Effect-inspired; not affiliated
 with Effect-TS. The advertised scope is documented here, not full upstream parity.
+
+## Performance evidence
+
+[Core and SQL benchmarks](https://effect-dart.ginjustice4.chatgpt.site/docs/remaining-performance/) cover current JIT/AOT runtime workloads, direct Dart driver comparisons, post-GC retention and bounded database load. [OpenAI measurements](https://effect-dart.ginjustice4.chatgpt.site/docs/openai-performance/) include SDK comparisons and native Flutter profile runs. These dated results expose measurable lifecycle overhead and remaining acceptance limits.

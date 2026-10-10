@@ -1,4 +1,6 @@
-# Measured baseline
+# Historical measured baseline
+
+For the current core and SQL sources, use the [current performance guide](remaining-performance.md) and its raw evidence. The measurements below belong to an earlier implementation checkpoint.
 
 Dart 3.13.0 stable, macOS arm64; local VM JIT and compiled AOT. Three warmups,
 eleven measured samples per workload; chain construction and execution included.

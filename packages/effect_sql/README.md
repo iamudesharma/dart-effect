@@ -184,3 +184,7 @@ contract tests.
 
 MIT; see [LICENSE](LICENSE). Independent and Effect-inspired; not affiliated
 with Effect-TS. The advertised scope is documented here, not full upstream parity.
+
+## Performance and memory evidence
+
+See the [core and SQL performance guide](https://effect-dart.ginjustice4.chatgpt.site/docs/remaining-performance/) for direct-driver comparisons, post-GC owner checks, cancellation recovery and bounded database load. Results are dated and workload-specific; they do not promise a speedup or universal leak freedom. Benchmark tools are development-only and excluded from the package archive.
