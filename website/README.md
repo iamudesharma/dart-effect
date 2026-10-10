@@ -104,3 +104,7 @@ post-GC retention checkpoints and six real macOS Flutter profile runs. Progress
 links to this guide, with raw evidence downloadable separately from functional
 release totals. Runtime and benchmark source hashes are verified by the build;
 failed or partial benchmark reports cannot be displayed as completed acceptance.
+
+## Core and SQL performance update — 10 October 2026
+
+The current core/SQL guide records repeated JIT/AOT comparisons, real verified-TLS PostgreSQL/MySQL driver timings, bounded load, awaited cancellation recovery and observed-GC retention. The website checks both benchmark and independent functional validation fingerprints and rejects failed reports. SQL-P4 is delivered within its bounded development scope; the production SQL milestone remains active. Functional test totals are kept separate from measured operation counts and historical OpenAI evidence.

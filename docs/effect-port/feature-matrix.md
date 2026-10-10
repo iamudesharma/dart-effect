@@ -82,3 +82,15 @@ Stream integration, scoped SDK clients, per-run abort/drain, typed SDK failures
 and primary text/embedding/moderation helpers. Realtime sessions and automatic
 tool execution are not implemented. See [contracts and tests](openai-adapter.md);
 live API acceptance remains distinct from isolated HTTP/SSE transport validation.
+
+## Current performance acceptance — 10 October 2026
+
+[Core and SQL measurements](remaining-performance.md) cover current JIT/AOT
+composition, bounded work, stream folds, resource lifetimes and interruptions;
+portable SQL overhead; and native PostgreSQL/MySQL timing, bounded load,
+cancellation recovery and post-GC owner retention. [OpenAI measurements](openai-performance.md)
+include its separate SDK and native Flutter profile evidence. These are dated,
+representative workloads with measured overhead, not an exhaustive per-operator
+performance guarantee. Mobile/core Flutter frame acceptance, large SQL result
+sets, HA/network partitions, version matrices and multi-hour production soak
+remain unrun. Production SQL acceptance stays in progress.
