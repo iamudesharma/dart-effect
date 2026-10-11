@@ -1,14 +1,12 @@
 # effect_http
 
 Optional HTTP and SSE support for Effect Dart, using Dart's `http` package.
-This initial implementation is **unreleased**. Use the repository checkout with
-`pubspec_overrides.yaml` for development; no package has been published by this change.
+Version `0.0.1` integrates with `effect_core 0.0.2`.
 
 ```yaml
 dependencies:
-  effect_core: ^0.0.1
-  effect_http:
-    path: ../effect_dart/packages/effect_http
+  effect_core: ^0.0.2
+  effect_http: ^0.0.1
 ```
 
 ```dart
@@ -48,7 +46,7 @@ Last-Event-ID replay. Body size defaults to 8 MiB; each SSE event has a 1 Mi
 character limit, including ignored fields and comments. Native driver chunk buffers
 are outside these adapter limits.
 
-On the development core branch, safe reads can opt into typed retry policy:
+Safe reads can opt into typed retry policy:
 
 ```dart
 final read = adapter.request<Unit>('GET', uri).retry(
