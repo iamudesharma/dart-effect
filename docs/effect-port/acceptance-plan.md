@@ -1,6 +1,6 @@
 # Sequential acceptance plan
 
-Updated 9 October 2026. Work proceeds one task at a time. Complete the tests and
+Updated 10 October 2026. Work proceeds one task at a time. Complete the tests and
 record their evidence before moving the task to Delivered. A parent milestone
 stays In progress until all its acceptance tasks pass; publication and package
 scores do not close that gate.
@@ -12,7 +12,7 @@ scores do not close that gate.
 | SQL-P1 | Trusted CA chains and hostname verification | Delivered | Both real drivers accept an isolated root/intermediate chain; prove encryption and prepared query round trips; reject an unrelated root and wrong hostname; leave no idle leases or test containers. |
 | SQL-P2 | Connection loss and pool recovery | Next | Terminate an owned test connection during an actual transaction; retain the failed outcome, prove no partial write, discard the lease, and run a fresh query. Do not replay writes or claim automatic cluster failover. |
 | SQL-P3 | Bounded network interruption | Planned | Introduce an isolated proxy fault during a query and acquisition. Record timeout/interruption behavior and awaited cleanup for both drivers, including MySQL's drain limitation and restoration recovery. |
-| SQL-P4 | Bounded load and soak | Planned | Run a declared duration/workload at the configured connection bound. Record completed/failed operations, peak leases, latency distribution and final shutdown; preserve transaction invariants and exclude unbounded stress claims. |
+| SQL-P4 | Bounded load and soak | Delivered | Run a declared duration/workload at the configured connection bound. Record completed/failed operations, peak leases, latency distribution and final shutdown; preserve transaction invariants and exclude unbounded stress claims. |
 | SQL-P5 | Database version matrix | Planned | Repeat relevant acceptance against explicitly selected, locally installed pinned versions; document each executed version and unsupported/unrun cells. Acquire missing images explicitly rather than silently pulling during offline runs. |
 | SQL-P6 | SQL acceptance review | Planned | Run existing real database contracts and new acceptance together, inspect cleanup and evidence, then list remaining deployment-specific gates. Production CA providers and real HA topologies need their own acceptance. |
 
@@ -70,3 +70,7 @@ acceptance awaits access.
 Configuration/schema/cache, stream operators, metrics/tracing, and Flutter/isolate
 helpers remain proposals. Choose one API and its lifecycle contracts before
 implementation. The complete Node inventory is outside the committed plan.
+
+## SQL-P4 bounded load result — 10 October 2026
+
+Three fresh native AOT 30-second mixed-load runs per driver and implementation passed, with eight prewarmed verified-TLS connections. Actual committed row counts, zero failed operations, peak bound eight, latency histograms, RSS samples and awaited shutdown are recorded in the [performance guide](remaining-performance.md). Direct-driver comparisons and separate post-GC retention checks cover core, portable SQL and both native adapters. SQL-P2/P3/P5/P6 and multi-hour production soak remain open; completing this bounded development gate does not close the parent production milestone.

@@ -261,3 +261,9 @@ Maintained and broad root analysis passed after generated build probes and the
 separate Flutter profile template were excluded from core analysis. The native
 runner analyzes its generated Flutter lib independently. No runtime source or
 package version changed, and no package was republished.
+
+## Core and SQL performance evidence — 10 October 2026
+
+[Current core and SQL measurements](remaining-performance.md) now cover the four remaining packages: repeated JIT/AOT core workloads, portable SQL overhead, verified-TLS real driver timing, queued/active cancellation recovery, bounded mixed load and post-GC retention. All 3,780 tracked closed targets were collected; 1,481,278 mixed-load operations completed with zero failed operations and peak executing command bound eight. Heap growth remains recorded; no universal leak-freedom or portable speedup claim is made.
+
+Fresh functional validation passed 157 VM and 125 Chrome tests with zero skips/failures, four analyzers/format checks, five type fixtures, six core examples and both SQL examples. Owned containers were removed, including the initial MySQL bootstrap-readiness failure; resumed measurement provenance verifies unchanged Dart source hashes. SQL-P4 is delivered within its declared 30-second per-process scope. Connection-loss, proxy faults, version matrices, multi-hour production soak and mobile/app frame acceptance remain open. No published runtime source or package version changed.

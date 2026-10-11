@@ -64,11 +64,21 @@
     "updated_at": "2026-10-10"
   },
   {
+    "id": "core-sql-performance",
+    "title": "Core and SQL performance and bounded retention",
+    "status": "completed",
+    "phase": "delivered",
+    "area": "Performance",
+    "detail": "Current core JIT/AOT comparisons, portable SQL overhead, real PostgreSQL/MySQL driver timings, repeated post-GC owner checks and bounded 30-second load runs. Measurable overhead and production limits are recorded.",
+    "proof": "/docs/remaining-performance/",
+    "updated_at": "2026-10-10"
+  },
+  {
     "id": "production",
     "title": "Production database acceptance",
     "status": "active",
     "area": "Acceptance",
-    "detail": "Trusted root/intermediate CA chains and hostname rejection passed for both drivers. Connection loss, network interruption, load/soak and version coverage remain open.",
+    "detail": "Trusted CA chains and bounded load/retention checks passed for both drivers. Connection loss, proxy network interruption, long production soak and version coverage remain open.",
     "proof": "/docs/acceptance-plan/",
     "phase": "next",
     "dependency": "A reproducible database version matrix and isolated TLS/failover test environments.",
@@ -92,7 +102,7 @@
       {
         "id": "SQL-P4",
         "title": "Bounded load and soak",
-        "status": "planned"
+        "status": "completed"
       },
       {
         "id": "SQL-P5",
@@ -104,7 +114,8 @@
         "title": "SQL acceptance review",
         "status": "planned"
       }
-    ]
+    ],
+    "updated_at": "2026-10-10"
   },
   {
     "id": "ai-broader",

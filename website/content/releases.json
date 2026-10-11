@@ -66,6 +66,13 @@
         "ffb284d5176748690d99fcd1eee5c58e35551d0a020a47ee094ffa524d40976c"
       ],
       "reason": "Documented 0.0.2 patch; runtime compared to published 0.0.1 and unchanged."
+    },
+    "packages/effect_postgres/README.md": {
+      "current_sha256": "b9789383a25b130c91f614cc2ceb0bda413b27dd036a7789141a94469ad8be25",
+      "previous_sha256": [
+        "c70d234a9af08ec76f0b1d7ae5e2f15c6e3a70493f840df8625df288fbc10f0a"
+      ],
+      "reason": "Development README appends the current core/SQL performance guide link on 10 October 2026. The published 0.0.2 README and dated hosted score evidence are unchanged; runtime sources still match the published archive. No package republished."
     }
   }
 }
