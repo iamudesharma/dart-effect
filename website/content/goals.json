@@ -163,11 +163,11 @@
   },
   {
     "id": "observability",
-    "title": "Optional metrics and tracing adapters",
+    "title": "Metrics and tracing exporters",
     "status": "proposed",
     "phase": "later",
     "area": "Observability",
-    "detail": "Expose useful service and fiber observations without adding runtime dependencies to core.",
+    "detail": "Build optional exporters on the released lifecycle hooks and bounded aggregate metrics. Keep transport dependencies outside core.",
     "dependency": "Select Dart observability interfaces and decide privacy, overhead and exporter boundaries.",
     "acceptance": "Verify successful/failed/interrupted spans, scoped exporter cleanup and measured overhead.",
     "proof": "/docs/features/"
@@ -182,5 +182,15 @@
     "dependency": "Define ownership and supported platform contracts; choose real device acceptance targets.",
     "acceptance": "Run native Flutter disposal journeys and isolate sendability/error propagation tests; record unsupported platforms.",
     "proof": "/docs/features/"
+  },
+  {
+    "id": "reliability-http",
+    "title": "Reliability policies and HTTP/SSE integration",
+    "status": "completed",
+    "area": "Core and HTTP",
+    "detail": "Core 0.0.2 retains timeout cleanup diagnostics and adds typed retries, capped/Retry-After schedules, independent jitter, elapsed budgets, lifecycle tracing/metrics, circuit breakers and admission spacing. Optional effect_http 0.0.1 provides abortable HTTP and bounded SSE. Verified by 230 VM and 184 Chrome checks; live browser cancellation and enabled-tracing performance remain open.",
+    "proof": "/docs/reliability/",
+    "phase": "delivered",
+    "updated_at": "2026-10-11"
   }
 ]

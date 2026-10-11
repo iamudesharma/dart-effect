@@ -67,7 +67,7 @@ acceptance awaits access.
 
 ## Later proposals
 
-Configuration/schema/cache, stream operators, metrics/tracing, and Flutter/isolate
+Configuration/schema/cache, stream operators, metrics/tracing exporters, and Flutter/isolate
 helpers remain proposals. Choose one API and its lifecycle contracts before
 implementation. The complete Node inventory is outside the committed plan.
 

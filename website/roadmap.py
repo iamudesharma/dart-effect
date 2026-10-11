@@ -27,14 +27,14 @@ def readme_section(goals):
              for g in goals]
     return '\n'.join([
         START, '## Roadmap and progress', '',
-        f'**Roadmap updated: {roadmap_date(goals)}.** All five packages are published: '
-        '`effect_core`, `effect_sql`, `effect_mysql` and `effect_openai` at '
-        '`0.0.1`; `effect_postgres` at `0.0.2`.', '',
+        f'**Roadmap updated: {roadmap_date(goals)}.** All six packages are published: '
+        '`effect_core` and `effect_postgres` at `0.0.2`; `effect_sql`, `effect_mysql`, '
+        '`effect_openai` and `effect_http` at `0.0.1`.', '',
         f"**{counts['completed']} delivered milestones · {counts['active']} in progress · "
         f"{counts['planned']} planned · {counts['awaiting-input']} awaiting input · "
         f"{counts['proposed']} future proposals.**", '',
-        'Recorded validation includes 207 VM and 167 browser tests across dated '
-        'package runs, real PostgreSQL/MySQL acceptance and two native live '
+        'Latest functional validation includes 230 VM and 184 browser tests, '
+        'real PostgreSQL/MySQL acceptance, and separately dated two native live '
         'Responses smoke checks. Broader live AI, production database and native '
         'Flutter acceptance remain open.', '', *rows, '',
         'Next priorities are ordered above; production SQL acceptance is in progress. '

@@ -3,7 +3,7 @@
 Lazy, typed asynchronous effects for Dart and Flutter. Describe a computation,
 compose it with other effects, and run it with explicit ownership of its resources.
 
-**Initial release: `0.0.1`.** Use the hosted dependencies below, or the local
+**Core release: `0.0.2`.** Use the hosted dependencies below, or the local
 overrides for source development.
 
 ## Features
@@ -29,7 +29,7 @@ Or add these dependencies to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  effect_core: ^0.0.1
+  effect_core: ^0.0.2
 ```
 
 Then run `dart pub get` or `flutter pub get`. Your Flutter installation must
@@ -176,11 +176,11 @@ safety proof; arbitrary deeply nested region wrappers do not.
 <!-- roadmap:start -->
 ## Roadmap and progress
 
-**Roadmap updated: 10 October 2026.** All five packages are published: `effect_core`, `effect_sql`, `effect_mysql` and `effect_openai` at `0.0.1`; `effect_postgres` at `0.0.2`.
+**Roadmap updated: 11 October 2026.** All six packages are published: `effect_core` and `effect_postgres` at `0.0.2`; `effect_sql`, `effect_mysql`, `effect_openai` and `effect_http` at `0.0.1`.
 
-**8 delivered milestones · 1 in progress · 1 planned · 1 awaiting input · 4 future proposals.**
+**9 delivered milestones · 1 in progress · 1 planned · 1 awaiting input · 4 future proposals.**
 
-Recorded validation includes 207 VM and 167 browser tests across dated package runs, real PostgreSQL/MySQL acceptance and two native live Responses smoke checks. Broader live AI, production database and native Flutter acceptance remain open.
+Latest functional validation includes 230 VM and 184 browser tests, real PostgreSQL/MySQL acceptance, and separately dated two native live Responses smoke checks. Broader live AI, production database and native Flutter acceptance remain open.
 
 | Priority | Milestone | Status |
 | --- | --- | --- |
@@ -197,8 +197,9 @@ Recorded validation includes 207 VM and 167 browser tests across dated package r
 | Next priorities | Runnable API and Flutter integration guides | Planned |
 | Future proposals | Typed configuration, schemas and cache lifetimes | Proposed |
 | Future proposals | Broader streams and coordination primitives | Proposed |
-| Future proposals | Optional metrics and tracing adapters | Proposed |
+| Future proposals | Metrics and tracing exporters | Proposed |
 | Future proposals | Flutter and isolate integration helpers | Proposed |
+| Released | Reliability policies and HTTP/SSE integration | Delivered |
 
 Next priorities are ordered above; production SQL acceptance is in progress. Trusted CA-chain and hostname checks passed for both drivers; recovery, network faults and soak remain open. Broader OpenAI acceptance needs an API-enabled test account. Future proposals need API design and scope agreement before implementation; they have no promised release version or date.
 
@@ -253,12 +254,11 @@ with Effect-TS. The advertised scope is documented here, not full upstream parit
 
 [Core and SQL benchmarks](https://effect-dart.ginjustice4.chatgpt.site/docs/remaining-performance/) cover current JIT/AOT runtime workloads, direct Dart driver comparisons, post-GC retention and bounded database load. [OpenAI measurements](https://effect-dart.ginjustice4.chatgpt.site/docs/openai-performance/) include SDK comparisons and native Flutter profile runs. These dated results expose measurable lifecycle overhead and remaining acceptance limits.
 
-## Development reliability APIs
+## Reliability APIs in core 0.0.2
 
-The unreleased branch adds retained timeout cleanup diagnostics, typed retries,
+Core 0.0.2 adds retained timeout cleanup diagnostics, typed retries,
 capped backoff and Retry-After policies, independent jitter, elapsed retry budgets,
 lifecycle tracing/metrics, circuit breakers and rate limiting. An optional
 [`effect_http`](packages/effect_http/README.md) package provides HTTP/SSE support.
 See the [contracts and verification boundaries](docs/effect-port/reliability.md)
-and [`example/reliability.dart`](example/reliability.dart). Existing hosted versions
-do not include these additions.
+and [`example/reliability.dart`](example/reliability.dart). The optional HTTP/SSE adapter is released as `effect_http 0.0.1`.
