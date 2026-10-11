@@ -4,7 +4,7 @@ Effect Dart is an independent, Effect-inspired toolkit for Dart API services and
 
 ## Install from pub.dev
 
-All five packages are published. Start with `effect_core` 0.0.1; add only the integrations your application uses. PostgreSQL's current documentation patch is 0.0.2, and the other packages are 0.0.1.
+All six packages are published. Start with `effect_core` 0.0.2; add only the integrations your application uses. PostgreSQL is 0.0.2; SQL, MySQL, OpenAI and the optional HTTP/SSE adapter are 0.0.1.
 
 ```sh
 dart pub add effect_core
@@ -16,7 +16,7 @@ Or add the hosted dependency to your application's `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  effect_core: ^0.0.1
+  effect_core: ^0.0.2
 ```
 
 Run `dart pub get` or `flutter pub get`. No repository checkout or local overrides are needed for the published packages.
@@ -69,7 +69,7 @@ The full set of current version constraints is shown below; most applications ne
 
 ```yaml
 dependencies:
-  effect_core: ^0.0.1
+  effect_core: ^0.0.2
   effect_sql: ^0.0.1
   effect_postgres: ^0.0.2
   postgres: ^3.5.19
@@ -113,3 +113,18 @@ Future cancellation is cooperative. A cancellation hook can stop underlying I/O;
 ## Choose the next guide
 
 Read the runtime contract to understand fibers and scope behavior. The SQL and OpenAI guides explain adapter lifetimes and their verified acceptance boundaries. The progress page shows dated test evidence, while the roadmap separates delivered work from the next acceptance milestones.
+
+## Reliability and HTTP/SSE
+
+Core 0.0.2 adds typed retry predicates, capped backoff, Retry-After overrides,
+independent jitter, elapsed retry budgets, circuit breakers, admission spacing
+and optional lifecycle tracing/metrics. Timeout retains failed cleanup diagnostics.
+See the [reliability contracts](../../docs/effect-port/reliability.md).
+
+```sh
+dart pub add effect_http
+```
+
+The [HTTP/SSE guide](../../packages/effect_http/README.md) covers borrowed client
+ownership, cancellation and bounded parsing. Requests and SSE never replay
+automatically.

@@ -1,8 +1,7 @@
-# Reliability additions — development branch
+# Reliability APIs — core 0.0.2 and HTTP 0.0.1
 
-These APIs are implemented in the checkout and not included in the currently
-published effect_core 0.0.1 release. No publication or website deployment is part
-of this change. Earlier performance reports measure their recorded revision;
+These APIs are released in effect_core 0.0.2 and the optional effect_http 0.0.1.
+Install the packages from pub.dev. Earlier performance reports measure their recorded revision;
 they do not measure tracing or these new helpers.
 
 ## Timeout diagnostics
@@ -99,5 +98,6 @@ All six package analyzers passed. Both owned SQL containers were removed.
 The first legacy SQL-runner attempt lacked Docker; its next attempt used a leaf
 certificate for the MySQL example and failed. The CA-based runner then passed
 both native suites and examples, without skipped tests in its selected suites.
-Negative TLS-chain acceptance remains a separate dated check. Machine-readable
-results and source hashes are in [reliability-validation.json](reliability-validation.json).
+Negative TLS-chain acceptance remains a separate dated check. Latest release checks independently reran the same 230 VM and 184 Chrome scenarios.
+Machine-readable results and source hashes are in [release-0.0.2-validation.json](release-0.0.2-validation.json);
+the original implementation record is [reliability-validation.json](reliability-validation.json).

@@ -279,3 +279,13 @@ five analyzer fixtures and nine core/database examples passed. These APIs remain
 unpublished; earlier performance reports belong to their original revisions.
 Live BrowserClient abort, mobile behavior and enabled-observer performance are
 not validated by these functional suites.
+
+## 11 October 2026 — reliability release publication
+
+Published effect_core 0.0.2 and effect_http 0.0.1 after explicit user authorization.
+Both archives match their source files and registry SHA-256 checksums. A fresh
+consumer resolved all six hosted packages without overrides, analyzed cleanly,
+and ran the new reliability and HTTP/SSE APIs. Release checks passed 230 VM
+and 184 Chrome tests, five type fixtures and nine core/database examples. See
+[publication evidence](publication-0.0.2.json) and [release validation](release-0.0.2-validation.json).
+Older performance measurements retain their original source revision and date.
