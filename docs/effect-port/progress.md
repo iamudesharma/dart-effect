@@ -267,3 +267,15 @@ package version changed, and no package was republished.
 [Current core and SQL measurements](remaining-performance.md) now cover the four remaining packages: repeated JIT/AOT core workloads, portable SQL overhead, verified-TLS real driver timing, queued/active cancellation recovery, bounded mixed load and post-GC retention. All 3,780 tracked closed targets were collected; 1,481,278 mixed-load operations completed with zero failed operations and peak executing command bound eight. Heap growth remains recorded; no universal leak-freedom or portable speedup claim is made.
 
 Fresh functional validation passed 157 VM and 125 Chrome tests with zero skips/failures, four analyzers/format checks, five type fixtures, six core examples and both SQL examples. Owned containers were removed, including the initial MySQL bootstrap-readiness failure; resumed measurement provenance verifies unchanged Dart source hashes. SQL-P4 is delivered within its declared 30-second per-process scope. Connection-loss, proxy faults, version matrices, multi-hour production soak and mobile/app frame acceptance remain open. No published runtime source or package version changed.
+
+## 11 October 2026 — unreleased reliability additions
+
+Implemented all six requested additions: retained timeout cleanup diagnostics,
+typed retry predicates, capped/Retry-After delays with independent jitter and
+elapsed budgets, lifecycle tracing/metrics, optional effect_http HTTP/SSE,
+and circuit-breaker/rate-limit helpers. See [contracts](reliability.md) and
+[validation evidence](reliability-validation.json). 230 VM and 184 Chrome tests,
+five analyzer fixtures and nine core/database examples passed. These APIs remain
+unpublished; earlier performance reports belong to their original revisions.
+Live BrowserClient abort, mobile behavior and enabled-observer performance are
+not validated by these functional suites.

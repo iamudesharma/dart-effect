@@ -239,15 +239,20 @@ final class Schedule {
     this.initialDelay = Duration.zero,
     this.factor = 1,
     this.jitter = 0,
-    this.seed = 0,
-  }) {
+    int? seed,
+    this.maxDelay,
+    this.elapsedBudget,
+  }) : seed = seed ?? 0,
+       _seeded = seed != null {
     if (recurrences < 0 ||
         initialDelay.isNegative ||
         !factor.isFinite ||
         factor < 1 ||
         !jitter.isFinite ||
         jitter < 0 ||
-        jitter > 1) {
+        jitter > 1 ||
+        (maxDelay?.isNegative ?? false) ||
+        (elapsedBudget?.isNegative ?? false)) {
       throw ArgumentError('Invalid schedule');
     }
   }
@@ -256,6 +261,12 @@ final class Schedule {
   final double factor;
   final double jitter;
   final int seed;
+  final bool _seeded;
+  final Duration? maxDelay;
+
+  /// Budget for admitting retries, including operation time; not a timeout.
+  final Duration? elapsedBudget;
+  Random newRandom() => Random(_seeded ? seed : Random().nextInt(0x7fffffff));
   Duration delay(int iteration, Random random) {
     if (iteration < 0) throw ArgumentError.value(iteration, 'iteration');
     if (initialDelay == Duration.zero) return Duration.zero;
@@ -263,28 +274,58 @@ final class Schedule {
     if (multiplier == 0) return Duration.zero;
     final micros =
         initialDelay.inMicroseconds * pow(factor, iteration) * multiplier;
-    return Duration(microseconds: min(micros, 9007199254740991).round());
+    return Duration(
+      microseconds: min(
+        micros,
+        min(maxDelay?.inMicroseconds ?? 9007199254740991, 9007199254740991),
+      ).round(),
+    );
   }
 }
 
 extension EffectPolicy<A, E, R> on Effect<A, E, R> {
-  Effect<A, E, R> retry(Schedule schedule) => _scheduled(schedule, false);
+  Effect<A, E, R> retry(
+    Schedule schedule, {
+    bool Function(E error)? whileError,
+    Duration? Function(E error, DateTime now)? retryAfter,
+  }) => _scheduled(schedule, false, whileError, retryAfter);
   Effect<A, E, R> repeat(Schedule schedule) => _scheduled(schedule, true);
-  Effect<A, E, R> _scheduled(Schedule schedule, bool repeat) =>
-      Effect.asyncExit<A, E, R>((context) async {
-        final random = Random(schedule.seed);
-        for (var iteration = 0; ; iteration++) {
-          final exit = await context.evaluate(this);
-          final again = repeat
-              ? exit is Success<A, E>
-              : exit is Failure<A, E> && exit.cause is Expected<E>;
-          if (!again || iteration >= schedule.recurrences) return exit;
-          final sleep = await context.evaluate(
-            Effect.sleep<E, R>(schedule.delay(iteration, random)),
-          );
-          if (sleep is Failure<Unit, E>) return Failure(sleep.cause);
-        }
-      });
+  Effect<A, E, R> _scheduled(
+    Schedule schedule,
+    bool repeat, [
+    bool Function(E)? predicate,
+    Duration? Function(E, DateTime)? retryAfter,
+  ]) => Effect.asyncExit<A, E, R>((context) async {
+    final random = schedule.newRandom();
+    final started = context.clock.now;
+    for (var iteration = 0; ; iteration++) {
+      final exit = await context.evaluate(this);
+      final again = repeat
+          ? exit is Success<A, E>
+          : exit is Failure<A, E> && exit.cause is Expected<E>;
+      if (!again || iteration >= schedule.recurrences) return exit;
+      Duration? serverDelay;
+      if (!repeat) {
+        final error = ((exit as Failure<A, E>).cause as Expected<E>).error;
+        if (predicate != null && !predicate(error)) return exit;
+        serverDelay = retryAfter?.call(error, context.clock.now);
+        if (serverDelay?.isNegative ?? false) serverDelay = Duration.zero;
+      }
+      final delay = serverDelay ?? schedule.delay(iteration, random);
+      final budget = schedule.elapsedBudget;
+      if (budget != null &&
+          context.clock.now.difference(started) + delay >= budget) {
+        return exit;
+      }
+      final sleep = await context.evaluate(Effect.sleep<E, R>(delay));
+      if (sleep is Success<Unit, E> &&
+          budget != null &&
+          context.clock.now.difference(started) >= budget) {
+        return exit;
+      }
+      if (sleep is Failure<Unit, E>) return Failure(sleep.cause);
+    }
+  });
 }
 
 /// Emit an immutable structured log through the runtime's injected sink.

@@ -252,3 +252,13 @@ with Effect-TS. The advertised scope is documented here, not full upstream parit
 ## Performance evidence
 
 [Core and SQL benchmarks](https://effect-dart.ginjustice4.chatgpt.site/docs/remaining-performance/) cover current JIT/AOT runtime workloads, direct Dart driver comparisons, post-GC retention and bounded database load. [OpenAI measurements](https://effect-dart.ginjustice4.chatgpt.site/docs/openai-performance/) include SDK comparisons and native Flutter profile runs. These dated results expose measurable lifecycle overhead and remaining acceptance limits.
+
+## Development reliability APIs
+
+The unreleased branch adds retained timeout cleanup diagnostics, typed retries,
+capped backoff and Retry-After policies, independent jitter, elapsed retry budgets,
+lifecycle tracing/metrics, circuit breakers and rate limiting. An optional
+[`effect_http`](packages/effect_http/README.md) package provides HTTP/SSE support.
+See the [contracts and verification boundaries](docs/effect-port/reliability.md)
+and [`example/reliability.dart`](example/reliability.dart). Existing hosted versions
+do not include these additions.
