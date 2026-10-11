@@ -218,6 +218,7 @@ final class FiberContext<R> {
     this.logger,
     this._children,
     this._masked,
+    this.fiberId,
   );
   final R environment;
   final CancellationToken token;
@@ -227,6 +228,7 @@ final class FiberContext<R> {
   final LogSink logger;
   final Set<Fiber<Object?, Object?>> _children;
   final bool _masked;
+  final int fiberId;
 
   /// Protect acquisition/cleanup, including direct token-aware adapter waits.
   FiberContext<R> masked() => FiberContext._(
@@ -238,6 +240,7 @@ final class FiberContext<R> {
     logger,
     _children,
     true,
+    fiberId,
   );
   FiberContext<S> withEnvironment<S>(S environment) => FiberContext._(
     environment,
@@ -248,6 +251,7 @@ final class FiberContext<R> {
     logger,
     _children,
     _masked,
+    fiberId,
   );
   FiberContext<R> withScope(Scope scope) => FiberContext._(
     environment,
@@ -258,6 +262,7 @@ final class FiberContext<R> {
     logger,
     _children,
     _masked,
+    fiberId,
   );
   Future<Exit<A, E>> evaluate<A, E>(Effect<A, E, R> effect) async =>
       _typedExit<A, E>(await _interpret(effect._node, this));
@@ -290,7 +295,7 @@ final class FiberContext<R> {
     if (scoped && scope._closed != null) {
       throw StateError('Cannot fork a child into a closed scope');
     }
-    final child = runtime._start(effect, environment);
+    final child = runtime._start(effect, environment, parentId: fiberId);
     final detach = _masked ? () {} : token.onCancel(child.interrupt);
     _children.add(child);
     if (scoped) scope._children.add(child);
@@ -323,6 +328,48 @@ final class Fiber<A, E> {
   Effect<A, E, R> join<R>() => Effect.asyncExit((ctx) => ctx._wait(_result));
 }
 
+/// Immutable runtime events; sinks must avoid blocking. Sink exceptions are
+/// isolated from effect outcomes. Events contain no environment or error values.
+final class LifecycleEvent {
+  const LifecycleEvent(
+    this.fiberId,
+    this.phase,
+    this.time, {
+    this.outcome,
+    this.elapsed,
+    this.parentId,
+    this.name,
+  });
+  final int fiberId;
+  final String phase;
+  final DateTime time;
+  final String? outcome;
+  final Duration? elapsed;
+  final int? parentId;
+  final String? name;
+}
+
+typedef LifecycleSink = void Function(LifecycleEvent event);
+
+/// Bounded aggregate metrics, with no per-fiber history retained.
+final class RuntimeMetrics {
+  int started = 0, active = 0, completed = 0, failed = 0, interrupted = 0;
+  Duration totalDuration = Duration.zero;
+  void record(LifecycleEvent event) {
+    if (event.phase == 'start') {
+      started++;
+      active++;
+    }
+    if (event.phase == 'end') {
+      active--;
+      completed++;
+      totalDuration += event.elapsed ?? Duration.zero;
+      if (event.outcome == 'failure') failed++;
+      if (event.outcome == 'interrupted') interrupted++;
+    }
+  }
+}
+
 /// Supplies an environment, clock and logger, and owns all externally forked
 /// roots. Shutdown rejects new roots and awaits existing roots' cleanup.
 final class Runtime<R> {
@@ -331,6 +378,8 @@ final class Runtime<R> {
     Clock? clock,
     LogSink? logger,
     this.yieldEvery = 1024,
+    this.lifecycle,
+    this.metrics,
   }) : clock = clock ?? const RealClock(),
        logger = logger ?? _discardLog {
     if (yieldEvery < 1) throw ArgumentError.value(yieldEvery);
@@ -339,9 +388,30 @@ final class Runtime<R> {
   final Clock clock;
   final LogSink logger;
   final int yieldEvery;
+  final LifecycleSink? lifecycle;
+  final RuntimeMetrics? metrics;
+  int _nextFiberId = 0;
+  void _emit(LifecycleEvent event) {
+    metrics?.record(event);
+    try {
+      lifecycle?.call(event);
+    } catch (_) {
+      /* Observers cannot change results. */
+    }
+  }
+
   bool _shutdown = false;
   final _roots = <Fiber<Object?, Object?>>{};
-  Fiber<A, E> _start<A, E, S>(Effect<A, E, S> effect, S environment) {
+  Fiber<A, E> _start<A, E, S>(
+    Effect<A, E, S> effect,
+    S environment, {
+    int? parentId,
+  }) {
+    final id = ++_nextFiberId;
+    final started = lifecycle != null || metrics != null ? clock.now : null;
+    if (started != null) {
+      _emit(LifecycleEvent(id, 'start', started, parentId: parentId));
+    }
     final token = CancellationToken();
     final scope = Scope();
     final children = <Fiber<Object?, Object?>>{};
@@ -354,6 +424,7 @@ final class Runtime<R> {
       logger,
       children,
       false,
+      id,
     );
     final result = Future<Exit<A, E>>(() async {
       late Exit<A, E> exit;
@@ -375,11 +446,31 @@ final class Runtime<R> {
       }
 
       await finishChildren();
+      if (lifecycle != null) {
+        _emit(LifecycleEvent(id, 'cleanup', clock.now, parentId: parentId));
+      }
       final cleanup = await scope.close();
       // Low-level finalizers may start explicitly joined cleanup fibers. A
       // custom finalizer that forgets to join cannot leave them running.
       await finishChildren();
       if (cleanup != null) exit = _append(exit, _castCause<E>(cleanup));
+      final outcome = exit is Success<A, E>
+          ? 'success'
+          : (exit as Failure<A, E>).cause is Interrupted<E>
+          ? 'interrupted'
+          : 'failure';
+      if (lifecycle != null || metrics != null) {
+        _emit(
+          LifecycleEvent(
+            id,
+            'end',
+            clock.now,
+            outcome: outcome,
+            elapsed: clock.now.difference(started!),
+            parentId: parentId,
+          ),
+        );
+      }
       return exit;
     });
     return Fiber._(token, result);
@@ -672,14 +763,51 @@ final class Effect<A, E, R> {
           await timer.interruptAndAwait();
           return first.$2 as Exit<A, E>;
         }
-        await worker.interruptAndAwait();
+        final stopped = await worker.interruptAndAwait();
+        Cause<E> primary;
         if (first.$2 case Failure<Object?, E>(:final cause)) {
-          return Failure(cause);
+          primary = cause;
+        } else if (ctx.token.isCancelled) {
+          primary = const Interrupted();
+        } else {
+          try {
+            primary = Expected(onTimeout());
+          } catch (e, s) {
+            primary = Defect(e, s);
+          }
         }
-        return ctx.token.isCancelled
-            ? const Failure(Interrupted())
-            : Failure(Expected(onTimeout()));
+        if (stopped case Failure<A, E>(:final cause)) {
+          final diagnostic = _withoutInterruption(cause);
+          if (diagnostic != null) primary = Sequential(primary, diagnostic);
+        }
+        return Failure(primary);
       });
+
+  /// Observe a named effect region. Observer failures are isolated. Completion
+  /// includes cleanup owned by this region, not cleanup of its enclosing scope.
+  Effect<A, E, R> traced(String name) => asyncExit((ctx) async {
+    if (ctx.runtime.lifecycle == null) return ctx.evaluate(this);
+    final start = ctx.clock.now;
+    if (ctx.runtime.lifecycle != null) {
+      ctx.runtime._emit(
+        LifecycleEvent(ctx.fiberId, 'span.start', start, name: name),
+      );
+    }
+    final exit = await ctx.evaluate(this);
+    if (ctx.runtime.lifecycle != null) {
+      ctx.runtime._emit(
+        LifecycleEvent(
+          ctx.fiberId,
+          'span.end',
+          ctx.clock.now,
+          name: name,
+          elapsed: ctx.clock.now.difference(start),
+          outcome: exit is Success<A, E> ? 'success' : 'failure',
+        ),
+      );
+    }
+    return exit;
+  });
 
   /// First success wins; after an initial failure wait for the other branch.
   /// Await loser cleanup before returning. Loser failures are available on its
@@ -756,3 +884,18 @@ final class Effect<A, E, R> {
     });
   }
 }
+
+// Remove cancellation markers while retaining every diagnostic in order.
+Cause<E>? _withoutInterruption<E>(Cause<E> cause) => switch (cause) {
+  Interrupted() => null,
+  Sequential(:final first, :final second) => _joinDiagnostics(
+    _withoutInterruption(first),
+    _withoutInterruption(second),
+  ),
+  _ => cause,
+};
+Cause<E>? _joinDiagnostics<E>(Cause<E>? a, Cause<E>? b) => a == null
+    ? b
+    : b == null
+    ? a
+    : Sequential(a, b);

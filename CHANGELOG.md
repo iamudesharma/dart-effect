@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+Preserve worker cleanup diagnostics when timeout wins, including cancellation
+and timeout-factory defects. Add typed retry predicates, capped delays, server
+Retry-After overrides, independent jitter and elapsed admission budgets. Add
+optional parent-linked lifecycle tracing, bounded aggregate metrics, per-instance
+circuit breakers and cancellation-aware admission spacing. New optional
+effect_http package supports abortable HTTP and bounded SSE parsing.
+
 ## 0.0.1
 
 Initial independent Dart port. Typed error families and concrete aggregate

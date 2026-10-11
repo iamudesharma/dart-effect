@@ -23,13 +23,13 @@ Pinned evidence is indexed in `references/effect/INDEX.md`. Effect is independen
 | sleep/timeout | Implemented | injected test clock, pending-sleeper removal, clock defects preserved, explicit timeout E |
 | Context/service keys/provide | Implemented; Context presence runtime checked | identity/immutability, missing service defects, runtime key checks after widening |
 | Layer dependency graphs/scoped memo | Implemented basic subset; scope-wide failure transaction | diamond and concurrent sharing, cycle/wait graph detection, partial/concurrent acquisition cleanup |
-| retry/repeat/Schedule | Implemented finite subset | limits, seeded bounded jitter/exponential delay, deterministic clock, interrupted retry, excludes defects/composites |
-| logging | Implemented minimal subset | injected sink, immutable fields/timestamp; no metrics/tracing |
+| retry/repeat/Schedule | Implemented finite subset | typed predicates, caps/Retry-After, independent/seeded jitter, elapsed budgets; deterministic cancellation; excludes defects/composites |
+| logging | Implemented minimal subset | injected sink, immutable fields/timestamp; optional runtime lifecycle tracing and aggregate metrics |
 | TestClock | Implemented | manual advancement/cancellation; caller waits for sleeper registration |
 | Flutter application integration | Unsupported in this repository | workspace had no application; standalone core only |
 | Ref/Deferred/Semaphore/SynchronizedRef/bounded Queue/PubSub | Implemented foundational subset | 34 concurrency tests; seeded model, FIFO, rendezvous, withdrawal, permit restoration, atomic fan-out |
 | EffectStream/Sink | Implemented foundational subset | 26 stream tests; lazy pull, native pause/cancel, resource release, bounded read-ahead, early exit |
-| Configuration/cache/schema/metrics/tracing | Unimplemented next foundation milestone | no stubs advertised as working features |
+| Configuration/cache/schema | Unimplemented next foundation milestone | no stubs advertised as working features |
 | Flutter/platform/isolate adapters | Unimplemented platform milestone | same-isolate core only |
 | PostgreSQL/MySQL SQL adapters | Implemented initial query/transaction subset | optional native packages using postgres/mysql_client_plus; real isolated database tests |
 | RPC/workflow/cluster/CLI/AI and other SQL drivers | Outside current user scope | historical inventory retained; no package-for-package port planned |
@@ -94,3 +94,11 @@ representative workloads with measured overhead, not an exhaustive per-operator
 performance guarantee. Mobile/core Flutter frame acceptance, large SQL result
 sets, HA/network partitions, version matrices and multi-hour production soak
 remain unrun. Production SQL acceptance stays in progress.
+
+## Unreleased reliability additions
+
+Timeout preserves worker cleanup diagnostics; runtime emits optional parent-linked
+lifecycle events and bounded metrics. CircuitBreaker and RateLimiter implement
+same-isolate admission policies. New optional effect_http provides abortable HTTP
+and bounded SSE. [Contracts and limits](reliability.md) distinguish this development
+implementation from current published packages and earlier performance evidence.

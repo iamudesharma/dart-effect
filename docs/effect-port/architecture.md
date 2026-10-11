@@ -73,3 +73,9 @@ See decisions and feature-matrix for exact implemented surface and divergences.
 Layer construction is a scope-wide transaction: a failed build invalidates that memo domain and closes acquired services, after waiting for protected in-flight acquisitions. Do not retain previously built Context values across a failed construction in the same scope. A complete graph with Layer.use is the preferred ownership boundary. Parallel roots use a wait-dependency graph to detect cycles. Memoization uses the first environment supplied to a node in that scope.
 
 The stack-safety proof covers map/flatMap/defer instruction chains. Repeated nesting of region wrappers (provide, scoped, ensuring, mapError, custom asyncExit) is not a general stack-safety claim; wrapper depth is an unbenchmarked limitation. Custom asyncExit is a runtime extension boundary: arbitrary user waits must use context.evaluate(fromFuture(...)) or observe the cancellation token; the interpreter cannot forcibly stop such code.
+
+Development reliability policies and observability are specified in
+[reliability.md](reliability.md). Timeout appends non-interruption worker diagnostics
+after its primary outcome. Retry catches single Expected causes only; elapsed
+budgets govern admission. Tracing is optional and observer failures are isolated.
+HTTP/SSE driver dependencies remain in packages/effect_http, outside portable core.
