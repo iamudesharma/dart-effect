@@ -4,7 +4,7 @@ version: 0.0.1
 environment:
   sdk: '>=3.13.0 <4.0.0'
 dependencies:
-  effect_core: ^0.0.1
+  effect_core: ^0.0.2
   http: ^1.6.0
 dev_dependencies:
   test: ^1.26.0

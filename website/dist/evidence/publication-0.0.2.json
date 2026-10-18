@@ -1,0 +1,88 @@
+{
+  "packages": {
+    "effect_core": {
+      "version": "0.0.2",
+      "url": "https://pub.dev/packages/effect_core",
+      "published_at_utc": "2026-10-11T16:09:52.524955Z",
+      "archive_sha256": "2e4324759cae555908a868a4924f49754f45c30ef70a49fdb0ce281a46a3bf26",
+      "verified_archive_files": {
+        "pubspec.yaml": "248020da4f92a01fa52199f81621097da3288e5d5a109c0602dc176f559971b2",
+        "LICENSE": "a839975af2467e60fe35dcbbadc3bbfc08bb12f4b04f8ebf6a87707305260235",
+        "CHANGELOG.md": "483061b7ffc7b4f963a4489cd234d253d7f674759e361c2c502f93d6c7efce7c",
+        "README.md": "639c8edf86023d8d4d83fac4622030c7e86cd89cb48996bcd690dffed45c36e2",
+        "analysis_options.yaml": "e30cd08abf28af7ba2f5129cce32ab6852c509eca116c2f451432b045aa7a9c4",
+        "lib/effect_core.dart": "4b97a95a81271b432a0d96675b980883bf3ceb68f742f217505062b8dfa57cc2",
+        "lib/src/core.dart": "4e5e372512a101b6cad467fd9021442b6583cc7a792454c8e703502cd9532050",
+        "lib/src/stream.dart": "fd18652226f16d09bd307fd9d6d954f32f854993cc0edf8ac2e36d885a945b97",
+        "lib/src/reliability.dart": "bea2170114df8c178513d00c9c5592e9719e62684e7342c3ee5a5b4aed47a01a",
+        "lib/src/services.dart": "9af61e8b0d4eb6af0f8ba0224c76b62b3d3b734d429c8228e3fcd2622ce6e4b7",
+        "lib/src/concurrency.dart": "89b943cf6ef37071a163d1318219cea9d2910a2642a497dda1f54814101fc109",
+        "example/retry.dart": "37b36b61bd349cf21d50575709ea435510db4c46a88bd500b96db2ef41d29881",
+        "example/web.dart": "1473462741bce3b27334e1403a5ada09c4117dcda6af36f0377ef8c6984d7493",
+        "example/bounded.dart": "a47cb8925b094af0dc4ba515a7ca3d7a6b65ae60edd2781952d1644a3c3d76fa",
+        "example/stream.dart": "026a358e3cc6f287db85e2f7fdf8368a7a65fd1981412d03333be52dd108f651",
+        "example/resources.dart": "c6d68fbee4285904e4ff55d94b4c1977a592ea5252b003f13a44607b85605ad8",
+        "example/reliability.dart": "ef3d5f7e70782021329159ebebf9f36e1fb273ef1faf36433c09065d534face3",
+        "example/services.dart": "e800fe88493734960555c0b56facf94be8092a9c4ad842bd4bf7b22efa05e176"
+      }
+    },
+    "effect_http": {
+      "version": "0.0.1",
+      "url": "https://pub.dev/packages/effect_http",
+      "published_at_utc": "2026-10-11T16:13:19.819165Z",
+      "archive_sha256": "63af9599666527957c420f4d21eaba72273a162797721adacb7cbf540e9a426b",
+      "verified_archive_files": {
+        "pubspec.yaml": "9eae1a8db53224bfdde0683a8e3bfd8bb9e16ec857ae41fab6ec719d1010200d",
+        "LICENSE": "a839975af2467e60fe35dcbbadc3bbfc08bb12f4b04f8ebf6a87707305260235",
+        "CHANGELOG.md": "e07eee2c97274c883b098c6e7e02eae4e23fc35524c41a8e3bc84e26de8e445f",
+        "README.md": "cacd891a6dc4cf69c2ab2aea8d40fa5b4fbc6356ef700d994c2f6d5d72ed3a9c",
+        "analysis_options.yaml": "69d5fc7c4dc082613882215d52d18b02b1688b833d674ce9b281f45821626b7d",
+        "lib/effect_http.dart": "a9ee5360c64687a1e84ffc78faafb6b7cdad4305dde38d8f2e7a02890d78abec",
+        "example/main.dart": "2749a90798edca4f3641d3e9f41d203899adbbcecbb09d08df60b7b7e63fa653"
+      }
+    }
+  },
+  "source_sha256": {
+    "pubspec.yaml": "248020da4f92a01fa52199f81621097da3288e5d5a109c0602dc176f559971b2",
+    "lib/effect_core.dart": "4b97a95a81271b432a0d96675b980883bf3ceb68f742f217505062b8dfa57cc2",
+    "lib/src/core.dart": "4e5e372512a101b6cad467fd9021442b6583cc7a792454c8e703502cd9532050",
+    "lib/src/stream.dart": "fd18652226f16d09bd307fd9d6d954f32f854993cc0edf8ac2e36d885a945b97",
+    "lib/src/reliability.dart": "bea2170114df8c178513d00c9c5592e9719e62684e7342c3ee5a5b4aed47a01a",
+    "lib/src/services.dart": "9af61e8b0d4eb6af0f8ba0224c76b62b3d3b734d429c8228e3fcd2622ce6e4b7",
+    "lib/src/concurrency.dart": "89b943cf6ef37071a163d1318219cea9d2910a2642a497dda1f54814101fc109",
+    "packages/effect_http/pubspec.yaml": "9eae1a8db53224bfdde0683a8e3bfd8bb9e16ec857ae41fab6ec719d1010200d",
+    "packages/effect_http/lib/effect_http.dart": "a9ee5360c64687a1e84ffc78faafb6b7cdad4305dde38d8f2e7a02890d78abec"
+  },
+  "published": true,
+  "consumer": {
+    "checks": [
+      {
+        "command": [
+          "dart",
+          "pub",
+          "get"
+        ],
+        "exit_code": 0
+      },
+      {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      {
+        "command": [
+          "dart",
+          "run",
+          "main.dart"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "hosted_only": true,
+    "dependency_overrides": false,
+    "directory_removed": true
+  },
+  "verified_at_utc": "2026-10-11T16:14:35.054642+00:00"
+}

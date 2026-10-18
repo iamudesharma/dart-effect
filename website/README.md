@@ -1,7 +1,7 @@
 # Effect Dart website
 
-Static documentation and progress website for the five Dart packages. The hosted site is public; preserve its current audience. It is an independent project inspired by Effect, not
-an official Effect-TS site. All five packages are published on pub.dev, with PostgreSQL at 0.0.2 and the others at 0.0.1.
+Static documentation and progress website for the six Dart packages. The hosted site is public; preserve its current audience. It is an independent project inspired by Effect, not
+an official Effect-TS site. All six packages are published on pub.dev: core and PostgreSQL at 0.0.2; SQL, MySQL, OpenAI and HTTP at 0.0.1.
 
 ## Build and preview
 

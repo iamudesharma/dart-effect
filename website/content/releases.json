@@ -1,11 +1,11 @@
 {
-  "verified_at_utc": "2026-10-09T02:47:16.262912+00:00",
+  "verified_at_utc": "2026-10-11T16:14:35.054642+00:00",
   "packages": {
     "effect_core": {
-      "version": "0.0.1",
+      "version": "0.0.2",
       "url": "https://pub.dev/packages/effect_core",
-      "published_at_utc": "2026-10-08T15:08:23.416288Z",
-      "archive_sha256": "9541ef371ce42040aba7938c0649905f91f2a100ba805bd7278ee70a145c73de"
+      "published_at_utc": "2026-10-11T16:09:52.524955Z",
+      "archive_sha256": "2e4324759cae555908a868a4924f49754f45c30ef70a49fdb0ce281a46a3bf26"
     },
     "effect_sql": {
       "version": "0.0.1",
@@ -32,18 +32,28 @@
       "url": "https://pub.dev/packages/effect_openai",
       "published_at_utc": "2026-10-08T15:09:20.473855Z",
       "archive_sha256": "2a7c1f2c621f22d3958a46cee6b9856248c539a25a0a664a29157ce303243bef"
+    },
+    "effect_http": {
+      "version": "0.0.1",
+      "url": "https://pub.dev/packages/effect_http",
+      "published_at_utc": "2026-10-11T16:13:19.819165Z",
+      "archive_sha256": "63af9599666527957c420f4d21eaba72273a162797721adacb7cbf540e9a426b"
     }
   },
   "source_sha256": {
-    "lib/effect_core.dart": "fddbf8053489731b5faa69a21444aecf990440faa2b899b606af4511fed6787c",
-    "lib/src/core.dart": "3b2ce4cf783ce8f0cd12b3f528852e4d8fe31ed2f7394af7c3019cb6bdc189dd",
+    "lib/effect_core.dart": "4b97a95a81271b432a0d96675b980883bf3ceb68f742f217505062b8dfa57cc2",
+    "lib/src/core.dart": "4e5e372512a101b6cad467fd9021442b6583cc7a792454c8e703502cd9532050",
     "lib/src/stream.dart": "fd18652226f16d09bd307fd9d6d954f32f854993cc0edf8ac2e36d885a945b97",
-    "lib/src/services.dart": "44d65387bdf3dcdd1d78d3795894883e8cc81acd6784f047638a38043b05b269",
+    "lib/src/services.dart": "9af61e8b0d4eb6af0f8ba0224c76b62b3d3b734d429c8228e3fcd2622ce6e4b7",
     "lib/src/concurrency.dart": "89b943cf6ef37071a163d1318219cea9d2910a2642a497dda1f54814101fc109",
     "packages/effect_sql/lib/effect_sql.dart": "de50d3b88d491a374c6f0927900bebc9f98c4ad3178c691fb355bdf3b9317689",
     "packages/effect_postgres/lib/effect_postgres.dart": "420be850327ea0d1c5feb52b950ba5593330c46ac22eb17b332255b054b7e8e1",
     "packages/effect_mysql/lib/effect_mysql.dart": "00d4c211c0937643c7ed81edcc3ab73a0d4116598d658ecf57f14090807e3b21",
-    "packages/effect_openai/lib/effect_openai.dart": "541e8da137e3e06ea4cd56bf561a290b6755b944608df7e06b4aa9f1eb126b31"
+    "packages/effect_openai/lib/effect_openai.dart": "541e8da137e3e06ea4cd56bf561a290b6755b944608df7e06b4aa9f1eb126b31",
+    "pubspec.yaml": "248020da4f92a01fa52199f81621097da3288e5d5a109c0602dc176f559971b2",
+    "lib/src/reliability.dart": "bea2170114df8c178513d00c9c5592e9719e62684e7342c3ee5a5b4aed47a01a",
+    "packages/effect_http/pubspec.yaml": "9eae1a8db53224bfdde0683a8e3bfd8bb9e16ec857ae41fab6ec719d1010200d",
+    "packages/effect_http/lib/effect_http.dart": "a9ee5360c64687a1e84ffc78faafb6b7cdad4305dde38d8f2e7a02890d78abec"
   },
   "historical_source_exceptions": {
     "packages/effect_postgres/lib/effect_postgres.dart": {
@@ -54,11 +64,12 @@
       "reason": "Documented 0.0.2 patch; runtime compared to published 0.0.1 and unchanged."
     },
     "packages/effect_openai/pubspec.lock": {
-      "current_sha256": "ef55d559bc62aafc4f4982912cab0d844df03f792b2f8e705b485797e1c69a2e",
+      "current_sha256": "74026646915220eb471f4b62c81706b8599cd3b84a474fdd315d266bceeae6a9",
       "previous_sha256": [
-        "318e568c393d0f2d2573e22c4c3aa8db8c13a4ff3fd6176b46b122d4f3f9e4f2"
+        "318e568c393d0f2d2573e22c4c3aa8db8c13a4ff3fd6176b46b122d4f3f9e4f2",
+        "ef55d559bc62aafc4f4982912cab0d844df03f792b2f8e705b485797e1c69a2e"
       ],
-      "reason": "Historical lockfile predates the core 0.0.1 hosted release; original evidence remains dated."
+      "reason": "Core 0.0.2 reliability release, verified by release-0.0.2-validation.json. Prior reports retain their recorded source revisions; older performance figures do not measure the new policies or tracing. Lockfile and manifest changes reflect the release version only."
     },
     "packages/effect_postgres/pubspec.yaml": {
       "current_sha256": "9a1b3af861db3fb76816021477187dee48d77284fe0dfbf6523715815433ba75",
@@ -73,6 +84,62 @@
         "c70d234a9af08ec76f0b1d7ae5e2f15c6e3a70493f840df8625df288fbc10f0a"
       ],
       "reason": "Development README appends the current core/SQL performance guide link on 10 October 2026. The published 0.0.2 README and dated hosted score evidence are unchanged; runtime sources still match the published archive. No package republished."
+    },
+    "packages/effect_postgres/pubspec.lock": {
+      "current_sha256": "62687b28cb0843d073528dc6bcb7fa11160ad25fea888a369b5837e440ea2c11",
+      "previous_sha256": [
+        "a96bd05448ce5cc80b100e93fe6262866caa128b2e1996f7df8342858475ecc5"
+      ],
+      "reason": "Core 0.0.2 reliability release, verified by release-0.0.2-validation.json. Prior reports retain their recorded source revisions; older performance figures do not measure the new policies or tracing. Lockfile and manifest changes reflect the release version only."
+    },
+    "packages/effect_mysql/pubspec.lock": {
+      "current_sha256": "8e13f96bb7944d3db42a94ce953b2ef6d3acdd1091ab607846ecb51feecd211d",
+      "previous_sha256": [
+        "efd8d4cb1593eab84cd29101109214f6591452faec5cb85a25ff611f8bf112a6"
+      ],
+      "reason": "Core 0.0.2 reliability release, verified by release-0.0.2-validation.json. Prior reports retain their recorded source revisions; older performance figures do not measure the new policies or tracing. Lockfile and manifest changes reflect the release version only."
+    },
+    "packages/effect_sql/pubspec.lock": {
+      "current_sha256": "41445febb0f73a0f5c716ebf5a5a7be45415327d0757b6b38742e9dcc1a2e12d",
+      "previous_sha256": [
+        "8d85f697b35e3ad02b06578b22a4e34bfb5c0ac4d56c72ffe4a48de6123058f2"
+      ],
+      "reason": "Core 0.0.2 reliability release, verified by release-0.0.2-validation.json. Prior reports retain their recorded source revisions; older performance figures do not measure the new policies or tracing. Lockfile and manifest changes reflect the release version only."
+    },
+    "lib/src/services.dart": {
+      "current_sha256": "9af61e8b0d4eb6af0f8ba0224c76b62b3d3b734d429c8228e3fcd2622ce6e4b7",
+      "previous_sha256": [
+        "44d65387bdf3dcdd1d78d3795894883e8cc81acd6784f047638a38043b05b269"
+      ],
+      "reason": "Core 0.0.2 reliability release, verified by release-0.0.2-validation.json. Prior reports retain their recorded source revisions; older performance figures do not measure the new policies or tracing. Lockfile and manifest changes reflect the release version only."
+    },
+    "lib/effect_core.dart": {
+      "current_sha256": "4b97a95a81271b432a0d96675b980883bf3ceb68f742f217505062b8dfa57cc2",
+      "previous_sha256": [
+        "fddbf8053489731b5faa69a21444aecf990440faa2b899b606af4511fed6787c"
+      ],
+      "reason": "Core 0.0.2 reliability release, verified by release-0.0.2-validation.json. Prior reports retain their recorded source revisions; older performance figures do not measure the new policies or tracing. Lockfile and manifest changes reflect the release version only."
+    },
+    "pubspec.yaml": {
+      "current_sha256": "248020da4f92a01fa52199f81621097da3288e5d5a109c0602dc176f559971b2",
+      "previous_sha256": [
+        "59e19a6a41857b54f2c17622b3190503eb632b24013df290bf98d36f00175272"
+      ],
+      "reason": "Core 0.0.2 reliability release, verified by release-0.0.2-validation.json. Prior reports retain their recorded source revisions; older performance figures do not measure the new policies or tracing. Lockfile and manifest changes reflect the release version only."
+    },
+    "packages/effect_http/pubspec.yaml": {
+      "current_sha256": "9eae1a8db53224bfdde0683a8e3bfd8bb9e16ec857ae41fab6ec719d1010200d",
+      "previous_sha256": [
+        "b1d47de3ef88111533213e8b85e6cee673d83d94000abc741df6062f660f2557"
+      ],
+      "reason": "Core 0.0.2 reliability release, verified by release-0.0.2-validation.json. Prior reports retain their recorded source revisions; older performance figures do not measure the new policies or tracing. Lockfile and manifest changes reflect the release version only."
+    },
+    "lib/src/core.dart": {
+      "current_sha256": "4e5e372512a101b6cad467fd9021442b6583cc7a792454c8e703502cd9532050",
+      "previous_sha256": [
+        "3b2ce4cf783ce8f0cd12b3f528852e4d8fe31ed2f7394af7c3019cb6bdc189dd"
+      ],
+      "reason": "Core 0.0.2 reliability release, verified by release-0.0.2-validation.json. Prior reports retain their recorded source revisions; older performance figures do not measure the new policies or tracing. Lockfile and manifest changes reflect the release version only."
     }
   }
 }

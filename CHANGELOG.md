@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.0.2
 
 Preserve worker cleanup diagnostics when timeout wins, including cancellation
 and timeout-factory defects. Add typed retry predicates, capped delays, server

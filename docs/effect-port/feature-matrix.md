@@ -95,10 +95,10 @@ performance guarantee. Mobile/core Flutter frame acceptance, large SQL result
 sets, HA/network partitions, version matrices and multi-hour production soak
 remain unrun. Production SQL acceptance stays in progress.
 
-## Unreleased reliability additions
+## Reliability APIs — core 0.0.2 and HTTP 0.0.1
 
 Timeout preserves worker cleanup diagnostics; runtime emits optional parent-linked
 lifecycle events and bounded metrics. CircuitBreaker and RateLimiter implement
 same-isolate admission policies. New optional effect_http provides abortable HTTP
 and bounded SSE. [Contracts and limits](reliability.md) distinguish this development
-implementation from current published packages and earlier performance evidence.
+release from separately dated performance evidence.

@@ -1,6 +1,6 @@
 name: effect_core
 description: Lazy typed Dart effects with structured concurrency, scoped resources and dependency provision.
-version: 0.0.1
+version: 0.0.2
 environment:
   sdk: '>=3.13.0 <4.0.0'
 dev_dependencies:

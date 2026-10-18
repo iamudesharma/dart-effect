@@ -1,9 +1,11 @@
 # Core and SQL performance, retention and bounded load
 
-Measured on 10 October 2026. These development tools benchmark the current
+Measured on 10 October 2026. These development tools benchmark the then-current
 `effect_core` 0.0.1, `effect_sql` 0.0.1, `effect_postgres` 0.0.2 and
 `effect_mysql` 0.0.1 runtime sources. Runtime source hashes identify the measured
-code. Versions are not changed and packages are not republished.
+code. No versions were changed during that measurement. Core 0.0.2 was released on
+11 October with reliability additions. These figures do not measure those new
+helpers or enabled tracing; the raw report retains its original source hashes.
 
 Effect provides typed outcomes, cancellation, scoped cleanup and bounded
 ownership with measurable cost. These results are not a claim that wrapping a

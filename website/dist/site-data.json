@@ -6,12 +6,25 @@
       "icon": "E",
       "text": "Lazy effects, typed failures and structured concurrency. The foundation for every service.",
       "platform": "VM + web",
-      "vm": 107,
-      "chrome": 107,
-      "version": "0.0.1",
+      "vm": 120,
+      "chrome": 120,
+      "version": "0.0.2",
       "url": "https://pub.dev/packages/effect_core",
-      "published_at_utc": "2026-10-08T15:08:23.416288Z",
-      "archive_sha256": "9541ef371ce42040aba7938c0649905f91f2a100ba805bd7278ee70a145c73de"
+      "published_at_utc": "2026-10-11T16:09:52.524955Z",
+      "archive_sha256": "2e4324759cae555908a868a4924f49754f45c30ef70a49fdb0ce281a46a3bf26"
+    },
+    {
+      "name": "effect_http",
+      "slug": "effect-http",
+      "icon": "HTTP",
+      "text": "Optional abortable HTTP and bounded SSE, with typed failures and explicit client ownership.",
+      "platform": "VM + web fixtures",
+      "vm": 10,
+      "chrome": 4,
+      "version": "0.0.1",
+      "url": "https://pub.dev/packages/effect_http",
+      "published_at_utc": "2026-10-11T16:13:19.819165Z",
+      "archive_sha256": "63af9599666527957c420f4d21eaba72273a162797721adacb7cbf540e9a426b"
     },
     {
       "name": "effect_sql",
@@ -233,11 +246,11 @@
     },
     {
       "id": "observability",
-      "title": "Optional metrics and tracing adapters",
+      "title": "Metrics and tracing exporters",
       "status": "proposed",
       "phase": "later",
       "area": "Observability",
-      "detail": "Expose useful service and fiber observations without adding runtime dependencies to core.",
+      "detail": "Build optional exporters on the released lifecycle hooks and bounded aggregate metrics. Keep transport dependencies outside core.",
       "dependency": "Select Dart observability interfaces and decide privacy, overhead and exporter boundaries.",
       "acceptance": "Verify successful/failed/interrupted spans, scoped exporter cleanup and measured overhead.",
       "proof": "/docs/features/"
@@ -252,11 +265,21 @@
       "dependency": "Define ownership and supported platform contracts; choose real device acceptance targets.",
       "acceptance": "Run native Flutter disposal journeys and isolate sendability/error propagation tests; record unsupported platforms.",
       "proof": "/docs/features/"
+    },
+    {
+      "id": "reliability-http",
+      "title": "Reliability policies and HTTP/SSE integration",
+      "status": "completed",
+      "area": "Core and HTTP",
+      "detail": "Core 0.0.2 retains timeout cleanup diagnostics and adds typed retries, capped/Retry-After schedules, independent jitter, elapsed budgets, lifecycle tracing/metrics, circuit breakers and admission spacing. Optional effect_http 0.0.1 provides abortable HTTP and bounded SSE. Verified by 230 VM and 184 Chrome checks; live browser cancellation and enabled-tracing performance remain open.",
+      "proof": "/docs/reliability/",
+      "phase": "delivered",
+      "updated_at": "2026-10-11"
     }
   ],
-  "vm_tests": 207,
-  "browser_tests": 167,
-  "recorded_at": "2026-10-10",
+  "vm_tests": 230,
+  "browser_tests": 184,
+  "recorded_at": "2026-10-11",
   "source_evidence_verified": true,
-  "releases_verified_at": "2026-10-09T02:47:16.262912+00:00"
+  "releases_verified_at": "2026-10-11T16:14:35.054642+00:00"
 }

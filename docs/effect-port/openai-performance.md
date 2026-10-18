@@ -5,6 +5,9 @@ openai_dart 10.0.1 and the local effect_openai 0.0.1 runtime sources. This packa
 adds lifecycle/error-handling capabilities; it is not a faster HTTP client.
 The previous core microbenchmarks do not prove OpenAI performance or memory safety.
 
+These measurements precede core 0.0.2. They do not establish performance of
+the new reliability helpers or enabled lifecycle tracing.
+
 ## Research and measurement choice
 
 Flutter's [performance guidance](https://docs.flutter.dev/perf/ui-performance)
