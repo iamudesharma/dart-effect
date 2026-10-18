@@ -110,3 +110,7 @@ Thirteen new development packages are separate from the existing hosted releases
 New managed-runtime, stream, queue, monotonic-time and HTTP APIs are not described
 as published. Advanced region stack safety, generated dependencies, OTLP, stream
 merge/time operators and vendor migration acceptance remain open.
+
+Cache follow-up: [value/resource cache contracts and acceptance](cache-validation.md)
+cover explicit idle maintenance, scoped refresh, immutable inspection and preserved
+cleanup diagnostics. This development package remains unpublished.

@@ -1,0 +1,618 @@
+{
+  "started_at_utc": "2026-10-18T13:04:44.435044+00:00",
+  "success": true,
+  "package": "effect_cache",
+  "version": "0.1.0-dev.1",
+  "publication": "unpublished; hosted-only consumption awaits compatible core release",
+  "suites": {
+    "resolve": {
+      "command": [
+        "dart",
+        "pub",
+        "get",
+        "--offline"
+      ],
+      "exit_code": 0
+    },
+    "format": {
+      "command": [
+        "dart",
+        "format",
+        "--output=none",
+        "--set-exit-if-changed",
+        "lib",
+        "test",
+        "example"
+      ],
+      "exit_code": 0
+    },
+    "analyze": {
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos"
+      ],
+      "exit_code": 0
+    },
+    "vm": {
+      "command": [
+        "dart",
+        "test",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 35,
+      "failed": 0,
+      "skipped": 0
+    },
+    "chrome": {
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "chrome",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 34,
+      "failed": 0,
+      "skipped": 0
+    },
+    "example": {
+      "command": [
+        "dart",
+        "run",
+        "example/main.dart"
+      ],
+      "exit_code": 0
+    },
+    "web_compile": {
+      "command": [
+        "dart",
+        "compile",
+        "js",
+        "example/main.dart",
+        "-o",
+        "/Volumes/AppleExpanded/Code/effect_dart/build/cache-validation/example.js"
+      ],
+      "exit_code": 0
+    },
+    "core_analyze": {
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos"
+      ],
+      "exit_code": 0
+    },
+    "core_vm": {
+      "command": [
+        "dart",
+        "test",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 131,
+      "failed": 0,
+      "skipped": 0
+    },
+    "fixtures": {
+      "command": [
+        "dart",
+        "run",
+        "tool/check_fixtures.dart"
+      ],
+      "exit_code": 0
+    }
+  },
+  "source_sha256": {
+    "lib/effect_core.dart": "2219dfe746f9d6e2e5116ce66b1a5d7a20b40edeb0afcf2e4bbf088ab6f3d76f",
+    "lib/src/concurrency.dart": "8f53cce75d47b3422d80ccc34c45fa8467b48091c356f59cb65e59d47d64c1bd",
+    "lib/src/core.dart": "faff73a644cb82348ed9fadefe975add81ff799c8d031528713212935ccaee6a",
+    "lib/src/ergonomics.dart": "89cba2271d2a7376eccbc08d106239883b6f5f33b9ffc758ab36c432205e12d1",
+    "lib/src/managed_runtime.dart": "b088764ca749b6719014d158f50052960c1b10892a512697e8810f758a0cdd2d",
+    "lib/src/reliability.dart": "59b396485c1fef3a975d57759bebaa76e1771f95479599c201c2cf6a5dfc0c40",
+    "lib/src/services.dart": "c2ea4e8ab4e958b6fd8c0de521f4b9ddbfad19abc8b0264078e20473d2b7bc87",
+    "lib/src/stream.dart": "011c3e5b7488d23fd696d0b9d5605affbada3bac26763beae098086e646f95f4",
+    "packages/effect_cache/CHANGELOG.md": "a159461fb68e921eac4b65f3a04a686c732ae6f4ebcacddbfbb41b3d50ff0f79",
+    "packages/effect_cache/README.md": "4dae91a2e9bbcea57f28b306340579e3de47288fc2ca1e082d46cb2504add177",
+    "packages/effect_cache/example/main.dart": "c010aa314fbab6de66fe7c38e410e665948407019cb877e8cc055da52af3f9fc",
+    "packages/effect_cache/lib/effect_cache.dart": "9a11f1e44d2fa741afe57a2a9882c7827621428cf45c38043545d8ae5112cc54",
+    "packages/effect_cache/pubspec.yaml": "734c8e9d4d9d372748b32fbd1c189c0a278b63fea44c5d1bda019dad9be50404",
+    "packages/effect_cache/test/cache_test.dart": "dfdc24fbbc61ca8c4901c8d3e51cda03fd321f921cf38d249cab7ce3e6676ba6",
+    "packages/effect_cache/test/contracts_test.dart": "02e39b80534b41f0d853565a9c08355c34af080a3433f8a3a117fcc87b3b70c7",
+    "packages/effect_cache/test/http_integration_test.dart": "8a146506ae7f77df05dae6eb7cbd932a2b5b11dc3b1490091b7823af48c41648",
+    "tool/cache_performance.dart": "e4ee094c9206f72a39c4f002f57bd7382d6d191c49030ce015c48d2022a69b7f",
+    "tool/cache_validation.py": "62c6308d402c31f0905aa5a7a185eb19750da5cdae4c542d83d575876804304a",
+    "tool/performance_memory.dart": "2d0856678f09d213dbfa2d73bf0235706e78f301b537a3c1420fd2f466cc94b4"
+  },
+  "jit": {
+    "recordedAtUtc": "2026-10-18T13:05:16.758655Z",
+    "dart": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+    "os": "macos",
+    "processors": 8,
+    "mode": "timing (run AOT separately)",
+    "scope": "Local synthetic microbenchmarks; direct Future/map baseline omits typed effects and lifecycle guarantees. No network speed or universal leak-freedom claim.",
+    "timing": {
+      "hit": {
+        "operationsPerSample": 2000,
+        "directFutureUs": [
+          1.244,
+          0.4345,
+          0.4285,
+          0.3515,
+          0.356,
+          0.3045,
+          0.351
+        ],
+        "effectCacheUs": [
+          27.799,
+          19.661,
+          16.741,
+          13.456,
+          12.6735,
+          11.7345,
+          12.4145
+        ],
+        "medianDirectUs": 0.356,
+        "medianCacheUs": 13.456,
+        "medianOverheadRatio": 37.79775280898876
+      },
+      "miss-churn": {
+        "operationsPerSample": 2000,
+        "directFutureUs": [
+          0.6305,
+          0.4975,
+          0.453,
+          0.4565,
+          0.455,
+          0.477,
+          0.4635
+        ],
+        "effectCacheUs": [
+          25.7715,
+          24.168,
+          21.585,
+          20.3025,
+          20.3225,
+          20.159,
+          20.7285
+        ],
+        "medianDirectUs": 0.4635,
+        "medianCacheUs": 20.7285,
+        "medianOverheadRatio": 44.72168284789644
+      }
+    }
+  },
+  "aot": {
+    "recordedAtUtc": "2026-10-18T13:05:21.130694Z",
+    "dart": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+    "os": "macos",
+    "processors": 8,
+    "mode": "timing (run AOT separately)",
+    "scope": "Local synthetic microbenchmarks; direct Future/map baseline omits typed effects and lifecycle guarantees. No network speed or universal leak-freedom claim.",
+    "timing": {
+      "hit": {
+        "operationsPerSample": 2000,
+        "directFutureUs": [
+          0.2935,
+          0.2835,
+          0.27,
+          0.2845,
+          0.303,
+          0.286,
+          0.307
+        ],
+        "effectCacheUs": [
+          9.342,
+          8.5025,
+          8.088,
+          8.234,
+          8.539,
+          8.177,
+          8.1865
+        ],
+        "medianDirectUs": 0.286,
+        "medianCacheUs": 8.234,
+        "medianOverheadRatio": 28.790209790209794
+      },
+      "miss-churn": {
+        "operationsPerSample": 2000,
+        "directFutureUs": [
+          0.3695,
+          0.4225,
+          0.424,
+          0.4225,
+          0.4175,
+          0.4215,
+          0.423
+        ],
+        "effectCacheUs": [
+          14.993,
+          16.5245,
+          17.891,
+          16.7705,
+          16.7135,
+          17.324,
+          16.634
+        ],
+        "medianDirectUs": 0.4225,
+        "medianCacheUs": 16.7135,
+        "medianOverheadRatio": 39.558579881656804
+      }
+    }
+  },
+  "memory": [
+    {
+      "recordedAtUtc": "2026-10-18T13:05:22.604695Z",
+      "dart": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+      "os": "macos",
+      "processors": 8,
+      "mode": "JIT VM-service",
+      "scope": "Local synthetic microbenchmarks; direct Future/map baseline omits typed effects and lifecycle guarantees. No network speed or universal leak-freedom claim.",
+      "memory": {
+        "snapshots": [
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11097072,
+              "heapCapacity": 52150272,
+              "externalUsage": 48
+            },
+            "gcTimestamp": "1792328723116",
+            "classes": {
+              "Scope:classes/1268": {
+                "name": "Scope",
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext:classes/1269": {
+                "name": "FiberContext",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1270": {
+                "name": "Fiber",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Runtime:classes/1273": {
+                "name": "Runtime",
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "rssBytes": 249085952
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11194272,
+              "heapCapacity": 43859968,
+              "externalUsage": 48
+            },
+            "gcTimestamp": "1792328723295",
+            "classes": {
+              "Scope:classes/1268": {
+                "name": "Scope",
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext:classes/1269": {
+                "name": "FiberContext",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1270": {
+                "name": "Fiber",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Runtime:classes/1273": {
+                "name": "Runtime",
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "rssBytes": 253526016
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11227360,
+              "heapCapacity": 41762816,
+              "externalUsage": 48
+            },
+            "gcTimestamp": "1792328723457",
+            "classes": {
+              "Scope:classes/1268": {
+                "name": "Scope",
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext:classes/1269": {
+                "name": "FiberContext",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1270": {
+                "name": "Fiber",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Runtime:classes/1273": {
+                "name": "Runtime",
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "rssBytes": 256163840
+          }
+        ],
+        "collectedWeakReferences": 39,
+        "heapUsedDeltaBytes": 130288,
+        "externalDeltaBytes": 0,
+        "note": "Requested and observed GC; RSS includes VM/JIT/profiler. Bounded reachability evidence, not universal leak freedom.",
+        "weakReferencesChecked": 39,
+        "cycles": 3,
+        "valueLoadsPerCycle": 1000,
+        "scopedAcquisitionsPerCycle": 200,
+        "payloadBytes": 65536,
+        "residentCapacity": 32
+      }
+    },
+    {
+      "recordedAtUtc": "2026-10-18T13:05:24.648597Z",
+      "dart": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+      "os": "macos",
+      "processors": 8,
+      "mode": "JIT VM-service",
+      "scope": "Local synthetic microbenchmarks; direct Future/map baseline omits typed effects and lifecycle guarantees. No network speed or universal leak-freedom claim.",
+      "memory": {
+        "snapshots": [
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11097536,
+              "heapCapacity": 52281344,
+              "externalUsage": 48
+            },
+            "gcTimestamp": "1792328725179",
+            "classes": {
+              "Scope:classes/1268": {
+                "name": "Scope",
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext:classes/1269": {
+                "name": "FiberContext",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1270": {
+                "name": "Fiber",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Runtime:classes/1273": {
+                "name": "Runtime",
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "rssBytes": 247775232
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11194736,
+              "heapCapacity": 43859968,
+              "externalUsage": 48
+            },
+            "gcTimestamp": "1792328725360",
+            "classes": {
+              "Scope:classes/1268": {
+                "name": "Scope",
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext:classes/1269": {
+                "name": "FiberContext",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1270": {
+                "name": "Fiber",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Runtime:classes/1273": {
+                "name": "Runtime",
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "rssBytes": 251166720
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11227824,
+              "heapCapacity": 41762816,
+              "externalUsage": 48
+            },
+            "gcTimestamp": "1792328725525",
+            "classes": {
+              "Scope:classes/1268": {
+                "name": "Scope",
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext:classes/1269": {
+                "name": "FiberContext",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1270": {
+                "name": "Fiber",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Runtime:classes/1273": {
+                "name": "Runtime",
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "rssBytes": 254869504
+          }
+        ],
+        "collectedWeakReferences": 39,
+        "heapUsedDeltaBytes": 130288,
+        "externalDeltaBytes": 0,
+        "note": "Requested and observed GC; RSS includes VM/JIT/profiler. Bounded reachability evidence, not universal leak freedom.",
+        "weakReferencesChecked": 39,
+        "cycles": 3,
+        "valueLoadsPerCycle": 1000,
+        "scopedAcquisitionsPerCycle": 200,
+        "payloadBytes": 65536,
+        "residentCapacity": 32
+      }
+    },
+    {
+      "recordedAtUtc": "2026-10-18T13:05:26.710656Z",
+      "dart": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+      "os": "macos",
+      "processors": 8,
+      "mode": "JIT VM-service",
+      "scope": "Local synthetic microbenchmarks; direct Future/map baseline omits typed effects and lifecycle guarantees. No network speed or universal leak-freedom claim.",
+      "memory": {
+        "snapshots": [
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11096752,
+              "heapCapacity": 52445184,
+              "externalUsage": 48
+            },
+            "gcTimestamp": "1792328727189",
+            "classes": {
+              "Scope:classes/1268": {
+                "name": "Scope",
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext:classes/1269": {
+                "name": "FiberContext",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1270": {
+                "name": "Fiber",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Runtime:classes/1273": {
+                "name": "Runtime",
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "rssBytes": 247873536
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11193952,
+              "heapCapacity": 43859968,
+              "externalUsage": 48
+            },
+            "gcTimestamp": "1792328727369",
+            "classes": {
+              "Scope:classes/1268": {
+                "name": "Scope",
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext:classes/1269": {
+                "name": "FiberContext",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1270": {
+                "name": "Fiber",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Runtime:classes/1273": {
+                "name": "Runtime",
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "rssBytes": 252985344
+          },
+          {
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11227040,
+              "heapCapacity": 41762816,
+              "externalUsage": 48
+            },
+            "gcTimestamp": "1792328727531",
+            "classes": {
+              "Scope:classes/1268": {
+                "name": "Scope",
+                "instances": 0,
+                "bytes": 0
+              },
+              "FiberContext:classes/1269": {
+                "name": "FiberContext",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1270": {
+                "name": "Fiber",
+                "instances": 0,
+                "bytes": 0
+              },
+              "Runtime:classes/1273": {
+                "name": "Runtime",
+                "instances": 0,
+                "bytes": 0
+              }
+            },
+            "rssBytes": 255623168
+          }
+        ],
+        "collectedWeakReferences": 39,
+        "heapUsedDeltaBytes": 130288,
+        "externalDeltaBytes": 0,
+        "note": "Requested and observed GC; RSS includes VM/JIT/profiler. Bounded reachability evidence, not universal leak freedom.",
+        "weakReferencesChecked": 39,
+        "cycles": 3,
+        "valueLoadsPerCycle": 1000,
+        "scopedAcquisitionsPerCycle": 200,
+        "payloadBytes": 65536,
+        "residentCapacity": 32
+      }
+    }
+  ],
+  "dry_run": {
+    "command": [
+      "dart",
+      "pub",
+      "publish",
+      "--dry-run"
+    ],
+    "exit_code": 0,
+    "warnings": 0,
+    "hints": 1,
+    "hint": "Development core path override; not a hosted-only consumer verification",
+    "archive_scope": "Isolated package copy; no ancestor core .pubignore; overrides/lockfile excluded by package .pubignore"
+  },
+  "finished_at_utc": "2026-10-18T13:05:29.639000+00:00"
+}

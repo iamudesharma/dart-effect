@@ -109,8 +109,8 @@
       "text": "Bounded LRU, single-flight loading and scoped borrower lifetimes.",
       "platform": "VM + web",
       "version": "0.1.0-dev.1",
-      "vm": 6,
-      "chrome": 6,
+      "vm": 35,
+      "chrome": 34,
       "unpublished": true
     },
     {
@@ -224,6 +224,11 @@
       "unpublished": true
     }
   ],
+  "cache_validation": {
+    "vm": 35,
+    "chrome": 34,
+    "unpublished": true
+  },
   "development_validation": {
     "packages_analyzed": 19,
     "vm_flutter_passed_without_duplicate_native_suites": 283,
@@ -471,6 +476,16 @@
       "dependency": "Separate product scope, architecture and transport/persistence contracts.",
       "acceptance": "Agree a focused proposal and measurable acceptance plan before starting implementation.",
       "proof": "/docs/application-toolkit/",
+      "updated_at": "2026-10-18"
+    },
+    {
+      "id": "cache-completion",
+      "title": "Cache lifecycle completion and dedicated acceptance",
+      "status": "completed",
+      "phase": "delivered",
+      "area": "Development cache",
+      "detail": "Value and scoped cache contracts, idle expiry/refresh, immutable inspection and preserved cleanup diagnostics. 35 VM / 34 Chrome checks, real HTTP fixture, AOT/JIT and post-GC evidence, isolated dry-run passed. Unpublished; compatible core release and hosted-only verification remain gates.",
+      "proof": "/docs/cache/",
       "updated_at": "2026-10-18"
     }
   ],

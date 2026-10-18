@@ -1,0 +1,35 @@
+name: Cache quality
+on:
+  pull_request:
+    paths:
+      - 'lib/**'
+      - 'test/**'
+      - 'packages/effect_cache/**'
+      - 'tool/cache_validation.py'
+      - 'tool/cache_performance.dart'
+      - 'tool/performance_memory.dart'
+      - '.github/workflows/cache-quality.yml'
+  push:
+    branches: [dart-effect]
+jobs:
+  cache-contracts-and-retention:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: '3.13.0'
+      - name: Resolve prerequisites
+        run: |
+          dart pub get
+          (cd packages/effect_cache && dart pub get)
+      - name: Contracts, examples, JIT/AOT and post-GC retention
+        run: python3 tool/cache_validation.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cache-validation
+          path: |
+            docs/effect-port/cache-validation.json
+            build/cache-validation/

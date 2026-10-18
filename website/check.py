@@ -61,3 +61,7 @@ assert data['development_validation']['vm_flutter_passed_without_duplicate_nativ
 assert data['development_validation']['chrome_passed']==226
 assert data['vm_tests']==230 and data['browser_tests']==184
 print('PASS: 6 released / 13 unpublished guides; installation examples and dated validation totals remain separate.')
+
+assert data['cache_validation']=={'vm':35, 'chrome':34, 'unpublished':True}
+assert next(p for p in development if p['name']=='effect_cache')['vm']==35
+print('PASS: cache follow-up uses its own evidence and remains unpublished.')

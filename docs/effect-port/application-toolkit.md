@@ -19,7 +19,7 @@ registry verification. No upstream/npm sources or credentials are committed.
 | --- | --- | --- |
 | effect_schema | Pure and Effect decoding, encoding, structural JSON Schema, nested issues, first/all modes, primitives/literals/lists/unions, recursive runtime models, refinements, defaults and renamed/optional object fields | Generated classes, dictionary combinators, recursive JSON Schema references, service-aware validators beyond flatMap composition |
 | effect_config | Immutable providers, missing/invalid separation, typed port/URI/duration/boolean/int, fallback/nesting, explicit redaction | Rich aggregate derivation and generated environment interfaces |
-| effect_cache | LRU capacity/TTL, single-flight loads, optional expected-failure TTL, refresh/invalidate/peek; scoped generations with borrower-held lifetimes | Idle-refresh schedules, specialized reusable pool/ScopedRef APIs |
+| effect_cache | LRU capacity/TTL, single-flight loads, optional expected-failure TTL, refresh/invalidate/peek; scoped generations with borrower-held lifetimes | Explicit expiry/refresh maintenance and cleanup diagnostics now validated in [cache acceptance](cache-validation.md); reusable pool/ScopedRef APIs remain separate work |
 | effect_batch | Tenant/auth grouping, identity deduplication, finite collection window, bounded pending work and batch size, one backend batch at a time | Adaptive/multi-backend scheduling and persistent cache integration |
 | effect_reactivity | Latest-value SubscriptionRef and typed graceful Channel completion/failure | Lossless state histories and framework-specific Riverpod/BLoC bindings |
 | effect_test | Automatic runtime teardown, typed Cause matcher, captured logs and bounded suspension/clock helpers | General heap leak detection and randomized schedulers |
@@ -136,3 +136,7 @@ reporting was corrected during audit and its two tests, three SQL-schema tests,
 example and root analysis reran afterward; source hashes and the follow-up are
 recorded in [application-toolkit-validation.json](application-toolkit-validation.json).
 GitHub CI also passed for implementation revision ffd5523: [portable-and-native run](https://github.com/iamudesharma/dart-effect/actions/runs/39127337766). This does not add live-provider or physical-device acceptance.
+
+## Cache follow-up
+
+The cache package now has dedicated end-to-end validation: 35 VM and 34 Chrome tests, a real HTTP fixture, deterministic state-model checks, JIT/AOT measurements, post-GC reachability and an isolated archive dry-run. See [cache evidence and release gates](cache-validation.md). The original toolkit totals above remain the initial snapshot, not fresh totals for this follow-up.

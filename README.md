@@ -178,7 +178,7 @@ safety proof; arbitrary deeply nested region wrappers do not.
 
 **Roadmap updated: 18 October 2026.** Six existing packages are published: `effect_core` and `effect_postgres` at `0.0.2`; `effect_sql`, `effect_mysql`, `effect_openai` and `effect_http` at `0.0.1`.
 
-**11 delivered milestones · 1 in progress · 5 planned · 1 awaiting input · 1 future proposals.**
+**12 delivered milestones · 1 in progress · 5 planned · 1 awaiting input · 1 future proposals.**
 
 Unpublished toolkit validation: 19 analyzers, 283 VM/Flutter tests and 226 Chrome tests. Thirteen new packages are 0.1.0-dev.1; core is 0.0.3-dev.1 and HTTP is 0.0.2-dev.1. These versions are not published. Historical release validation includes 230 VM and 184 browser tests, real PostgreSQL/MySQL acceptance, and separately dated two native live Responses smoke checks. Broader live AI, production database and native Flutter acceptance remain open.
 
@@ -203,6 +203,7 @@ Unpublished toolkit validation: 19 analyzers, 283 VM/Flutter tests and 226 Chrom
 | Delivered within scope | Thirteen application toolkit package foundations | Delivered |
 | Next priorities | Toolkit API breadth and release preparation | Planned |
 | Future proposals | RPC, workflows, clustering, CLI and GraphQL | Proposed |
+| Delivered within scope | Cache lifecycle completion and dedicated acceptance | Delivered |
 
 Next priorities are ordered above; production SQL acceptance is in progress. Trusted CA-chain and hostname checks passed for both drivers; recovery, network faults and soak remain open. Broader OpenAI acceptance needs an API-enabled test account. Future proposals need API design and scope agreement before implementation; they have no promised release version or date.
 
