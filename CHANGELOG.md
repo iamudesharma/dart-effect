@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.3-dev.1 — unpublished
+
+Add managed application runtime, selective composition/diagnostics, scoped acquisition,
+stream composition and bounded ordered concurrent mapping, graceful queues,
+PubSub replay/overflow, optional monotonic clock capability, and explicit
+infinite/input-controlled repeat policies. Initial optional application-toolkit
+packages are documented in docs/effect-port/application-toolkit.md.
+
 ## 0.0.2
 
 Preserve worker cleanup diagnostics when timeout wins, including cancellation

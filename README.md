@@ -262,3 +262,15 @@ lifecycle tracing/metrics, circuit breakers and rate limiting. An optional
 [`effect_http`](packages/effect_http/README.md) package provides HTTP/SSE support.
 See the [contracts and verification boundaries](docs/effect-port/reliability.md)
 and [`example/reliability.dart`](example/reliability.dart). The optional HTTP/SSE adapter is released as `effect_http 0.0.1`.
+
+## Development application toolkit
+
+Thirteen new **unpublished development packages** add schemas, configuration,
+cache/scoped cache, batching, observable state, testing, Flutter ownership, native
+configuration/isolate work, SQLite, SQL decoding/domain errors/migrations,
+provider-neutral AI, observability and a native HTTP server. Core 0.0.3-dev.1
+and HTTP 0.0.2-dev.1 contain the related development APIs.
+
+See [implemented contracts and remaining work](docs/effect-port/application-toolkit.md)
+for exact initial scope, package READMEs, validation and acceptance limits.
+The existing hosted core 0.0.2 and HTTP 0.0.1 releases are unchanged.

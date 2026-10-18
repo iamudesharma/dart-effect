@@ -1,0 +1,11 @@
+name: effect_test
+description: Portable application toolkit test support for typed Effect Dart services.
+version: 0.1.0-dev.1
+environment:
+  sdk: ">=3.13.0 <4.0.0"
+dependencies:
+  effect_core: ^0.0.3-dev.1
+  test: ^1.26.0
+dev_dependencies:
+  lints: ^6.0.0
+repository: https://github.com/iamudesharma/dart-effect

@@ -1,0 +1,14 @@
+name: effect_flutter
+description: Optional flutter integration for typed Effect Dart application services.
+version: 0.1.0-dev.1
+environment:
+  sdk: ">=3.13.0 <4.0.0"
+dependencies:
+  effect_core: ^0.0.3-dev.1
+  flutter:
+    sdk: flutter
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  lints: ^6.0.0
+repository: https://github.com/iamudesharma/dart-effect

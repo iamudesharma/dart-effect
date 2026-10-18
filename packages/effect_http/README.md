@@ -66,3 +66,9 @@ Validation: `dart analyze`, `dart test`, and
 `dart test -p chrome test/portable_test.dart`. VM integration fixtures use real
 loopback HTTP/SSE, including cancellation before headers and early stop. Browser
 fixtures prove portable parsing/outcomes, not live BrowserClient abort behavior.
+
+## Unpublished development additions
+
+Local 0.0.2-dev.1 adds HttpRequestSpec and bounded HttpFailure.responseBody /
+bodyTruncated. maxErrorBodyBytes defaults to 64 KiB. These diagnostics may contain
+private provider data and are never automatically logged. Hosted 0.0.1 is unchanged.

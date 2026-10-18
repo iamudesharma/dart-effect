@@ -289,3 +289,15 @@ and ran the new reliability and HTTP/SSE APIs. Release checks passed 230 VM
 and 184 Chrome tests, five type fixtures and nine core/database examples. See
 [publication evidence](publication-0.0.2.json) and [release validation](release-0.0.2-validation.json).
 Older performance measurements retain their original source revision and date.
+
+## 18 October 2026 — unpublished application toolkit
+
+Added thirteen initial development packages and core/HTTP improvements.
+Local checks cover 19 package analyzers, 283 VM/Flutter tests, 226 Chrome tests,
+five type fixtures and self-contained examples, with actual SQLite, HTTP server
+and isolated PostgreSQL/MySQL integration. See [inventory, contracts and remaining
+engineering](application-toolkit.md) and [validation](application-toolkit-validation.json).
+The full eighteen-area review is not complete: advanced runtime regions, generated
+dependency evidence, broader stream/schedule algebra, exporters and vendor
+acceptance remain open. RPC/workflow/cluster/CLI/GraphQL stay future proposals.
+No new package publication or website deployment was authorized or performed.

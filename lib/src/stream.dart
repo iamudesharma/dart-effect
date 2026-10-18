@@ -88,6 +88,39 @@ final class EffectStream<A, E, R> {
         );
       });
 
+  /// Open a fresh effectful pull cursor per consumption. The acquisition can
+  /// register resource cleanup in the consumption scope.
+  static EffectStream<A, E, R> fromPull<A, E, R>(
+    Effect<Effect<Pull<A>, E, R>, E, R> acquire,
+  ) => EffectStream._((ctx) async {
+    final opened = await ctx.evaluate(acquire);
+    if (opened is Failure<Effect<Pull<A>, E, R>, E>) {
+      return Failure(opened.cause);
+    }
+    final pull = (opened as Success<Effect<Pull<A>, E, R>, E>).value;
+    return Success(_Cursor((ctx) => ctx.evaluate(pull)));
+  });
+  static EffectStream<A, E, R> unfold<S, A, E, R>(
+    S Function() initial,
+    Effect<(A, S)?, E, R> Function(S) step,
+  ) => fromPull(
+    Effect.sync(() {
+      var state = initial();
+      var ended = false;
+      return Effect.defer<Pull<A>, E, R>(() {
+        if (ended) return Effect.succeed(const StreamEnd());
+        return step(state).map((next) {
+          if (next == null) {
+            ended = true;
+            return StreamEnd<A>();
+          }
+          state = next.$2;
+          return StreamValue(next.$1);
+        });
+      });
+    }),
+  );
+
   /// StreamIterator pauses between demands. A native source ignoring pause may
   /// buffer externally; the package cannot bound that source's internal memory.
   static EffectStream<A, E, R> fromNative<A, E, R>(
@@ -389,3 +422,124 @@ Cause<E> _restore<E>(Cause<Object?> cause) => switch (cause) {
 };
 Exit<A, E> _append<A, E>(Exit<A, E> body, Cause<E> cause) =>
     Failure(body is Failure<A, E> ? Sequential(body.cause, cause) : cause);
+
+extension StreamComposition<A, E, R> on EffectStream<A, E, R> {
+  EffectStream<B, E, R> flatMap<B>(EffectStream<B, E, R> Function(A) f) =>
+      EffectStream._((ctx) async {
+        final opened = await _open(ctx);
+        if (opened is Failure<_Cursor<A, E, R>, E>) {
+          return Failure(opened.cause);
+        }
+        final outer = (opened as Success<_Cursor<A, E, R>, E>).value;
+        _Cursor<B, E, R>? inner;
+        Scope? innerScope;
+        var skipped = 0;
+        Future<Cause<E>?> closeInner() async {
+          final current = inner, scope = innerScope;
+          inner = null;
+          innerScope = null;
+          final a = await current?.close();
+          final b = await scope?.close();
+          final c = b == null ? null : _restore<E>(b);
+          return a == null
+              ? c
+              : c == null
+              ? a
+              : Sequential(a, c);
+        }
+
+        return Success(
+          _Cursor<B, E, R>(
+            (ctx) async {
+              while (true) {
+                if (inner != null) {
+                  final pulled = await ctx.evaluate(inner!.pull());
+                  if (pulled is Failure<Pull<B>, E>) return pulled;
+                  if ((pulled as Success<Pull<B>, E>).value is! StreamEnd<B>) {
+                    return pulled;
+                  }
+                  final cleanup = await closeInner();
+                  if (cleanup != null) return Failure(cleanup);
+                }
+                if (++skipped % ctx.runtime.yieldEvery == 0) {
+                  await Future<void>.delayed(Duration.zero);
+                }
+                final next = await ctx.evaluate(outer.pull());
+                if (next is Failure<Pull<A>, E>) return Failure(next.cause);
+                final value = (next as Success<Pull<A>, E>).value;
+                if (value is StreamEnd<A>) return const Success(StreamEnd());
+                innerScope = Scope();
+                final opened = await f((value as StreamValue<A>).value)
+                    ._open(ctx.withScope(innerScope!));
+                if (opened is Failure<_Cursor<B, E, R>, E>) {
+                  return Failure(opened.cause);
+                }
+                inner = (opened as Success<_Cursor<B, E, R>, E>).value;
+              }
+            },
+            () async {
+              final a = await closeInner(), b = await outer.close();
+              return a == null
+                  ? b
+                  : b == null
+                  ? a
+                  : Sequential(a, b);
+            },
+          ),
+        );
+      });
+  EffectStream<A, E, R> concat(EffectStream<A, E, R> other) =>
+      EffectStream.fromIterable<EffectStream<A, E, R>, E, R>([this, other])
+          .flatMap((s) => s);
+  EffectStream<A, E, R> tap(Effect<Object?, E, R> Function(A) observe) =>
+      mapEffect((a) => observe(a).map((_) => a));
+  EffectStream<(int, A), E, R> indexed() => EffectStream._((ctx) async {
+    var index = 0;
+    return map((a) => (index++, a))._open(ctx);
+  });
+  EffectStream<B, E, R> scan<B>(B Function() initial, B Function(B, A) next) =>
+      EffectStream._((ctx) async {
+        var state = initial();
+        return map((a) => state = next(state, a))._open(ctx);
+      });
+  EffectStream<List<A>, E, R> grouped(int size) {
+    if (size < 1) throw ArgumentError.value(size);
+    return EffectStream._((ctx) async {
+      final opened = await _open(ctx);
+      if (opened is Failure<_Cursor<A, E, R>, E>) return Failure(opened.cause);
+      final source = (opened as Success<_Cursor<A, E, R>, E>).value;
+      return Success(
+        _Cursor((ctx) async {
+          final values = <A>[];
+          while (values.length < size) {
+            final next = await ctx.evaluate(source.pull());
+            if (next is Failure<Pull<A>, E>) return Failure(next.cause);
+            final value = (next as Success<Pull<A>, E>).value;
+            if (value is StreamEnd<A>) break;
+            values.add((value as StreamValue<A>).value);
+          }
+          return Success(
+            values.isEmpty
+                ? StreamEnd<List<A>>()
+                : StreamValue(List<A>.unmodifiable(values)),
+          );
+        }, source.close),
+      );
+    });
+  }
+
+  /// Bounded chunks are transformed concurrently. Results retain source order;
+  /// each chunk is fully joined before pulling the next, so retention is bounded.
+  EffectStream<B, E, R> mapEffectConcurrent<B>(
+    Effect<B, E, R> Function(A) f, {
+    required int concurrency,
+  }) {
+    if (concurrency < 1) throw ArgumentError.value(concurrency);
+    return grouped(concurrency)
+        .mapEffect(
+          (items) =>
+              Effect.traverse<A, B, E, R>(items, f, concurrency: concurrency),
+        )
+        .flatMap((items) => EffectStream.fromIterable<B, E, R>(items));
+  }
+}
