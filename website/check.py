@@ -44,3 +44,20 @@ for file,d in documents.items():
         assert target.is_file(),(file,link,target)
         if parts.fragment and target.suffix=='.html':assert unquote(parts.fragment) in documents[target].ids,(file,link)
 print(f'PASS: {len(files)} pages; internal routes, assets, anchors, search JSON, one h1 and script syntax.')
+
+# Release and development inventories must never collapse into one registry claim.
+data=json.loads((ROOT/'site-data.json').read_text())
+released=[p for p in data['packages'] if not p.get('unpublished')]
+development=[p for p in data['packages'] if p.get('unpublished')]
+assert len(released)==6 and len(development)==13
+assert all(p['url'].startswith('https://pub.dev/packages/') for p in released)
+assert all('url' not in p and p['version']=='0.1.0-dev.1' for p in development)
+for p in development:
+    text=(ROOT/'packages'/p['slug']/'index.html').read_text()
+    assert 'Unpublished · 0.1.0-dev.1' in text
+    assert 'path: /path/to/effect_dart/packages/'+p['name'] in text and '<pre><code>' in text
+assert data['development_validation']['packages_analyzed']==19
+assert data['development_validation']['vm_flutter_passed_without_duplicate_native_suites']==283
+assert data['development_validation']['chrome_passed']==226
+assert data['vm_tests']==230 and data['browser_tests']==184
+print('PASS: 6 released / 13 unpublished guides; installation examples and dated validation totals remain separate.')

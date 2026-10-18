@@ -135,4 +135,4 @@ chain checks retain their separately dated record. SQLite stale row-count/ID
 reporting was corrected during audit and its two tests, three SQL-schema tests,
 example and root analysis reran afterward; source hashes and the follow-up are
 recorded in [application-toolkit-validation.json](application-toolkit-validation.json).
-GitHub CI has configuration, but its remote execution is not yet verified.
+GitHub CI also passed for implementation revision ffd5523: [portable-and-native run](https://github.com/iamudesharma/dart-effect/actions/runs/39127337766). This does not add live-provider or physical-device acceptance.
