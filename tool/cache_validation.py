@@ -52,7 +52,10 @@ def main():
             ('chrome',['dart','test','-p','chrome','-r','json'],PACKAGE,True),
             ('example',['dart','run','example/main.dart'],PACKAGE,False),
             ('web_compile',['dart','compile','js','example/main.dart','-o',str(BUILD/'example.js')],PACKAGE,False),
-            ('core_analyze',['dart','analyze','--fatal-infos'],ROOT,False),
+            ('core_analyze',['dart','analyze','--fatal-infos','lib'],ROOT,False),
+            ('core_tests_analyze',['dart','analyze','--fatal-infos','test'],ROOT,False),
+            ('core_examples_analyze',['dart','analyze','--fatal-infos','example'],ROOT,False),
+            ('profile_analyze',['dart','analyze','--fatal-infos','tool/cache_performance.dart'],ROOT,False),
             ('core_vm',['dart','test','-r','json'],ROOT,True),
             ('fixtures',['dart','run','tool/check_fixtures.dart'],ROOT,False)]:
             report['suites'][name]=run(name,args,cwd,tests)[0]
