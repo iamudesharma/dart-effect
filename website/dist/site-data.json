@@ -224,7 +224,21 @@
       "unpublished": true
     }
   ],
-  "development_validation": "11 delivered \u00b7 1 in progress \u00b7 5 planned \u00b7 1 awaiting input \u00b7 1 proposed",
+  "development_validation": {
+    "packages_analyzed": 19,
+    "vm_flutter_passed_without_duplicate_native_suites": 283,
+    "chrome_passed": 226,
+    "negative_tls_chain_tests": "not rerun; separately dated acceptance",
+    "core_examples": [
+      "example/bounded.dart",
+      "example/reliability.dart",
+      "example/resources.dart",
+      "example/retry.dart",
+      "example/services.dart",
+      "example/stream.dart",
+      "example/web.dart"
+    ]
+  },
   "release_revision": "ce088f3aad6d215b3c992a8009b1d9bfdaea6ddb",
   "goals": [
     {
