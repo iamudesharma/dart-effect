@@ -74,10 +74,10 @@ failure, root lifetime or interruption semantics.
 
 | Workload | JIT cache / direct median | AOT cache / direct median |
 | --- | --- | --- |
-| Cached read | 13.456 / 0.356 µs | 8.234 / 0.286 µs |
-| Miss with bounded churn | 20.729 / 0.464 µs | 16.713 / 0.4225 µs |
+| Cached read | 15.3245 / 0.405 µs | 11.0965 / 0.3535 µs |
+| Miss with bounded churn | 20.477 / 0.455 µs | 26.4675 / 0.6075 µs |
 
-There is real overhead: around 29× the tiny direct baseline for AOT hits in this
+There is real overhead: around 31× the tiny direct baseline for AOT hits in this
 run. The cache's benefit is avoiding backend work and controlling ownership;
 its wrapper does not make a single map lookup or network request faster. The
 HTTP test demonstrates thirty reads reduced to one backend lookup. Results
@@ -93,7 +93,7 @@ Each cycle loaded 1,000 values of 64 KiB with capacity 32 and acquired/released
 All **117/117 tracked weak references** to closed caches, runtimes and sampled
 payloads were collected after requested and observed GC. Each checkpoint had
 zero retained runtime Fiber/FiberContext/Scope instances. Live positive controls
-remained reachable. Each process's final-minus-first heap use grew 130,288 bytes;
+remained reachable. The processes' final-minus-first heap use grew 131,568, 131,632 and 130,416 bytes;
 external heap growth was zero. RSS includes VM/JIT/profiler allocations and is
 recorded in the JSON, not treated as a leak verdict. This is bounded reachability
 evidence, not universal leak freedom or a multi-hour production soak.
@@ -111,7 +111,7 @@ regression, examples, JIT/AOT comparisons, three fresh memory processes and a
 standalone archive dry-run. Logs live under ignored `build/cache-validation/`.
 The public record is [cache-validation.json](cache-validation.json); it does not
 rewrite older toolkit, release or benchmark evidence. CI runs the same command.
-Remote CI status is separate from this recorded local success.
+[The Linux cache CI run](https://github.com/iamudesharma/dart-effect/actions/runs/39130503110) passed for revision `44e8ae9`, including VM/Chrome, examples, core regression, JIT/AOT, three post-GC processes and the isolated dry-run. Its platform measurements remain separate from the macOS record above.
 
 The isolated `dart pub publish --dry-run` passed with **zero warnings and one
 hint**, for the required development core override. Isolation matters: the core

@@ -1,5 +1,5 @@
 {
-  "started_at_utc": "2026-10-18T13:04:44.435044+00:00",
+  "started_at_utc": "2026-10-18T13:12:04.995579+00:00",
   "success": true,
   "package": "effect_cache",
   "version": "0.1.0-dev.1",
@@ -83,7 +83,35 @@
       "command": [
         "dart",
         "analyze",
-        "--fatal-infos"
+        "--fatal-infos",
+        "lib"
+      ],
+      "exit_code": 0
+    },
+    "core_tests_analyze": {
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "test"
+      ],
+      "exit_code": 0
+    },
+    "core_examples_analyze": {
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "example"
+      ],
+      "exit_code": 0
+    },
+    "profile_analyze": {
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "tool/cache_performance.dart"
       ],
       "exit_code": 0
     },
@@ -126,11 +154,11 @@
     "packages/effect_cache/test/contracts_test.dart": "02e39b80534b41f0d853565a9c08355c34af080a3433f8a3a117fcc87b3b70c7",
     "packages/effect_cache/test/http_integration_test.dart": "8a146506ae7f77df05dae6eb7cbd932a2b5b11dc3b1490091b7823af48c41648",
     "tool/cache_performance.dart": "e4ee094c9206f72a39c4f002f57bd7382d6d191c49030ce015c48d2022a69b7f",
-    "tool/cache_validation.py": "62c6308d402c31f0905aa5a7a185eb19750da5cdae4c542d83d575876804304a",
+    "tool/cache_validation.py": "5cb8f7f4ad7d20771850f7c414b6adc6ff492fc563fb39528fc99e8f88b68c04",
     "tool/performance_memory.dart": "2d0856678f09d213dbfa2d73bf0235706e78f301b537a3c1420fd2f466cc94b4"
   },
   "jit": {
-    "recordedAtUtc": "2026-10-18T13:05:16.758655Z",
+    "recordedAtUtc": "2026-10-18T13:12:49.442859Z",
     "dart": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
     "os": "macos",
     "processors": 8,
@@ -140,55 +168,55 @@
       "hit": {
         "operationsPerSample": 2000,
         "directFutureUs": [
-          1.244,
-          0.4345,
-          0.4285,
-          0.3515,
-          0.356,
-          0.3045,
-          0.351
+          1.983,
+          0.519,
+          0.499,
+          0.3965,
+          0.405,
+          0.3795,
+          0.395
         ],
         "effectCacheUs": [
-          27.799,
-          19.661,
-          16.741,
-          13.456,
-          12.6735,
-          11.7345,
-          12.4145
+          33.346,
+          22.569,
+          19.5615,
+          15.3245,
+          14.8905,
+          14.2645,
+          13.5815
         ],
-        "medianDirectUs": 0.356,
-        "medianCacheUs": 13.456,
-        "medianOverheadRatio": 37.79775280898876
+        "medianDirectUs": 0.405,
+        "medianCacheUs": 15.3245,
+        "medianOverheadRatio": 37.83827160493827
       },
       "miss-churn": {
         "operationsPerSample": 2000,
         "directFutureUs": [
-          0.6305,
-          0.4975,
-          0.453,
-          0.4565,
+          0.679,
+          0.5395,
+          0.422,
           0.455,
-          0.477,
-          0.4635
+          0.458,
+          0.4515,
+          0.452
         ],
         "effectCacheUs": [
-          25.7715,
-          24.168,
-          21.585,
-          20.3025,
-          20.3225,
-          20.159,
-          20.7285
+          26.079,
+          24.7805,
+          21.671,
+          20.4675,
+          20.477,
+          20.0695,
+          20.181
         ],
-        "medianDirectUs": 0.4635,
-        "medianCacheUs": 20.7285,
-        "medianOverheadRatio": 44.72168284789644
+        "medianDirectUs": 0.455,
+        "medianCacheUs": 20.477,
+        "medianOverheadRatio": 45.004395604395604
       }
     }
   },
   "aot": {
-    "recordedAtUtc": "2026-10-18T13:05:21.130694Z",
+    "recordedAtUtc": "2026-10-18T13:12:54.259165Z",
     "dart": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
     "os": "macos",
     "processors": 8,
@@ -198,56 +226,56 @@
       "hit": {
         "operationsPerSample": 2000,
         "directFutureUs": [
-          0.2935,
-          0.2835,
-          0.27,
-          0.2845,
-          0.303,
-          0.286,
-          0.307
+          0.3505,
+          0.367,
+          0.3535,
+          0.3485,
+          0.4545,
+          0.3185,
+          0.3635
         ],
         "effectCacheUs": [
-          9.342,
-          8.5025,
-          8.088,
-          8.234,
-          8.539,
-          8.177,
-          8.1865
+          10.1455,
+          10.842,
+          10.7795,
+          12.724,
+          11.858,
+          11.8485,
+          11.0965
         ],
-        "medianDirectUs": 0.286,
-        "medianCacheUs": 8.234,
-        "medianOverheadRatio": 28.790209790209794
+        "medianDirectUs": 0.3535,
+        "medianCacheUs": 11.0965,
+        "medianOverheadRatio": 31.390381895332393
       },
       "miss-churn": {
         "operationsPerSample": 2000,
         "directFutureUs": [
-          0.3695,
-          0.4225,
-          0.424,
-          0.4225,
-          0.4175,
-          0.4215,
-          0.423
+          0.4945,
+          0.5135,
+          0.6595,
+          0.6075,
+          0.6355,
+          0.5075,
+          0.6445
         ],
         "effectCacheUs": [
-          14.993,
-          16.5245,
-          17.891,
-          16.7705,
-          16.7135,
-          17.324,
-          16.634
+          22.0365,
+          24.632,
+          28.051,
+          24.1165,
+          26.4675,
+          27.3255,
+          32.3485
         ],
-        "medianDirectUs": 0.4225,
-        "medianCacheUs": 16.7135,
-        "medianOverheadRatio": 39.558579881656804
+        "medianDirectUs": 0.6075,
+        "medianCacheUs": 26.4675,
+        "medianOverheadRatio": 43.5679012345679
       }
     }
   },
   "memory": [
     {
-      "recordedAtUtc": "2026-10-18T13:05:22.604695Z",
+      "recordedAtUtc": "2026-10-18T13:12:56.778208Z",
       "dart": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
       "os": "macos",
       "processors": 8,
@@ -258,11 +286,11 @@
           {
             "heap": {
               "type": "MemoryUsage",
-              "heapUsage": 11097072,
-              "heapCapacity": 52150272,
+              "heapUsage": 11097312,
+              "heapCapacity": 51200000,
               "externalUsage": 48
             },
-            "gcTimestamp": "1792328723116",
+            "gcTimestamp": "1792329177697",
             "classes": {
               "Scope:classes/1268": {
                 "name": "Scope",
@@ -285,16 +313,16 @@
                 "bytes": 0
               }
             },
-            "rssBytes": 249085952
+            "rssBytes": 244383744
           },
           {
             "heap": {
               "type": "MemoryUsage",
-              "heapUsage": 11194272,
+              "heapUsage": 11195792,
               "heapCapacity": 43859968,
               "externalUsage": 48
             },
-            "gcTimestamp": "1792328723295",
+            "gcTimestamp": "1792329177996",
             "classes": {
               "Scope:classes/1268": {
                 "name": "Scope",
@@ -317,16 +345,16 @@
                 "bytes": 0
               }
             },
-            "rssBytes": 253526016
+            "rssBytes": 249593856
           },
           {
             "heap": {
               "type": "MemoryUsage",
-              "heapUsage": 11227360,
-              "heapCapacity": 41762816,
+              "heapUsage": 11228880,
+              "heapCapacity": 42418176,
               "externalUsage": 48
             },
-            "gcTimestamp": "1792328723457",
+            "gcTimestamp": "1792329178257",
             "classes": {
               "Scope:classes/1268": {
                 "name": "Scope",
@@ -349,11 +377,11 @@
                 "bytes": 0
               }
             },
-            "rssBytes": 256163840
+            "rssBytes": 252837888
           }
         ],
         "collectedWeakReferences": 39,
-        "heapUsedDeltaBytes": 130288,
+        "heapUsedDeltaBytes": 131568,
         "externalDeltaBytes": 0,
         "note": "Requested and observed GC; RSS includes VM/JIT/profiler. Bounded reachability evidence, not universal leak freedom.",
         "weakReferencesChecked": 39,
@@ -365,7 +393,7 @@
       }
     },
     {
-      "recordedAtUtc": "2026-10-18T13:05:24.648597Z",
+      "recordedAtUtc": "2026-10-18T13:13:00.147457Z",
       "dart": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
       "os": "macos",
       "processors": 8,
@@ -376,11 +404,11 @@
           {
             "heap": {
               "type": "MemoryUsage",
-              "heapUsage": 11097536,
-              "heapCapacity": 52281344,
+              "heapUsage": 11098288,
+              "heapCapacity": 52133888,
               "externalUsage": 48
             },
-            "gcTimestamp": "1792328725179",
+            "gcTimestamp": "1792329181006",
             "classes": {
               "Scope:classes/1268": {
                 "name": "Scope",
@@ -403,16 +431,16 @@
                 "bytes": 0
               }
             },
-            "rssBytes": 247775232
+            "rssBytes": 244203520
           },
           {
             "heap": {
               "type": "MemoryUsage",
-              "heapUsage": 11194736,
-              "heapCapacity": 43859968,
+              "heapUsage": 11196768,
+              "heapCapacity": 44384256,
               "externalUsage": 48
             },
-            "gcTimestamp": "1792328725360",
+            "gcTimestamp": "1792329181351",
             "classes": {
               "Scope:classes/1268": {
                 "name": "Scope",
@@ -435,16 +463,16 @@
                 "bytes": 0
               }
             },
-            "rssBytes": 251166720
+            "rssBytes": 244465664
           },
           {
             "heap": {
               "type": "MemoryUsage",
-              "heapUsage": 11227824,
+              "heapUsage": 11229920,
               "heapCapacity": 41762816,
               "externalUsage": 48
             },
-            "gcTimestamp": "1792328725525",
+            "gcTimestamp": "1792329181608",
             "classes": {
               "Scope:classes/1268": {
                 "name": "Scope",
@@ -467,11 +495,11 @@
                 "bytes": 0
               }
             },
-            "rssBytes": 254869504
+            "rssBytes": 244695040
           }
         ],
         "collectedWeakReferences": 39,
-        "heapUsedDeltaBytes": 130288,
+        "heapUsedDeltaBytes": 131632,
         "externalDeltaBytes": 0,
         "note": "Requested and observed GC; RSS includes VM/JIT/profiler. Bounded reachability evidence, not universal leak freedom.",
         "weakReferencesChecked": 39,
@@ -483,7 +511,7 @@
       }
     },
     {
-      "recordedAtUtc": "2026-10-18T13:05:26.710656Z",
+      "recordedAtUtc": "2026-10-18T13:13:03.333041Z",
       "dart": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
       "os": "macos",
       "processors": 8,
@@ -494,11 +522,11 @@
           {
             "heap": {
               "type": "MemoryUsage",
-              "heapUsage": 11096752,
-              "heapCapacity": 52445184,
+              "heapUsage": 11097776,
+              "heapCapacity": 51511296,
               "externalUsage": 48
             },
-            "gcTimestamp": "1792328727189",
+            "gcTimestamp": "1792329184062",
             "classes": {
               "Scope:classes/1268": {
                 "name": "Scope",
@@ -521,16 +549,16 @@
                 "bytes": 0
               }
             },
-            "rssBytes": 247873536
+            "rssBytes": 248610816
           },
           {
             "heap": {
               "type": "MemoryUsage",
-              "heapUsage": 11193952,
+              "heapUsage": 11195104,
               "heapCapacity": 43859968,
               "externalUsage": 48
             },
-            "gcTimestamp": "1792328727369",
+            "gcTimestamp": "1792329184333",
             "classes": {
               "Scope:classes/1268": {
                 "name": "Scope",
@@ -553,16 +581,16 @@
                 "bytes": 0
               }
             },
-            "rssBytes": 252985344
+            "rssBytes": 255606784
           },
           {
             "heap": {
               "type": "MemoryUsage",
-              "heapUsage": 11227040,
+              "heapUsage": 11228192,
               "heapCapacity": 41762816,
               "externalUsage": 48
             },
-            "gcTimestamp": "1792328727531",
+            "gcTimestamp": "1792329184566",
             "classes": {
               "Scope:classes/1268": {
                 "name": "Scope",
@@ -585,11 +613,11 @@
                 "bytes": 0
               }
             },
-            "rssBytes": 255623168
+            "rssBytes": 257998848
           }
         ],
         "collectedWeakReferences": 39,
-        "heapUsedDeltaBytes": 130288,
+        "heapUsedDeltaBytes": 130416,
         "externalDeltaBytes": 0,
         "note": "Requested and observed GC; RSS includes VM/JIT/profiler. Bounded reachability evidence, not universal leak freedom.",
         "weakReferencesChecked": 39,
@@ -614,5 +642,13 @@
     "hint": "Development core path override; not a hosted-only consumer verification",
     "archive_scope": "Isolated package copy; no ancestor core .pubignore; overrides/lockfile excluded by package .pubignore"
   },
-  "finished_at_utc": "2026-10-18T13:05:29.639000+00:00"
+  "finished_at_utc": "2026-10-18T13:13:06.439451+00:00",
+  "remote_ci": {
+    "url": "https://github.com/iamudesharma/dart-effect/actions/runs/39130503110",
+    "job": "cache-contracts-and-retention",
+    "head_sha": "44e8ae91af6d90422e1236b4e41b8507ea3e8b99",
+    "conclusion": "success",
+    "completed_at_utc": "2026-10-18T13:13:12Z",
+    "verified_at_utc": "2026-10-18T13:14:13.888274+00:00"
+  }
 }
