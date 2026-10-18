@@ -26,13 +26,13 @@ Pinned evidence is indexed in `references/effect/INDEX.md`. Effect is independen
 | retry/repeat/Schedule | Implemented finite subset | typed predicates, caps/Retry-After, independent/seeded jitter, elapsed budgets; deterministic cancellation; excludes defects/composites |
 | logging | Implemented minimal subset | injected sink, immutable fields/timestamp; optional runtime lifecycle tracing and aggregate metrics |
 | TestClock | Implemented | manual advancement/cancellation; caller waits for sleeper registration |
-| Flutter application integration | Unsupported in this repository | workspace had no application; standalone core only |
+| Flutter application integration | Initial unpublished effect_flutter controller and widget binding | Flutter tests; physical mobile application acceptance remains open |
 | Ref/Deferred/Semaphore/SynchronizedRef/bounded Queue/PubSub | Implemented foundational subset | 34 concurrency tests; seeded model, FIFO, rendezvous, withdrawal, permit restoration, atomic fan-out |
 | EffectStream/Sink | Implemented foundational subset | 26 stream tests; lazy pull, native pause/cancel, resource release, bounded read-ahead, early exit |
-| Configuration/cache/schema | Unimplemented next foundation milestone | no stubs advertised as working features |
-| Flutter/platform/isolate adapters | Unimplemented platform milestone | same-isolate core only |
+| Configuration/cache/schema | Initial unpublished development packages | effect_config/effect_cache/effect_schema; see application toolkit contracts |
+| Flutter/platform/isolate adapters | Initial unpublished optional packages | effect_platform one-shot native workers; core fibers remain same-isolate |
 | PostgreSQL/MySQL SQL adapters | Implemented initial query/transaction subset | optional native packages using postgres/mysql_client_plus; real isolated database tests |
-| RPC/workflow/cluster/CLI/AI and other SQL drivers | Outside current user scope | historical inventory retained; no package-for-package port planned |
+| RPC/workflow/cluster/CLI/GraphQL | Future product directions | user kept these on the roadmap; no package-for-package Node port |
 
 The VM and Chrome suites both exercise portable core behavior. JavaScript smoke
 compilation passes. Native Flutter/device/isolate behavior has not been tested.
@@ -102,3 +102,15 @@ lifecycle events and bounded metrics. CircuitBreaker and RateLimiter implement
 same-isolate admission policies. New optional effect_http provides abortable HTTP
 and bounded SSE. [Contracts and limits](reliability.md) distinguish this development
 release from separately dated performance evidence.
+
+## Unpublished application toolkit
+
+See [package inventory, implemented subsets and remaining work](application-toolkit.md).
+Thirteen new development packages are separate from the existing hosted releases.
+New managed-runtime, stream, queue, monotonic-time and HTTP APIs are not described
+as published. Advanced region stack safety, generated dependencies, OTLP, stream
+merge/time operators and vendor migration acceptance remain open.
+
+Cache follow-up: [value/resource cache contracts and acceptance](cache-validation.md)
+cover explicit idle maintenance, scoped refresh, immutable inspection and preserved
+cleanup diagnostics. This development package remains unpublished.

@@ -181,7 +181,7 @@ final class _Offer<A> extends _QueueWaiter<bool> {
 }
 
 /// FIFO bounded channel; capacity zero rendezvous is supported. Shutdown drops
-/// buffered items and wakes both producers and consumers. No graceful end alias.
+/// buffered items and wakes both producers and consumers. complete drains accepted items.
 final class BoundedQueue<A> {
   BoundedQueue(this.capacity) {
     if (capacity < 0) throw ArgumentError.value(capacity, 'capacity');
@@ -192,13 +192,18 @@ final class BoundedQueue<A> {
   final _takes = Queue<_QueueWaiter<A>>();
   final _shutdown = Completer<void>();
   void Function()? _onChange;
+  bool _completed = false;
+  bool get isCompleted => _completed;
   bool get isShutdown => _shutdown.isCompleted;
   int get size => _items.length;
   int get waitingProducers => _offers.length;
   int get waitingConsumers => _takes.length;
   Future<void> get whenShutdown => _shutdown.future;
   bool get _canOffer =>
-      !isShutdown && _offers.isEmpty && (_takes.isNotEmpty || size < capacity);
+      !isShutdown &&
+      !_completed &&
+      _offers.isEmpty &&
+      (_takes.isNotEmpty || size < capacity);
   void _drain() {
     if (isShutdown) return;
     while (true) {
@@ -216,8 +221,33 @@ final class BoundedQueue<A> {
         break;
       }
     }
+    if (_completed && _items.isEmpty && _offers.isEmpty) {
+      while (_takes.isNotEmpty) {
+        _takes.removeFirst().finish(const Failure(Expected(QueueClosed())));
+      }
+    }
     _onChange?.call();
   }
+
+  /// Stop accepting offers; accepted buffered values remain drainable.
+  /// Suspended offers have not been accepted and are rejected.
+  void complete() {
+    if (isShutdown || _completed) return;
+    _completed = true;
+    while (_offers.isNotEmpty) {
+      _offers.removeFirst().finish(const Failure(Expected(QueueClosed())));
+    }
+    _drain();
+  }
+
+  /// Null indicates graceful end. Destructive shutdown remains a typed failure.
+  Effect<(A,)?, QueueClosed, R> takeOption<R>() => take<R>()
+      .map<(A,)?>((a) => (a,))
+      .catchAll(
+        (e) => _completed && !isShutdown && _items.isEmpty
+            ? Effect.succeed(null)
+            : Effect.fail(e),
+      );
 
   /// Nonblocking acceptance. False means full or shut down; no message is stored.
   bool tryOffer(A value) {
@@ -239,23 +269,26 @@ final class BoundedQueue<A> {
     return (value,);
   }
 
-  Effect<bool, QueueClosed, R> offer<R>(A value) =>
-      Effect.asyncExit((ctx) async {
-        if (isShutdown) return const Failure(Expected(QueueClosed()));
-        if (ctx.token.isCancelled) return const Failure(Interrupted());
-        final waiter = _Offer(value);
-        _offers.add(waiter);
-        waiter.detach = ctx.token.onCancel(() {
-          if (_offers.remove(waiter)) {
-            waiter.finish(const Failure(Interrupted()));
-            _drain();
-          }
-        });
+  Effect<bool, QueueClosed, R> offer<R>(A value) => Effect.asyncExit((
+    ctx,
+  ) async {
+    if (isShutdown || _completed) return const Failure(Expected(QueueClosed()));
+    if (ctx.token.isCancelled) return const Failure(Interrupted());
+    final waiter = _Offer(value);
+    _offers.add(waiter);
+    waiter.detach = ctx.token.onCancel(() {
+      if (_offers.remove(waiter)) {
+        waiter.finish(const Failure(Interrupted()));
         _drain();
-        return waiter.done.future;
-      });
+      }
+    });
+    _drain();
+    return waiter.done.future;
+  });
   Effect<A, QueueClosed, R> take<R>() => Effect.asyncExit((ctx) async {
-    if (isShutdown) return const Failure(Expected(QueueClosed()));
+    if (isShutdown || (_completed && _items.isEmpty)) {
+      return const Failure(Expected(QueueClosed()));
+    }
     if (ctx.token.isCancelled) return const Failure(Interrupted());
     final waiter = _QueueWaiter<A>();
     _takes.add(waiter);
@@ -305,12 +338,23 @@ final class Subscription<A> {
 }
 
 /// Atomic bounded fan-out to current subscribers. Slow subscribers backpressure
-/// publishers; new subscribers receive future publications only (no replay).
+/// publishers by default; bounded replay/overflow strategies are opt-in.
+enum OverflowStrategy { backpressure, dropping, sliding }
+
 final class PubSub<A> {
-  PubSub(this.capacity) {
-    if (capacity < 1) throw ArgumentError.value(capacity, 'capacity');
+  PubSub(
+    this.capacity, {
+    this.replay = 0,
+    this.overflow = OverflowStrategy.backpressure,
+  }) {
+    if (capacity < 1 || replay < 0 || replay > capacity) {
+      throw ArgumentError.value(capacity, 'capacity');
+    }
   }
   final int capacity;
+  final int replay;
+  final OverflowStrategy overflow;
+  final _history = Queue<A>();
   final _subscribers = <Subscription<A>>{};
   final _pending = Queue<_Publication<A>>();
   bool _closed = false, _draining = false;
@@ -322,6 +366,9 @@ final class PubSub<A> {
     final queue = BoundedQueue<A>(capacity);
     queue._onChange = _drain;
     final subscription = Subscription._(this, queue);
+    for (final value in _history) {
+      queue.tryOffer(value);
+    }
     _subscribers.add(subscription);
     return subscription;
   }
@@ -360,9 +407,23 @@ final class PubSub<A> {
     if (_closed || _draining) return;
     _draining = true;
     try {
-      while (_pending.isNotEmpty &&
-          _subscribers.every((s) => s._queue._canOffer)) {
+      while (_pending.isNotEmpty) {
+        final full = _subscribers.where((s) => !s._queue._canOffer).toList();
+        if (full.isNotEmpty && overflow == OverflowStrategy.backpressure) break;
         final publication = _pending.removeFirst();
+        if (full.isNotEmpty && overflow == OverflowStrategy.dropping) {
+          publication.finish(const Success(false));
+          continue;
+        }
+        for (final subscription in full) {
+          subscription._queue.tryTake();
+        }
+        if (replay > 0) {
+          _history.add(publication.value);
+          while (_history.length > replay) {
+            _history.removeFirst();
+          }
+        }
         for (final subscription in _subscribers.toList()) {
           subscription._queue.tryOffer(publication.value);
         }
@@ -376,6 +437,7 @@ final class PubSub<A> {
   void shutdown() {
     if (_closed) return;
     _closed = true;
+    _history.clear();
     for (final subscription in _subscribers.toList()) {
       subscription.close();
     }

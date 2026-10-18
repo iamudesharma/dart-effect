@@ -1,0 +1,38 @@
+name: Application toolkit
+on:
+  pull_request:
+  push:
+    branches: [dart-effect]
+jobs:
+  portable-and-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.0'
+          cache: true
+      - name: Resolve package prerequisites
+        run: |
+          dart pub get
+          for directory in packages/*; do
+            if [ "$(basename "$directory")" = effect_flutter ]; then
+              (cd "$directory" && flutter pub get)
+            else
+              (cd "$directory" && dart pub get)
+            fi
+          done
+      - name: Install pinned database test prerequisites
+        run: |
+          docker pull postgres@sha256:18cfe3ef5e6815560c98237d6216d1e5119702fb0f3894c8785dd58b8bbe5d73
+          docker pull mysql@sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242
+      - name: Offline toolkit validation
+        run: python3 tool/application_toolkit_validation.py --browser --sql
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: toolkit-validation
+          path: |
+            docs/effect-port/application-toolkit-validation.json
+            build/application-toolkit/

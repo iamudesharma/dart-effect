@@ -1,6 +1,6 @@
 name: effect_http
 description: Optional cancellable HTTP and bounded SSE integration for Effect Dart using package http.
-version: 0.0.1
+version: 0.0.2-dev.1
 environment:
   sdk: '>=3.13.0 <4.0.0'
 dependencies:

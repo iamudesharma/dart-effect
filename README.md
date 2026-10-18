@@ -176,30 +176,34 @@ safety proof; arbitrary deeply nested region wrappers do not.
 <!-- roadmap:start -->
 ## Roadmap and progress
 
-**Roadmap updated: 11 October 2026.** All six packages are published: `effect_core` and `effect_postgres` at `0.0.2`; `effect_sql`, `effect_mysql`, `effect_openai` and `effect_http` at `0.0.1`.
+**Roadmap updated: 18 October 2026.** Six existing packages are published: `effect_core` and `effect_postgres` at `0.0.2`; `effect_sql`, `effect_mysql`, `effect_openai` and `effect_http` at `0.0.1`.
 
-**9 delivered milestones · 1 in progress · 1 planned · 1 awaiting input · 4 future proposals.**
+**12 delivered milestones · 1 in progress · 5 planned · 1 awaiting input · 1 future proposals.**
 
-Latest functional validation includes 230 VM and 184 browser tests, real PostgreSQL/MySQL acceptance, and separately dated two native live Responses smoke checks. Broader live AI, production database and native Flutter acceptance remain open.
+Unpublished toolkit validation: 19 analyzers, 283 VM/Flutter tests and 226 Chrome tests. Thirteen new packages are 0.1.0-dev.1; core is 0.0.3-dev.1 and HTTP is 0.0.2-dev.1. These versions are not published. Historical release validation includes 230 VM and 184 browser tests, real PostgreSQL/MySQL acceptance, and separately dated two native live Responses smoke checks. Broader live AI, production database and native Flutter acceptance remain open.
 
 | Priority | Milestone | Status |
 | --- | --- | --- |
-| Released | Project website and documentation | Delivered |
-| Released | Reusable Effect runtime | Delivered |
-| Released | PostgreSQL and MySQL integrations | Delivered |
-| Released | OpenAI SDK integration | Delivered |
-| Released | Live OpenAI Responses smoke acceptance | Delivered |
-| Released | First pub.dev release | Delivered |
-| Released | OpenAI performance and bounded retention evidence | Delivered |
-| Released | Core and SQL performance and bounded retention | Delivered |
+| Delivered within scope | Project website and documentation | Delivered |
+| Delivered within scope | Reusable Effect runtime | Delivered |
+| Delivered within scope | PostgreSQL and MySQL integrations | Delivered |
+| Delivered within scope | OpenAI SDK integration | Delivered |
+| Delivered within scope | Live OpenAI Responses smoke acceptance | Delivered |
+| Delivered within scope | First pub.dev release | Delivered |
+| Delivered within scope | OpenAI performance and bounded retention evidence | Delivered |
+| Delivered within scope | Core and SQL performance and bounded retention | Delivered |
 | Next priorities | Production database acceptance | In progress |
 | Next priorities | Broader OpenAI live acceptance | Awaiting input |
 | Next priorities | Runnable API and Flutter integration guides | Planned |
-| Future proposals | Typed configuration, schemas and cache lifetimes | Proposed |
-| Future proposals | Broader streams and coordination primitives | Proposed |
-| Future proposals | Metrics and tracing exporters | Proposed |
-| Future proposals | Flutter and isolate integration helpers | Proposed |
-| Released | Reliability policies and HTTP/SSE integration | Delivered |
+| Delivered within scope | Typed configuration, schemas and cache foundations | Delivered |
+| Next priorities | Advanced runtime, streams and schedule contracts | Planned |
+| Next priorities | Complete tracing and exporter integrations | Planned |
+| Next priorities | Native Flutter and broader platform acceptance | Planned |
+| Delivered within scope | Reliability policies and HTTP/SSE integration | Delivered |
+| Delivered within scope | Thirteen application toolkit package foundations | Delivered |
+| Next priorities | Toolkit API breadth and release preparation | Planned |
+| Future proposals | RPC, workflows, clustering, CLI and GraphQL | Proposed |
+| Delivered within scope | Cache lifecycle completion and dedicated acceptance | Delivered |
 
 Next priorities are ordered above; production SQL acceptance is in progress. Trusted CA-chain and hostname checks passed for both drivers; recovery, network faults and soak remain open. Broader OpenAI acceptance needs an API-enabled test account. Future proposals need API design and scope agreement before implementation; they have no promised release version or date.
 
@@ -262,3 +266,15 @@ lifecycle tracing/metrics, circuit breakers and rate limiting. An optional
 [`effect_http`](packages/effect_http/README.md) package provides HTTP/SSE support.
 See the [contracts and verification boundaries](docs/effect-port/reliability.md)
 and [`example/reliability.dart`](example/reliability.dart). The optional HTTP/SSE adapter is released as `effect_http 0.0.1`.
+
+## Development application toolkit
+
+Thirteen new **unpublished development packages** add schemas, configuration,
+cache/scoped cache, batching, observable state, testing, Flutter ownership, native
+configuration/isolate work, SQLite, SQL decoding/domain errors/migrations,
+provider-neutral AI, observability and a native HTTP server. Core 0.0.3-dev.1
+and HTTP 0.0.2-dev.1 contain the related development APIs.
+
+See [implemented contracts and remaining work](docs/effect-port/application-toolkit.md)
+for exact initial scope, package READMEs, validation and acceptance limits.
+The existing hosted core 0.0.2 and HTTP 0.0.1 releases are unchanged.

@@ -9,6 +9,25 @@ final class Unit {
 /// Expected errors, stack-traced defects, interruption, or ordered combinations.
 sealed class Cause<E> {
   const Cause();
+
+  /// Readable diagnostics may include explicit user errors; treat as sensitive.
+  String pretty() {
+    final out = <String>[];
+    final pending = <Cause<E>>[this];
+    while (pending.isNotEmpty) {
+      switch (pending.removeLast()) {
+        case Expected(:final error):
+          out.add('Expected: $error');
+        case Defect(:final error, :final stackTrace):
+          out.add('Defect: $error\n$stackTrace');
+        case Interrupted():
+          out.add('Interrupted');
+        case Sequential(:final first, :final second):
+          pending.addAll([second, first]);
+      }
+    }
+    return out.join('\nThen: ');
+  }
 }
 
 final class Expected<E> extends Cause<E> {
@@ -51,7 +70,7 @@ final class EffectException<E> implements Exception {
   const EffectException(this.cause);
   final Cause<E> cause;
   @override
-  String toString() => 'EffectException($cause)';
+  String toString() => 'EffectException(${cause.pretty()})';
 }
 
 /// An idempotent cooperative signal. It cannot stop CPU loops or arbitrary I/O.
@@ -92,8 +111,22 @@ abstract interface class Clock {
   Future<void> sleep(Duration duration, CancellationToken token);
 }
 
-final class RealClock implements Clock {
+/// Optional monotonic capability. Legacy custom Clocks remain source compatible.
+abstract interface class MonotonicClock implements Clock {
+  Duration get elapsed;
+}
+
+/// Duration policies use monotonic time where available. A legacy custom Clock
+/// falls back to its injected wall time, retaining existing test behavior.
+Duration elapsedTime(Clock clock) => clock is MonotonicClock
+    ? clock.elapsed
+    : Duration(microseconds: clock.now.microsecondsSinceEpoch);
+
+final class RealClock implements MonotonicClock {
   const RealClock();
+  static final _watch = Stopwatch()..start();
+  @override
+  Duration get elapsed => _watch.elapsed;
   @override
   DateTime get now => DateTime.now();
   @override
@@ -116,9 +149,12 @@ final class RealClock implements Clock {
 }
 
 /// Manual time, with no wall-clock delays. Advance after sleepers register.
-final class TestClock implements Clock {
+final class TestClock implements MonotonicClock {
   TestClock([DateTime? initial]) : _now = initial ?? DateTime.utc(2000);
   DateTime _now;
+  Duration _elapsed = Duration.zero;
+  @override
+  Duration get elapsed => _elapsed;
   final _sleepers = <_Sleeper>[];
   @override
   DateTime get now => _now;
@@ -142,6 +178,7 @@ final class TestClock implements Clock {
   void advance(Duration duration) {
     if (duration.isNegative) throw ArgumentError.value(duration);
     _now = _now.add(duration);
+    _elapsed += duration;
     for (final s in List<_Sleeper>.of(_sleepers)) {
       if (!s.at.isAfter(_now)) {
         _sleepers.remove(s);
@@ -409,6 +446,7 @@ final class Runtime<R> {
   }) {
     final id = ++_nextFiberId;
     final started = lifecycle != null || metrics != null ? clock.now : null;
+    final startedElapsed = started == null ? null : elapsedTime(clock);
     if (started != null) {
       _emit(LifecycleEvent(id, 'start', started, parentId: parentId));
     }
@@ -466,7 +504,7 @@ final class Runtime<R> {
             'end',
             clock.now,
             outcome: outcome,
-            elapsed: clock.now.difference(started!),
+            elapsed: elapsedTime(clock) - startedElapsed!,
             parentId: parentId,
           ),
         );
@@ -788,6 +826,7 @@ final class Effect<A, E, R> {
   Effect<A, E, R> traced(String name) => asyncExit((ctx) async {
     if (ctx.runtime.lifecycle == null) return ctx.evaluate(this);
     final start = ctx.clock.now;
+    final startedElapsed = elapsedTime(ctx.clock);
     if (ctx.runtime.lifecycle != null) {
       ctx.runtime._emit(
         LifecycleEvent(ctx.fiberId, 'span.start', start, name: name),
@@ -801,7 +840,7 @@ final class Effect<A, E, R> {
           'span.end',
           ctx.clock.now,
           name: name,
-          elapsed: ctx.clock.now.difference(start),
+          elapsed: elapsedTime(ctx.clock) - startedElapsed,
           outcome: exit is Success<A, E> ? 'success' : 'failure',
         ),
       );

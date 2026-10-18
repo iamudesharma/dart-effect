@@ -79,3 +79,9 @@ Development reliability policies and observability are specified in
 after its primary outcome. Retry catches single Expected causes only; elapsed
 budgets govern admission. Tracing is optional and observer failures are isolated.
 HTTP/SSE driver dependencies remain in packages/effect_http, outside portable core.
+
+Unpublished application-toolkit contracts are in [application-toolkit.md](application-toolkit.md).
+MonotonicClock is optional; existing Clock implementations retain a documented
+wall-time fallback. ManagedRuntime owns a Layer graph across calls. New ordinary
+composition retains the existing error and scope semantics; no general region-wrapper
+stack-safety or complete TypeScript dependency inference claim is added.

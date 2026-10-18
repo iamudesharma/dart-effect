@@ -10,7 +10,7 @@ END = '<!-- roadmap:end -->'
 LABELS = {'completed': 'Delivered', 'active': 'In progress',
           'planned': 'Planned', 'awaiting-input': 'Awaiting input',
           'proposed': 'Proposed'}
-PHASES = {'delivered': 'Released', 'next': 'Next priorities',
+PHASES = {'delivered': 'Delivered within scope', 'next': 'Next priorities',
           'later': 'Future proposals'}
 
 
@@ -27,13 +27,13 @@ def readme_section(goals):
              for g in goals]
     return '\n'.join([
         START, '## Roadmap and progress', '',
-        f'**Roadmap updated: {roadmap_date(goals)}.** All six packages are published: '
+        f'**Roadmap updated: {roadmap_date(goals)}.** Six existing packages are published: '
         '`effect_core` and `effect_postgres` at `0.0.2`; `effect_sql`, `effect_mysql`, '
         '`effect_openai` and `effect_http` at `0.0.1`.', '',
         f"**{counts['completed']} delivered milestones · {counts['active']} in progress · "
         f"{counts['planned']} planned · {counts['awaiting-input']} awaiting input · "
         f"{counts['proposed']} future proposals.**", '',
-        'Latest functional validation includes 230 VM and 184 browser tests, '
+        'Unpublished toolkit validation: 19 analyzers, 283 VM/Flutter tests and 226 Chrome tests. Thirteen new packages are 0.1.0-dev.1; core is 0.0.3-dev.1 and HTTP is 0.0.2-dev.1. These versions are not published. Historical release validation includes 230 VM and 184 browser tests, '
         'real PostgreSQL/MySQL acceptance, and separately dated two native live '
         'Responses smoke checks. Broader live AI, production database and native '
         'Flutter acceptance remain open.', '', *rows, '',

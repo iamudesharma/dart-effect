@@ -1,0 +1,13 @@
+name: effect_cache
+description: Bounded single-flight value caches and scoped resource generations with typed failures, TTL, LRU and explicit cleanup.
+version: 0.1.0-dev.1
+environment:
+  sdk: ">=3.13.0 <4.0.0"
+dependencies:
+  effect_core: ^0.0.3-dev.1
+dev_dependencies:
+  test: ^1.26.0
+  lints: ^6.0.0
+repository: https://github.com/iamudesharma/dart-effect
+homepage: https://effect-dart.ginjustice4.chatgpt.site/packages/effect-cache/
+issue_tracker: https://github.com/iamudesharma/dart-effect/issues

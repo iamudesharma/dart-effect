@@ -1,0 +1,5 @@
+dependency_overrides:
+  effect_core:
+    path: ../..
+  effect_sql:
+    path: ../effect_sql

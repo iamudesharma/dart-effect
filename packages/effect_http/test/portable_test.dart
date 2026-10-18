@@ -109,4 +109,35 @@ void main() {
     await rt.shutdown();
     client.close();
   });
+  test(
+    'bounded non-success diagnostics and immutable request builders',
+    () async {
+      final client = FixtureClient(
+        (_) async => http.StreamedResponse(
+          Stream.value(utf8.encode('private error text')),
+          422,
+        ),
+      );
+      final rt = Runtime(Unit.value);
+      addTearDown(rt.shutdown);
+      final spec = HttpRequestSpec(
+        'POST',
+        Uri.parse('https://fixture.test'),
+      ).header('x-id', '1').jsonBody({'x': 2});
+      final changed = spec.query({'page': '2'});
+      expect(spec.uri.queryParameters, isEmpty);
+      expect(changed.uri.queryParameters['page'], '2');
+      final exit = await rt.runExit(
+        changed.send<Unit>(EffectHttp(client, maxErrorBodyBytes: 7)),
+      );
+      final error =
+          ((exit as Failure<HttpResult, HttpFailure>).cause
+                  as Expected<HttpFailure>)
+              .error;
+      expect(error.responseBody, 'private');
+      expect(error.bodyTruncated, true);
+      expect(error.status, 422);
+      client.close();
+    },
+  );
 }

@@ -49,7 +49,7 @@
     "title": "First pub.dev release",
     "status": "completed",
     "area": "Release",
-    "detail": "All five packages are published on pub.dev. PostgreSQL 0.0.2 includes documented public APIs and a verified 160/160 score.",
+    "detail": "The initial five packages were published, followed by effect_http. Six published releases remain distinct from the thirteen unpublished toolkit additions.",
     "proof": "/packages/",
     "phase": "delivered"
   },
@@ -69,7 +69,7 @@
     "status": "completed",
     "phase": "delivered",
     "area": "Performance",
-    "detail": "Current core JIT/AOT comparisons, portable SQL overhead, real PostgreSQL/MySQL driver timings, repeated post-GC owner checks and bounded 30-second load runs. Measurable overhead and production limits are recorded.",
+    "detail": "Dated core JIT/AOT comparisons, portable SQL overhead, real PostgreSQL/MySQL driver timings, repeated post-GC owner checks and bounded 30-second load runs. Measurable overhead and production limits are recorded. These measurements predate the toolkit implementation.",
     "proof": "/docs/remaining-performance/",
     "updated_at": "2026-10-10"
   },
@@ -141,47 +141,51 @@
   },
   {
     "id": "foundation",
-    "title": "Typed configuration, schemas and cache lifetimes",
-    "status": "proposed",
-    "phase": "later",
+    "title": "Typed configuration, schemas and cache foundations",
+    "status": "completed",
+    "phase": "delivered",
     "area": "Core",
-    "detail": "Explore structured schema issues, encode/decode round trips, configuration loading and scoped cache expiry.",
+    "detail": "Development packages implement nested schema issues/codecs, typed configuration and bounded single-flight/scoped caches. Unpublished 0.1.0-dev.1; advanced derivation and resource-sharing APIs remain open.",
     "dependency": "Agree on a small Dart-native API and lifecycle contracts before implementation.",
     "acceptance": "Independent issue/round-trip tests, deterministic expiry tests and documented error/resource behavior.",
-    "proof": "/docs/features/"
+    "proof": "/docs/application-toolkit/",
+    "updated_at": "2026-10-18"
   },
   {
     "id": "streams",
-    "title": "Broader streams and coordination primitives",
-    "status": "proposed",
-    "phase": "later",
+    "title": "Advanced runtime, streams and schedule contracts",
+    "status": "planned",
+    "phase": "next",
     "area": "Core",
-    "detail": "Consider queue strategies, graceful end, replay PubSub, stream merging/grouping/time operators and Sink leftovers.",
+    "detail": "Development core adds graceful queue completion, replay policies and bounded ordered stream operators. Region-wrapper stack safety, restoration/supervision, generated dependency evidence, stream merge/time/recovery/leftovers and calendar schedules remain open.",
     "dependency": "Prioritize operators from actual application needs and define backpressure and cancellation contracts.",
     "acceptance": "Independent bounded-buffer, early-exit, interruption and exactly-once cleanup scenarios for each advertised operator.",
-    "proof": "/docs/features/"
+    "proof": "/docs/application-toolkit/",
+    "updated_at": "2026-10-18"
   },
   {
     "id": "observability",
-    "title": "Metrics and tracing exporters",
-    "status": "proposed",
-    "phase": "later",
+    "title": "Complete tracing and exporter integrations",
+    "status": "planned",
+    "phase": "next",
     "area": "Observability",
-    "detail": "Build optional exporters on the released lifecycle hooks and bounded aggregate metrics. Keep transport dependencies outside core.",
+    "detail": "Development effect_observability provides bounded metrics, Prometheus text, traceparent and explicit exporter lifecycle. OTLP, a complete span model, fiber-local propagation and instrumentation overhead remain open.",
     "dependency": "Select Dart observability interfaces and decide privacy, overhead and exporter boundaries.",
     "acceptance": "Verify successful/failed/interrupted spans, scoped exporter cleanup and measured overhead.",
-    "proof": "/docs/features/"
+    "proof": "/docs/application-toolkit/",
+    "updated_at": "2026-10-18"
   },
   {
     "id": "platform",
-    "title": "Flutter and isolate integration helpers",
-    "status": "proposed",
-    "phase": "later",
+    "title": "Native Flutter and broader platform acceptance",
+    "status": "planned",
+    "phase": "next",
     "area": "Platform",
-    "detail": "Explore Flutter owner lifetimes and explicit isolate sendability helpers outside the portable core.",
+    "detail": "Development Flutter controllers passed widget tests and one-shot isolates passed native tests. Physical-device journeys, stream bindings, worker pools and browser workers remain open.",
     "dependency": "Define ownership and supported platform contracts; choose real device acceptance targets.",
     "acceptance": "Run native Flutter disposal journeys and isolate sendability/error propagation tests; record unsupported platforms.",
-    "proof": "/docs/features/"
+    "proof": "/docs/application-toolkit/",
+    "updated_at": "2026-10-18"
   },
   {
     "id": "reliability-http",
@@ -192,5 +196,49 @@
     "proof": "/docs/reliability/",
     "phase": "delivered",
     "updated_at": "2026-10-11"
+  },
+  {
+    "id": "toolkit-foundations",
+    "title": "Thirteen application toolkit package foundations",
+    "status": "completed",
+    "phase": "delivered",
+    "area": "Development",
+    "detail": "Schema, config, cache, batch, reactivity, test, Flutter, platform, SQLite, SQL schema, AI, observability and HTTP server initial contracts. Unpublished; 19 analyzers, 283 VM/Flutter and 226 Chrome checks passed. Core/HTTP development additions are included.",
+    "proof": "/docs/application-toolkit/",
+    "updated_at": "2026-10-18"
+  },
+  {
+    "id": "toolkit-breadth",
+    "title": "Toolkit API breadth and release preparation",
+    "status": "planned",
+    "phase": "next",
+    "area": "Toolkit",
+    "detail": "Remaining schema derivation, provider bridges and AI acceptance, PostgreSQL/MySQL migrations, server streaming/OpenAPI and advanced batching/cache APIs remain open. No new toolkit benchmarks or package publication yet.",
+    "dependency": "Prioritize the documented gaps and define each contract before implementation.",
+    "acceptance": "Record independent contract tests, native/provider acceptance where required, current performance evidence, package dry runs and a separate release decision.",
+    "proof": "/docs/application-toolkit/",
+    "updated_at": "2026-10-18"
+  },
+  {
+    "id": "distributed-products",
+    "title": "RPC, workflows, clustering, CLI and GraphQL",
+    "status": "proposed",
+    "phase": "later",
+    "area": "Future products",
+    "detail": "Retained as future directions by user choice; no implementation or release commitment.",
+    "dependency": "Separate product scope, architecture and transport/persistence contracts.",
+    "acceptance": "Agree a focused proposal and measurable acceptance plan before starting implementation.",
+    "proof": "/docs/application-toolkit/",
+    "updated_at": "2026-10-18"
+  },
+  {
+    "id": "cache-completion",
+    "title": "Cache lifecycle completion and dedicated acceptance",
+    "status": "completed",
+    "phase": "delivered",
+    "area": "Development cache",
+    "detail": "Value and scoped cache contracts, idle expiry/refresh, immutable inspection and preserved cleanup diagnostics. 35 VM / 34 Chrome checks, real HTTP fixture, AOT/JIT and post-GC evidence, isolated dry-run passed. Unpublished; compatible core release and hosted-only verification remain gates.",
+    "proof": "/docs/cache/",
+    "updated_at": "2026-10-18"
   }
 ]

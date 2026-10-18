@@ -9,11 +9,22 @@ import 'package:http/http.dart' as http;
 
 /// Transport, protocol, and response errors are expected failures.
 final class HttpFailure implements Exception {
-  const HttpFailure(this.message, {this.status, this.retryAfter, this.error});
+  const HttpFailure(
+    this.message, {
+    this.status,
+    this.retryAfter,
+    this.error,
+    this.responseBody,
+    this.bodyTruncated = false,
+  });
   final String message;
   final int? status;
   final String? retryAfter;
   final Object? error;
+
+  /// Explicit bounded diagnostics; may contain private provider data.
+  final String? responseBody;
+  final bool bodyTruncated;
   Duration? retryDelay(DateTime now) => parseRetryAfter(retryAfter, now);
 }
 
@@ -90,13 +101,14 @@ final class EffectHttp {
     this.client, {
     this.maxBodyBytes = 8 * 1024 * 1024,
     this.maxEventCharacters = 1024 * 1024,
+    this.maxErrorBodyBytes = 64 * 1024,
   }) {
-    if (maxBodyBytes < 1 || maxEventCharacters < 1) {
+    if (maxBodyBytes < 1 || maxEventCharacters < 1 || maxErrorBodyBytes < 1) {
       throw ArgumentError('Invalid limits');
     }
   }
   final http.Client client;
-  final int maxBodyBytes, maxEventCharacters;
+  final int maxBodyBytes, maxEventCharacters, maxErrorBodyBytes;
 
   Effect<HttpResult, HttpFailure, R> request<R>(
     String method,
@@ -118,11 +130,23 @@ final class EffectHttp {
         final response = await client.send(request);
         try {
           if (response.statusCode < 200 || response.statusCode >= 300) {
-            await response.stream.listen((_) {}).cancel();
+            final diagnostic = <int>[];
+            var truncated = false;
+            await for (final chunk in response.stream) {
+              final remaining = maxErrorBodyBytes - diagnostic.length;
+              if (chunk.length > remaining) {
+                diagnostic.addAll(chunk.take(remaining));
+                truncated = true;
+                break;
+              }
+              diagnostic.addAll(chunk);
+            }
             throw HttpFailure(
               'HTTP response rejected',
               status: response.statusCode,
               retryAfter: response.headers['retry-after'],
+              responseBody: utf8.decode(diagnostic, allowMalformed: true),
+              bodyTruncated: truncated,
             );
           }
           final bytes = <int>[];
@@ -276,4 +300,39 @@ Stream<List<int>> _decodeChunks(Stream<List<int>> source) async* {
       yield chunk.sublist(start, end);
     }
   }
+}
+
+/// Immutable request description; rebuilding never mutates an earlier request.
+final class HttpRequestSpec {
+  HttpRequestSpec(
+    this.method,
+    this.uri, {
+    Map<String, String> headers = const {},
+    List<int> body = const [],
+  }) : headers = Map.unmodifiable(headers),
+       body = List.unmodifiable(body);
+  final String method;
+  final Uri uri;
+  final Map<String, String> headers;
+  final List<int> body;
+  HttpRequestSpec header(String key, String value) => HttpRequestSpec(
+    method,
+    uri,
+    headers: {...headers, key: value},
+    body: body,
+  );
+  HttpRequestSpec query(Map<String, String> parameters) => HttpRequestSpec(
+    method,
+    uri.replace(queryParameters: {...uri.queryParameters, ...parameters}),
+    headers: headers,
+    body: body,
+  );
+  HttpRequestSpec jsonBody(Object? value) => HttpRequestSpec(
+    method,
+    uri,
+    headers: {...headers, 'content-type': 'application/json'},
+    body: utf8.encode(jsonEncode(value)),
+  );
+  Effect<HttpResult, HttpFailure, R> send<R>(EffectHttp client) =>
+      client.request(method, uri, headers: headers, body: body);
 }

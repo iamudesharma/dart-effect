@@ -17,7 +17,7 @@ final class CircuitBreaker {
   final int failureThreshold;
   final Duration resetAfter;
   int _failures = 0, _generation = 0;
-  DateTime? _opened;
+  Duration? _opened;
   bool _probe = false;
   CircuitState get state => _probe
       ? CircuitState.halfOpen
@@ -32,7 +32,7 @@ final class CircuitBreaker {
   }) => Effect.asyncExit((ctx) async {
     final opened = _opened;
     final probe = opened != null;
-    if (probe && (_probe || ctx.clock.now.difference(opened) < resetAfter)) {
+    if (probe && (_probe || (elapsedTime(ctx.clock) - opened) < resetAfter)) {
       return Failure(Expected(onOpen()));
     }
     if (probe) _probe = true;
@@ -46,7 +46,7 @@ final class CircuitBreaker {
           (countsAsFailure?.call((exit.cause as Expected<E>).error) ?? true);
       if (failed) {
         if (probe || ++_failures >= failureThreshold) {
-          _opened = ctx.clock.now;
+          _opened = elapsedTime(ctx.clock);
           _generation++;
         }
       } else if (exit is Success<A, E>) {
@@ -70,16 +70,15 @@ final class RateLimiter {
     if (interval.isNegative) throw ArgumentError.value(interval);
   }
   final Duration interval;
-  DateTime? _next;
-  Effect<A, E, R> limit<A, E, R>(Effect<A, E, R> effect) => Effect.asyncExit((
-    ctx,
-  ) async {
-    final now = ctx.clock.now;
-    final next = _next;
-    final slot = next != null && next.isAfter(now) ? next : now;
-    _next = slot.add(interval);
-    final wait = await ctx.evaluate(Effect.sleep<E, R>(slot.difference(now)));
-    if (wait is Failure<Unit, E>) return Failure(wait.cause);
-    return ctx.evaluate(effect);
-  });
+  Duration? _next;
+  Effect<A, E, R> limit<A, E, R>(Effect<A, E, R> effect) =>
+      Effect.asyncExit((ctx) async {
+        final now = elapsedTime(ctx.clock);
+        final next = _next;
+        final slot = next != null && next > now ? next : now;
+        _next = slot + interval;
+        final wait = await ctx.evaluate(Effect.sleep<E, R>(slot - now));
+        if (wait is Failure<Unit, E>) return Failure(wait.cause);
+        return ctx.evaluate(effect);
+      });
 }

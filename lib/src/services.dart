@@ -232,10 +232,12 @@ final class _LayerBuild<E> {
   }
 }
 
-/// Finite policy: [recurrences] counts additional executions, not the first.
+/// Policy: [recurrences] counts additional executions, not the first. Infinite
+/// behavior requires the explicit unbounded option or Schedule.forever.
 final class Schedule {
   Schedule({
     required this.recurrences,
+    this.unbounded = false,
     this.initialDelay = Duration.zero,
     this.factor = 1,
     this.jitter = 0,
@@ -256,6 +258,11 @@ final class Schedule {
       throw ArgumentError('Invalid schedule');
     }
   }
+
+  /// Infinite policies remain interruptible; zero-delay loops yield periodically.
+  Schedule.forever({Duration interval = Duration.zero})
+    : this(recurrences: 0, initialDelay: interval, unbounded: true);
+  final bool unbounded;
   final int recurrences;
   final Duration initialDelay;
   final double factor;
@@ -289,21 +296,34 @@ extension EffectPolicy<A, E, R> on Effect<A, E, R> {
     bool Function(E error)? whileError,
     Duration? Function(E error, DateTime now)? retryAfter,
   }) => _scheduled(schedule, false, whileError, retryAfter);
-  Effect<A, E, R> repeat(Schedule schedule) => _scheduled(schedule, true);
+  Effect<A, E, R> repeat(Schedule schedule, {bool Function(A)? whileValue}) =>
+      _scheduled(schedule, true, null, null, whileValue);
   Effect<A, E, R> _scheduled(
     Schedule schedule,
     bool repeat, [
     bool Function(E)? predicate,
     Duration? Function(E, DateTime)? retryAfter,
+    bool Function(A)? whileValue,
   ]) => Effect.asyncExit<A, E, R>((context) async {
     final random = schedule.newRandom();
-    final started = context.clock.now;
+    final started = elapsedTime(context.clock);
     for (var iteration = 0; ; iteration++) {
+      if (iteration > 0 && iteration % context.runtime.yieldEvery == 0) {
+        await Future<void>.delayed(Duration.zero);
+      }
       final exit = await context.evaluate(this);
       final again = repeat
           ? exit is Success<A, E>
           : exit is Failure<A, E> && exit.cause is Expected<E>;
-      if (!again || iteration >= schedule.recurrences) return exit;
+      if (!again ||
+          (!schedule.unbounded && iteration >= schedule.recurrences)) {
+        return exit;
+      }
+      if (repeat &&
+          whileValue != null &&
+          !whileValue((exit as Success<A, E>).value)) {
+        return exit;
+      }
       Duration? serverDelay;
       if (!repeat) {
         final error = ((exit as Failure<A, E>).cause as Expected<E>).error;
@@ -314,13 +334,13 @@ extension EffectPolicy<A, E, R> on Effect<A, E, R> {
       final delay = serverDelay ?? schedule.delay(iteration, random);
       final budget = schedule.elapsedBudget;
       if (budget != null &&
-          context.clock.now.difference(started) + delay >= budget) {
+          (elapsedTime(context.clock) - started) + delay >= budget) {
         return exit;
       }
       final sleep = await context.evaluate(Effect.sleep<E, R>(delay));
       if (sleep is Success<Unit, E> &&
           budget != null &&
-          context.clock.now.difference(started) >= budget) {
+          (elapsedTime(context.clock) - started) >= budget) {
         return exit;
       }
       if (sleep is Failure<Unit, E>) return Failure(sleep.cause);
@@ -355,3 +375,13 @@ Cause<E> _restoreCause<E>(Cause<Object?> cause) => switch (cause) {
     _restoreCause<E>(second),
   ),
 };
+
+extension LayerComposition<E> on Layer<E> {
+  /// Share graph identities in one scope; construction is dependency ordered.
+  Layer<E> merge(Layer<E> other) => Layer(
+    Effect.succeed(Context()),
+    dependencies: [this, other],
+    name: 'merged',
+  );
+  Layer<E> provide(Layer<E> dependency) => dependency.merge(this);
+}
