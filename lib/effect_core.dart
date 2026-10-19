@@ -7,3 +7,5 @@ export 'src/concurrency.dart';
 export 'src/stream.dart';
 
 export 'src/reliability.dart';
+
+export 'src/ergonomics.dart';

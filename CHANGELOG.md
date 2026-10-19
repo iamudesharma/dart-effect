@@ -1,3 +1,7 @@
+## 0.0.3-dev.1
+
+Unpublished cache prerequisites: optional monotonic clocks, iterative Cause inspection and scoped acquisition registration. Other application-toolkit work remains in draft PR #13.
+
 # Changelog
 
 ## 0.0.2

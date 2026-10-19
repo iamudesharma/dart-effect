@@ -102,3 +102,7 @@ lifecycle events and bounded metrics. CircuitBreaker and RateLimiter implement
 same-isolate admission policies. New optional effect_http provides abortable HTTP
 and bounded SSE. [Contracts and limits](reliability.md) distinguish this development
 release from separately dated performance evidence.
+
+## Cache package (development)
+
+[Cache contracts and acceptance](cache-validation.md) cover single-flight LRU values, scoped resource generations, explicit maintenance and preserved cleanup diagnostics. The cache and its minimal core prerequisites are independently mergeable. The other twelve new toolkit packages remain in draft PR #13.

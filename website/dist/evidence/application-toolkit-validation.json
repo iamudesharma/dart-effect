@@ -1,0 +1,1029 @@
+{
+  "started_at_utc": "2026-10-18T12:13:34.869702+00:00",
+  "success": true,
+  "packages": {
+    "effect_core": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 131,
+        "skipped": 0,
+        "failed": 0
+      },
+      "chrome": {
+        "command": [
+          "dart",
+          "test",
+          "-p",
+          "chrome",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 131,
+        "skipped": 0,
+        "failed": 0
+      },
+      "fixtures": {
+        "command": [
+          "dart",
+          "run",
+          "tool/check_fixtures.dart"
+        ],
+        "exit_code": 0
+      },
+      "web_compile": {
+        "command": [
+          "dart",
+          "compile",
+          "js",
+          "example/web.dart",
+          "-o",
+          "/Volumes/AppleExpanded/Code/effect_dart/build/application-toolkit/web.js"
+        ],
+        "exit_code": 0
+      }
+    },
+    "effect_ai": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      },
+      "chrome": {
+        "command": [
+          "dart",
+          "test",
+          "-p",
+          "chrome",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      },
+      "example": {
+        "command": [
+          "dart",
+          "run",
+          "/Volumes/AppleExpanded/Code/effect_dart/packages/effect_ai/example/main.dart"
+        ],
+        "exit_code": 0
+      }
+    },
+    "effect_batch": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      },
+      "chrome": {
+        "command": [
+          "dart",
+          "test",
+          "-p",
+          "chrome",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      },
+      "example": {
+        "command": [
+          "dart",
+          "run",
+          "/Volumes/AppleExpanded/Code/effect_dart/packages/effect_batch/example/main.dart"
+        ],
+        "exit_code": 0
+      }
+    },
+    "effect_cache": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 6,
+        "skipped": 0,
+        "failed": 0
+      },
+      "chrome": {
+        "command": [
+          "dart",
+          "test",
+          "-p",
+          "chrome",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 6,
+        "skipped": 0,
+        "failed": 0
+      },
+      "example": {
+        "command": [
+          "dart",
+          "run",
+          "/Volumes/AppleExpanded/Code/effect_dart/packages/effect_cache/example/main.dart"
+        ],
+        "exit_code": 0
+      }
+    },
+    "effect_config": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 4,
+        "skipped": 0,
+        "failed": 0
+      },
+      "chrome": {
+        "command": [
+          "dart",
+          "test",
+          "-p",
+          "chrome",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 4,
+        "skipped": 0,
+        "failed": 0
+      },
+      "example": {
+        "command": [
+          "dart",
+          "run",
+          "/Volumes/AppleExpanded/Code/effect_dart/packages/effect_config/example/main.dart"
+        ],
+        "exit_code": 0
+      }
+    },
+    "effect_flutter": {
+      "resolve": {
+        "command": [
+          "flutter",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "flutter",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "flutter",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      }
+    },
+    "effect_http": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 11,
+        "skipped": 0,
+        "failed": 0
+      },
+      "chrome": {
+        "command": [
+          "dart",
+          "test",
+          "-p",
+          "chrome",
+          "test/portable_test.dart",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 5,
+        "skipped": 0,
+        "failed": 0
+      }
+    },
+    "effect_http_server": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "example": {
+        "command": [
+          "dart",
+          "run",
+          "/Volumes/AppleExpanded/Code/effect_dart/packages/effect_http_server/example/main.dart"
+        ],
+        "exit_code": 0
+      }
+    },
+    "effect_mysql": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 7,
+        "skipped": 15,
+        "failed": 0
+      }
+    },
+    "effect_observability": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      },
+      "chrome": {
+        "command": [
+          "dart",
+          "test",
+          "-p",
+          "chrome",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      },
+      "example": {
+        "command": [
+          "dart",
+          "run",
+          "/Volumes/AppleExpanded/Code/effect_dart/packages/effect_observability/example/main.dart"
+        ],
+        "exit_code": 0
+      }
+    },
+    "effect_openai": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 50,
+        "skipped": 0,
+        "failed": 0
+      },
+      "chrome": {
+        "command": [
+          "dart",
+          "test",
+          "-p",
+          "chrome",
+          "test/client_test.dart",
+          "test/sdk_test.dart",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 42,
+        "skipped": 0,
+        "failed": 0
+      }
+    },
+    "effect_platform": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      },
+      "example": {
+        "command": [
+          "dart",
+          "run",
+          "/Volumes/AppleExpanded/Code/effect_dart/packages/effect_platform/example/main.dart"
+        ],
+        "exit_code": 0
+      }
+    },
+    "effect_postgres": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 2,
+        "skipped": 14,
+        "failed": 0
+      }
+    },
+    "effect_reactivity": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      },
+      "chrome": {
+        "command": [
+          "dart",
+          "test",
+          "-p",
+          "chrome",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      },
+      "example": {
+        "command": [
+          "dart",
+          "run",
+          "/Volumes/AppleExpanded/Code/effect_dart/packages/effect_reactivity/example/main.dart"
+        ],
+        "exit_code": 0
+      }
+    },
+    "effect_schema": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 6,
+        "skipped": 0,
+        "failed": 0
+      },
+      "chrome": {
+        "command": [
+          "dart",
+          "test",
+          "-p",
+          "chrome",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 6,
+        "skipped": 0,
+        "failed": 0
+      },
+      "example": {
+        "command": [
+          "dart",
+          "run",
+          "/Volumes/AppleExpanded/Code/effect_dart/packages/effect_schema/example/main.dart"
+        ],
+        "exit_code": 0
+      }
+    },
+    "effect_sql": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 18,
+        "skipped": 0,
+        "failed": 0
+      },
+      "chrome": {
+        "command": [
+          "dart",
+          "test",
+          "-p",
+          "chrome",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 18,
+        "skipped": 0,
+        "failed": 0
+      }
+    },
+    "effect_sql_schema": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 3,
+        "skipped": 0,
+        "failed": 0
+      },
+      "chrome": {
+        "command": [
+          "dart",
+          "test",
+          "-p",
+          "chrome",
+          "test/decoding_test.dart",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "example": {
+        "command": [
+          "dart",
+          "run",
+          "/Volumes/AppleExpanded/Code/effect_dart/packages/effect_sql_schema/example/main.dart"
+        ],
+        "exit_code": 0
+      }
+    },
+    "effect_sqlite": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 2,
+        "skipped": 0,
+        "failed": 0
+      },
+      "example": {
+        "command": [
+          "dart",
+          "run",
+          "/Volumes/AppleExpanded/Code/effect_dart/packages/effect_sqlite/example/main.dart"
+        ],
+        "exit_code": 0
+      }
+    },
+    "effect_test": {
+      "resolve": {
+        "command": [
+          "dart",
+          "pub",
+          "get",
+          "--offline"
+        ],
+        "exit_code": 0
+      },
+      "analyze": {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      "vm": {
+        "command": [
+          "dart",
+          "test",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "chrome": {
+        "command": [
+          "dart",
+          "test",
+          "-p",
+          "chrome",
+          "-r",
+          "json"
+        ],
+        "exit_code": 0,
+        "passed": 1,
+        "skipped": 0,
+        "failed": 0
+      },
+      "example": {
+        "command": [
+          "dart",
+          "test",
+          "/Volumes/AppleExpanded/Code/effect_dart/packages/effect_test/example/main.dart"
+        ],
+        "exit_code": 0
+      }
+    }
+  },
+  "sql_acceptance": "passed selected native suites; TLS negative-chain suite not rerun",
+  "postgres": {
+    "command": [
+      "dart",
+      "test",
+      "test/classification_test.dart",
+      "test/integration_test.dart",
+      "-r",
+      "json"
+    ],
+    "exit_code": 0,
+    "passed": 13,
+    "skipped": 0,
+    "failed": 0
+  },
+  "mysql": {
+    "command": [
+      "dart",
+      "test",
+      "test/classification_test.dart",
+      "test/integration_test.dart",
+      "-r",
+      "json"
+    ],
+    "exit_code": 0,
+    "passed": 19,
+    "skipped": 0,
+    "failed": 0
+  },
+  "cleanup": [
+    {
+      "name": "effect-perf-mysql-644ebbf98c",
+      "exit_code": 0
+    },
+    {
+      "name": "effect-perf-postgres-191142d7be",
+      "exit_code": 0
+    }
+  ],
+  "finished_at_utc": "2026-10-18T12:18:36.684746+00:00",
+  "source_sha256": {
+    "lib/effect_core.dart": "2219dfe746f9d6e2e5116ce66b1a5d7a20b40edeb0afcf2e4bbf088ab6f3d76f",
+    "lib/src/concurrency.dart": "8f53cce75d47b3422d80ccc34c45fa8467b48091c356f59cb65e59d47d64c1bd",
+    "lib/src/core.dart": "faff73a644cb82348ed9fadefe975add81ff799c8d031528713212935ccaee6a",
+    "lib/src/ergonomics.dart": "89cba2271d2a7376eccbc08d106239883b6f5f33b9ffc758ab36c432205e12d1",
+    "lib/src/managed_runtime.dart": "b088764ca749b6719014d158f50052960c1b10892a512697e8810f758a0cdd2d",
+    "lib/src/reliability.dart": "59b396485c1fef3a975d57759bebaa76e1771f95479599c201c2cf6a5dfc0c40",
+    "lib/src/services.dart": "c2ea4e8ab4e958b6fd8c0de521f4b9ddbfad19abc8b0264078e20473d2b7bc87",
+    "lib/src/stream.dart": "011c3e5b7488d23fd696d0b9d5605affbada3bac26763beae098086e646f95f4",
+    "packages/effect_ai/lib/effect_ai.dart": "79583ca5f696e48d6871efb66fa23a150d8deba5d679a679777f8cd8b0789758",
+    "packages/effect_ai/test/ai_test.dart": "d298bf5e2d6b6a0b540167b7ad994b161c6a10d1de6c459a509759d7d5e9205d",
+    "packages/effect_batch/lib/effect_batch.dart": "c171c42523db4edcd4071e73315e9b84d4b25d491bebf1c2777806710daebaf2",
+    "packages/effect_batch/test/batch_test.dart": "8553bb06cd6313f674d944fca3db902934d39115e84de73af51fdbc59aa0aa54",
+    "packages/effect_cache/lib/effect_cache.dart": "7c49c9f370a7eabb2625b1d70786d19c22b3e3d784afef948651e7fd953167cb",
+    "packages/effect_cache/test/cache_test.dart": "dfdc24fbbc61ca8c4901c8d3e51cda03fd321f921cf38d249cab7ce3e6676ba6",
+    "packages/effect_config/lib/effect_config.dart": "83f189c89e946b6d8f6b2bb9be52a763d934a3c95443920d6bc1d30de7c4e6e6",
+    "packages/effect_config/test/config_test.dart": "d6b9c1683d433d23a759dd1b9cccbe6cab69b6b3a452ac7cd4bc2c02d4c90bf3",
+    "packages/effect_flutter/lib/effect_flutter.dart": "b9a8c2bcfbc98453fc001512618b06991c60af3df6684788d8e5f532a8587154",
+    "packages/effect_flutter/test/controller_test.dart": "d18cb508544138db297d5146d35a07c6cde8dbef744e74d3386d4e237cb952a6",
+    "packages/effect_http/lib/effect_http.dart": "70064dce42ef8a5b6858720db17fb85bec1d722934817d5b4445456f173e556d",
+    "packages/effect_http/test/http_test.dart": "d9442338a5fbb0e88a3e21c998fa4fcc3009577532f5d2347755e2823839826c",
+    "packages/effect_http/test/portable_test.dart": "aff02fba55a81ea65f51efe18179f42e1cb710a5357e1802cd3567b4f2479ba5",
+    "packages/effect_http_server/lib/effect_http_server.dart": "959e31e860b9afa1e696b0f01ebcdf3713d84c3b01c111a751a17cce74b876c4",
+    "packages/effect_http_server/test/server_test.dart": "fcc28c168aa79f5ef14f98da1191be03832a89064957c38a3a4b303fca2afe50",
+    "packages/effect_mysql/lib/effect_mysql.dart": "00d4c211c0937643c7ed81edcc3ab73a0d4116598d658ecf57f14090807e3b21",
+    "packages/effect_mysql/test/classification_test.dart": "e01ece38645ec79c5eca7edeba7ba36dc889cd9d1fa5ea3c2a644ebbcbb0aecf",
+    "packages/effect_mysql/test/integration_test.dart": "1f590e7704533c5b9da2ab1058d0398083aa92384530179b017467015912651e",
+    "packages/effect_mysql/test/support/driver_contract.dart": "de103e8be491f0b17b0f73c07f92dbdc89360e1753ad1229ce69cd0aecc12880",
+    "packages/effect_mysql/test/tls_acceptance_test.dart": "12d56dfbc9baed2b6760743f375a1473937e4ca30a1f2d9095aefff2e24e3c59",
+    "packages/effect_observability/lib/effect_observability.dart": "681214322d0f97d64c4736e06eabdd815400e180a554342c1300bb79e87d62e9",
+    "packages/effect_observability/test/metrics_test.dart": "40fef5923eaf7dbf70baf97dcfae48f2479e7ccf304bd3212b08b5bd5ccce4a7",
+    "packages/effect_openai/lib/effect_openai.dart": "541e8da137e3e06ea4cd56bf561a290b6755b944608df7e06b4aa9f1eb126b31",
+    "packages/effect_openai/test/client_test.dart": "80bd964d1d2456d31e9acc7e810881c0422929a4103c20201ab01597a76626f5",
+    "packages/effect_openai/test/http_integration_test.dart": "a478d4fc79e4876cc8d485e9ff24d63cca7462e66ecd28f850d6903b625b453c",
+    "packages/effect_openai/test/sdk_test.dart": "5f24c68114a9f86b3ac1346313a2c0cf34d0a1b8ecda3fa80a9737197bef1569",
+    "packages/effect_openai/test/support/fixtures.dart": "0dad3795f091f75a1b875715cde6691e2e581454540313e2c4f8a7929e260bac",
+    "packages/effect_platform/lib/effect_platform.dart": "33bdbff7bf6623b5cac05ea122e4066caabd52e8bcb4cd9a675f7289d5531505",
+    "packages/effect_platform/test/platform_test.dart": "1af1c46523244babe13ed790c493e0cae759e97dca9154f13d29672d28cc5830",
+    "packages/effect_postgres/lib/effect_postgres.dart": "420be850327ea0d1c5feb52b950ba5593330c46ac22eb17b332255b054b7e8e1",
+    "packages/effect_postgres/test/classification_test.dart": "6f79c0b4250190ba5b226ea224912a3f033f103f4e9d3dcf2d1ab22be0e6e964",
+    "packages/effect_postgres/test/integration_test.dart": "42f8af9ce7e81df190fd933ae18cf6c7af2bbae4e0e00e687b859361cd192adf",
+    "packages/effect_postgres/test/support/driver_contract.dart": "de103e8be491f0b17b0f73c07f92dbdc89360e1753ad1229ce69cd0aecc12880",
+    "packages/effect_postgres/test/tls_acceptance_test.dart": "cb3b98c0ff2459174bc442a2bd2b8a99ffb25c3999f145216d7d65f5b5ab7fc1",
+    "packages/effect_reactivity/lib/effect_reactivity.dart": "11e58965b69f3b818630c613ba785da02fdaa88e537859be6eb01cf00bdcd632",
+    "packages/effect_reactivity/test/state_test.dart": "6323431cd1b8f98e9d562b9fcdf4deb84773e4056807d55a18ba892500558856",
+    "packages/effect_schema/lib/effect_schema.dart": "4cb36e5834e6dd9415056fcd257a4db950a851aafd16142cbb2a08b4330bcb17",
+    "packages/effect_schema/test/schema_test.dart": "ac499cf4dbeb2c670fc4d3072fc1620924943174484b949e8af7a90003c0dd94",
+    "packages/effect_sql/lib/effect_sql.dart": "de50d3b88d491a374c6f0927900bebc9f98c4ad3178c691fb355bdf3b9317689",
+    "packages/effect_sql/test/sql_test.dart": "b70ebaa7c75d0a41e61e05f759fc66e8ea2ee1dac5043a873dd26e382845cf71",
+    "packages/effect_sql/test/support/driver_contract.dart": "de103e8be491f0b17b0f73c07f92dbdc89360e1753ad1229ce69cd0aecc12880",
+    "packages/effect_sql_schema/lib/effect_sql_schema.dart": "948985d2d2130394907108579528d531cff4dbc8ca7766018f50503a5bc014f6",
+    "packages/effect_sql_schema/test/decoding_test.dart": "4d7f11b24cf8d1f3a413752145e0eda3cd0b312bb8b0b23d6ddd287593558f4f",
+    "packages/effect_sql_schema/test/transaction_sqlite_test.dart": "4faf507a055aecf9337e9e22cc42574e80aecf417a1ce2f98272ee423197dce9",
+    "packages/effect_sqlite/lib/effect_sqlite.dart": "49a390059dca335574e4f4972d0cf54b1939e854060f6772cd49a932af048775",
+    "packages/effect_sqlite/test/sqlite_test.dart": "43273650e24e2c9abaa4641c40d66823924caa07ea373c46de704b8e00e6ea52",
+    "packages/effect_test/lib/effect_test.dart": "5379d240be732870affa6cf93305dbb2ec350250b115f1214ea7065a9c41d299",
+    "packages/effect_test/test/helpers_test.dart": "e0e4a9e06c33ee73413673e89d95bc2c245bef893076c7bc4ff2a9f5e898d206",
+    "test/concurrency_test.dart": "6f56283830371f6aead626ec5d512db756392041f4deaae1e2fcaa70333337d3",
+    "test/reliability_test.dart": "95bd79df956a9f7b8cbd04ec107aa9a4a237accd01d34d97ebf769403567410a",
+    "test/review_test.dart": "5a6e79f3ecea04daccc46edd7d4c64ccd620580bd57f82ff42d29a19e5f49dae",
+    "test/runtime_test.dart": "9862089cd0b5bdaa514decd93bacca2bd77459656f6c8f53c4699202facace9e",
+    "test/services_test.dart": "ebff3d290d88e1a67889e6fe891cbb1b315bfb5ce4a048a7e8c561931011e3a0",
+    "test/stream_test.dart": "3514461aa458b2a07c4a9d03ff27116b10e0fe6de38599b147db6d4b8c956dcb",
+    "test/support/checkpoints.dart": "405b3a600f07a3e5814709af16176417fe9d186199e192dd8dd58426b7919b94",
+    "test/toolkit_test.dart": "9fad510521967fb1d88655667e771042e7b15db6f9e481cced39ac598af742cd",
+    "tool/application_toolkit_validation.py": "30856e4dd1530eb239c7d6fd7fe4d88bfb925fd1435407e3b439d889c4fb7dd5"
+  },
+  "summary": {
+    "packages_analyzed": 19,
+    "vm_flutter_passed_without_duplicate_native_suites": 283,
+    "chrome_passed": 226,
+    "negative_tls_chain_tests": "not rerun; separately dated acceptance",
+    "core_examples": [
+      "example/bounded.dart",
+      "example/reliability.dart",
+      "example/resources.dart",
+      "example/retry.dart",
+      "example/services.dart",
+      "example/stream.dart",
+      "example/web.dart"
+    ]
+  },
+  "followup_validation": {
+    "source_changes": {
+      "packages/effect_sqlite/lib/effect_sqlite.dart": {
+        "previous_sha256": "aca51b03dd3d6451eb3c5d01561b185160d703d6b6fcde77f584fe856432f126",
+        "current_sha256": "49a390059dca335574e4f4972d0cf54b1939e854060f6772cd49a932af048775"
+      },
+      "packages/effect_sqlite/test/sqlite_test.dart": {
+        "previous_sha256": "5fe28d4eeadd0c6b0f52863684bf45dc1d8f2bddc0e6cd8b79bb540d6f07b9fc",
+        "current_sha256": "43273650e24e2c9abaa4641c40d66823924caa07ea373c46de704b8e00e6ea52"
+      }
+    },
+    "suites": {
+      "effect_sqlite": {
+        "passed": 2,
+        "failed": 0,
+        "reason": "Post-audit correction: SQLite DDL must not report stale connection-level row counts or insert IDs"
+      },
+      "effect_sql_schema": {
+        "passed": 3,
+        "failed": 0,
+        "reason": "Post-audit correction: SQLite DDL must not report stale connection-level row counts or insert IDs"
+      }
+    },
+    "root_analysis": {
+      "exit_code": 0
+    },
+    "sqlite_example": {
+      "exit_code": 0
+    }
+  }
+}

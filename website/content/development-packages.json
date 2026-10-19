@@ -1,0 +1,78 @@
+{
+  "source_revision": "e4ef4b99014b28aab3efd71ac9482f802dbab599",
+  "toolkit_report_sha256": "0471403fbaf695a622add7ab54fd09b9a2ca54ba4e1f0b45c1c139968b541cfc",
+  "packages": {
+    "effect_ai": {
+      "version": "0.1.0-dev.1",
+      "doc": "website/content/development-packages/effect_ai.md",
+      "source": "https://github.com/iamudesharma/dart-effect/blob/e4ef4b9/packages/effect_ai/README.md",
+      "status": "Draft PR #13; implementation excluded from cache PR"
+    },
+    "effect_batch": {
+      "version": "0.1.0-dev.1",
+      "doc": "website/content/development-packages/effect_batch.md",
+      "source": "https://github.com/iamudesharma/dart-effect/blob/e4ef4b9/packages/effect_batch/README.md",
+      "status": "Draft PR #13; implementation excluded from cache PR"
+    },
+    "effect_config": {
+      "version": "0.1.0-dev.1",
+      "doc": "website/content/development-packages/effect_config.md",
+      "source": "https://github.com/iamudesharma/dart-effect/blob/e4ef4b9/packages/effect_config/README.md",
+      "status": "Draft PR #13; implementation excluded from cache PR"
+    },
+    "effect_flutter": {
+      "version": "0.1.0-dev.1",
+      "doc": "website/content/development-packages/effect_flutter.md",
+      "source": "https://github.com/iamudesharma/dart-effect/blob/e4ef4b9/packages/effect_flutter/README.md",
+      "status": "Draft PR #13; implementation excluded from cache PR"
+    },
+    "effect_http_server": {
+      "version": "0.1.0-dev.1",
+      "doc": "website/content/development-packages/effect_http_server.md",
+      "source": "https://github.com/iamudesharma/dart-effect/blob/e4ef4b9/packages/effect_http_server/README.md",
+      "status": "Draft PR #13; implementation excluded from cache PR"
+    },
+    "effect_observability": {
+      "version": "0.1.0-dev.1",
+      "doc": "website/content/development-packages/effect_observability.md",
+      "source": "https://github.com/iamudesharma/dart-effect/blob/e4ef4b9/packages/effect_observability/README.md",
+      "status": "Draft PR #13; implementation excluded from cache PR"
+    },
+    "effect_platform": {
+      "version": "0.1.0-dev.1",
+      "doc": "website/content/development-packages/effect_platform.md",
+      "source": "https://github.com/iamudesharma/dart-effect/blob/e4ef4b9/packages/effect_platform/README.md",
+      "status": "Draft PR #13; implementation excluded from cache PR"
+    },
+    "effect_reactivity": {
+      "version": "0.1.0-dev.1",
+      "doc": "website/content/development-packages/effect_reactivity.md",
+      "source": "https://github.com/iamudesharma/dart-effect/blob/e4ef4b9/packages/effect_reactivity/README.md",
+      "status": "Draft PR #13; implementation excluded from cache PR"
+    },
+    "effect_schema": {
+      "version": "0.1.0-dev.1",
+      "doc": "website/content/development-packages/effect_schema.md",
+      "source": "https://github.com/iamudesharma/dart-effect/blob/e4ef4b9/packages/effect_schema/README.md",
+      "status": "Draft PR #13; implementation excluded from cache PR"
+    },
+    "effect_sql_schema": {
+      "version": "0.1.0-dev.1",
+      "doc": "website/content/development-packages/effect_sql_schema.md",
+      "source": "https://github.com/iamudesharma/dart-effect/blob/e4ef4b9/packages/effect_sql_schema/README.md",
+      "status": "Draft PR #13; implementation excluded from cache PR"
+    },
+    "effect_sqlite": {
+      "version": "0.1.0-dev.1",
+      "doc": "website/content/development-packages/effect_sqlite.md",
+      "source": "https://github.com/iamudesharma/dart-effect/blob/e4ef4b9/packages/effect_sqlite/README.md",
+      "status": "Draft PR #13; implementation excluded from cache PR"
+    },
+    "effect_test": {
+      "version": "0.1.0-dev.1",
+      "doc": "website/content/development-packages/effect_test.md",
+      "source": "https://github.com/iamudesharma/dart-effect/blob/e4ef4b9/packages/effect_test/README.md",
+      "status": "Draft PR #13; implementation excluded from cache PR"
+    }
+  }
+}
