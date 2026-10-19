@@ -503,7 +503,7 @@
       "status": "completed",
       "phase": "delivered",
       "area": "Development cache",
-      "detail": "Cache implementation and minimal core prerequisites are isolated in a separate PR against dart-effect. Website code is included; the other twelve packages remain in draft PR #13. Still unpublished.",
+      "detail": "Cache implementation and minimal core prerequisites are isolated in PR #14 against dart-effect. Website code is included; the other twelve packages remain in draft PR #13. Still unpublished.",
       "proof": "/docs/cache/",
       "updated_at": "2026-10-18"
     }

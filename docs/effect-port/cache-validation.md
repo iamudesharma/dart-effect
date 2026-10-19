@@ -1,6 +1,6 @@
 # Cache lifecycle, acceptance and performance
 
-**Independent merge scope — 19 October 2026.** This checkout contains only cache, its minimal clock/Cause/scoped-acquisition core prerequisites, and website/documentation updates. The other twelve toolkit packages and broader runtime/HTTP changes remain in draft PR #13. Validation below was rerun against this isolated source; it does not depend on merging PR #13.
+**[Independent PR #14](https://github.com/iamudesharma/dart-effect/pull/14) — 19 October 2026.** This checkout contains only cache, its minimal clock/Cause/scoped-acquisition core prerequisites, and website/documentation updates. The other twelve toolkit packages and broader runtime/HTTP changes remain in draft PR #13. Validation below was rerun against this isolated source; it does not depend on merging PR #13.
 
 The `effect_cache 0.1.0-dev.1` cache scope is implemented and locally validated.
 It remains **unpublished**, dependent on development core `0.0.3-dev.1`. This is
