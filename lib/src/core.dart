@@ -92,8 +92,22 @@ abstract interface class Clock {
   Future<void> sleep(Duration duration, CancellationToken token);
 }
 
-final class RealClock implements Clock {
+/// Optional monotonic capability. Legacy custom Clocks remain source compatible.
+abstract interface class MonotonicClock implements Clock {
+  Duration get elapsed;
+}
+
+/// Duration policies use monotonic time where available. A legacy custom Clock
+/// falls back to its injected wall time, retaining existing test behavior.
+Duration elapsedTime(Clock clock) => clock is MonotonicClock
+    ? clock.elapsed
+    : Duration(microseconds: clock.now.microsecondsSinceEpoch);
+
+final class RealClock implements MonotonicClock {
   const RealClock();
+  static final _watch = Stopwatch()..start();
+  @override
+  Duration get elapsed => _watch.elapsed;
   @override
   DateTime get now => DateTime.now();
   @override
@@ -116,9 +130,12 @@ final class RealClock implements Clock {
 }
 
 /// Manual time, with no wall-clock delays. Advance after sleepers register.
-final class TestClock implements Clock {
+final class TestClock implements MonotonicClock {
   TestClock([DateTime? initial]) : _now = initial ?? DateTime.utc(2000);
   DateTime _now;
+  Duration _elapsed = Duration.zero;
+  @override
+  Duration get elapsed => _elapsed;
   final _sleepers = <_Sleeper>[];
   @override
   DateTime get now => _now;
@@ -142,6 +159,7 @@ final class TestClock implements Clock {
   void advance(Duration duration) {
     if (duration.isNegative) throw ArgumentError.value(duration);
     _now = _now.add(duration);
+    _elapsed += duration;
     for (final s in List<_Sleeper>.of(_sleepers)) {
       if (!s.at.isAfter(_now)) {
         _sleepers.remove(s);

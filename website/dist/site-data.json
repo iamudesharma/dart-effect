@@ -79,8 +79,189 @@
       "url": "https://pub.dev/packages/effect_openai",
       "published_at_utc": "2026-10-08T15:09:20.473855Z",
       "archive_sha256": "2a7c1f2c621f22d3958a46cee6b9856248c539a25a0a664a29157ce303243bef"
+    },
+    {
+      "name": "effect_schema",
+      "slug": "effect-schema",
+      "icon": "SC",
+      "text": "Structured decoding, codecs, nested issues and structural JSON Schema.",
+      "platform": "VM + web",
+      "version": "0.1.0-dev.1",
+      "vm": 6,
+      "chrome": 6,
+      "unpublished": true,
+      "draft": true
+    },
+    {
+      "name": "effect_config",
+      "slug": "effect-config",
+      "icon": "CF",
+      "text": "Typed configuration, fallback providers and explicit redaction.",
+      "platform": "VM + web",
+      "version": "0.1.0-dev.1",
+      "vm": 4,
+      "chrome": 4,
+      "unpublished": true,
+      "draft": true
+    },
+    {
+      "name": "effect_cache",
+      "slug": "effect-cache",
+      "icon": "CA",
+      "text": "Bounded LRU, single-flight loading and scoped borrower lifetimes.",
+      "platform": "VM + web",
+      "version": "0.1.0-dev.1",
+      "vm": 35,
+      "chrome": 34,
+      "unpublished": true,
+      "draft": false
+    },
+    {
+      "name": "effect_batch",
+      "slug": "effect-batch",
+      "icon": "BA",
+      "text": "Grouped deduplication with bounded pending requests and batch sizes.",
+      "platform": "VM + web",
+      "version": "0.1.0-dev.1",
+      "vm": 3,
+      "chrome": 3,
+      "unpublished": true,
+      "draft": true
+    },
+    {
+      "name": "effect_reactivity",
+      "slug": "effect-reactivity",
+      "icon": "ST",
+      "text": "Latest-value subscriptions and typed graceful channels.",
+      "platform": "VM + web",
+      "version": "0.1.0-dev.1",
+      "vm": 3,
+      "chrome": 3,
+      "unpublished": true,
+      "draft": true
+    },
+    {
+      "name": "effect_test",
+      "slug": "effect-test",
+      "icon": "TE",
+      "text": "Runtime teardown, Cause matchers and deterministic clock helpers.",
+      "platform": "VM + web",
+      "version": "0.1.0-dev.1",
+      "vm": 1,
+      "chrome": 1,
+      "unpublished": true,
+      "draft": true
+    },
+    {
+      "name": "effect_flutter",
+      "slug": "effect-flutter",
+      "icon": "FL",
+      "text": "ValueListenable state, latest request wins and awaited close.",
+      "platform": "Flutter test engine",
+      "version": "0.1.0-dev.1",
+      "vm": 3,
+      "chrome": null,
+      "unpublished": true,
+      "draft": true
+    },
+    {
+      "name": "effect_platform",
+      "slug": "effect-platform",
+      "icon": "IO",
+      "text": "Native configuration and one-shot isolate computations.",
+      "platform": "Native only",
+      "version": "0.1.0-dev.1",
+      "vm": 3,
+      "chrome": null,
+      "unpublished": true,
+      "draft": true
+    },
+    {
+      "name": "effect_sqlite",
+      "slug": "effect-sqlite",
+      "icon": "DB",
+      "text": "Native SQLite binding, transactions and constraint failures.",
+      "platform": "Native only",
+      "version": "0.1.0-dev.1",
+      "vm": 2,
+      "chrome": null,
+      "unpublished": true,
+      "draft": true
+    },
+    {
+      "name": "effect_sql_schema",
+      "slug": "effect-sql-schema",
+      "icon": "SQ",
+      "text": "Validated rows, domain rollback and migration ledgers.",
+      "platform": "Portable + SQLite acceptance",
+      "version": "0.1.0-dev.1",
+      "vm": 3,
+      "chrome": 1,
+      "unpublished": true,
+      "draft": true
+    },
+    {
+      "name": "effect_ai",
+      "slug": "effect-ai",
+      "icon": "AI",
+      "text": "Provider-neutral models, structured output and bounded tool agents.",
+      "platform": "VM + web fixtures",
+      "version": "0.1.0-dev.1",
+      "vm": 3,
+      "chrome": 3,
+      "unpublished": true,
+      "draft": true
+    },
+    {
+      "name": "effect_observability",
+      "slug": "effect-observability",
+      "icon": "OB",
+      "text": "Bounded metrics, Prometheus text and explicit exporter lifetimes.",
+      "platform": "VM + web",
+      "version": "0.1.0-dev.1",
+      "vm": 3,
+      "chrome": 3,
+      "unpublished": true,
+      "draft": true
+    },
+    {
+      "name": "effect_http_server",
+      "slug": "effect-http-server",
+      "icon": "API",
+      "text": "Typed JSON routes, bounded admission and owned server shutdown.",
+      "platform": "Native only",
+      "version": "0.1.0-dev.1",
+      "vm": 1,
+      "chrome": null,
+      "unpublished": true,
+      "draft": true
     }
   ],
+  "cache_validation": {
+    "vm": 35,
+    "chrome": 34,
+    "unpublished": true
+  },
+  "draft_toolkit_snapshot": {
+    "status": "Draft PR #13; other twelve packages excluded from this checkout",
+    "source_revision": "e4ef4b99014b28aab3efd71ac9482f802dbab599"
+  },
+  "development_validation": {
+    "packages_analyzed": 19,
+    "vm_flutter_passed_without_duplicate_native_suites": 283,
+    "chrome_passed": 226,
+    "negative_tls_chain_tests": "not rerun; separately dated acceptance",
+    "core_examples": [
+      "example/bounded.dart",
+      "example/reliability.dart",
+      "example/resources.dart",
+      "example/retry.dart",
+      "example/services.dart",
+      "example/stream.dart",
+      "example/web.dart"
+    ]
+  },
+  "release_revision": "ce088f3aad6d215b3c992a8009b1d9bfdaea6ddb",
   "goals": [
     {
       "id": "site",
@@ -132,7 +313,7 @@
       "title": "First pub.dev release",
       "status": "completed",
       "area": "Release",
-      "detail": "All five packages are published on pub.dev. PostgreSQL 0.0.2 includes documented public APIs and a verified 160/160 score.",
+      "detail": "The initial five packages were published, followed by effect_http. Six published releases remain distinct from the thirteen unpublished toolkit additions.",
       "proof": "/packages/",
       "phase": "delivered"
     },
@@ -152,7 +333,7 @@
       "status": "completed",
       "phase": "delivered",
       "area": "Performance",
-      "detail": "Current core JIT/AOT comparisons, portable SQL overhead, real PostgreSQL/MySQL driver timings, repeated post-GC owner checks and bounded 30-second load runs. Measurable overhead and production limits are recorded.",
+      "detail": "Dated core JIT/AOT comparisons, portable SQL overhead, real PostgreSQL/MySQL driver timings, repeated post-GC owner checks and bounded 30-second load runs. Measurable overhead and production limits are recorded. These measurements predate the toolkit implementation.",
       "proof": "/docs/remaining-performance/",
       "updated_at": "2026-10-10"
     },
@@ -224,47 +405,51 @@
     },
     {
       "id": "foundation",
-      "title": "Typed configuration, schemas and cache lifetimes",
-      "status": "proposed",
-      "phase": "later",
+      "title": "Typed configuration, schemas and cache foundations",
+      "status": "active",
+      "phase": "next",
       "area": "Core",
-      "detail": "Explore structured schema issues, encode/decode round trips, configuration loading and scoped cache expiry.",
-      "dependency": "Agree on a small Dart-native API and lifecycle contracts before implementation.",
-      "acceptance": "Independent issue/round-trip tests, deterministic expiry tests and documented error/resource behavior.",
-      "proof": "/docs/features/"
+      "detail": "Initial foundations exist in draft PR #13. Twelve packages remain outside the cache merge-ready checkout; historical tests do not mean they are ready to merge.",
+      "dependency": "Finish each package independently; keep draft PR #13 open.",
+      "acceptance": "Merge only individually completed package PRs with their own validation.",
+      "proof": "/docs/application-toolkit/",
+      "updated_at": "2026-10-19"
     },
     {
       "id": "streams",
-      "title": "Broader streams and coordination primitives",
-      "status": "proposed",
-      "phase": "later",
+      "title": "Advanced runtime, streams and schedule contracts",
+      "status": "planned",
+      "phase": "next",
       "area": "Core",
-      "detail": "Consider queue strategies, graceful end, replay PubSub, stream merging/grouping/time operators and Sink leftovers.",
+      "detail": "Development core adds graceful queue completion, replay policies and bounded ordered stream operators. Region-wrapper stack safety, restoration/supervision, generated dependency evidence, stream merge/time/recovery/leftovers and calendar schedules remain open.",
       "dependency": "Prioritize operators from actual application needs and define backpressure and cancellation contracts.",
       "acceptance": "Independent bounded-buffer, early-exit, interruption and exactly-once cleanup scenarios for each advertised operator.",
-      "proof": "/docs/features/"
+      "proof": "/docs/application-toolkit/",
+      "updated_at": "2026-10-18"
     },
     {
       "id": "observability",
-      "title": "Metrics and tracing exporters",
-      "status": "proposed",
-      "phase": "later",
+      "title": "Complete tracing and exporter integrations",
+      "status": "planned",
+      "phase": "next",
       "area": "Observability",
-      "detail": "Build optional exporters on the released lifecycle hooks and bounded aggregate metrics. Keep transport dependencies outside core.",
+      "detail": "Development effect_observability provides bounded metrics, Prometheus text, traceparent and explicit exporter lifecycle. OTLP, a complete span model, fiber-local propagation and instrumentation overhead remain open.",
       "dependency": "Select Dart observability interfaces and decide privacy, overhead and exporter boundaries.",
       "acceptance": "Verify successful/failed/interrupted spans, scoped exporter cleanup and measured overhead.",
-      "proof": "/docs/features/"
+      "proof": "/docs/application-toolkit/",
+      "updated_at": "2026-10-18"
     },
     {
       "id": "platform",
-      "title": "Flutter and isolate integration helpers",
-      "status": "proposed",
-      "phase": "later",
+      "title": "Native Flutter and broader platform acceptance",
+      "status": "planned",
+      "phase": "next",
       "area": "Platform",
-      "detail": "Explore Flutter owner lifetimes and explicit isolate sendability helpers outside the portable core.",
+      "detail": "Development Flutter controllers passed widget tests and one-shot isolates passed native tests. Physical-device journeys, stream bindings, worker pools and browser workers remain open.",
       "dependency": "Define ownership and supported platform contracts; choose real device acceptance targets.",
       "acceptance": "Run native Flutter disposal journeys and isolate sendability/error propagation tests; record unsupported platforms.",
-      "proof": "/docs/features/"
+      "proof": "/docs/application-toolkit/",
+      "updated_at": "2026-10-18"
     },
     {
       "id": "reliability-http",
@@ -275,6 +460,52 @@
       "proof": "/docs/reliability/",
       "phase": "delivered",
       "updated_at": "2026-10-11"
+    },
+    {
+      "id": "toolkit-foundations",
+      "title": "Thirteen application toolkit package foundations",
+      "status": "active",
+      "phase": "next",
+      "area": "Development",
+      "detail": "Initial foundations exist in draft PR #13. Twelve packages remain outside the cache merge-ready checkout; historical tests do not mean they are ready to merge.",
+      "proof": "/docs/application-toolkit/",
+      "updated_at": "2026-10-19",
+      "dependency": "Finish each package independently; keep draft PR #13 open.",
+      "acceptance": "Merge only individually completed package PRs with their own validation."
+    },
+    {
+      "id": "toolkit-breadth",
+      "title": "Toolkit API breadth and release preparation",
+      "status": "planned",
+      "phase": "next",
+      "area": "Toolkit",
+      "detail": "Remaining schema derivation, provider bridges and AI acceptance, PostgreSQL/MySQL migrations, server streaming/OpenAPI and advanced batching/cache APIs remain open. No new toolkit benchmarks or package publication yet.",
+      "dependency": "Prioritize the documented gaps and define each contract before implementation.",
+      "acceptance": "Record independent contract tests, native/provider acceptance where required, current performance evidence, package dry runs and a separate release decision.",
+      "proof": "/docs/application-toolkit/",
+      "updated_at": "2026-10-18"
+    },
+    {
+      "id": "distributed-products",
+      "title": "RPC, workflows, clustering, CLI and GraphQL",
+      "status": "proposed",
+      "phase": "later",
+      "area": "Future products",
+      "detail": "Retained as future directions by user choice; no implementation or release commitment.",
+      "dependency": "Separate product scope, architecture and transport/persistence contracts.",
+      "acceptance": "Agree a focused proposal and measurable acceptance plan before starting implementation.",
+      "proof": "/docs/application-toolkit/",
+      "updated_at": "2026-10-18"
+    },
+    {
+      "id": "cache-completion",
+      "title": "Cache lifecycle completion and dedicated acceptance",
+      "status": "completed",
+      "phase": "delivered",
+      "area": "Development cache",
+      "detail": "Cache implementation and minimal core prerequisites are isolated in PR #14 against dart-effect. Website code is included; the other twelve packages remain in draft PR #13. Still unpublished.",
+      "proof": "/docs/cache/",
+      "updated_at": "2026-10-19"
     }
   ],
   "vm_tests": 230,

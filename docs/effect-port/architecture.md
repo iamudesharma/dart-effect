@@ -79,3 +79,7 @@ Development reliability policies and observability are specified in
 after its primary outcome. Retry catches single Expected causes only; elapsed
 budgets govern admission. Tracing is optional and observer failures are isolated.
 HTTP/SSE driver dependencies remain in packages/effect_http, outside portable core.
+
+## Cache prerequisites (development)
+
+Optional MonotonicClock/elapsedTime supports cache TTL while retaining a wall-time fallback for legacy clocks. Cause inspection preserves expected/defect/interruption distinctions. acquireScoped masks acquisition until release is registered in the current scope. These additions are unpublished; broader runtime/toolkit changes remain in draft PR #13.
