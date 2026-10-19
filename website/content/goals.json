@@ -149,7 +149,7 @@
     "dependency": "Finish each package independently; keep draft PR #13 open.",
     "acceptance": "Merge only individually completed package PRs with their own validation.",
     "proof": "/docs/application-toolkit/",
-    "updated_at": "2026-10-18"
+    "updated_at": "2026-10-19"
   },
   {
     "id": "streams",
@@ -205,7 +205,7 @@
     "area": "Development",
     "detail": "Initial foundations exist in draft PR #13. Twelve packages remain outside the cache merge-ready checkout; historical tests do not mean they are ready to merge.",
     "proof": "/docs/application-toolkit/",
-    "updated_at": "2026-10-18",
+    "updated_at": "2026-10-19",
     "dependency": "Finish each package independently; keep draft PR #13 open.",
     "acceptance": "Merge only individually completed package PRs with their own validation."
   },
@@ -241,6 +241,6 @@
     "area": "Development cache",
     "detail": "Cache implementation and minimal core prerequisites are isolated in PR #14 against dart-effect. Website code is included; the other twelve packages remain in draft PR #13. Still unpublished.",
     "proof": "/docs/cache/",
-    "updated_at": "2026-10-18"
+    "updated_at": "2026-10-19"
   }
 ]

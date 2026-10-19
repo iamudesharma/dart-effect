@@ -176,7 +176,7 @@ safety proof; arbitrary deeply nested region wrappers do not.
 <!-- roadmap:start -->
 ## Roadmap and progress
 
-**Roadmap updated: 18 October 2026.** Six existing packages are published: `effect_core` and `effect_postgres` at `0.0.2`; `effect_sql`, `effect_mysql`, `effect_openai` and `effect_http` at `0.0.1`.
+**Roadmap updated: 19 October 2026.** Six existing packages are published: `effect_core` and `effect_postgres` at `0.0.2`; `effect_sql`, `effect_mysql`, `effect_openai` and `effect_http` at `0.0.1`.
 
 **10 delivered milestones · 3 in progress · 5 planned · 1 awaiting input · 1 future proposals.**
 

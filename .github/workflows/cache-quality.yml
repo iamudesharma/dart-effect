@@ -17,6 +17,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: '3.13.0'
@@ -26,6 +28,10 @@ jobs:
           (cd packages/effect_cache && dart pub get)
       - name: Contracts, examples, JIT/AOT and post-GC retention
         run: python3 tool/cache_validation.py
+      - name: Website evidence, routes and draft boundaries
+        run: |
+          python3 website/build.py
+          python3 website/check.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
