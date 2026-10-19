@@ -1,3 +1,9 @@
+## Unreleased
+
+- Bound pending/active work and reduce retained allocations; preserve protected
+  cleanup and typed overload diagnostics. See `docs/effect-port/memory-fixes.md`
+  in the source repository for package-specific changes and executed evidence.
+
 ## 0.1.0-dev.1
 
 Unpublished development implementation; requires development core 0.0.3-dev.1.

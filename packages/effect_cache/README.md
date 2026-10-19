@@ -169,3 +169,18 @@ independent test matrix, real HTTP fixture, model-based LRU checks, benchmarks,
 post-GC reachability checks and package dry-run boundaries. Chrome excludes the
 native loopback HTTP fixture. No API keys or database are needed. Browser tests
 are behavioral checks; they do not establish Flutter-device acceptance.
+
+## Unpublished owner admission limits
+
+`maxOwners` now bounds all active lookup/resource generations, including those
+waiting for protected cleanup, independently of resident `capacity`. It defaults
+to twice capacity. Set `onCapacity: () => YourError(...)` to map saturation into
+the declared E family; otherwise it is a StateError defect. A new generation is
+rejected immediately at the bound, so a nested scoped refresh cannot deadlock
+waiting for its own final owner permit. Existing shared entries still work.
+
+Completed value entries keep only their Exit rather than a finished Fiber.
+Use `startMaintenance(interval: ...)` or `purgeExpired()` when idle expiration
+must release values without a subsequent read. Drain diagnostics and close the
+cache before runtime shutdown. Value/error bytes and borrower counts still need
+application budgets. See the [follow-up evidence](../../docs/effect-port/memory-fixes.md).

@@ -66,3 +66,23 @@ Validation: `dart analyze`, `dart test`, and
 `dart test -p chrome test/portable_test.dart`. VM integration fixtures use real
 loopback HTTP/SSE, including cancellation before headers and early stop. Browser
 fixtures prove portable parsing/outcomes, not live BrowserClient abort behavior.
+
+## Unpublished memory budgets
+
+Responses now use immutable packed bytes with defensive copying of caller input.
+Requests accumulate using the SDK BytesBuilder. `EffectHttp` accepts
+`maxConcurrentRequests` (32 by default, shared with SSE) and `maxBufferedBytes`
+(32 MiB by default across active response accumulators). Overload is a typed
+HttpFailure before sending additional work; it never retries a write.
+
+```dart
+final api = EffectHttp(client,
+  maxBodyBytes: 2 * 1024 * 1024,
+  maxBufferedBytes: 8 * 1024 * 1024,
+  maxConcurrentRequests: 4,
+);
+```
+
+The byte budget excludes responses retained by your application, transport
+chunks, transient packed copies, decoded strings and SSE parsing. Bound those at
+the consumer too; these are logical budgets, not a process heap/RSS ceiling.

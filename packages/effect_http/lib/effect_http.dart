@@ -3,6 +3,7 @@ library;
 
 import 'dart:async';
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:effect_core/effect_core.dart';
 import 'package:http/http.dart' as http;
@@ -69,7 +70,10 @@ Duration? parseRetryAfter(String? value, DateTime now) {
 final class HttpResult {
   HttpResult(this.status, Map<String, String> headers, List<int> body)
     : headers = Map.unmodifiable(headers),
-      body = List.unmodifiable(body);
+      body = Uint8List.fromList(body).asUnmodifiableView();
+  HttpResult._owned(this.status, Map<String, String> headers, Uint8List bytes)
+    : headers = Map.unmodifiable(headers),
+      body = bytes.asUnmodifiableView();
   final int status;
   final Map<String, String> headers;
   final List<int> body;
@@ -90,13 +94,34 @@ final class EffectHttp {
     this.client, {
     this.maxBodyBytes = 8 * 1024 * 1024,
     this.maxEventCharacters = 1024 * 1024,
+    this.maxConcurrentRequests = 32,
+    this.maxBufferedBytes = 32 * 1024 * 1024,
   }) {
-    if (maxBodyBytes < 1 || maxEventCharacters < 1) {
+    if (maxBodyBytes < 1 ||
+        maxEventCharacters < 1 ||
+        maxConcurrentRequests < 1 ||
+        maxBufferedBytes < 1) {
       throw ArgumentError('Invalid limits');
     }
   }
   final http.Client client;
   final int maxBodyBytes, maxEventCharacters;
+
+  /// Combined active buffered requests and SSE subscriptions. No wait queue.
+  final int maxConcurrentRequests;
+
+  /// Logical bytes in active response accumulators; excludes returned results,
+  /// transient packed copies, decoder strings and transport-owned chunks.
+  final int maxBufferedBytes;
+  int _active = 0, _buffered = 0;
+  int get activeRequests => _active;
+  int get bufferedBytes => _buffered;
+  void _admit() {
+    if (_active >= maxConcurrentRequests) {
+      throw const HttpFailure('HTTP concurrent request limit reached');
+    }
+    _active++;
+  }
 
   Effect<HttpResult, HttpFailure, R> request<R>(
     String method,
@@ -111,29 +136,48 @@ final class EffectHttp {
 
     return Effect.fromFuture<HttpResult, HttpFailure, R>(
       () async {
-        final request =
-            http.AbortableRequest(method, uri, abortTrigger: abort.future)
-              ..headers.addAll(headers)
-              ..bodyBytes = body;
-        final response = await client.send(request);
+        _admit();
+        var retained = 0;
         try {
-          if (response.statusCode < 200 || response.statusCode >= 300) {
-            await response.stream.listen((_) {}).cancel();
-            throw HttpFailure(
-              'HTTP response rejected',
-              status: response.statusCode,
-              retryAfter: response.headers['retry-after'],
-            );
-          }
-          final bytes = <int>[];
-          await for (final chunk in response.stream) {
-            if (bytes.length + chunk.length > maxBodyBytes) {
-              throw const HttpFailure('Response exceeds body limit');
+          final request =
+              http.AbortableRequest(method, uri, abortTrigger: abort.future)
+                ..headers.addAll(headers)
+                ..bodyBytes = body;
+          final response = await client.send(request);
+          try {
+            if (response.statusCode < 200 || response.statusCode >= 300) {
+              await response.stream.listen((_) {}).cancel();
+              throw HttpFailure(
+                'HTTP response rejected',
+                status: response.statusCode,
+                retryAfter: response.headers['retry-after'],
+              );
             }
-            bytes.addAll(chunk);
+            final bytes = BytesBuilder();
+            await for (final chunk in response.stream) {
+              if (bytes.length + chunk.length > maxBodyBytes) {
+                throw const HttpFailure('Response exceeds body limit');
+              }
+              if (_buffered + chunk.length > maxBufferedBytes) {
+                throw const HttpFailure(
+                  'Concurrent response byte limit reached',
+                );
+              }
+              retained += chunk.length;
+              _buffered += chunk.length;
+              bytes.add(chunk);
+            }
+            return HttpResult._owned(
+              response.statusCode,
+              response.headers,
+              bytes.takeBytes(),
+            );
+          } finally {
+            cancel();
           }
-          return HttpResult(response.statusCode, response.headers, bytes);
         } finally {
+          _buffered -= retained;
+          _active--;
           cancel();
         }
       },
@@ -156,6 +200,7 @@ final class EffectHttp {
     }
 
     Stream<SseEvent> source() async* {
+      _admit();
       try {
         final request = http.AbortableRequest(
           'GET',
@@ -242,6 +287,7 @@ final class EffectHttp {
         }
         // Unterminated events at EOF are discarded according to SSE framing.
       } finally {
+        _active--;
         cancel();
       }
     }

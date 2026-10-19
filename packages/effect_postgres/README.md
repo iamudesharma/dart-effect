@@ -183,3 +183,12 @@ with Effect-TS. The advertised scope is documented here, not full upstream parit
 ## Performance and memory evidence
 
 See the [core and SQL performance guide](https://effect-dart.ginjustice4.chatgpt.site/docs/remaining-performance/) for direct-driver comparisons, post-GC owner checks, cancellation recovery and bounded database load. Results are dated and workload-specific; they do not promise a speedup or universal leak freedom. Benchmark tools are development-only and excluded from the package archive.
+
+## Unpublished bounded admission
+
+`PostgresClient.create` and `.layer` now accept `maxPending` (default 1024) to
+bound queued pool leases. Saturation returns `SqlFailureKind.overloaded` without
+opening an extra connection. Result conversion avoids intermediate row-list
+copies; the driver still materializes results, so use pagination for large queries.
+Cancellation still force-closes and drains the connection before lease cleanup.
+These development changes are not included in the hosted version above.

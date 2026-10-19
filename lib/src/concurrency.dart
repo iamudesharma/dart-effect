@@ -91,10 +91,12 @@ final class _PermitWaiter {
 
 /// Strict FIFO weighted permits. Larger head requests cannot be bypassed.
 final class Semaphore {
-  Semaphore(this.capacity) : _available = capacity {
+  Semaphore(this.capacity, {this.maxPending = 1024}) : _available = capacity {
     if (capacity < 1) throw ArgumentError.value(capacity, 'capacity');
+    if (maxPending < 0) throw ArgumentError.value(maxPending, 'maxPending');
   }
   final int capacity;
+  final int maxPending;
   int _available;
   final _waiters = Queue<_PermitWaiter>();
   int get available => _available;
@@ -122,11 +124,27 @@ final class Semaphore {
     }
   }
 
-  Effect<A, E, R> withPermits<A, E, R>(int permits, Effect<A, E, R> effect) {
+  Effect<A, E, R> withPermits<A, E, R>(
+    int permits,
+    Effect<A, E, R> effect, {
+    E Function()? onFull,
+  }) {
     if (permits < 1 || permits > capacity) {
       throw ArgumentError.value(permits, 'permits');
     }
     return Effect.asyncExit((ctx) async {
+      if (ctx.token.isCancelled) return const Failure(Interrupted());
+      if ((_waiters.isNotEmpty || _available < permits) &&
+          _waiters.length >= maxPending) {
+        return onFull == null
+            ? Failure(
+                Defect(
+                  StateError('Semaphore pending limit reached'),
+                  StackTrace.current,
+                ),
+              )
+            : Failure(Expected(onFull()));
+      }
       if (!await _acquire(permits, ctx.token)) {
         return const Failure(Interrupted());
       }
@@ -166,6 +184,13 @@ final class QueueClosed {
   String toString() => 'QueueClosed';
 }
 
+/// Finite pending admission was exhausted; the channel remains open.
+final class QueueFull extends QueueClosed {
+  const QueueFull();
+  @override
+  String toString() => 'QueueFull';
+}
+
 final class _QueueWaiter<A> {
   final done = Completer<Exit<A, QueueClosed>>();
   void Function() detach = () {};
@@ -183,10 +208,12 @@ final class _Offer<A> extends _QueueWaiter<bool> {
 /// FIFO bounded channel; capacity zero rendezvous is supported. Shutdown drops
 /// buffered items and wakes both producers and consumers. No graceful end alias.
 final class BoundedQueue<A> {
-  BoundedQueue(this.capacity) {
+  BoundedQueue(this.capacity, {this.maxPending = 1024}) {
+    if (maxPending < 0) throw ArgumentError.value(maxPending, 'maxPending');
     if (capacity < 0) throw ArgumentError.value(capacity, 'capacity');
   }
   final int capacity;
+  final int maxPending;
   final _items = Queue<A>();
   final _offers = Queue<_Offer<A>>();
   final _takes = Queue<_QueueWaiter<A>>();
@@ -243,6 +270,9 @@ final class BoundedQueue<A> {
       Effect.asyncExit((ctx) async {
         if (isShutdown) return const Failure(Expected(QueueClosed()));
         if (ctx.token.isCancelled) return const Failure(Interrupted());
+        if (!_canOffer && _offers.length >= maxPending) {
+          return const Failure(Expected(QueueFull()));
+        }
         final waiter = _Offer(value);
         _offers.add(waiter);
         waiter.detach = ctx.token.onCancel(() {
@@ -257,6 +287,9 @@ final class BoundedQueue<A> {
   Effect<A, QueueClosed, R> take<R>() => Effect.asyncExit((ctx) async {
     if (isShutdown) return const Failure(Expected(QueueClosed()));
     if (ctx.token.isCancelled) return const Failure(Interrupted());
+    if (_items.isEmpty && _offers.isEmpty && _takes.length >= maxPending) {
+      return const Failure(Expected(QueueFull()));
+    }
     final waiter = _QueueWaiter<A>();
     _takes.add(waiter);
     waiter.detach = ctx.token.onCancel(() {
@@ -307,10 +340,14 @@ final class Subscription<A> {
 /// Atomic bounded fan-out to current subscribers. Slow subscribers backpressure
 /// publishers; new subscribers receive future publications only (no replay).
 final class PubSub<A> {
-  PubSub(this.capacity) {
+  PubSub(this.capacity, {this.maxPending = 1024, this.maxSubscribers = 1024}) {
+    if (maxPending < 0 || maxSubscribers < 1) {
+      throw ArgumentError('Invalid hub limits');
+    }
     if (capacity < 1) throw ArgumentError.value(capacity, 'capacity');
   }
   final int capacity;
+  final int maxPending, maxSubscribers;
   final _subscribers = <Subscription<A>>{};
   final _pending = Queue<_Publication<A>>();
   bool _closed = false, _draining = false;
@@ -319,6 +356,9 @@ final class PubSub<A> {
   int get waitingPublishers => _pending.length;
   Subscription<A> subscribeUnsafe() {
     if (_closed) throw StateError('PubSub is shut down');
+    if (_subscribers.length >= maxSubscribers) {
+      throw StateError('PubSub subscriber limit reached');
+    }
     final queue = BoundedQueue<A>(capacity);
     queue._onChange = _drain;
     final subscription = Subscription._(this, queue);
@@ -329,6 +369,9 @@ final class PubSub<A> {
   Effect<Subscription<A>, QueueClosed, R> subscribe<R>() =>
       Effect.asyncExit((ctx) {
         if (_closed) return const Failure(Expected(QueueClosed()));
+        if (_subscribers.length >= maxSubscribers) {
+          return const Failure(Expected(QueueFull()));
+        }
         final subscription = subscribeUnsafe();
         try {
           ctx.scope.addFinalizer(() {
@@ -345,6 +388,11 @@ final class PubSub<A> {
       Effect.asyncExit((ctx) async {
         if (_closed) return const Failure(Expected(QueueClosed()));
         if (ctx.token.isCancelled) return const Failure(Interrupted());
+        if ((_pending.isNotEmpty ||
+                !_subscribers.every((s) => s._queue._canOffer)) &&
+            _pending.length >= maxPending) {
+          return const Failure(Expected(QueueFull()));
+        }
         final publication = _Publication(value);
         _pending.add(publication);
         publication.detach = ctx.token.onCancel(() {

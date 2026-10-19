@@ -302,7 +302,33 @@ final class EffectStream<A, E, R> {
     if (finalizers != null) result = _append(result, _restore<E>(finalizers));
     return result;
   });
-  Effect<List<A>, E, R> runCollect() => run(Sink.collect());
+
+  /// Materializes output. Supply [maxItems] for an explicit item bound; use
+  /// folds or runForEach for large/infinite inputs. Upstream may prefetch one.
+  Effect<List<A>, E, R> runCollect({int? maxItems, E Function()? onLimit}) {
+    if (maxItems == null) return run(Sink.collect());
+    if (maxItems < 0) throw ArgumentError.value(maxItems, 'maxItems');
+    return run(
+      Sink.fold(
+        () => <A>[],
+        (items, value) => Effect.asyncExit((_) {
+          if (items.length >= maxItems) {
+            return onLimit == null
+                ? Failure(
+                    Defect(
+                      StateError('Stream collection limit reached'),
+                      StackTrace.current,
+                    ),
+                  )
+                : Failure(Expected(onLimit()));
+          }
+          items.add(value);
+          return Success((items, true));
+        }),
+      ),
+    );
+  }
+
   Effect<Unit, E, R> runDrain() => run(Sink.drain());
   Effect<Unit, E, R> runForEach(Effect<Unit, E, R> Function(A) f) => run(
     Sink.fold(() => Unit.value, (_, a) => f(a).map((_) => (Unit.value, true))),
@@ -364,28 +390,23 @@ final class EffectStream<A, E, R> {
   }
 }
 
-Cause<E> _channelCause<E>(Cause<QueueClosed> cause) => switch (cause) {
-  Expected() || Interrupted() => const Interrupted(),
-  Defect(:final error, :final stackTrace) => Defect(error, stackTrace),
-  Sequential(:final first, :final second) => Sequential(
-    _channelCause(first),
-    _channelCause(second),
-  ),
-};
-Cause<E> _restore<E>(Cause<Object?> cause) => switch (cause) {
-  Expected(:final error) =>
-    error is E
-        ? Expected(error)
-        : Defect(
-            StateError('Foreign stream finalizer error: $error'),
-            StackTrace.current,
-          ),
-  Defect(:final error, :final stackTrace) => Defect(error, stackTrace),
-  Interrupted() => const Interrupted(),
-  Sequential(:final first, :final second) => Sequential(
-    _restore(first),
-    _restore(second),
-  ),
-};
+Cause<E> _channelCause<E>(Cause<QueueClosed> cause) {
+  final pending = <Cause<QueueClosed>>[cause];
+  Cause<E>? result;
+  while (pending.isNotEmpty) {
+    final node = pending.removeLast();
+    if (node is Sequential<QueueClosed>) {
+      pending.addAll([node.second, node.first]);
+    } else {
+      final Cause<E> leaf = node is Defect<QueueClosed>
+          ? Defect(node.error, node.stackTrace)
+          : const Interrupted();
+      result = result == null ? leaf : Sequential(result, leaf);
+    }
+  }
+  return result!;
+}
+
+Cause<E> _restore<E>(Cause<Object?> cause) => restoreCause<E>(cause);
 Exit<A, E> _append<A, E>(Exit<A, E> body, Cause<E> cause) =>
     Failure(body is Failure<A, E> ? Sequential(body.cause, cause) : cause);

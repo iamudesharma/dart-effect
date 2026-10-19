@@ -188,3 +188,13 @@ with Effect-TS. The advertised scope is documented here, not full upstream parit
 ## Performance and memory evidence
 
 See the [core and SQL performance guide](https://effect-dart.ginjustice4.chatgpt.site/docs/remaining-performance/) for direct-driver comparisons, post-GC owner checks, cancellation recovery and bounded database load. Results are dated and workload-specific; they do not promise a speedup or universal leak freedom. Benchmark tools are development-only and excluded from the package archive.
+
+## Unpublished pool admission budget
+
+`SqlClient(driver, maxConnections: 10, maxPending: 100)` bounds queued leases as
+well as open leases. The default pending bound is 1024. Saturation returns
+`SqlFailureKind.overloaded` before a new socket opens; it is distinct from closed
+pool, interruption and programming defects. Large result sets remain materialized:
+use SQL pagination and bounded queries. Timeout still awaits query drain and
+rollback before reusing a socket. Native acceptance and memory-fix evidence are
+recorded separately in [the follow-up report](../../docs/effect-port/memory-fixes.md).

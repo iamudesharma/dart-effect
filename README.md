@@ -270,3 +270,25 @@ and [`example/reliability.dart`](example/reliability.dart). The optional HTTP/SS
 ## Cache development package
 
 The independently mergeable cache patch adds `packages/effect_cache`, optional monotonic clocks, Cause inspection and scoped acquisition. See [cache contracts](docs/effect-port/cache-validation.md). The cache and core prerequisites remain unpublished. Other toolkit packages, ManagedRuntime, broader composition, streams and HTTP builders remain in draft PR #13 and are not part of this checkout.
+
+## Unpublished memory and admission improvements
+
+The development branch includes the [package memory fixes](docs/effect-port/memory-fixes.md).
+These changes are not in the hosted versions above. Duration policies use the
+injected elapsed clock, error-cause conversion is stack safe, cache owners and
+service queues have finite admission budgets, and HTTP responses use packed
+bytes. Use one application-owned runtime and await its shutdown. Budget payload
+sizes and root/task creation at your API boundary as well as inside services.
+
+For large streams, prefer a fold or `runForEach`; collecting remains explicit:
+
+```dart
+final bounded = stream.runCollect(
+  maxItems: 1000,
+  onLimit: () => AppFailure('Too many items'),
+);
+```
+
+`AppFailure` must belong to the stream's declared error family. Pending queue
+saturation returns `QueueFull`; semaphore operations accept `onFull` for a typed
+application error. Event-queue fairness and protected finalization remain in place.

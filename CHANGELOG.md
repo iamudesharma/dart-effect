@@ -1,3 +1,9 @@
+## Unreleased
+
+- Bound pending/active work and reduce retained allocations; preserve protected
+  cleanup and typed overload diagnostics. See `docs/effect-port/memory-fixes.md`
+  in the source repository for package-specific changes and executed evidence.
+
 ## 0.0.3-dev.1
 
 Unpublished cache prerequisites: optional monotonic clocks, iterative Cause inspection and scoped acquisition registration. Other application-toolkit work remains in draft PR #13.

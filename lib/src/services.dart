@@ -297,7 +297,7 @@ extension EffectPolicy<A, E, R> on Effect<A, E, R> {
     Duration? Function(E, DateTime)? retryAfter,
   ]) => Effect.asyncExit<A, E, R>((context) async {
     final random = schedule.newRandom();
-    final started = context.clock.now;
+    final started = elapsedTime(context.clock);
     for (var iteration = 0; ; iteration++) {
       final exit = await context.evaluate(this);
       final again = repeat
@@ -314,13 +314,13 @@ extension EffectPolicy<A, E, R> on Effect<A, E, R> {
       final delay = serverDelay ?? schedule.delay(iteration, random);
       final budget = schedule.elapsedBudget;
       if (budget != null &&
-          context.clock.now.difference(started) + delay >= budget) {
+          (elapsedTime(context.clock) - started) + delay >= budget) {
         return exit;
       }
       final sleep = await context.evaluate(Effect.sleep<E, R>(delay));
       if (sleep is Success<Unit, E> &&
           budget != null &&
-          context.clock.now.difference(started) >= budget) {
+          (elapsedTime(context.clock) - started) >= budget) {
         return exit;
       }
       if (sleep is Failure<Unit, E>) return Failure(sleep.cause);
@@ -340,18 +340,4 @@ Effect<Unit, E, R> log<E, R>(
   return Success(Unit.value);
 });
 
-Cause<E> _restoreCause<E>(Cause<Object?> cause) => switch (cause) {
-  Expected(:final error) =>
-    error is E
-        ? Expected<E>(error)
-        : Defect<E>(
-            StateError('Cleanup error outside expected family: $error'),
-            StackTrace.current,
-          ),
-  Defect(:final error, :final stackTrace) => Defect<E>(error, stackTrace),
-  Interrupted() => Interrupted<E>(),
-  Sequential(:final first, :final second) => Sequential<E>(
-    _restoreCause<E>(first),
-    _restoreCause<E>(second),
-  ),
-};
+Cause<E> _restoreCause<E>(Cause<Object?> cause) => restoreCause<E>(cause);

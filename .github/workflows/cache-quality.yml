@@ -4,7 +4,9 @@ on:
     paths:
       - 'lib/**'
       - 'test/**'
-      - 'packages/effect_cache/**'
+      - 'packages/**'
+      - 'tool/validate_memory_fixes.py'
+      - 'tool/memory_fixes_probe.dart'
       - 'tool/cache_validation.py'
       - 'tool/cache_performance.dart'
       - 'tool/performance_memory.dart'
@@ -25,9 +27,13 @@ jobs:
       - name: Resolve prerequisites
         run: |
           dart pub get
-          (cd packages/effect_cache && dart pub get)
+          for package in effect_cache effect_http effect_sql effect_postgres effect_mysql effect_openai; do
+            (cd packages/$package && dart pub get)
+          done
       - name: Contracts, examples, JIT/AOT and post-GC retention
-        run: python3 tool/cache_validation.py
+        run: python3 tool/cache_validation.py --report build/cache-followup-validation.json
+      - name: All implemented package memory regressions
+        run: python3 tool/validate_memory_fixes.py
       - name: Website evidence, routes and draft boundaries
         run: |
           python3 website/build.py
@@ -37,5 +43,7 @@ jobs:
         with:
           name: cache-validation
           path: |
-            docs/effect-port/cache-validation.json
+            build/cache-followup-validation.json
+            docs/effect-port/memory-fixes-validation.json
+            build/memory-fixes/
             build/cache-validation/

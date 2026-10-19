@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """Reproducible cache checks. Local SDK/pub/Chrome prerequisites; never publishes."""
 from pathlib import Path
-import datetime, hashlib, json, shutil, subprocess, tempfile
+import argparse,datetime, hashlib, json, shutil, subprocess, tempfile
 
 ROOT=Path(__file__).resolve().parents[1]
+parser=argparse.ArgumentParser()
+parser.add_argument('--report', type=Path, default=ROOT/'docs/effect-port/cache-validation.json')
+options=parser.parse_args()
 PACKAGE=ROOT/'packages/effect_cache'
 BUILD=ROOT/'build/cache-validation'
 
@@ -78,6 +81,6 @@ def main():
         report['success']=True
     finally:
         report['finished_at_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat()
-        (ROOT/'docs/effect-port/cache-validation.json').write_text(json.dumps(report,indent=2)+'\n')
+        options.report.write_text(json.dumps(report,indent=2)+'\n')
 
 if __name__=='__main__': main()

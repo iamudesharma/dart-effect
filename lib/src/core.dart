@@ -56,8 +56,9 @@ final class EffectException<E> implements Exception {
 
 /// An idempotent cooperative signal. It cannot stop CPU loops or arbitrary I/O.
 final class CancellationToken {
-  final _cancelled = Completer<void>();
-  final _listeners = <void Function()>{};
+  Completer<void>? _cancelled;
+  Set<void Function()>? _listeners;
+  bool _isCancelled = false;
 
   /// Register a synchronous notification and return a function to detach it.
   /// Notifications must not throw; adapter abort hooks belong on fromFuture.
@@ -66,20 +67,26 @@ final class CancellationToken {
       listener();
       return () {};
     }
-    _listeners.add(listener);
+    (_listeners ??= {}).add(listener);
     return () {
-      _listeners.remove(listener);
+      _listeners?.remove(listener);
     };
   }
 
-  bool get isCancelled => _cancelled.isCompleted;
-  Future<void> get whenCancelled => _cancelled.future;
+  bool get isCancelled => _isCancelled;
+  Future<void> get whenCancelled {
+    final done = _cancelled ??= Completer<void>();
+    if (_isCancelled && !done.isCompleted) done.complete();
+    return done.future;
+  }
+
   void cancel() {
     if (!isCancelled) {
-      _cancelled.complete();
-      final listeners = List<void Function()>.of(_listeners);
-      _listeners.clear();
-      for (final listener in listeners) {
+      _isCancelled = true;
+      _cancelled?.complete();
+      final listeners = _listeners;
+      _listeners = null;
+      for (final listener in listeners ?? const <void Function()>[]) {
         listener();
       }
     }
@@ -193,28 +200,34 @@ void _discardLog(LogRecord record) {}
 
 /// Finalizers run once in reverse registration order, after scoped children.
 final class Scope {
-  final _finalizers = <FutureOr<Cause<Object?>?> Function()>[];
-  final _children = <Fiber<Object?, Object?>>{};
+  List<FutureOr<Cause<Object?>?> Function()>? _finalizers;
+  Set<Fiber<Object?, Object?>>? _children;
   Future<Cause<Object?>?>? _closed;
   void addFinalizer(FutureOr<Cause<Object?>?> Function() finalizer) {
     if (_closed != null) throw StateError('Scope is closed');
-    _finalizers.add(finalizer);
+    (_finalizers ??= []).add(finalizer);
   }
 
   Future<Cause<Object?>?> close() =>
-      _closed ??= Future<Cause<Object?>?>.microtask(_close);
+      _closed ??= (_finalizers == null && _children == null
+      ? Future<Cause<Object?>?>.value(null)
+      : Future<Cause<Object?>?>.microtask(_close));
   Future<Cause<Object?>?> _close() async {
-    for (final child in List<Fiber<Object?, Object?>>.of(_children)) {
+    for (final child in List<Fiber<Object?, Object?>>.of(
+      _children ?? const {},
+    )) {
       child.interrupt();
     }
-    for (final child in List<Fiber<Object?, Object?>>.of(_children)) {
+    for (final child in List<Fiber<Object?, Object?>>.of(
+      _children ?? const {},
+    )) {
       await child.awaitExit();
     }
     Cause<Object?>? cause;
-    while (_finalizers.isNotEmpty) {
+    while (_finalizers?.isNotEmpty ?? false) {
       Cause<Object?>? next;
       try {
-        next = await _finalizers.removeLast()();
+        next = await _finalizers!.removeLast()();
       } catch (e, s) {
         next = Defect(e, s);
       }
@@ -316,12 +329,12 @@ final class FiberContext<R> {
     final child = runtime._start(effect, environment, parentId: fiberId);
     final detach = _masked ? () {} : token.onCancel(child.interrupt);
     _children.add(child);
-    if (scoped) scope._children.add(child);
+    if (scoped) (scope._children ??= {}).add(child);
     unawaited(
       child.awaitExit().then((_) {
         detach();
         _children.remove(child);
-        scope._children.remove(child);
+        scope._children?.remove(child);
       }),
     );
     return child;
@@ -427,6 +440,7 @@ final class Runtime<R> {
   }) {
     final id = ++_nextFiberId;
     final started = lifecycle != null || metrics != null ? clock.now : null;
+    final began = started == null ? null : elapsedTime(clock);
     if (started != null) {
       _emit(LifecycleEvent(id, 'start', started, parentId: parentId));
     }
@@ -484,7 +498,7 @@ final class Runtime<R> {
             'end',
             clock.now,
             outcome: outcome,
-            elapsed: clock.now.difference(started!),
+            elapsed: elapsedTime(clock) - began!,
             parentId: parentId,
           ),
         );
@@ -553,20 +567,76 @@ final class _Frame {
   final bool recover;
 }
 
-Cause<E> _castCause<E>(Cause<Object?> c) => switch (c) {
-  Expected() =>
-    c.error is E
-        ? Expected(c.error as E)
-        : Defect(
-            StateError('Finalizer error outside expected family: ${c.error}'),
-            StackTrace.current,
-          ),
-  Defect() => Defect(c.error, c.stackTrace),
-  Interrupted() => const Interrupted(),
-  Sequential() => Sequential(_castCause<E>(c.first), _castCause<E>(c.second)),
-};
-Exit<A, E> _typedExit<A, E>(Exit<Object?, Object?> e) =>
-    e is Success<Object?, Object?>
+/// Stack-safe, ordered transformation of expected errors, preserving cause shape.
+Cause<B> mapCause<A, B>(Cause<A> cause, B Function(A) expected) {
+  final pending = <(Cause<A>, bool)>[(cause, false)];
+  final built = <Cause<B>>[];
+  while (pending.isNotEmpty) {
+    final (node, visited) = pending.removeLast();
+    if (node is Sequential<A>) {
+      if (visited) {
+        final second = built.removeLast(), first = built.removeLast();
+        built.add(Sequential(first, second));
+      } else {
+        pending.addAll([
+          (node, true),
+          (node.second, false),
+          (node.first, false),
+        ]);
+      }
+    } else if (node is Expected<A>) {
+      built.add(Expected(expected(node.error)));
+    } else if (node is Defect<A>) {
+      built.add(Defect(node.error, node.stackTrace));
+    } else {
+      built.add(const Interrupted());
+    }
+  }
+  return built.single;
+}
+
+/// Retype at an erased extension boundary without dropping valid diagnostics.
+Cause<E> restoreCause<E>(Cause<Object?> cause) {
+  // Dart covariance validates the whole declared family, including Never.
+  if (cause is Cause<E>) return cause;
+  final pending = <(Cause<Object?>, bool)>[(cause, false)];
+  final built = <Cause<E>>[];
+  while (pending.isNotEmpty) {
+    final (node, visited) = pending.removeLast();
+    if (node is Sequential<Object?>) {
+      if (visited) {
+        final second = built.removeLast(), first = built.removeLast();
+        built.add(Sequential(first, second));
+      } else {
+        pending.addAll([
+          (node, true),
+          (node.second, false),
+          (node.first, false),
+        ]);
+      }
+    } else if (node is Expected<Object?>) {
+      final error = node.error;
+      built.add(
+        error is E
+            ? Expected(error)
+            : Defect(
+                StateError('Finalizer error outside expected family: $error'),
+                StackTrace.current,
+              ),
+      );
+    } else if (node is Defect<Object?>) {
+      built.add(Defect(node.error, node.stackTrace));
+    } else {
+      built.add(const Interrupted());
+    }
+  }
+  return built.single;
+}
+
+Cause<E> _castCause<E>(Cause<Object?> cause) => restoreCause<E>(cause);
+Exit<A, E> _typedExit<A, E>(Exit<Object?, Object?> e) => e is Exit<A, E>
+    ? e
+    : e is Success<Object?, Object?>
     ? Success(e.value as A)
     : Failure(_castCause<E>((e as Failure<Object?, Object?>).cause));
 Exit<A, E> _append<A, E>(Exit<A, E> exit, Cause<E> cleanup) =>
@@ -595,7 +665,8 @@ Future<Exit<Object?, Object?>> _interpret(
       continue;
     } else {
       try {
-        exit = await (node as _Leaf).run(ctx);
+        final result = (node as _Leaf).run(ctx);
+        exit = result is Future<Exit<Object?, Object?>> ? await result : result;
         if (exit is Success<Object?, Object?> &&
             ctx.token.isCancelled &&
             !ctx._masked) {
@@ -648,11 +719,11 @@ final class Effect<A, E, R> {
     FutureOr<Exit<A, E>> Function(FiberContext<R>) run,
   ) => Effect._(_Leaf((ctx) => run(ctx.withEnvironment(ctx.environment as R))));
   static Effect<A, E, R> succeed<A, E, R>(A value) =>
-      asyncExit((_) => Success(value));
+      Effect._(_Leaf((_) => Success(value)));
   static Effect<A, E, R> fail<A, E, R>(E error) =>
-      asyncExit((_) => Failure(Expected(error)));
+      Effect._(_Leaf((_) => Failure(Expected(error))));
   static Effect<A, E, R> sync<A, E, R>(A Function() run) =>
-      asyncExit((_) => Success(run()));
+      Effect._(_Leaf((_) => Success(run())));
   static Effect<A, E, R> defer<A, E, R>(Effect<A, E, R> Function() run) =>
       Effect._(_Bind(_Leaf((_) => const Success(null)), (_) => run()._node));
 
@@ -676,7 +747,7 @@ final class Effect<A, E, R> {
   static Effect<A, E, R> environment<A, E, R>(A Function(R) select) =>
       asyncExit((ctx) => Success(select(ctx.environment)));
   Effect<B, E, R> map<B>(B Function(A) f) =>
-      flatMap((a) => Effect.sync(() => f(a)));
+      Effect._(_Bind(_node, (a) => _Leaf((_) => Success(f(a as A)))));
   Effect<B, E, R> flatMap<B>(Effect<B, E, R> Function(A) f) =>
       Effect._(_Bind(_node, (value) => f(value as A)._node));
 
@@ -686,15 +757,9 @@ final class Effect<A, E, R> {
       Effect._(_Recover(_node, (error) => f(error as E)._node));
   Effect<A, E2, R> mapError<E2>(E2 Function(E) f) => asyncExit((ctx) async {
     final exit = await ctx.evaluate(this);
-    Cause<E2> convert(Cause<E> c) => switch (c) {
-      Expected() => Expected(f(c.error)),
-      Defect() => Defect(c.error, c.stackTrace),
-      Interrupted() => const Interrupted(),
-      Sequential() => Sequential(convert(c.first), convert(c.second)),
-    };
     return exit is Success<A, E>
         ? Success(exit.value)
-        : Failure(convert((exit as Failure<A, E>).cause));
+        : Failure(mapCause((exit as Failure<A, E>).cause, f));
   });
   Effect<A, E, Unit> provide(R environment) =>
       asyncExit((ctx) => ctx.withEnvironment(environment).evaluate(this));
@@ -806,6 +871,7 @@ final class Effect<A, E, R> {
   Effect<A, E, R> traced(String name) => asyncExit((ctx) async {
     if (ctx.runtime.lifecycle == null) return ctx.evaluate(this);
     final start = ctx.clock.now;
+    final began = elapsedTime(ctx.clock);
     if (ctx.runtime.lifecycle != null) {
       ctx.runtime._emit(
         LifecycleEvent(ctx.fiberId, 'span.start', start, name: name),
@@ -819,7 +885,7 @@ final class Effect<A, E, R> {
           'span.end',
           ctx.clock.now,
           name: name,
-          elapsed: ctx.clock.now.difference(start),
+          elapsed: elapsedTime(ctx.clock) - began,
           outcome: exit is Success<A, E> ? 'success' : 'failure',
         ),
       );
@@ -860,17 +926,24 @@ final class Effect<A, E, R> {
   }) {
     if (concurrency < 1) throw ArgumentError.value(concurrency);
     return asyncExit((ctx) async {
-      final inputs = values.toList();
-      final results = List<B?>.filled(inputs.length, null);
+      final inputs = values.iterator;
+      final results = <B?>[];
+      var exhausted = false;
       final active = <Fiber<B, E>>{};
       Cause<E>? failure;
       var next = 0;
       Future<void> worker() async {
-        while (failure == null && next < inputs.length) {
-          final index = next++;
+        while (failure == null && !exhausted && !ctx.token.isCancelled) {
           Fiber<B, E> fiber;
+          late int index;
           try {
-            fiber = ctx._fork(f(inputs[index]), false);
+            if (!inputs.moveNext()) {
+              exhausted = true;
+              return;
+            }
+            index = next++;
+            results.add(null);
+            fiber = ctx._fork(f(inputs.current), false);
           } catch (e, s) {
             failure = Defect(e, s);
             for (final sibling in active) {
@@ -892,26 +965,33 @@ final class Effect<A, E, R> {
         }
       }
 
-      await Future.wait(
-        List.generate(
-          inputs.length < concurrency ? inputs.length : concurrency,
-          (_) => worker(),
-        ),
-      );
-      return failure == null ? Success(results.cast<B>()) : Failure(failure!);
+      final workers = <Future<void>>[];
+      for (var i = 0; i < concurrency && !exhausted && failure == null; i++) {
+        workers.add(worker());
+      }
+      await Future.wait(workers);
+      if (failure != null) return Failure(failure!);
+      if (ctx.token.isCancelled) return const Failure(Interrupted());
+      return Success(results.cast<B>());
     });
   }
 }
 
 // Remove cancellation markers while retaining every diagnostic in order.
-Cause<E>? _withoutInterruption<E>(Cause<E> cause) => switch (cause) {
-  Interrupted() => null,
-  Sequential(:final first, :final second) => _joinDiagnostics(
-    _withoutInterruption(first),
-    _withoutInterruption(second),
-  ),
-  _ => cause,
-};
+Cause<E>? _withoutInterruption<E>(Cause<E> cause) {
+  final pending = <Cause<E>>[cause];
+  Cause<E>? result;
+  while (pending.isNotEmpty) {
+    final next = pending.removeLast();
+    if (next is Sequential<E>) {
+      pending.addAll([next.second, next.first]);
+    } else if (next is! Interrupted<E>) {
+      result = _joinDiagnostics(result, next);
+    }
+  }
+  return result;
+}
+
 Cause<E>? _joinDiagnostics<E>(Cause<E>? a, Cause<E>? b) => a == null
     ? b
     : b == null

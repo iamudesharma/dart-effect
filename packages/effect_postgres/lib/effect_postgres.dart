@@ -65,9 +65,11 @@ final class PostgresClient {
     pg.Endpoint endpoint, {
     pg.ConnectionSettings? settings,
     int maxConnections = 10,
+    int maxPending = 1024,
   }) => SqlClient(
     PostgresDriver(endpoint, settings: settings),
     maxConnections: maxConnections,
+    maxPending: maxPending,
   );
 
   /// Provides a fresh pool under [key] for each layer construction scope.
@@ -79,11 +81,16 @@ final class PostgresClient {
     pg.Endpoint endpoint, {
     pg.ConnectionSettings? settings,
     int maxConnections = 10,
+    int maxPending = 1024,
   }) => Layer.resource(
     key,
     Effect.sync<SqlClient, SqlFailure, Context>(
-      () =>
-          create(endpoint, settings: settings, maxConnections: maxConnections),
+      () => create(
+        endpoint,
+        settings: settings,
+        maxConnections: maxConnections,
+        maxPending: maxPending,
+      ),
     ),
     (c) => c.close<Context>(),
   );
@@ -101,8 +108,8 @@ final class _Connection implements SqlConnection {
       parameters: statement.parameters,
     );
     return SqlResult(
-      columns: r.schema.columns.map((c) => c.columnName ?? '').toList(),
-      rows: r.map((row) => row.toList()).toList(),
+      columns: r.schema.columns.map((c) => c.columnName ?? ''),
+      rows: r,
       affectedRows: r.affectedRows,
     );
   }
