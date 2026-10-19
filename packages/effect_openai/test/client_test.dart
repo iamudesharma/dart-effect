@@ -22,6 +22,49 @@ OpenAIFailure expected<A>(Exit<A, OpenAIFailure> exit) =>
         .error;
 
 void main() {
+  test(
+    'request and stream share finite admission; saturation does not invoke SDK',
+    () async {
+      final rt = Runtime(Unit.value),
+          ai = EffectOpenAIClient(
+            sdkClient(),
+            closeClient: true,
+            maxConcurrentOperations: 1,
+          );
+      final started = Completer<void>(), gate = Completer<int>();
+      var calls = 0;
+      final first = rt.fork(
+        ai.request<int, Unit>((_, _) {
+          started.complete();
+          return gate.future;
+        }),
+      );
+      await started.future;
+      final rejected = await rt.runExit(
+        ai.request<int, Unit>((_, _) async {
+          calls++;
+          return 2;
+        }),
+      );
+      expect(expected(rejected).kind, OpenAIFailureKind.overloaded);
+      final stream = await rt.runExit(
+        ai.stream<int, Unit>((_, _) {
+          calls++;
+          return Stream.value(3);
+        }).runCollect(),
+      );
+      expect(expected(stream).kind, OpenAIFailureKind.overloaded);
+      expect(calls, 0);
+      expect(ai.activeOperations, 1);
+      gate.complete(1);
+      await first.awaitExit();
+      expect(ai.activeOperations, 0);
+      expect(await rt.runFuture(ai.request<int, Unit>((_, _) async => 4)), 4);
+      await rt.shutdown();
+      await ai.shutdown();
+    },
+  );
+
   late Runtime<Unit> runtime;
   late EffectOpenAIClient ai;
   setUp(() {

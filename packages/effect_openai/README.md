@@ -258,3 +258,15 @@ Measured overhead varies by workload, including higher per-event SSE overhead.
 Closed owners and closure payloads were collectible in the tested finite runs;
 this is not universal leak freedom or live API/mobile acceptance. Keep one
 application-scoped client/runtime and await their shutdown at the owner boundary.
+
+## Unpublished operation admission
+
+The direct constructor, `.create` and `.layer` accept
+`maxConcurrentOperations` (64 by default), shared across requests and streams.
+An excess operation returns `OpenAIFailureKind.overloaded` before invoking the SDK.
+Slots remain occupied until abort/drain or stream cleanup settles; no pending
+queue or automatic write/stream replay is introduced. Budget large prompts and
+collected outputs in the application as well. `runCollect(maxItems: ...,
+onLimit: ...)` bounds item collection when using the updated development core.
+Use streaming/folds when output sizes are unknown. These changes are unpublished;
+local SDK fixture tests do not establish live provider reliability.

@@ -21,6 +21,7 @@ enum OpenAIFailureKind {
   decoding,
   api,
   closed,
+  overloaded,
 }
 
 /// Safe summary; [cause] may contain credentials, prompt text or response bodies.
@@ -105,13 +106,34 @@ final class _Operation {
 /// Interruption signals abort and awaits completion/cancellation. Custom callbacks
 /// must forward the abort trigger, or cancellation waits for their work to finish.
 final class EffectOpenAIClient {
-  EffectOpenAIClient(this._client, {this.closeClient = false});
+  EffectOpenAIClient(
+    this._client, {
+    this.closeClient = false,
+    this.maxConcurrentOperations = 64,
+  }) {
+    if (maxConcurrentOperations < 1) {
+      throw ArgumentError.value(
+        maxConcurrentOperations,
+        'maxConcurrentOperations',
+      );
+    }
+  }
 
-  factory EffectOpenAIClient.create(sdk.OpenAIConfig config) =>
-      EffectOpenAIClient(sdk.OpenAIClient(config: config), closeClient: true);
+  factory EffectOpenAIClient.create(
+    sdk.OpenAIConfig config, {
+    int maxConcurrentOperations = 64,
+  }) => EffectOpenAIClient(
+    sdk.OpenAIClient(config: config),
+    closeClient: true,
+    maxConcurrentOperations: maxConcurrentOperations,
+  );
 
   final sdk.OpenAIClient _client;
   final bool closeClient;
+
+  /// Combined request and stream admission; rejects overload without a queue.
+  final int maxConcurrentOperations;
+  int get activeOperations => _active.length;
   final Set<_Operation> _active = {};
   bool _closed = false;
   Future<void>? _shutdown;
@@ -122,10 +144,15 @@ final class EffectOpenAIClient {
     ServiceKey<EffectOpenAIClient> key,
     sdk.OpenAIClient Function() create, {
     bool closeClient = true,
+    int maxConcurrentOperations = 64,
   }) => Layer.resource(
     key,
     Effect.sync<EffectOpenAIClient, OpenAIFailure, Context>(
-      () => EffectOpenAIClient(create(), closeClient: closeClient),
+      () => EffectOpenAIClient(
+        create(),
+        closeClient: closeClient,
+        maxConcurrentOperations: maxConcurrentOperations,
+      ),
     ),
     (client) => Effect.fromFuture<Object?, OpenAIFailure, Context>(() async {
       await client.shutdown();
@@ -140,6 +167,9 @@ final class EffectOpenAIClient {
     String operation = 'request',
   }) => Effect.asyncExit((ctx) async {
     if (_closed) return _closedExit<A>(operation);
+    if (_active.length >= maxConcurrentOperations) {
+      return _overloadedExit<A>(operation);
+    }
     final active = _Operation();
     _active.add(active);
     final future = Future<A>.sync(() => run(_client, active.abort.future))
@@ -174,6 +204,9 @@ final class EffectOpenAIClient {
   }) => EffectStream.acquireRelease<_Operation, A, OpenAIFailure, R>(
     Effect.asyncExit((_) {
       if (_closed) return _closedExit<_Operation>(operation);
+      if (_active.length >= maxConcurrentOperations) {
+        return _overloadedExit<_Operation>(operation);
+      }
       final active = _Operation();
       active.cancelStream = () async {
         active.finish();
@@ -253,6 +286,12 @@ final class EffectOpenAIClient {
     );
     return controller.stream;
   }
+
+  Failure<A, OpenAIFailure> _overloadedExit<A>(String operation) => Failure(
+    Expected(
+      OpenAIFailure(kind: OpenAIFailureKind.overloaded, operation: operation),
+    ),
+  );
 
   Failure<A, OpenAIFailure> _closedExit<A>(String operation) => Failure(
     Expected(

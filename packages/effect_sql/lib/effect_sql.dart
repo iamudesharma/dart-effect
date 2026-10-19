@@ -14,6 +14,7 @@ enum SqlFailureKind {
   syntax,
   closed,
   other,
+  overloaded,
 }
 
 /// Safe summary; SQL text, parameter values and server messages are not logged.
@@ -41,8 +42,8 @@ final class SqlStatement {
 /// Ordered columns preserve duplicate names; values retain driver codec types.
 final class SqlResult {
   SqlResult({
-    List<String> columns = const [],
-    List<List<Object?>> rows = const [],
+    Iterable<String> columns = const [],
+    Iterable<List<Object?>> rows = const [],
     this.affectedRows = 0,
     this.insertId,
   }) : columns = List.unmodifiable(columns),
@@ -70,11 +71,40 @@ abstract interface class SqlDriver {
   SqlFailure? classify(Object error, String operation);
 }
 
-Cause<SqlFailure> _cause(SqlDriver driver, Object e, StackTrace s, String op) =>
-    switch (driver.classify(e, op)) {
-      final SqlFailure failure => Expected(failure),
-      null => Defect(e, s),
-    };
+/// Driver finalization failed after a command. Both errors remain independently
+/// classified, and the session is discarded rather than returning uncertain
+/// driver resources to the pool. Underlying exceptions may contain sensitive
+/// data; export or logging policy belongs to the application.
+final class SqlCommandCleanupException implements Exception {
+  const SqlCommandCleanupException({
+    this.primary,
+    this.primaryStack,
+    required this.cleanup,
+    required this.cleanupStack,
+    this.cleanupOperation = 'command.close',
+  });
+  final Object? primary;
+  final StackTrace? primaryStack;
+  final Object cleanup;
+  final StackTrace cleanupStack;
+  final String cleanupOperation;
+}
+
+Cause<SqlFailure> _cause(SqlDriver driver, Object e, StackTrace s, String op) {
+  Cause<SqlFailure> leaf(Object error, StackTrace stack, String operation) =>
+      switch (driver.classify(error, operation)) {
+        final SqlFailure failure => Expected(failure),
+        null => Defect(error, stack),
+      };
+  if (e is SqlCommandCleanupException) {
+    final cleanup = leaf(e.cleanup, e.cleanupStack, e.cleanupOperation);
+    return e.primary == null
+        ? cleanup
+        : Sequential(leaf(e.primary!, e.primaryStack ?? s, op), cleanup);
+  }
+  return leaf(e, s, op);
+}
+
 Exit<A, SqlFailure> _append<A>(
   Exit<A, SqlFailure> exit,
   Cause<SqlFailure> cause,
@@ -85,10 +115,14 @@ Exit<A, SqlFailure> _append<A>(
 /// Lazy bounded pool. Each lease owns one connection; queued acquisition is
 /// interruptible. A canceled operation settles before its connection is reused.
 final class SqlClient {
-  SqlClient(this.driver, {this.maxConnections = 10})
-    : _permits = Semaphore(maxConnections);
+  SqlClient(this.driver, {this.maxConnections = 10, this.maxPending = 1024})
+    : _permits = Semaphore(maxConnections, maxPending: maxPending);
   final SqlDriver driver;
   final int maxConnections;
+
+  /// Queued leases; saturation becomes a typed overload without opening a socket.
+  final int maxPending;
+  int get pendingLeases => _permits.waitingCount;
   final Semaphore _permits;
   final _idle = Queue<SqlConnection>();
   int _active = 0;
@@ -149,6 +183,7 @@ final class SqlClient {
       }
       return exit;
     }),
+    onFull: () => const SqlFailure(SqlFailureKind.overloaded, 'acquire'),
   );
 
   Effect<SqlResult, SqlFailure, R> execute<R>(SqlStatement statement) =>
@@ -219,9 +254,12 @@ final class SqlSession {
     );
     // Attach a handler immediately; cancellation never leaves a rejected Future
     // unobserved. The abort hook is awaited before rollback/release can start.
+    SqlCommandCleanupException? cleanupFailure;
     final settled = pending.then<void>(
       (_) {},
-      onError: (Object _, StackTrace _) {},
+      onError: (Object error, StackTrace _) {
+        if (error is SqlCommandCleanupException) cleanupFailure = error;
+      },
     );
     final exit = await ctx.evaluate(
       Effect.fromFuture<SqlResult, SqlFailure, R>(
@@ -235,9 +273,25 @@ final class SqlSession {
         },
       ),
     );
+    final drainedCleanup = cleanupFailure;
+    if (exit is Failure<SqlResult, SqlFailure> &&
+        exit.cause.isInterrupted &&
+        drainedCleanup != null) {
+      _broken = true;
+      return _append(
+        exit,
+        _cause(
+          _driver,
+          drainedCleanup.cleanup,
+          drainedCleanup.cleanupStack,
+          drainedCleanup.cleanupOperation,
+        ),
+      );
+    }
     if (exit case Failure<SqlResult, SqlFailure>(
       cause: Defect(:final error, :final stackTrace),
     )) {
+      if (error is SqlCommandCleanupException) _broken = true;
       return Failure(_cause(_driver, error, stackTrace, 'execute'));
     }
     return exit;

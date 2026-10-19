@@ -176,3 +176,17 @@ with Effect-TS. The advertised scope is documented here, not full upstream parit
 ## Performance and memory evidence
 
 See the [core and SQL performance guide](https://effect-dart.ginjustice4.chatgpt.site/docs/remaining-performance/) for direct-driver comparisons, post-GC owner checks, cancellation recovery and bounded database load. Results are dated and workload-specific; they do not promise a speedup or universal leak freedom. Benchmark tools are development-only and excluded from the package archive.
+
+## Unpublished bounded admission
+
+`MySqlClient.create` and `.layer` now accept `maxPending` (default 1024). Saturation
+returns `SqlFailureKind.overloaded`, without opening another socket or retrying a
+write. Result conversion avoids the outer intermediate row list. Query results
+are still materialized; use pagination and bounded queries for large responses.
+The driver has no public command-cancel API: a timeout waits for query drain,
+rollback and protected cleanup. Never treat it as a hard return deadline.
+These changes are not included in the hosted version above.
+
+Command and prepared-statement cleanup failures now retain both diagnostics in
+order. A failed deallocation discards the connection to avoid retaining uncertain
+server-side statement resources in the idle pool.

@@ -134,7 +134,8 @@ final class _Maintenance<E, R> {
 
 final class _Entry<V, E> {
   _Entry(this.fiber);
-  final Fiber<V, E> fiber;
+  Fiber<V, E>? fiber;
+  Exit<V, E>? outcome;
   Duration? expires;
   bool finished = false;
   Future<Cause<E>?>? retiring;
@@ -145,7 +146,8 @@ final class _Entry<V, E> {
 /// Borrows [runtime]; close before shutting it down. Even cancellation of the
 /// last waiter leaves the shared load running. Eviction/invalidation/close stop
 /// removed loads. Actual I/O needs an abort hook. Capacity bounds residents,
-/// not cleanup still running after eviction; limit application concurrency too.
+/// while maxOwners also bounds active/retiring loads. Values and callers still
+/// require application byte/concurrency budgets.
 final class EffectCache<K, V, E, R> {
   EffectCache({
     required this.runtime,
@@ -153,7 +155,12 @@ final class EffectCache<K, V, E, R> {
     required this.capacity,
     required this.ttl,
     this.failureTtl,
-  }) {
+    int? maxOwners,
+    this.onCapacity,
+  }) : maxOwners = maxOwners ?? capacity * 2 {
+    if (this.maxOwners < 1) {
+      throw ArgumentError.value(this.maxOwners, 'maxOwners');
+    }
     if (capacity < 1 || ttl.isNegative || (failureTtl?.isNegative ?? false)) {
       throw ArgumentError('Invalid cache policy');
     }
@@ -163,6 +170,13 @@ final class EffectCache<K, V, E, R> {
   final int capacity;
   final Duration ttl;
 
+  /// Bounds active lookup/resource owners, including protected retirement.
+  /// Admission fails immediately, avoiding nested-borrow deadlocks.
+  final int maxOwners;
+
+  /// Maps saturation to E. Without it saturation is a StateError defect.
+  final E Function()? onCapacity;
+
   /// Opt-in for single Expected failures. Defects/composites are never cached.
   final Duration? failureTtl;
   final _counters = _Counters();
@@ -170,14 +184,12 @@ final class EffectCache<K, V, E, R> {
   final _maintenance = _Maintenance<E, R>();
   final _entries = <K, _Entry<V, E>>{};
   final _retiring = <Future<Cause<E>?>>{};
+  int _owners = 0;
   Future<Cause<E>?>? _closing;
   int get size => _entries.length;
   bool get isClosed => _closing != null;
-  CacheStats get stats => _counters.snapshot(
-    size,
-    _entries.values.where((e) => !e.finished).length + _retiring.length,
-    _diagnostics.dropped,
-  );
+  CacheStats get stats =>
+      _counters.snapshot(size, _owners, _diagnostics.dropped);
   void _checkOpen() {
     if (isClosed) throw StateError('Cache is closed');
   }
@@ -196,9 +208,11 @@ final class EffectCache<K, V, E, R> {
 
   Future<Cause<E>?> _retire(_Entry<V, E> entry) {
     if (entry.retiring != null) return entry.retiring!;
+    final fiber = entry.fiber;
+    if (fiber == null) return Future.value(null);
     final pending = !entry.finished;
-    entry.fiber.interrupt();
-    final future = entry.fiber.awaitExit().then((exit) {
+    fiber.interrupt();
+    final future = fiber.awaitExit().then((exit) {
       final cause = pending && exit is Failure<V, E>
           ? _withoutInterrupt(exit.cause)
           : null;
@@ -226,15 +240,29 @@ final class EffectCache<K, V, E, R> {
       _entries[key] = entry;
     } else {
       _counters.misses++;
+      if (_owners >= maxOwners) {
+        return onCapacity == null
+            ? Failure(
+                Defect(
+                  StateError('Cache owner limit reached'),
+                  StackTrace.current,
+                ),
+              )
+            : Failure(Expected(onCapacity!()));
+      }
       _counters.loads++;
       if (_entries.length >= capacity) {
         _retire(_entries.remove(_entries.keys.first)!);
         _counters.evictions++;
       }
       entry = _Entry(runtime.fork(Effect.defer(() => lookup(key))));
+      _owners++;
       _entries[key] = entry;
       final inserted = entry;
-      entry.fiber.awaitExit().then((exit) {
+      entry.fiber!.awaitExit().then((exit) {
+        _owners--;
+        inserted.outcome = exit;
+        inserted.fiber = null;
         inserted.finished = true;
         final duration = exit is Success<V, E>
             ? ttl
@@ -249,14 +277,14 @@ final class EffectCache<K, V, E, R> {
         }
       });
     }
-    return ctx.evaluate(entry.fiber.join<R>());
+    return entry.outcome ?? ctx.evaluate(entry.fiber!.join<R>());
   });
 
   /// Nonloading inspection. Success(null) is distinct from missing/pending.
   Future<Exit<V, E>?> peek(K key) async {
     final e = _entries[key];
     if (e == null || !e.finished || _expired(e)) return null;
-    return e.fiber.awaitExit();
+    return e.outcome;
   }
 
   /// Detaches immediately and awaits cleanup; diagnostics also remain drainable.
@@ -321,12 +349,16 @@ final class EffectCache<K, V, E, R> {
   List<Cause<E>> takeDiagnostics() => _diagnostics.take();
 
   /// Rejects new loads immediately. Repeated calls share one completion.
-  Future<Cause<E>?> close() => _closing ??= Future(() async {
+  Future<Cause<E>?> close() => _closing ??= Future.microtask(() async {
     await _maintenance.stop();
     await invalidateAll();
     await Future.wait(_retiring.toList());
     return _diagnostics.cause;
   });
+}
+
+final class _OwnerLimit {
+  const _OwnerLimit();
 }
 
 final class _ResourceEntry<V, E> {
@@ -341,15 +373,20 @@ final class _ResourceEntry<V, E> {
 
 /// Resource generations release after their last borrower's cleanup finishes.
 /// Never return a raw resource from use or close inside its own borrow.
-/// Capacity bounds residents; active retired generations need caller-side
-/// concurrency limits. Use acquireScoped for cancel-safe acquisition.
+/// Capacity bounds residents; maxOwners bounds active/retired generations.
+/// Use acquireScoped for cancel-safe acquisition and limit application borrowers.
 final class ScopedCache<K, V, E, R> {
   ScopedCache({
     required this.runtime,
     required this.acquire,
     required this.capacity,
     required this.ttl,
-  }) {
+    int? maxOwners,
+    this.onCapacity,
+  }) : maxOwners = maxOwners ?? capacity * 2 {
+    if (this.maxOwners < 1) {
+      throw ArgumentError.value(this.maxOwners, 'maxOwners');
+    }
     if (capacity < 1 || ttl.isNegative) {
       throw ArgumentError('Invalid scoped cache policy');
     }
@@ -358,6 +395,13 @@ final class ScopedCache<K, V, E, R> {
   final Effect<V, E, R> Function(K) acquire;
   final int capacity;
   final Duration ttl;
+
+  /// Bounds active lookup/resource owners, including protected retirement.
+  /// Admission fails immediately, avoiding nested-borrow deadlocks.
+  final int maxOwners;
+
+  /// Maps saturation to E. Without it saturation is a StateError defect.
+  final E Function()? onCapacity;
   final _entries = <K, _ResourceEntry<V, E>>{};
   final _owners = <_ResourceEntry<V, E>>{};
   final _counters = _Counters();
@@ -392,6 +436,7 @@ final class ScopedCache<K, V, E, R> {
       _entries[key] = old;
       return old;
     }
+    if (_owners.length >= maxOwners) throw const _OwnerLimit();
     if (old != null) {
       _entries.remove(key);
       _counters.expirations++;
@@ -468,7 +513,19 @@ final class ScopedCache<K, V, E, R> {
       Effect.asyncExit((ctx) async {
         while (true) {
           _checkOpen();
-          final e = _entry(key);
+          final _ResourceEntry<V, E> e;
+          try {
+            e = _entry(key);
+          } on _OwnerLimit {
+            return onCapacity == null
+                ? Failure(
+                    Defect(
+                      StateError('Scoped cache owner limit reached'),
+                      StackTrace.current,
+                    ),
+                  )
+                : Failure(Expected(onCapacity!()));
+          }
           final loaded = await ctx.evaluate(e.ready.awaitValue<R>());
           if (loaded is Failure<V, E>) return Failure(loaded.cause);
           if (ctx.token.isCancelled) return const Failure(Interrupted());
@@ -541,7 +598,7 @@ final class ScopedCache<K, V, E, R> {
   List<Cause<E>> takeDiagnostics() => _diagnostics.take();
 
   /// Close outside use; await this before shutting down the borrowed runtime.
-  Future<Cause<E>?> close() => _closing ??= Future(() async {
+  Future<Cause<E>?> close() => _closing ??= Future.microtask(() async {
     await _maintenance.stop();
     final owners = _owners.toList();
     _entries.clear();

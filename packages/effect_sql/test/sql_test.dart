@@ -60,6 +60,101 @@ Future<void> checkpoint(bool Function() check) async {
 }
 
 void main() {
+  test('interruption drains prepared cleanup and preserves its failure before discard', () async {
+    final driver = FakeDriver(),
+        rt = Runtime(Unit.value),
+        started = Completer<void>(),
+        gate = Completer<void>();
+    final cleanup = DriverFault(), pool = SqlClient(driver, maxConnections: 1);
+    driver.query = (_) async {
+      started.complete();
+      await gate.future;
+      throw SqlCommandCleanupException(
+        primary: DriverFault(),
+        primaryStack: StackTrace.current,
+        cleanup: cleanup,
+        cleanupStack: StackTrace.current,
+        cleanupOperation: 'prepared.close',
+      );
+    };
+    final fiber = rt.fork(pool.execute<Unit>(SqlStatement('cancelled')));
+    await started.future;
+    final stopped = fiber.interruptAndAwait();
+    await checkpoint(() => driver.trace.contains('cancel'));
+    gate.complete();
+    final cause = (await stopped as Failure<SqlResult, SqlFailure>).cause;
+    expect(cause.isInterrupted, true);
+    expect(cause.expectedErrors.single.cause, cleanup);
+    expect(driver.connections.single.closes, 1);
+    expect(pool.idleConnections, 0);
+    await rt.shutdown();
+    await pool.shutdown();
+  });
+
+  test('command and prepared cleanup failures retain both errors and discard lease', () async {
+    final driver = FakeDriver(),
+        rt = Runtime(Unit.value),
+        body = DriverFault(),
+        cleanup = DriverFault();
+    final pool = SqlClient(driver, maxConnections: 1);
+    driver.query = (_) async => throw SqlCommandCleanupException(
+      primary: body,
+      primaryStack: StackTrace.current,
+      cleanup: cleanup,
+      cleanupStack: StackTrace.current,
+      cleanupOperation: 'prepared.close',
+    );
+    final exit = await rt.runExit(pool.execute<Unit>(SqlStatement('query')));
+    final errors = (exit as Failure<SqlResult, SqlFailure>).cause.expectedErrors
+        .toList();
+    expect(errors.map((e) => e.cause), [body, cleanup]);
+    expect(errors.map((e) => e.operation), ['execute', 'prepared.close']);
+    expect(driver.connections.single.closes, 1);
+    expect(pool.idleConnections, 0);
+    driver.query = (_) async => SqlResult();
+    expect(
+      await rt.runFuture(pool.execute<Unit>(SqlStatement('recovered'))),
+      isA<SqlResult>(),
+    );
+    expect(driver.connections.length, 2);
+    await rt.shutdown();
+    await pool.shutdown();
+  });
+
+  test(
+    'pool rejects excess queued leases before opening more connections',
+    () async {
+      final d = FakeDriver(),
+          rt = Runtime(Unit.value),
+          started = Completer<void>(),
+          gate = Completer<SqlResult>();
+      final pool = SqlClient(d, maxConnections: 1, maxPending: 0);
+      d.query = (_) {
+        started.complete();
+        return gate.future;
+      };
+      final first = rt.fork(pool.execute<Unit>(SqlStatement('one')));
+      await started.future;
+      final exit = await rt.runExit(pool.execute<Unit>(SqlStatement('two')));
+      expect(
+        (exit as Failure<SqlResult, SqlFailure>)
+            .cause
+            .expectedErrors
+            .single
+            .kind,
+        SqlFailureKind.overloaded,
+      );
+      expect(d.connections.length, 1);
+      expect(pool.pendingLeases, 0);
+      gate.complete(SqlResult());
+      await first.awaitExit();
+      await rt.shutdown();
+      await pool.shutdown();
+      expect(pool.activeConnections, 0);
+      expect(pool.idleConnections, 0);
+    },
+  );
+
   test('[SQL01] lazy execution, immutable snapshots and pool reuse', () async {
     final d = FakeDriver();
     final pool = SqlClient(d, maxConnections: 1),

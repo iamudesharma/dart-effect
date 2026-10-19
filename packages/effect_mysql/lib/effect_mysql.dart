@@ -98,15 +98,27 @@ final class MySqlDriver implements SqlDriver {
 
 final class MySqlClient {
   static final key = ServiceKey<SqlClient>('MySqlClient');
-  static SqlClient create(MySqlSettings settings, {int maxConnections = 10}) =>
-      SqlClient(MySqlDriver(settings), maxConnections: maxConnections);
+  static SqlClient create(
+    MySqlSettings settings, {
+    int maxConnections = 10,
+    int maxPending = 1024,
+  }) => SqlClient(
+    MySqlDriver(settings),
+    maxConnections: maxConnections,
+    maxPending: maxPending,
+  );
   static Layer<SqlFailure> layer(
     MySqlSettings settings, {
     int maxConnections = 10,
+    int maxPending = 1024,
   }) => Layer.resource(
     key,
     Effect.sync<SqlClient, SqlFailure, Context>(
-      () => create(settings, maxConnections: maxConnections),
+      () => create(
+        settings,
+        maxConnections: maxConnections,
+        maxPending: maxPending,
+      ),
     ),
     (c) => c.close<Context>(),
   );
@@ -121,27 +133,40 @@ final class _Connection implements SqlConnection {
   Future<SqlResult> execute(SqlStatement statement) async {
     // Values are bound with the driver's binary prepared-statement API. Never
     // substitute parameters into SQL or use execute's text interpolation.
-    mysql.IResultSet r;
+    late mysql.IResultSet r;
     if (statement.parameters.isEmpty) {
       r = await connection.execute(statement.text);
     } else {
       final prepared = await connection.prepare(statement.text);
+      Object? primary;
+      StackTrace? primaryStack;
       try {
         r = await prepared.execute(statement.parameters);
-      } finally {
-        if (connection.connected) await prepared.deallocate();
+      } catch (error, stack) {
+        primary = error;
+        primaryStack = stack;
       }
+      try {
+        if (connection.connected) await prepared.deallocate();
+      } catch (error, stack) {
+        throw SqlCommandCleanupException(
+          primary: primary,
+          primaryStack: primaryStack,
+          cleanup: error,
+          cleanupStack: stack,
+          cleanupOperation: 'prepared.close',
+        );
+      }
+      if (primary != null) Error.throwWithStackTrace(primary, primaryStack!);
     }
     return SqlResult(
-      columns: r.cols.map((c) => c.name).toList(),
-      rows: r.rows
-          .map(
-            (row) => List<Object?>.generate(
-              row.numOfColumns,
-              (i) => row.colAt(i) as Object?,
-            ),
-          )
-          .toList(),
+      columns: r.cols.map((c) => c.name),
+      rows: r.rows.map(
+        (row) => List<Object?>.generate(
+          row.numOfColumns,
+          (i) => row.colAt(i) as Object?,
+        ),
+      ),
       affectedRows: r.affectedRows.toInt(),
       insertId: r.lastInsertID,
     );

@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Isolated real-driver acceptance, with pinned images and guaranteed teardown."""
-import datetime,hashlib,json,os,pathlib,subprocess,tempfile,time,uuid
+import argparse,datetime,hashlib,json,os,pathlib,subprocess,tempfile,time,uuid
 ROOT=pathlib.Path(__file__).resolve().parents[1]
+parser=argparse.ArgumentParser()
+parser.add_argument('--report', type=pathlib.Path, default=ROOT/'docs/effect-port/sql-validation.json')
+report_options=parser.parse_args()
 IMAGES={
  'postgres':'postgres@sha256:18cfe3ef5e6815560c98237d6216d1e5119702fb0f3894c8785dd58b8bbe5d73',
  'mysql':'mysql@sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242',
@@ -72,4 +75,4 @@ finally:
  report['cleanup']=cleanup;report['containers_removed']=all(r['exit_code']==0 for r in cleanup)
  report['source_sha256']={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted([*ROOT.glob('lib/**/*.dart'),*ROOT.glob('packages/*/lib/**/*.dart'),*ROOT.glob('packages/*/test/**/*.dart')])}
  report['finished_at_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat()
- output=ROOT/'docs/effect-port/sql-validation.json';output.write_text(json.dumps(report,indent=2)+'\n')
+ output=report_options.report;output.write_text(json.dumps(report,indent=2)+'\n')

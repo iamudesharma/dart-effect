@@ -1,0 +1,1206 @@
+{
+  "recorded_at_utc": "2026-10-19T04:45:06.798206+00:00",
+  "source_revision": "465e0aa49da4530be247160aaae36cefa0865f16",
+  "production_code_modified": false,
+  "scope": "Merged core, cache and HTTP dynamic probes; SQL/OpenAI adapters static review only. No Flutter/device frame profiling or live provider/DB soak.",
+  "checks": {
+    "core-resolve": {
+      "command": [
+        "dart",
+        "pub",
+        "get",
+        "--offline"
+      ],
+      "exit_code": 0
+    },
+    "cache-resolve": {
+      "command": [
+        "dart",
+        "pub",
+        "get",
+        "--offline"
+      ],
+      "exit_code": 0
+    },
+    "http-resolve": {
+      "command": [
+        "dart",
+        "pub",
+        "get",
+        "--offline"
+      ],
+      "exit_code": 0
+    },
+    "audit-analysis": {
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos",
+        "tool/core_memory_audit.dart",
+        "tool/http_body_memory_audit.dart"
+      ],
+      "exit_code": 0
+    },
+    "core-vm": {
+      "command": [
+        "dart",
+        "test",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 127,
+      "failed": 0,
+      "skipped": 0
+    },
+    "core-chrome": {
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "chrome",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 127,
+      "failed": 0,
+      "skipped": 0
+    },
+    "cache-vm": {
+      "command": [
+        "dart",
+        "test",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 35,
+      "failed": 0,
+      "skipped": 0
+    },
+    "cache-chrome": {
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "chrome",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 34,
+      "failed": 0,
+      "skipped": 0
+    },
+    "http-vm": {
+      "command": [
+        "dart",
+        "test",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0
+    },
+    "http-chrome": {
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "chrome",
+        "test/portable_test.dart",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0
+    },
+    "fixtures": {
+      "command": [
+        "dart",
+        "run",
+        "tool/check_fixtures.dart"
+      ],
+      "exit_code": 0
+    }
+  },
+  "source_sha256": {
+    "lib/effect_core.dart": "2f8a90b18f05ca619e93933350c55ea3ac3ee99f1eb2ac6bb74b05db2fc8906d",
+    "lib/src/concurrency.dart": "89b943cf6ef37071a163d1318219cea9d2910a2642a497dda1f54814101fc109",
+    "lib/src/core.dart": "f15861234bcbf996c0483ff2b1318e1c3327b57cdbf90282150e5ee4def8fd45",
+    "lib/src/ergonomics.dart": "025690a9842112040a650fea8d78ca696e559bd0f765f38a9664c3534d9ef870",
+    "lib/src/reliability.dart": "bea2170114df8c178513d00c9c5592e9719e62684e7342c3ee5a5b4aed47a01a",
+    "lib/src/services.dart": "9af61e8b0d4eb6af0f8ba0224c76b62b3d3b734d429c8228e3fcd2622ce6e4b7",
+    "lib/src/stream.dart": "fd18652226f16d09bd307fd9d6d954f32f854993cc0edf8ac2e36d885a945b97",
+    "packages/effect_cache/lib/effect_cache.dart": "1831acafea58a9240ee0c3478db5c22360696dae910de20eb515a53514168fc5",
+    "packages/effect_http/lib/effect_http.dart": "a9ee5360c64687a1e84ffc78faafb6b7cdad4305dde38d8f2e7a02890d78abec",
+    "packages/effect_mysql/lib/effect_mysql.dart": "00d4c211c0937643c7ed81edcc3ab73a0d4116598d658ecf57f14090807e3b21",
+    "packages/effect_openai/lib/effect_openai.dart": "541e8da137e3e06ea4cd56bf561a290b6755b944608df7e06b4aa9f1eb126b31",
+    "packages/effect_postgres/lib/effect_postgres.dart": "420be850327ea0d1c5feb52b950ba5593330c46ac22eb17b332255b054b7e8e1",
+    "packages/effect_sql/lib/effect_sql.dart": "de50d3b88d491a374c6f0927900bebc9f98c4ad3178c691fb355bdf3b9317689",
+    "tool/core_memory_audit.dart": "7838a57bc45e8bc34b92843cbbf7dacc12de1c7e557075105a9c2fb488af1b27",
+    "tool/http_body_memory_audit.dart": "7bbc913bb2579d4f9f03a873c76cb58bff93a6a5bcdfd9b956c15fbfc69a1f95",
+    "tool/performance_memory.dart": "2d0856678f09d213dbfa2d73bf0235706e78f301b537a3c1420fd2f466cc94b4",
+    "tool/run_core_memory_audit.py": "aae60d993559f6a91e579e0a425b5537af0cfecec9aab4b516234757e182546d"
+  },
+  "jit": {
+    "recordedAtUtc": "2026-10-19T04:45:59.268903Z",
+    "sdk": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+    "os": "macos",
+    "productionCodeModified": false,
+    "scheduling": {
+      "zoneCounts": {
+        "future-value": {
+          "operations": 50,
+          "timers": 0,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 50
+        },
+        "root-success": {
+          "operations": 50,
+          "timers": 50,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 200
+        },
+        "root-fromFuture": {
+          "operations": 50,
+          "timers": 50,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 200
+        },
+        "cache-hit": {
+          "operations": 50,
+          "timers": 50,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 150
+        },
+        "cache-miss": {
+          "operations": 50,
+          "timers": 100,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 484
+        },
+        "map-1000": {
+          "operations": 10,
+          "timers": 30,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 10040
+        }
+      },
+      "primitiveFairnessControl": {
+        "microtask-only-loop": {
+          "iterations": 10000,
+          "timerHeartbeatRanDuringWork": false
+        },
+        "event-queue-loop": {
+          "iterations": 10000,
+          "timerHeartbeatRanDuringWork": true
+        }
+      },
+      "note": "Zone interception adds overhead. Counts are diagnostic; timings run separately. Fairness control compares Dart primitives, not an optimized runtime."
+    },
+    "deepCauses": [
+      {
+        "depth": 100,
+        "expectedErrorsRetained": 101,
+        "defectTypes": []
+      },
+      {
+        "depth": 1000,
+        "expectedErrorsRetained": 1001,
+        "defectTypes": []
+      },
+      {
+        "depth": 5000,
+        "expectedErrorsRetained": 5001,
+        "defectTypes": []
+      },
+      {
+        "depth": 10000,
+        "expectedErrorsRetained": 10001,
+        "defectTypes": []
+      },
+      {
+        "depth": 50000,
+        "expectedErrorsRetained": 0,
+        "defectTypes": [
+          "StackOverflowError"
+        ]
+      }
+    ],
+    "metricClockJump": {
+      "monotonicWorkUs": 10000,
+      "reportedRuntimeDurationUs": -86400000000,
+      "rateLimiterRequestedSleepUsAfterWallRewind": 86400010000,
+      "rateLimiterMonotonicElapsedUs": 10000,
+      "clockNote": "The custom clock captures requested delays without waiting a day."
+    },
+    "traversalMaterialization": {
+      "inputItemsGeneratedBeforeFirstWork": 10000,
+      "workCalls": 1,
+      "failedAsRequested": true
+    }
+  },
+  "aot": {
+    "recordedAtUtc": "2026-10-19T04:46:02.848961Z",
+    "sdk": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+    "os": "macos",
+    "productionCodeModified": false,
+    "scheduling": {
+      "zoneCounts": {
+        "future-value": {
+          "operations": 50,
+          "timers": 0,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 50
+        },
+        "root-success": {
+          "operations": 50,
+          "timers": 50,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 200
+        },
+        "root-fromFuture": {
+          "operations": 50,
+          "timers": 50,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 200
+        },
+        "cache-hit": {
+          "operations": 50,
+          "timers": 50,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 150
+        },
+        "cache-miss": {
+          "operations": 50,
+          "timers": 100,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 484
+        },
+        "map-1000": {
+          "operations": 10,
+          "timers": 30,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 10040
+        }
+      },
+      "primitiveFairnessControl": {
+        "microtask-only-loop": {
+          "iterations": 10000,
+          "timerHeartbeatRanDuringWork": false
+        },
+        "event-queue-loop": {
+          "iterations": 10000,
+          "timerHeartbeatRanDuringWork": true
+        }
+      },
+      "note": "Zone interception adds overhead. Counts are diagnostic; timings run separately. Fairness control compares Dart primitives, not an optimized runtime."
+    },
+    "deepCauses": [
+      {
+        "depth": 100,
+        "expectedErrorsRetained": 101,
+        "defectTypes": []
+      },
+      {
+        "depth": 1000,
+        "expectedErrorsRetained": 1001,
+        "defectTypes": []
+      },
+      {
+        "depth": 5000,
+        "expectedErrorsRetained": 5001,
+        "defectTypes": []
+      },
+      {
+        "depth": 10000,
+        "expectedErrorsRetained": 10001,
+        "defectTypes": []
+      },
+      {
+        "depth": 50000,
+        "expectedErrorsRetained": 0,
+        "defectTypes": [
+          "StackOverflowError"
+        ]
+      }
+    ],
+    "metricClockJump": {
+      "monotonicWorkUs": 10000,
+      "reportedRuntimeDurationUs": -86400000000,
+      "rateLimiterRequestedSleepUsAfterWallRewind": 86400010000,
+      "rateLimiterMonotonicElapsedUs": 10000,
+      "clockNote": "The custom clock captures requested delays without waiting a day."
+    },
+    "traversalMaterialization": {
+      "inputItemsGeneratedBeforeFirstWork": 10000,
+      "workCalls": 1,
+      "failedAsRequested": true
+    }
+  },
+  "timing_aot": {
+    "recordedAtUtc": "2026-10-19T04:46:02.949276Z",
+    "sdk": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+    "os": "macos",
+    "productionCodeModified": false,
+    "timing": {
+      "direct-Future.value": {
+        "samples": 2000,
+        "p50us": 0,
+        "p95us": 0,
+        "p99us": 1,
+        "meanUs": 0.048
+      },
+      "root-success": {
+        "samples": 2000,
+        "p50us": 5,
+        "p95us": 5,
+        "p99us": 7,
+        "meanUs": 5.0855
+      },
+      "cache-hit": {
+        "samples": 2000,
+        "p50us": 6,
+        "p95us": 6,
+        "p99us": 8,
+        "meanUs": 6.004
+      }
+    }
+  },
+  "memory_runs": [
+    {
+      "recordedAtUtc": "2026-10-19T04:46:03.987679Z",
+      "sdk": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+      "os": "macos",
+      "productionCodeModified": false,
+      "memory": {
+        "expiredCache": {
+          "logicalVisibleKeysAfterTtl": 0,
+          "residentSlotsAfterTtl": 8,
+          "payloadBytes": 1048576,
+          "livePayloadsBeforePurge": 8,
+          "livePayloadsAfterPurge": 0,
+          "before": {
+            "gcTimestamp": "1792385164123",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 18446304,
+              "heapCapacity": 23560192,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 8,
+                "bytes": 128
+              },
+              "_Entry:classes/1242": {
+                "instances": 8,
+                "bytes": 384
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 8,
+                "bytes": 256
+              },
+              "Scope:classes/1262": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1264": {
+                "instances": 8,
+                "bytes": 256
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792385164257",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 10682096,
+              "heapCapacity": 33193984,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Scope:classes/1262": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1264": {
+                "instances": 0,
+                "bytes": 0
+              }
+            }
+          }
+        },
+        "retiringLoads": {
+          "capacity": 1,
+          "residentSlots": 1,
+          "unfinishedOwners": 64,
+          "livePayloadsUnderSlowCleanup": 64,
+          "payloadBytes": 131072,
+          "livePayloadsAfterRelease": 0,
+          "before": {
+            "gcTimestamp": "1792385164386",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19658432,
+              "heapCapacity": 41238528,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 64,
+                "bytes": 1024
+              },
+              "_Entry:classes/1242": {
+                "instances": 64,
+                "bytes": 3072
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 129,
+                "bytes": 4128
+              },
+              "Scope:classes/1262": {
+                "instances": 64,
+                "bytes": 2048
+              },
+              "Fiber:classes/1264": {
+                "instances": 65,
+                "bytes": 2080
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792385164507",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 10907024,
+              "heapCapacity": 34422784,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 1,
+                "bytes": 32
+              },
+              "Scope:classes/1262": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1264": {
+                "instances": 1,
+                "bytes": 32
+              }
+            }
+          }
+        },
+        "blockedQueueOffers": {
+          "capacity": 1,
+          "buffered": 1,
+          "waitingProducers": 64,
+          "payloadBytes": 131072,
+          "liveBlockedPayloads": 64,
+          "livePayloadsAfterShutdown": 0,
+          "before": {
+            "gcTimestamp": "1792385164652",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19713200,
+              "heapCapacity": 38420480,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 65,
+                "bytes": 1040
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 64,
+                "bytes": 2048
+              },
+              "Scope:classes/1262": {
+                "instances": 64,
+                "bytes": 2048
+              },
+              "Fiber:classes/1264": {
+                "instances": 64,
+                "bytes": 2048
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792385164802",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11055344,
+              "heapCapacity": 28131328,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 64,
+                "bytes": 2048
+              },
+              "Scope:classes/1262": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1264": {
+                "instances": 64,
+                "bytes": 2048
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "recordedAtUtc": "2026-10-19T04:46:05.807647Z",
+      "sdk": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+      "os": "macos",
+      "productionCodeModified": false,
+      "memory": {
+        "expiredCache": {
+          "logicalVisibleKeysAfterTtl": 0,
+          "residentSlotsAfterTtl": 8,
+          "payloadBytes": 1048576,
+          "livePayloadsBeforePurge": 8,
+          "livePayloadsAfterPurge": 0,
+          "before": {
+            "gcTimestamp": "1792385165953",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 18448000,
+              "heapCapacity": 23560192,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 8,
+                "bytes": 128
+              },
+              "_Entry:classes/1242": {
+                "instances": 8,
+                "bytes": 384
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 8,
+                "bytes": 256
+              },
+              "Scope:classes/1262": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1264": {
+                "instances": 8,
+                "bytes": 256
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792385166095",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 10680784,
+              "heapCapacity": 32882688,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Scope:classes/1262": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1264": {
+                "instances": 0,
+                "bytes": 0
+              }
+            }
+          }
+        },
+        "retiringLoads": {
+          "capacity": 1,
+          "residentSlots": 1,
+          "unfinishedOwners": 64,
+          "livePayloadsUnderSlowCleanup": 64,
+          "payloadBytes": 131072,
+          "livePayloadsAfterRelease": 0,
+          "before": {
+            "gcTimestamp": "1792385166219",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19656640,
+              "heapCapacity": 41238528,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 64,
+                "bytes": 1024
+              },
+              "_Entry:classes/1242": {
+                "instances": 64,
+                "bytes": 3072
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 129,
+                "bytes": 4128
+              },
+              "Scope:classes/1262": {
+                "instances": 64,
+                "bytes": 2048
+              },
+              "Fiber:classes/1264": {
+                "instances": 65,
+                "bytes": 2080
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792385166333",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 10904496,
+              "heapCapacity": 33898496,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 1,
+                "bytes": 32
+              },
+              "Scope:classes/1262": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1264": {
+                "instances": 1,
+                "bytes": 32
+              }
+            }
+          }
+        },
+        "blockedQueueOffers": {
+          "capacity": 1,
+          "buffered": 1,
+          "waitingProducers": 64,
+          "payloadBytes": 131072,
+          "liveBlockedPayloads": 64,
+          "livePayloadsAfterShutdown": 0,
+          "before": {
+            "gcTimestamp": "1792385166438",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19710672,
+              "heapCapacity": 41238528,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 65,
+                "bytes": 1040
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 64,
+                "bytes": 2048
+              },
+              "Scope:classes/1262": {
+                "instances": 64,
+                "bytes": 2048
+              },
+              "Fiber:classes/1264": {
+                "instances": 64,
+                "bytes": 2048
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792385166540",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11051408,
+              "heapCapacity": 28131328,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 64,
+                "bytes": 2048
+              },
+              "Scope:classes/1262": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1264": {
+                "instances": 64,
+                "bytes": 2048
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "recordedAtUtc": "2026-10-19T04:46:07.814034Z",
+      "sdk": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+      "os": "macos",
+      "productionCodeModified": false,
+      "memory": {
+        "expiredCache": {
+          "logicalVisibleKeysAfterTtl": 0,
+          "residentSlotsAfterTtl": 8,
+          "payloadBytes": 1048576,
+          "livePayloadsBeforePurge": 8,
+          "livePayloadsAfterPurge": 0,
+          "before": {
+            "gcTimestamp": "1792385167964",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 18446464,
+              "heapCapacity": 23560192,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 8,
+                "bytes": 128
+              },
+              "_Entry:classes/1242": {
+                "instances": 8,
+                "bytes": 384
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 8,
+                "bytes": 256
+              },
+              "Scope:classes/1262": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1264": {
+                "instances": 8,
+                "bytes": 256
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792385168116",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 10682032,
+              "heapCapacity": 33128448,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Scope:classes/1262": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1264": {
+                "instances": 0,
+                "bytes": 0
+              }
+            }
+          }
+        },
+        "retiringLoads": {
+          "capacity": 1,
+          "residentSlots": 1,
+          "unfinishedOwners": 64,
+          "livePayloadsUnderSlowCleanup": 64,
+          "payloadBytes": 131072,
+          "livePayloadsAfterRelease": 0,
+          "before": {
+            "gcTimestamp": "1792385168257",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19656800,
+              "heapCapacity": 41238528,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 64,
+                "bytes": 1024
+              },
+              "_Entry:classes/1242": {
+                "instances": 64,
+                "bytes": 3072
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 129,
+                "bytes": 4128
+              },
+              "Scope:classes/1262": {
+                "instances": 64,
+                "bytes": 2048
+              },
+              "Fiber:classes/1264": {
+                "instances": 65,
+                "bytes": 2080
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792385168383",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 10904656,
+              "heapCapacity": 33898496,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 1,
+                "bytes": 32
+              },
+              "Scope:classes/1262": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1264": {
+                "instances": 1,
+                "bytes": 32
+              }
+            }
+          }
+        },
+        "blockedQueueOffers": {
+          "capacity": 1,
+          "buffered": 1,
+          "waitingProducers": 64,
+          "payloadBytes": 131072,
+          "liveBlockedPayloads": 64,
+          "livePayloadsAfterShutdown": 0,
+          "before": {
+            "gcTimestamp": "1792385168549",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 19710832,
+              "heapCapacity": 41238528,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 65,
+                "bytes": 1040
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 64,
+                "bytes": 2048
+              },
+              "Scope:classes/1262": {
+                "instances": 64,
+                "bytes": 2048
+              },
+              "Fiber:classes/1264": {
+                "instances": 64,
+                "bytes": 2048
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792385168667",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11052848,
+              "heapCapacity": 28131328,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1244": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1256": {
+                "instances": 64,
+                "bytes": 2048
+              },
+              "Scope:classes/1262": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1264": {
+                "instances": 64,
+                "bytes": 2048
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "http_body": {
+    "measurements": [
+      {
+        "logicalBodyBytes": 1048576,
+        "constructorAddedDartHeapBytes": 8392176,
+        "responseBodyRuntimeType": "List<int>",
+        "mode": "current-HttpResult",
+        "before": {
+          "gc": "1792385170850",
+          "memory": {
+            "type": "MemoryUsage",
+            "heapUsage": 12076720,
+            "heapCapacity": 28147712,
+            "externalUsage": 48
+          }
+        },
+        "after": {
+          "gc": "1792385170972",
+          "memory": {
+            "type": "MemoryUsage",
+            "heapUsage": 20468896,
+            "heapCapacity": 44744704,
+            "externalUsage": 48
+          }
+        }
+      },
+      {
+        "logicalBodyBytes": 1048576,
+        "constructorAddedDartHeapBytes": 1049296,
+        "responseBodyRuntimeType": "_UnmodifiableUint8ArrayView",
+        "mode": "prototype-typed-defensive-copy",
+        "before": {
+          "gc": "1792385171079",
+          "memory": {
+            "type": "MemoryUsage",
+            "heapUsage": 12082800,
+            "heapCapacity": 61046784,
+            "externalUsage": 48
+          }
+        },
+        "after": {
+          "gc": "1792385171186",
+          "memory": {
+            "type": "MemoryUsage",
+            "heapUsage": 13132096,
+            "heapCapacity": 28491776,
+            "externalUsage": 48
+          }
+        }
+      },
+      {
+        "logicalBodyBytes": 4194304,
+        "constructorAddedDartHeapBytes": 33558096,
+        "responseBodyRuntimeType": "List<int>",
+        "mode": "current-HttpResult",
+        "before": {
+          "gc": "1792385171293",
+          "memory": {
+            "type": "MemoryUsage",
+            "heapUsage": 15230224,
+            "heapCapacity": 43679744,
+            "externalUsage": 48
+          }
+        },
+        "after": {
+          "gc": "1792385171440",
+          "memory": {
+            "type": "MemoryUsage",
+            "heapUsage": 48788320,
+            "heapCapacity": 62046208,
+            "externalUsage": 48
+          }
+        }
+      },
+      {
+        "logicalBodyBytes": 4194304,
+        "constructorAddedDartHeapBytes": 4195024,
+        "responseBodyRuntimeType": "_UnmodifiableUint8ArrayView",
+        "mode": "prototype-typed-defensive-copy",
+        "before": {
+          "gc": "1792385171550",
+          "memory": {
+            "type": "MemoryUsage",
+            "heapUsage": 15234816,
+            "heapCapacity": 81494016,
+            "externalUsage": 48
+          }
+        },
+        "after": {
+          "gc": "1792385171663",
+          "memory": {
+            "type": "MemoryUsage",
+            "heapUsage": 19429840,
+            "heapCapacity": 34291712,
+            "externalUsage": 48
+          }
+        }
+      }
+    ],
+    "productionCodeModified": false,
+    "note": "Constructor-only retained heap after observed GC with typed input held as control. Small profiler noise remains. Request accumulation and UTF-8 decoding are additional costs. Prototype checks defensive copying and immutability but is not a production API change."
+  },
+  "completed_at_utc": "2026-10-19T04:46:11.759353+00:00",
+  "audit_completed": true,
+  "note": "Audit completion is not a clean bill of health: reproduced gaps are documented in core-memory-audit.md. Timings are synthetic macOS VM/AOT measurements, not Flutter frame/SLO proof."
+}
