@@ -4,21 +4,20 @@ Typed value caching and shared resource lifetimes for Dart services. Concurrent
 reads of one key share a lookup; scoped resources stay alive until borrowers
 finish. The library is portable and adds no platform or network dependency.
 
-**Development version: `0.1.0-dev.1`, unpublished.** It requires the development
-`effect_core 0.0.3-dev.1` API. A published core release does not yet provide all
-of these contracts. No registry installation or live-production acceptance is
-implied by the local tests.
+**Version: `0.0.1`.** Requires `effect_core ^0.0.3` and Dart 3.13 or later.
 
-## Install locally
+## Install
+
+```sh
+dart pub add effect_core effect_cache
+```
+
+For Flutter applications, use `flutter pub add effect_core effect_cache`.
 
 ```yaml
 dependencies:
-  effect_cache:
-    path: /path/to/effect_dart/packages/effect_cache
-
-dependency_overrides:
-  effect_core:
-    path: /path/to/effect_dart
+  effect_core: ^0.0.3
+  effect_cache: ^0.0.1
 ```
 
 ## Share backend lookups
@@ -138,9 +137,9 @@ callers; only appended owner cleanup failures enter retirement diagnostics.
 - Cancelling one or even every waiter does not cancel a shared load. Eviction,
   invalidation or cache closure stop removed generations. Actual I/O requires an
   abort hook; an ordinary Future may continue outside the runtime.
-- LRU capacity bounds resident entries, including pending loads. It does not
-  bound bytes, retired generations still borrowed, or protected cleanup still
-  running. Limit application concurrency and choose value sizes accordingly.
+- LRU capacity bounds resident entries, including pending loads. `maxOwners` separately bounds active and retired generations, including
+  protected cleanup. Neither limit bounds value bytes or borrower counts; limit
+  application concurrency and choose value sizes accordingly.
 - TTL expiration is lazy unless `purgeExpired` or optional maintenance runs.
   Maintenance admits no overlapping ticks and stops on its first error. Inspect
   the returned `Fiber`'s Exit; there is no automatic retry or hidden supervisor.
@@ -164,13 +163,13 @@ dart run example/main.dart
 dart compile js example/main.dart -o /tmp/effect-cache-example.js
 ```
 
-[Cache validation](../../docs/effect-port/cache-validation.md) describes the
+[Cache validation](https://github.com/iamudesharma/dart-effect/blob/codex/package-memory-release/docs/effect-port/cache-validation.md) describes the
 independent test matrix, real HTTP fixture, model-based LRU checks, benchmarks,
 post-GC reachability checks and package dry-run boundaries. Chrome excludes the
 native loopback HTTP fixture. No API keys or database are needed. Browser tests
 are behavioral checks; they do not establish Flutter-device acceptance.
 
-## Unpublished owner admission limits
+## owner admission limits
 
 `maxOwners` now bounds all active lookup/resource generations, including those
 waiting for protected cleanup, independently of resident `capacity`. It defaults
@@ -183,4 +182,4 @@ Completed value entries keep only their Exit rather than a finished Fiber.
 Use `startMaintenance(interval: ...)` or `purgeExpired()` when idle expiration
 must release values without a subsequent read. Drain diagnostics and close the
 cache before runtime shutdown. Value/error bytes and borrower counts still need
-application budgets. See the [follow-up evidence](../../docs/effect-port/memory-fixes.md).
+application budgets. See the [follow-up evidence](https://github.com/iamudesharma/dart-effect/blob/codex/package-memory-release/docs/effect-port/memory-fixes.md).

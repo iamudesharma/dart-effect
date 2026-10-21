@@ -33,7 +33,7 @@ jobs:
       - name: Contracts, examples, JIT/AOT and post-GC retention
         run: python3 tool/cache_validation.py --report build/cache-followup-validation.json
       - name: All implemented package memory regressions
-        run: python3 tool/validate_memory_fixes.py
+        run: python3 tool/validate_memory_fixes.py --report build/memory-fixes-ci-validation.json
       - name: Website evidence, routes and draft boundaries
         run: |
           python3 website/build.py
@@ -44,6 +44,6 @@ jobs:
           name: cache-validation
           path: |
             build/cache-followup-validation.json
-            docs/effect-port/memory-fixes-validation.json
+            build/memory-fixes-ci-validation.json
             build/memory-fixes/
             build/cache-validation/

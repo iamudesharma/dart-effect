@@ -49,9 +49,10 @@
     "title": "First pub.dev release",
     "status": "completed",
     "area": "Release",
-    "detail": "The initial five packages were published, followed by effect_http. Six published releases remain distinct from the thirteen unpublished toolkit additions.",
+    "detail": "Seven packages published, including effect_cache; core and PostgreSQL 0.0.3, SQL/MySQL/HTTP/OpenAI 0.0.2 and cache 0.0.1. Twelve other toolkit packages remain unpublished.",
     "proof": "/packages/",
-    "phase": "delivered"
+    "phase": "delivered",
+    "updated_at": "2026-10-21"
   },
   {
     "id": "ai-performance",
@@ -238,9 +239,9 @@
     "title": "Cache lifecycle completion and dedicated acceptance",
     "status": "completed",
     "phase": "delivered",
-    "area": "Development cache",
-    "detail": "Cache implementation and minimal core prerequisites are isolated in PR #14 against dart-effect. Website code is included; the other twelve packages remain in draft PR #13. Still unpublished.",
+    "area": "Cache",
+    "detail": "Cache 0.0.1 and its core 0.0.3 prerequisites are published after lifecycle, VM/Chrome, retention and hosted-consumer verification. The other twelve toolkit packages remain in draft PR #13.",
     "proof": "/docs/cache/",
-    "updated_at": "2026-10-19"
+    "updated_at": "2026-10-21"
   }
 ]

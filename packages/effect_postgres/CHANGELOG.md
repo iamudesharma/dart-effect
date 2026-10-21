@@ -1,10 +1,6 @@
-## Unreleased
+## 0.0.3 — 2026-10-21
 
-- Bound pending/active work and reduce retained allocations; preserve protected
-  cleanup and typed overload diagnostics. See `docs/effect-port/memory-fixes.md`
-  in the source repository for package-specific changes and executed evidence.
-
-# Changelog
+Forward the pending-lease limit to SQL admission and remove intermediate result-row copies. Require the corrected core and SQL releases.
 
 ## 0.0.2
 

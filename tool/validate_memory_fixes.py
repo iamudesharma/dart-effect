@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Fresh implementation evidence; never rewrites the earlier audit/release reports."""
 from pathlib import Path
-import datetime, hashlib, json, subprocess, threading
+import argparse, datetime, hashlib, json, subprocess, threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 ROOT = Path(__file__).resolve().parents[1]
 BUILD = ROOT/'build/memory-fixes'
@@ -31,6 +31,9 @@ def data(output):
     return json.loads(next(line for line in reversed(output.splitlines()) if line.startswith('{')))
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--report", default="docs/effect-port/memory-fixes-validation.json")
+    options = parser.parse_args()
     BUILD.mkdir(parents=True, exist_ok=True)
     initial=fingerprints()
     report={'started_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(), 'base_revision':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(), 'source_sha256':initial, 'checks':{}, 'success':False}
@@ -86,5 +89,5 @@ def main():
     report['success']=True
     report['finished_at_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat()
     report['limits']='Local VM/Chrome, HTTP/SDK fixtures and native AOT probes. Live SQL only if included explicitly. No live OpenAI provider, Flutter frame/device or production soak guarantee. Pending limits bound owned records, not caller-retained payloads or arbitrary error/value bytes.'
-    (ROOT/'docs/effect-port/memory-fixes-validation.json').write_text(json.dumps(report,indent=2)+'\n')
+    (ROOT/options.report).write_text(json.dumps(report,indent=2)+'\n')
 if __name__=='__main__': main()

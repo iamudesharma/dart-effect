@@ -1,8 +1,6 @@
-## Unreleased
+## 0.0.1 — 2026-10-21
 
-- Bound pending/active work and reduce retained allocations; preserve protected
-  cleanup and typed overload diagnostics. See `docs/effect-port/memory-fixes.md`
-  in the source repository for package-specific changes and executed evidence.
+First hosted release: single-flight LRU values, success and expected-failure TTL, scoped resources released after borrower cleanup, explicit maintenance and awaited shutdown. Bound active and retiring generations with maxOwners; map saturation with onCapacity. Drop completed fibers from value entries and preserve bounded cleanup diagnostics.
 
 ## 0.1.0-dev.1
 

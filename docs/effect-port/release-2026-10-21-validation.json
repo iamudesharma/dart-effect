@@ -1,0 +1,1556 @@
+{
+  "started_at_utc": "2026-10-21T12:26:40.431970+00:00",
+  "base_revision": "0faef69c278548a8d3d8c8d7b60e971b2345a1d3",
+  "source_sha256": {
+    "lib/effect_core.dart": "2f8a90b18f05ca619e93933350c55ea3ac3ee99f1eb2ac6bb74b05db2fc8906d",
+    "lib/src/concurrency.dart": "ed9eee8a07c174ca8ead6f8f25fc746ebbc4fe6a24aa1d313551a23f4aa276b2",
+    "lib/src/core.dart": "065d0e53107d6d5e757a80f29efcceb5d22293bc34b6168b4b694421421ac922",
+    "lib/src/ergonomics.dart": "025690a9842112040a650fea8d78ca696e559bd0f765f38a9664c3534d9ef870",
+    "lib/src/reliability.dart": "5b1b5488a2b7cac9d072f257e18b2ab243f9a60fa7d83f5f4d83cb3f8a328efc",
+    "lib/src/services.dart": "466a0d8ea0f0d05c2cbe8a39a16abfb6a76fca545d9167acaff90e042b68146f",
+    "lib/src/stream.dart": "a2e1df1f755e335685b23c50775e30a01ae604d94a3fa64578862227706cb8c9",
+    "packages/effect_cache/lib/effect_cache.dart": "ca762b6b055ace6543c82abb00f5e4dec1f1f1068b668185a718379150cfbfa5",
+    "packages/effect_cache/pubspec.yaml": "d646a38c63b9ce4f18adc05585f2b777e2b53bd1eb5026144bebd76777bbc4ea",
+    "packages/effect_cache/pubspec_overrides.yaml": "437350e4a44fb848bc3b38c87dc2161d9b8db264082ecd6d74fb210ad5a6eac5",
+    "packages/effect_cache/test/cache_test.dart": "dfdc24fbbc61ca8c4901c8d3e51cda03fd321f921cf38d249cab7ce3e6676ba6",
+    "packages/effect_cache/test/contracts_test.dart": "02e39b80534b41f0d853565a9c08355c34af080a3433f8a3a117fcc87b3b70c7",
+    "packages/effect_cache/test/http_integration_test.dart": "8a146506ae7f77df05dae6eb7cbd932a2b5b11dc3b1490091b7823af48c41648",
+    "packages/effect_cache/test/memory_test.dart": "1c37b9adda1bfd415f746c1ccdac3afac056cf133ca75fbf4299901f12c11d4d",
+    "packages/effect_http/lib/effect_http.dart": "42a8ff4e3148f89202e0882d9123a6a3e754732a9d6147cd14b5b117c1955864",
+    "packages/effect_http/pubspec.yaml": "ec9f901fe022bfc5a5311b681786db4882c69950563aced76bc1619cf2e907ea",
+    "packages/effect_http/pubspec_overrides.yaml": "437350e4a44fb848bc3b38c87dc2161d9b8db264082ecd6d74fb210ad5a6eac5",
+    "packages/effect_http/test/http_test.dart": "d9442338a5fbb0e88a3e21c998fa4fcc3009577532f5d2347755e2823839826c",
+    "packages/effect_http/test/memory_test.dart": "1fcc2bdf6a806588e91d8b38827d175e696d3c2a28a04b44fb1f6790a34ae24e",
+    "packages/effect_http/test/portable_test.dart": "46c0b1d4da3ce02ca30e77f9c49398ab87049d148485909b452bbee3ae7fddcd",
+    "packages/effect_mysql/lib/effect_mysql.dart": "ed94d7ed14cd43b9c57c9cddb3fbdabe102e3a1811cb82932ea372f47b7dd15b",
+    "packages/effect_mysql/pubspec.yaml": "e667fb0892dc82e8fbd8dcbddb28709e5c65c04661cb0917ae2360354b3e7665",
+    "packages/effect_mysql/pubspec_overrides.yaml": "69ad551aa9b1507fcdebc369582b70c2a4a0654783da4d8540a8be0867cca6fc",
+    "packages/effect_mysql/test/classification_test.dart": "e01ece38645ec79c5eca7edeba7ba36dc889cd9d1fa5ea3c2a644ebbcbb0aecf",
+    "packages/effect_mysql/test/integration_test.dart": "1f590e7704533c5b9da2ab1058d0398083aa92384530179b017467015912651e",
+    "packages/effect_mysql/test/support/driver_contract.dart": "de103e8be491f0b17b0f73c07f92dbdc89360e1753ad1229ce69cd0aecc12880",
+    "packages/effect_mysql/test/tls_acceptance_test.dart": "12d56dfbc9baed2b6760743f375a1473937e4ca30a1f2d9095aefff2e24e3c59",
+    "packages/effect_openai/lib/effect_openai.dart": "68b3950da17c9449c9ef981f8caee205f60bb7664f17ddbf8d61bc7f2481e496",
+    "packages/effect_openai/pubspec.yaml": "e44b324389068635d2c15af6f2e983e80790e472c4fa4d2671e652b5066d77fd",
+    "packages/effect_openai/pubspec_overrides.yaml": "437350e4a44fb848bc3b38c87dc2161d9b8db264082ecd6d74fb210ad5a6eac5",
+    "packages/effect_openai/test/client_test.dart": "90829bbe461b912566605ac83b54e72792b5ca346153328fd8369a109c254eab",
+    "packages/effect_openai/test/http_integration_test.dart": "a478d4fc79e4876cc8d485e9ff24d63cca7462e66ecd28f850d6903b625b453c",
+    "packages/effect_openai/test/sdk_test.dart": "5f24c68114a9f86b3ac1346313a2c0cf34d0a1b8ecda3fa80a9737197bef1569",
+    "packages/effect_openai/test/support/fixtures.dart": "0dad3795f091f75a1b875715cde6691e2e581454540313e2c4f8a7929e260bac",
+    "packages/effect_postgres/lib/effect_postgres.dart": "eb7da4e426c550de8168322cda9a67e028d886ec42edc6a2956e63eafb5469aa",
+    "packages/effect_postgres/pubspec.yaml": "5b672721199fccdb91eb813bf788b9de932f67156255819fa219135a05fd6ac1",
+    "packages/effect_postgres/pubspec_overrides.yaml": "69ad551aa9b1507fcdebc369582b70c2a4a0654783da4d8540a8be0867cca6fc",
+    "packages/effect_postgres/test/classification_test.dart": "6f79c0b4250190ba5b226ea224912a3f033f103f4e9d3dcf2d1ab22be0e6e964",
+    "packages/effect_postgres/test/integration_test.dart": "42f8af9ce7e81df190fd933ae18cf6c7af2bbae4e0e00e687b859361cd192adf",
+    "packages/effect_postgres/test/support/driver_contract.dart": "de103e8be491f0b17b0f73c07f92dbdc89360e1753ad1229ce69cd0aecc12880",
+    "packages/effect_postgres/test/tls_acceptance_test.dart": "cb3b98c0ff2459174bc442a2bd2b8a99ffb25c3999f145216d7d65f5b5ab7fc1",
+    "packages/effect_sql/lib/effect_sql.dart": "5956aae16d46b92934956cc759d04be6cb9469134ba85c5a6bdee474d545ecd6",
+    "packages/effect_sql/pubspec.yaml": "7ef34feedff01ccc1958c2f0eca24ac7ece9f6968477b0c0fb994f7c151148fd",
+    "packages/effect_sql/pubspec_overrides.yaml": "437350e4a44fb848bc3b38c87dc2161d9b8db264082ecd6d74fb210ad5a6eac5",
+    "packages/effect_sql/test/sql_test.dart": "dc2f7e9528c7248bfe6849d4b53c1e1458993eedbbe5428b5b581f214d346a25",
+    "packages/effect_sql/test/support/driver_contract.dart": "de103e8be491f0b17b0f73c07f92dbdc89360e1753ad1229ce69cd0aecc12880",
+    "pubspec.yaml": "fb7a8b3ffa0be5f9530d926f17dc9af68eb0973ea597dad1503ead09fbe328f3",
+    "test/cache_prerequisites_test.dart": "d603746fa4bb9aece9b92c239c8951dfcd2067a04d7409931e22d288a7bd5549",
+    "test/concurrency_test.dart": "6f56283830371f6aead626ec5d512db756392041f4deaae1e2fcaa70333337d3",
+    "test/memory_regression_test.dart": "45cc760cf48be6fc5ca1b3bbe186780a68793f659c8d06a6e25338a5502cd906",
+    "test/reliability_test.dart": "95bd79df956a9f7b8cbd04ec107aa9a4a237accd01d34d97ebf769403567410a",
+    "test/review_test.dart": "5a6e79f3ecea04daccc46edd7d4c64ccd620580bd57f82ff42d29a19e5f49dae",
+    "test/runtime_test.dart": "9862089cd0b5bdaa514decd93bacca2bd77459656f6c8f53c4699202facace9e",
+    "test/services_test.dart": "ebff3d290d88e1a67889e6fe891cbb1b315bfb5ce4a048a7e8c561931011e3a0",
+    "test/stream_test.dart": "3514461aa458b2a07c4a9d03ff27116b10e0fe6de38599b147db6d4b8c956dcb",
+    "test/support/checkpoints.dart": "405b3a600f07a3e5814709af16176417fe9d186199e192dd8dd58426b7919b94",
+    "tool/cache_validation.py": "b403eebf2a0b9aeed0322b97c2764b7de723b0d92edc84bc1752fff70ddf2dba",
+    "tool/http_body_memory_audit.dart": "7bbc913bb2579d4f9f03a873c76cb58bff93a6a5bcdfd9b956c15fbfc69a1f95",
+    "tool/memory_fixes_probe.dart": "68de0236156e47f8633fc9bc021a67064107412af610b72162a27b7187ba870d",
+    "tool/performance_memory.dart": "2d0856678f09d213dbfa2d73bf0235706e78f301b537a3c1420fd2f466cc94b4",
+    "tool/sql_integration.py": "6494022d0100e19d34467d0791b4013b93256b6bff795c9c0ac91d0b686bbecf",
+    "tool/validate_memory_fixes.py": "566e6968701da8a6e16cdc24db8b120c3080e3b78067b3fe5a78b74928c6ebed"
+  },
+  "checks": {
+    "core-resolve": {
+      "command": [
+        "dart",
+        "pub",
+        "get",
+        "--offline"
+      ],
+      "exit_code": 0
+    },
+    "effect_cache-resolve": {
+      "command": [
+        "dart",
+        "pub",
+        "get",
+        "--offline"
+      ],
+      "exit_code": 0
+    },
+    "effect_http-resolve": {
+      "command": [
+        "dart",
+        "pub",
+        "get",
+        "--offline"
+      ],
+      "exit_code": 0
+    },
+    "effect_sql-resolve": {
+      "command": [
+        "dart",
+        "pub",
+        "get",
+        "--offline"
+      ],
+      "exit_code": 0
+    },
+    "effect_postgres-resolve": {
+      "command": [
+        "dart",
+        "pub",
+        "get",
+        "--offline"
+      ],
+      "exit_code": 0
+    },
+    "effect_mysql-resolve": {
+      "command": [
+        "dart",
+        "pub",
+        "get",
+        "--offline"
+      ],
+      "exit_code": 0
+    },
+    "effect_openai-resolve": {
+      "command": [
+        "dart",
+        "pub",
+        "get",
+        "--offline"
+      ],
+      "exit_code": 0
+    },
+    "analysis": {
+      "command": [
+        "dart",
+        "analyze",
+        "--fatal-infos"
+      ],
+      "exit_code": 0
+    },
+    "core-vm": {
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "vm",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 137,
+      "failed": 0,
+      "skipped": 0
+    },
+    "core-chrome": {
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "chrome",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 137,
+      "failed": 0,
+      "skipped": 0
+    },
+    "effect_cache-vm": {
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "vm",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 38,
+      "failed": 0,
+      "skipped": 0
+    },
+    "effect_cache-chrome": {
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "chrome",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 37,
+      "failed": 0,
+      "skipped": 0
+    },
+    "effect_http-vm": {
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "vm",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0
+    },
+    "effect_http-chrome": {
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "chrome",
+        "-r",
+        "json",
+        "test/portable_test.dart",
+        "test/memory_test.dart"
+      ],
+      "exit_code": 0,
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0
+    },
+    "effect_sql-vm": {
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "vm",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0
+    },
+    "effect_sql-chrome": {
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "chrome",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0
+    },
+    "effect_openai-vm": {
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "vm",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 51,
+      "failed": 0,
+      "skipped": 0
+    },
+    "effect_openai-chrome": {
+      "command": [
+        "dart",
+        "test",
+        "-p",
+        "chrome",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 43,
+      "failed": 0,
+      "skipped": 0
+    },
+    "effect_postgres-classification": {
+      "command": [
+        "dart",
+        "test",
+        "test/classification_test.dart",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0
+    },
+    "effect_mysql-classification": {
+      "command": [
+        "dart",
+        "test",
+        "test/classification_test.dart",
+        "-r",
+        "json"
+      ],
+      "exit_code": 0,
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0
+    },
+    "fixtures": {
+      "command": [
+        "dart",
+        "run",
+        "tool/check_fixtures.dart"
+      ],
+      "exit_code": 0
+    },
+    "core-example-bounded": {
+      "command": [
+        "dart",
+        "run",
+        "/Users/udeshsharma/.codex/worktrees/cache-merge-ready/effect_dart/example/bounded.dart"
+      ],
+      "exit_code": 0
+    },
+    "core-example-reliability": {
+      "command": [
+        "dart",
+        "run",
+        "/Users/udeshsharma/.codex/worktrees/cache-merge-ready/effect_dart/example/reliability.dart"
+      ],
+      "exit_code": 0
+    },
+    "core-example-resources": {
+      "command": [
+        "dart",
+        "run",
+        "/Users/udeshsharma/.codex/worktrees/cache-merge-ready/effect_dart/example/resources.dart"
+      ],
+      "exit_code": 0
+    },
+    "core-example-retry": {
+      "command": [
+        "dart",
+        "run",
+        "/Users/udeshsharma/.codex/worktrees/cache-merge-ready/effect_dart/example/retry.dart"
+      ],
+      "exit_code": 0
+    },
+    "core-example-services": {
+      "command": [
+        "dart",
+        "run",
+        "/Users/udeshsharma/.codex/worktrees/cache-merge-ready/effect_dart/example/services.dart"
+      ],
+      "exit_code": 0
+    },
+    "core-example-stream": {
+      "command": [
+        "dart",
+        "run",
+        "/Users/udeshsharma/.codex/worktrees/cache-merge-ready/effect_dart/example/stream.dart"
+      ],
+      "exit_code": 0
+    },
+    "core-example-web": {
+      "command": [
+        "dart",
+        "run",
+        "/Users/udeshsharma/.codex/worktrees/cache-merge-ready/effect_dart/example/web.dart"
+      ],
+      "exit_code": 0
+    },
+    "effect_cache-example": {
+      "command": [
+        "dart",
+        "run",
+        "example/main.dart"
+      ],
+      "exit_code": 0
+    },
+    "effect_openai-example": {
+      "command": [
+        "dart",
+        "run",
+        "example/main.dart"
+      ],
+      "exit_code": 0
+    },
+    "effect_http-example": {
+      "command": [
+        "dart",
+        "run",
+        "example/main.dart",
+        "http://127.0.0.1:53604/"
+      ],
+      "exit_code": 0
+    },
+    "web-compile": {
+      "command": [
+        "dart",
+        "compile",
+        "js",
+        "example/web.dart",
+        "-o",
+        "/Users/udeshsharma/.codex/worktrees/cache-merge-ready/effect_dart/build/memory-fixes/core.js"
+      ],
+      "exit_code": 0
+    }
+  },
+  "success": true,
+  "jit": {
+    "recordedAtUtc": "2026-10-21T12:28:44.424157Z",
+    "sdk": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+    "os": "macos",
+    "productionCodeModified": true,
+    "scheduling": {
+      "zoneCounts": {
+        "future-value": {
+          "operations": 50,
+          "timers": 0,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 50
+        },
+        "root-success": {
+          "operations": 50,
+          "timers": 50,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 200
+        },
+        "root-fromFuture": {
+          "operations": 50,
+          "timers": 50,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 200
+        },
+        "cache-hit": {
+          "operations": 50,
+          "timers": 50,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 200
+        },
+        "cache-miss": {
+          "operations": 50,
+          "timers": 100,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 393
+        },
+        "map-1000": {
+          "operations": 10,
+          "timers": 30,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 30
+        }
+      },
+      "primitiveFairnessControl": {
+        "microtask-only-loop": {
+          "iterations": 10000,
+          "timerHeartbeatRanDuringWork": false
+        },
+        "event-queue-loop": {
+          "iterations": 10000,
+          "timerHeartbeatRanDuringWork": true
+        }
+      },
+      "note": "Zone interception adds overhead. Counts are diagnostic; timings run separately. Fairness control compares Dart primitives, not an optimized runtime."
+    },
+    "deepCauses": [
+      {
+        "depth": 100,
+        "expectedErrorsRetained": 101,
+        "defectTypes": []
+      },
+      {
+        "depth": 1000,
+        "expectedErrorsRetained": 1001,
+        "defectTypes": []
+      },
+      {
+        "depth": 5000,
+        "expectedErrorsRetained": 5001,
+        "defectTypes": []
+      },
+      {
+        "depth": 10000,
+        "expectedErrorsRetained": 10001,
+        "defectTypes": []
+      },
+      {
+        "depth": 50000,
+        "expectedErrorsRetained": 50001,
+        "defectTypes": []
+      }
+    ],
+    "metricClockJump": {
+      "monotonicWorkUs": 10000,
+      "reportedRuntimeDurationUs": 10000,
+      "rateLimiterRequestedSleepUsAfterWallRewind": 0,
+      "rateLimiterMonotonicElapsedUs": 10000,
+      "clockNote": "The custom clock captures requested delays without waiting a day."
+    },
+    "traversalMaterialization": {
+      "inputItemsGeneratedBeforeFirstWork": 1,
+      "workCalls": 1,
+      "failedAsRequested": true
+    }
+  },
+  "aot": {
+    "recordedAtUtc": "2026-10-21T12:28:51.752671Z",
+    "sdk": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+    "os": "macos",
+    "productionCodeModified": true,
+    "scheduling": {
+      "zoneCounts": {
+        "future-value": {
+          "operations": 50,
+          "timers": 0,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 50
+        },
+        "root-success": {
+          "operations": 50,
+          "timers": 50,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 200
+        },
+        "root-fromFuture": {
+          "operations": 50,
+          "timers": 50,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 200
+        },
+        "cache-hit": {
+          "operations": 50,
+          "timers": 50,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 200
+        },
+        "cache-miss": {
+          "operations": 50,
+          "timers": 100,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 393
+        },
+        "map-1000": {
+          "operations": 10,
+          "timers": 30,
+          "positiveDurationTimers": 0,
+          "microtaskSchedules": 30
+        }
+      },
+      "primitiveFairnessControl": {
+        "microtask-only-loop": {
+          "iterations": 10000,
+          "timerHeartbeatRanDuringWork": false
+        },
+        "event-queue-loop": {
+          "iterations": 10000,
+          "timerHeartbeatRanDuringWork": true
+        }
+      },
+      "note": "Zone interception adds overhead. Counts are diagnostic; timings run separately. Fairness control compares Dart primitives, not an optimized runtime."
+    },
+    "deepCauses": [
+      {
+        "depth": 100,
+        "expectedErrorsRetained": 101,
+        "defectTypes": []
+      },
+      {
+        "depth": 1000,
+        "expectedErrorsRetained": 1001,
+        "defectTypes": []
+      },
+      {
+        "depth": 5000,
+        "expectedErrorsRetained": 5001,
+        "defectTypes": []
+      },
+      {
+        "depth": 10000,
+        "expectedErrorsRetained": 10001,
+        "defectTypes": []
+      },
+      {
+        "depth": 50000,
+        "expectedErrorsRetained": 50001,
+        "defectTypes": []
+      }
+    ],
+    "metricClockJump": {
+      "monotonicWorkUs": 10000,
+      "reportedRuntimeDurationUs": 10000,
+      "rateLimiterRequestedSleepUsAfterWallRewind": 0,
+      "rateLimiterMonotonicElapsedUs": 10000,
+      "clockNote": "The custom clock captures requested delays without waiting a day."
+    },
+    "traversalMaterialization": {
+      "inputItemsGeneratedBeforeFirstWork": 1,
+      "workCalls": 1,
+      "failedAsRequested": true
+    }
+  },
+  "timing_aot": {
+    "recordedAtUtc": "2026-10-21T12:28:51.963948Z",
+    "sdk": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+    "os": "macos",
+    "productionCodeModified": true,
+    "timing": {
+      "direct-Future.value": {
+        "samples": 2000,
+        "p50us": 0,
+        "p95us": 0,
+        "p99us": 2,
+        "meanUs": 0.1545
+      },
+      "root-success": {
+        "samples": 2000,
+        "p50us": 6,
+        "p95us": 17,
+        "p99us": 64,
+        "meanUs": 9.0765
+      },
+      "cache-hit": {
+        "samples": 2000,
+        "p50us": 9,
+        "p95us": 31,
+        "p99us": 114,
+        "meanUs": 13.7045
+      }
+    }
+  },
+  "memory": [
+    {
+      "recordedAtUtc": "2026-10-21T12:28:53.658796Z",
+      "sdk": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+      "os": "macos",
+      "productionCodeModified": true,
+      "memory": {
+        "expiredCache": {
+          "logicalVisibleKeysAfterTtl": 0,
+          "residentSlotsAfterTtl": 8,
+          "payloadBytes": 1048576,
+          "livePayloadsBeforePurge": 8,
+          "livePayloadsAfterPurge": 0,
+          "before": {
+            "gcTimestamp": "1792585733806",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 18447888,
+              "heapCapacity": 23560192,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 8,
+                "bytes": 128
+              },
+              "_Entry:classes/1242": {
+                "instances": 8,
+                "bytes": 512
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Scope:classes/1263": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1265": {
+                "instances": 0,
+                "bytes": 0
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792585733956",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 10668032,
+              "heapCapacity": 33701888,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Scope:classes/1263": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1265": {
+                "instances": 0,
+                "bytes": 0
+              }
+            }
+          }
+        },
+        "retiringLoads": {
+          "capacity": 1,
+          "residentSlots": 1,
+          "unfinishedOwners": 2,
+          "maxOwners": 2,
+          "rejectedLoads": 62,
+          "livePayloadsUnderSlowCleanup": 2,
+          "payloadBytes": 131072,
+          "livePayloadsAfterRelease": 0,
+          "before": {
+            "gcTimestamp": "1792585734092",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11154416,
+              "heapCapacity": 30752768,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 2,
+                "bytes": 32
+              },
+              "_Entry:classes/1242": {
+                "instances": 2,
+                "bytes": 128
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 4,
+                "bytes": 128
+              },
+              "Scope:classes/1263": {
+                "instances": 2,
+                "bytes": 64
+              },
+              "Fiber:classes/1265": {
+                "instances": 2,
+                "bytes": 64
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792585734208",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 10973200,
+              "heapCapacity": 42811392,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Scope:classes/1263": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1265": {
+                "instances": 0,
+                "bytes": 0
+              }
+            }
+          }
+        },
+        "blockedQueueOffers": {
+          "capacity": 1,
+          "buffered": 1,
+          "waitingProducers": 2,
+          "maxPending": 2,
+          "rejectedOffers": 62,
+          "payloadBytes": 131072,
+          "liveBlockedPayloads": 2,
+          "livePayloadsAfterShutdown": 0,
+          "before": {
+            "gcTimestamp": "1792585734338",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11472576,
+              "heapCapacity": 35471360,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 3,
+                "bytes": 48
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 2,
+                "bytes": 64
+              },
+              "Scope:classes/1263": {
+                "instances": 2,
+                "bytes": 64
+              },
+              "Fiber:classes/1265": {
+                "instances": 2,
+                "bytes": 64
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792585734451",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11095312,
+              "heapCapacity": 40878080,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 2,
+                "bytes": 64
+              },
+              "Scope:classes/1263": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1265": {
+                "instances": 2,
+                "bytes": 64
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "recordedAtUtc": "2026-10-21T12:28:55.691934Z",
+      "sdk": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+      "os": "macos",
+      "productionCodeModified": true,
+      "memory": {
+        "expiredCache": {
+          "logicalVisibleKeysAfterTtl": 0,
+          "residentSlotsAfterTtl": 8,
+          "payloadBytes": 1048576,
+          "livePayloadsBeforePurge": 8,
+          "livePayloadsAfterPurge": 0,
+          "before": {
+            "gcTimestamp": "1792585735851",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 18447808,
+              "heapCapacity": 23560192,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 8,
+                "bytes": 128
+              },
+              "_Entry:classes/1242": {
+                "instances": 8,
+                "bytes": 512
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Scope:classes/1263": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1265": {
+                "instances": 0,
+                "bytes": 0
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792585736018",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 10668752,
+              "heapCapacity": 33177600,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Scope:classes/1263": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1265": {
+                "instances": 0,
+                "bytes": 0
+              }
+            }
+          }
+        },
+        "retiringLoads": {
+          "capacity": 1,
+          "residentSlots": 1,
+          "unfinishedOwners": 2,
+          "maxOwners": 2,
+          "rejectedLoads": 62,
+          "livePayloadsUnderSlowCleanup": 2,
+          "payloadBytes": 131072,
+          "livePayloadsAfterRelease": 0,
+          "before": {
+            "gcTimestamp": "1792585736170",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11155136,
+              "heapCapacity": 30752768,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 2,
+                "bytes": 32
+              },
+              "_Entry:classes/1242": {
+                "instances": 2,
+                "bytes": 128
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 4,
+                "bytes": 128
+              },
+              "Scope:classes/1263": {
+                "instances": 2,
+                "bytes": 64
+              },
+              "Fiber:classes/1265": {
+                "instances": 2,
+                "bytes": 64
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792585736285",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 10973920,
+              "heapCapacity": 42811392,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Scope:classes/1263": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1265": {
+                "instances": 0,
+                "bytes": 0
+              }
+            }
+          }
+        },
+        "blockedQueueOffers": {
+          "capacity": 1,
+          "buffered": 1,
+          "waitingProducers": 2,
+          "maxPending": 2,
+          "rejectedOffers": 62,
+          "payloadBytes": 131072,
+          "liveBlockedPayloads": 2,
+          "livePayloadsAfterShutdown": 0,
+          "before": {
+            "gcTimestamp": "1792585736406",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11473296,
+              "heapCapacity": 35995648,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 3,
+                "bytes": 48
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 2,
+                "bytes": 64
+              },
+              "Scope:classes/1263": {
+                "instances": 2,
+                "bytes": 64
+              },
+              "Fiber:classes/1265": {
+                "instances": 2,
+                "bytes": 64
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792585736517",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11095696,
+              "heapCapacity": 40189952,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 2,
+                "bytes": 64
+              },
+              "Scope:classes/1263": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1265": {
+                "instances": 2,
+                "bytes": 64
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "recordedAtUtc": "2026-10-21T12:28:57.595634Z",
+      "sdk": "3.13.0 (stable) (Wed Aug 5 00:28:05 2026 -0700) on \"macos_arm64\"",
+      "os": "macos",
+      "productionCodeModified": true,
+      "memory": {
+        "expiredCache": {
+          "logicalVisibleKeysAfterTtl": 0,
+          "residentSlotsAfterTtl": 8,
+          "payloadBytes": 1048576,
+          "livePayloadsBeforePurge": 8,
+          "livePayloadsAfterPurge": 0,
+          "before": {
+            "gcTimestamp": "1792585737731",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 18448752,
+              "heapCapacity": 23560192,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 8,
+                "bytes": 128
+              },
+              "_Entry:classes/1242": {
+                "instances": 8,
+                "bytes": 512
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Scope:classes/1263": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1265": {
+                "instances": 0,
+                "bytes": 0
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792585737856",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 10668960,
+              "heapCapacity": 33701888,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Scope:classes/1263": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1265": {
+                "instances": 0,
+                "bytes": 0
+              }
+            }
+          }
+        },
+        "retiringLoads": {
+          "capacity": 1,
+          "residentSlots": 1,
+          "unfinishedOwners": 2,
+          "maxOwners": 2,
+          "rejectedLoads": 62,
+          "livePayloadsUnderSlowCleanup": 2,
+          "payloadBytes": 131072,
+          "livePayloadsAfterRelease": 0,
+          "before": {
+            "gcTimestamp": "1792585737978",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11155344,
+              "heapCapacity": 30752768,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 2,
+                "bytes": 32
+              },
+              "_Entry:classes/1242": {
+                "instances": 2,
+                "bytes": 128
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 4,
+                "bytes": 128
+              },
+              "Scope:classes/1263": {
+                "instances": 2,
+                "bytes": 64
+              },
+              "Fiber:classes/1265": {
+                "instances": 2,
+                "bytes": 64
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792585738091",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 10974128,
+              "heapCapacity": 42811392,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Scope:classes/1263": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1265": {
+                "instances": 0,
+                "bytes": 0
+              }
+            }
+          }
+        },
+        "blockedQueueOffers": {
+          "capacity": 1,
+          "buffered": 1,
+          "waitingProducers": 2,
+          "maxPending": 2,
+          "rejectedOffers": 62,
+          "payloadBytes": 131072,
+          "liveBlockedPayloads": 2,
+          "livePayloadsAfterShutdown": 0,
+          "before": {
+            "gcTimestamp": "1792585738206",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11473504,
+              "heapCapacity": 35602432,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 3,
+                "bytes": 48
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 2,
+                "bytes": 64
+              },
+              "Scope:classes/1263": {
+                "instances": 2,
+                "bytes": 64
+              },
+              "Fiber:classes/1265": {
+                "instances": 2,
+                "bytes": 64
+              }
+            }
+          },
+          "after": {
+            "gcTimestamp": "1792585738310",
+            "heap": {
+              "type": "MemoryUsage",
+              "heapUsage": 11095904,
+              "heapCapacity": 40714240,
+              "externalUsage": 48
+            },
+            "classes": {
+              "Payload:classes/1234": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_Entry:classes/1242": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "_ResourceEntry:classes/1245": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "CancellationToken:classes/1257": {
+                "instances": 2,
+                "bytes": 64
+              },
+              "Scope:classes/1263": {
+                "instances": 0,
+                "bytes": 0
+              },
+              "Fiber:classes/1265": {
+                "instances": 2,
+                "bytes": 64
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "http_body": {
+    "measurements": [
+      {
+        "logicalBodyBytes": 1048576,
+        "constructorAddedDartHeapBytes": 1049296,
+        "responseBodyRuntimeType": "_UnmodifiableUint8ArrayView",
+        "mode": "current-HttpResult",
+        "before": {
+          "gc": "1792585740492",
+          "memory": {
+            "type": "MemoryUsage",
+            "heapUsage": 12044800,
+            "heapCapacity": 28311552,
+            "externalUsage": 48
+          }
+        },
+        "after": {
+          "gc": "1792585740603",
+          "memory": {
+            "type": "MemoryUsage",
+            "heapUsage": 13094096,
+            "heapCapacity": 41402368,
+            "externalUsage": 48
+          }
+        }
+      },
+      {
+        "logicalBodyBytes": 1048576,
+        "constructorAddedDartHeapBytes": 1050704,
+        "responseBodyRuntimeType": "_UnmodifiableUint8ArrayView",
+        "mode": "prototype-typed-defensive-copy",
+        "before": {
+          "gc": "1792585740717",
+          "memory": {
+            "type": "MemoryUsage",
+            "heapUsage": 12046544,
+            "heapCapacity": 29065216,
+            "externalUsage": 48
+          }
+        },
+        "after": {
+          "gc": "1792585740825",
+          "memory": {
+            "type": "MemoryUsage",
+            "heapUsage": 13097248,
+            "heapCapacity": 40583168,
+            "externalUsage": 48
+          }
+        }
+      },
+      {
+        "logicalBodyBytes": 4194304,
+        "constructorAddedDartHeapBytes": 4195024,
+        "responseBodyRuntimeType": "_UnmodifiableUint8ArrayView",
+        "mode": "current-HttpResult",
+        "before": {
+          "gc": "1792585740939",
+          "memory": {
+            "type": "MemoryUsage",
+            "heapUsage": 15195376,
+            "heapCapacity": 26902528,
+            "externalUsage": 48
+          }
+        },
+        "after": {
+          "gc": "1792585741052",
+          "memory": {
+            "type": "MemoryUsage",
+            "heapUsage": 19390400,
+            "heapCapacity": 43696128,
+            "externalUsage": 48
+          }
+        }
+      },
+      {
+        "logicalBodyBytes": 4194304,
+        "constructorAddedDartHeapBytes": 4195024,
+        "responseBodyRuntimeType": "_UnmodifiableUint8ArrayView",
+        "mode": "prototype-typed-defensive-copy",
+        "before": {
+          "gc": "1792585741168",
+          "memory": {
+            "type": "MemoryUsage",
+            "heapUsage": 15196976,
+            "heapCapacity": 38502400,
+            "externalUsage": 48
+          }
+        },
+        "after": {
+          "gc": "1792585741272",
+          "memory": {
+            "type": "MemoryUsage",
+            "heapUsage": 19392000,
+            "heapCapacity": 43696128,
+            "externalUsage": 48
+          }
+        }
+      }
+    ],
+    "scope": "Current production HttpResult implementation, constructor-only retained heap; original read-only probe reused without editing historical tools. Excludes request accumulation, transient peak copies, decoding and transport allocations."
+  },
+  "live_sql": {
+    "started_at_utc": "2026-10-21T12:23:33.674921+00:00",
+    "images": {
+      "postgres": "postgres@sha256:18cfe3ef5e6815560c98237d6216d1e5119702fb0f3894c8785dd58b8bbe5d73",
+      "mysql": "mysql@sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242"
+    },
+    "suites": {
+      "effect_sql": {
+        "exit_code": 0,
+        "passed": 21,
+        "skipped": 0,
+        "failed": 0
+      },
+      "effect_postgres": {
+        "exit_code": 0,
+        "passed": 13,
+        "skipped": 3,
+        "failed": 0
+      },
+      "effect_mysql": {
+        "exit_code": 0,
+        "passed": 19,
+        "skipped": 3,
+        "failed": 0
+      }
+    },
+    "containers_removed": true,
+    "examples": {
+      "effect_postgres": {
+        "exit_code": 0,
+        "expected_greeting": true
+      },
+      "effect_mysql": {
+        "exit_code": 0,
+        "expected_greeting": true
+      }
+    },
+    "cleanup": [
+      {
+        "name": "effect-mysql-test-164f23b7f9",
+        "exit_code": 0
+      },
+      {
+        "name": "effect-postgres-test-164f23b7f9",
+        "exit_code": 0
+      }
+    ],
+    "source_sha256": {
+      "lib/effect_core.dart": "2f8a90b18f05ca619e93933350c55ea3ac3ee99f1eb2ac6bb74b05db2fc8906d",
+      "lib/src/concurrency.dart": "ed9eee8a07c174ca8ead6f8f25fc746ebbc4fe6a24aa1d313551a23f4aa276b2",
+      "lib/src/core.dart": "065d0e53107d6d5e757a80f29efcceb5d22293bc34b6168b4b694421421ac922",
+      "lib/src/ergonomics.dart": "025690a9842112040a650fea8d78ca696e559bd0f765f38a9664c3534d9ef870",
+      "lib/src/reliability.dart": "5b1b5488a2b7cac9d072f257e18b2ab243f9a60fa7d83f5f4d83cb3f8a328efc",
+      "lib/src/services.dart": "466a0d8ea0f0d05c2cbe8a39a16abfb6a76fca545d9167acaff90e042b68146f",
+      "lib/src/stream.dart": "a2e1df1f755e335685b23c50775e30a01ae604d94a3fa64578862227706cb8c9",
+      "packages/effect_cache/lib/effect_cache.dart": "ca762b6b055ace6543c82abb00f5e4dec1f1f1068b668185a718379150cfbfa5",
+      "packages/effect_cache/test/cache_test.dart": "dfdc24fbbc61ca8c4901c8d3e51cda03fd321f921cf38d249cab7ce3e6676ba6",
+      "packages/effect_cache/test/contracts_test.dart": "02e39b80534b41f0d853565a9c08355c34af080a3433f8a3a117fcc87b3b70c7",
+      "packages/effect_cache/test/http_integration_test.dart": "8a146506ae7f77df05dae6eb7cbd932a2b5b11dc3b1490091b7823af48c41648",
+      "packages/effect_cache/test/memory_test.dart": "1c37b9adda1bfd415f746c1ccdac3afac056cf133ca75fbf4299901f12c11d4d",
+      "packages/effect_http/lib/effect_http.dart": "42a8ff4e3148f89202e0882d9123a6a3e754732a9d6147cd14b5b117c1955864",
+      "packages/effect_http/test/http_test.dart": "d9442338a5fbb0e88a3e21c998fa4fcc3009577532f5d2347755e2823839826c",
+      "packages/effect_http/test/memory_test.dart": "1fcc2bdf6a806588e91d8b38827d175e696d3c2a28a04b44fb1f6790a34ae24e",
+      "packages/effect_http/test/portable_test.dart": "46c0b1d4da3ce02ca30e77f9c49398ab87049d148485909b452bbee3ae7fddcd",
+      "packages/effect_mysql/lib/effect_mysql.dart": "ed94d7ed14cd43b9c57c9cddb3fbdabe102e3a1811cb82932ea372f47b7dd15b",
+      "packages/effect_mysql/test/classification_test.dart": "e01ece38645ec79c5eca7edeba7ba36dc889cd9d1fa5ea3c2a644ebbcbb0aecf",
+      "packages/effect_mysql/test/integration_test.dart": "1f590e7704533c5b9da2ab1058d0398083aa92384530179b017467015912651e",
+      "packages/effect_mysql/test/support/driver_contract.dart": "de103e8be491f0b17b0f73c07f92dbdc89360e1753ad1229ce69cd0aecc12880",
+      "packages/effect_mysql/test/tls_acceptance_test.dart": "12d56dfbc9baed2b6760743f375a1473937e4ca30a1f2d9095aefff2e24e3c59",
+      "packages/effect_openai/lib/effect_openai.dart": "68b3950da17c9449c9ef981f8caee205f60bb7664f17ddbf8d61bc7f2481e496",
+      "packages/effect_openai/test/client_test.dart": "90829bbe461b912566605ac83b54e72792b5ca346153328fd8369a109c254eab",
+      "packages/effect_openai/test/http_integration_test.dart": "a478d4fc79e4876cc8d485e9ff24d63cca7462e66ecd28f850d6903b625b453c",
+      "packages/effect_openai/test/sdk_test.dart": "5f24c68114a9f86b3ac1346313a2c0cf34d0a1b8ecda3fa80a9737197bef1569",
+      "packages/effect_openai/test/support/fixtures.dart": "0dad3795f091f75a1b875715cde6691e2e581454540313e2c4f8a7929e260bac",
+      "packages/effect_postgres/lib/effect_postgres.dart": "eb7da4e426c550de8168322cda9a67e028d886ec42edc6a2956e63eafb5469aa",
+      "packages/effect_postgres/test/classification_test.dart": "6f79c0b4250190ba5b226ea224912a3f033f103f4e9d3dcf2d1ab22be0e6e964",
+      "packages/effect_postgres/test/integration_test.dart": "42f8af9ce7e81df190fd933ae18cf6c7af2bbae4e0e00e687b859361cd192adf",
+      "packages/effect_postgres/test/support/driver_contract.dart": "de103e8be491f0b17b0f73c07f92dbdc89360e1753ad1229ce69cd0aecc12880",
+      "packages/effect_postgres/test/tls_acceptance_test.dart": "cb3b98c0ff2459174bc442a2bd2b8a99ffb25c3999f145216d7d65f5b5ab7fc1",
+      "packages/effect_sql/lib/effect_sql.dart": "5956aae16d46b92934956cc759d04be6cb9469134ba85c5a6bdee474d545ecd6",
+      "packages/effect_sql/test/sql_test.dart": "dc2f7e9528c7248bfe6849d4b53c1e1458993eedbbe5428b5b581f214d346a25",
+      "packages/effect_sql/test/support/driver_contract.dart": "de103e8be491f0b17b0f73c07f92dbdc89360e1753ad1229ce69cd0aecc12880"
+    },
+    "finished_at_utc": "2026-10-21T12:25:14.013003+00:00"
+  },
+  "finished_at_utc": "2026-10-21T12:29:01.393349+00:00",
+  "limits": "Local VM/Chrome, HTTP/SDK fixtures and native AOT probes. Live SQL only if included explicitly. No live OpenAI provider, Flutter frame/device or production soak guarantee. Pending limits bound owned records, not caller-retained payloads or arbitrary error/value bytes."
+}

@@ -1,10 +1,6 @@
-## Unreleased
+## 0.0.2 — 2026-10-21
 
-- Bound pending/active work and reduce retained allocations; preserve protected
-  cleanup and typed overload diagnostics. See `docs/effect-port/memory-fixes.md`
-  in the source repository for package-specific changes and executed evidence.
-
-# Changelog
+Bound combined requests and streams (64 by default). Report typed overload before SDK invocation and release admission only after abort, drain or stream cleanup.
 
 ## 0.0.1
 

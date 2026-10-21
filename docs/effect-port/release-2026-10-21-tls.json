@@ -1,0 +1,61 @@
+{
+  "started_at_utc": "2026-10-21T12:23:41.949835+00:00",
+  "images": {
+    "postgres": "postgres@sha256:18cfe3ef5e6815560c98237d6216d1e5119702fb0f3894c8785dd58b8bbe5d73",
+    "mysql": "mysql@sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242"
+  },
+  "suites": {
+    "effect_postgres": {
+      "exit_code": 0,
+      "passed": 3,
+      "skipped": 0,
+      "failed": 0
+    },
+    "effect_mysql": {
+      "exit_code": 0,
+      "passed": 3,
+      "skipped": 0,
+      "failed": 0
+    }
+  },
+  "scope": "Isolated root/intermediate CA chains, unrelated-root and hostname rejection; not production infrastructure acceptance.",
+  "success": true,
+  "cleanup": [
+    {
+      "name": "effect-tls-mysql-wrong-host-11cd9b963d",
+      "exit_code": 0
+    },
+    {
+      "name": "effect-tls-mysql-valid-11cd9b963d",
+      "exit_code": 0
+    },
+    {
+      "name": "effect-tls-postgres-wrong-host-11cd9b963d",
+      "exit_code": 0
+    },
+    {
+      "name": "effect-tls-postgres-valid-11cd9b963d",
+      "exit_code": 0
+    }
+  ],
+  "containers_removed": true,
+  "source_sha256": {
+    "lib/effect_core.dart": "2f8a90b18f05ca619e93933350c55ea3ac3ee99f1eb2ac6bb74b05db2fc8906d",
+    "lib/src/concurrency.dart": "ed9eee8a07c174ca8ead6f8f25fc746ebbc4fe6a24aa1d313551a23f4aa276b2",
+    "lib/src/core.dart": "065d0e53107d6d5e757a80f29efcceb5d22293bc34b6168b4b694421421ac922",
+    "lib/src/ergonomics.dart": "025690a9842112040a650fea8d78ca696e559bd0f765f38a9664c3534d9ef870",
+    "lib/src/reliability.dart": "5b1b5488a2b7cac9d072f257e18b2ab243f9a60fa7d83f5f4d83cb3f8a328efc",
+    "lib/src/services.dart": "466a0d8ea0f0d05c2cbe8a39a16abfb6a76fca545d9167acaff90e042b68146f",
+    "lib/src/stream.dart": "a2e1df1f755e335685b23c50775e30a01ae604d94a3fa64578862227706cb8c9",
+    "packages/effect_cache/lib/effect_cache.dart": "ca762b6b055ace6543c82abb00f5e4dec1f1f1068b668185a718379150cfbfa5",
+    "packages/effect_http/lib/effect_http.dart": "42a8ff4e3148f89202e0882d9123a6a3e754732a9d6147cd14b5b117c1955864",
+    "packages/effect_mysql/lib/effect_mysql.dart": "ed94d7ed14cd43b9c57c9cddb3fbdabe102e3a1811cb82932ea372f47b7dd15b",
+    "packages/effect_mysql/test/tls_acceptance_test.dart": "12d56dfbc9baed2b6760743f375a1473937e4ca30a1f2d9095aefff2e24e3c59",
+    "packages/effect_openai/lib/effect_openai.dart": "68b3950da17c9449c9ef981f8caee205f60bb7664f17ddbf8d61bc7f2481e496",
+    "packages/effect_postgres/lib/effect_postgres.dart": "eb7da4e426c550de8168322cda9a67e028d886ec42edc6a2956e63eafb5469aa",
+    "packages/effect_postgres/test/tls_acceptance_test.dart": "cb3b98c0ff2459174bc442a2bd2b8a99ffb25c3999f145216d7d65f5b5ab7fc1",
+    "packages/effect_sql/lib/effect_sql.dart": "5956aae16d46b92934956cc759d04be6cb9469134ba85c5a6bdee474d545ecd6",
+    "tool/sql_tls_acceptance.py": "42fc5574685f4b618615085fb444beb6666e7f2575427402b02ed1b972e21654"
+  },
+  "finished_at_utc": "2026-10-21T12:26:04.233388+00:00"
+}

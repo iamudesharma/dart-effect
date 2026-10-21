@@ -3,7 +3,15 @@
 Lazy, typed asynchronous effects for Dart and Flutter. Describe a computation,
 compose it with other effects, and run it with explicit ownership of its resources.
 
-**Core release: `0.0.2`.** Use the hosted dependencies below, or the local
+**Core release: `0.0.3`.**
+
+The October 21 release includes `effect_cache 0.0.1`, `effect_postgres 0.0.3`,
+and `effect_sql`, `effect_mysql`, `effect_http` and `effect_openai` at `0.0.2`.
+All adapters require `effect_core ^0.0.3`; database drivers also require
+`effect_sql ^0.0.2`. Pending-work limits can now reject overload; applications
+should handle the documented overload errors and set budgets for their workload.
+
+Use the hosted dependencies below, or the local
 overrides for source development.
 
 ## Features
@@ -29,7 +37,7 @@ Or add these dependencies to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  effect_core: ^0.0.2
+  effect_core: ^0.0.3
 ```
 
 Then run `dart pub get` or `flutter pub get`. Your Flutter installation must
@@ -176,11 +184,11 @@ safety proof; arbitrary deeply nested region wrappers do not.
 <!-- roadmap:start -->
 ## Roadmap and progress
 
-**Roadmap updated: 19 October 2026.** Six existing packages are published: `effect_core` and `effect_postgres` at `0.0.2`; `effect_sql`, `effect_mysql`, `effect_openai` and `effect_http` at `0.0.1`.
+**Roadmap updated: 21 October 2026.** Seven packages are published: `effect_core` and `effect_postgres` at `0.0.3`; `effect_cache` at `0.0.1`; `effect_sql`, `effect_mysql`, `effect_openai` and `effect_http` at `0.0.2`.
 
 **10 delivered milestones · 3 in progress · 5 planned · 1 awaiting input · 1 future proposals.**
 
-Draft PR #13 historical toolkit validation: 19 analyzers, 283 VM/Flutter tests and 226 Chrome tests. Thirteen new packages are 0.1.0-dev.1; core is 0.0.3-dev.1 and HTTP is 0.0.2-dev.1. These versions are not published; only cache and its minimal core prerequisites are included in the separate cache PR. Historical release validation includes 230 VM and 184 browser tests, real PostgreSQL/MySQL acceptance, and separately dated two native live Responses smoke checks. Broader live AI, production database and native Flutter acceptance remain open.
+Draft PR #13 historical toolkit validation: 19 analyzers, 283 VM/Flutter tests and 226 Chrome tests. That draft contained thirteen new development packages; cache has since been released separately. The other twelve remain unpublished. Historical release validation includes 230 VM and 184 browser tests, real PostgreSQL/MySQL acceptance, and separately dated two native live Responses smoke checks. Broader live AI, production database and native Flutter acceptance remain open.
 
 | Priority | Milestone | Status |
 | --- | --- | --- |
@@ -271,7 +279,7 @@ and [`example/reliability.dart`](example/reliability.dart). The optional HTTP/SS
 
 The independently mergeable cache patch adds `packages/effect_cache`, optional monotonic clocks, Cause inspection and scoped acquisition. See [cache contracts](docs/effect-port/cache-validation.md). The cache and core prerequisites remain unpublished. Other toolkit packages, ManagedRuntime, broader composition, streams and HTTP builders remain in draft PR #13 and are not part of this checkout.
 
-## Unpublished memory and admission improvements
+## memory and admission improvements
 
 The development branch includes the [package memory fixes](docs/effect-port/memory-fixes.md).
 These changes are not in the hosted versions above. Duration policies use the

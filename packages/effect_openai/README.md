@@ -4,7 +4,7 @@ Typed OpenAI SDK requests and streams as lazy Effect computations. Uses
 [`openai_dart`](https://pub.dev/packages/openai_dart) 10.0.1 with scoped clients,
 per-run cancellation and explicit error handling.
 
-**Initial release: `0.0.1`.** Use the hosted dependencies below, or the local
+**Current release: `0.0.2`.** Use the hosted dependencies below, or the local
 overrides for source development.
 
 ## Features and platform support
@@ -36,8 +36,8 @@ Or add these dependencies to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  effect_core: ^0.0.1
-  effect_openai: ^0.0.1
+  effect_core: ^0.0.3
+  effect_openai: ^0.0.2
 ```
 
 Then run `dart pub get` or `flutter pub get`. Your Flutter installation must
@@ -259,7 +259,7 @@ Closed owners and closure payloads were collectible in the tested finite runs;
 this is not universal leak freedom or live API/mobile acceptance. Keep one
 application-scoped client/runtime and await their shutdown at the owner boundary.
 
-## Unpublished operation admission
+## operation admission
 
 The direct constructor, `.create` and `.layer` accept
 `maxConcurrentOperations` (64 by default), shared across requests and streams.

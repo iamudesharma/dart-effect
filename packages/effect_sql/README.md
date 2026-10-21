@@ -3,7 +3,7 @@
 Driver-independent SQL effects: bounded connection leasing, parameterized queries,
 exclusive transactions and nested savepoints with scoped cleanup.
 
-**Initial release: `0.0.1`.** Use the hosted dependencies below, or the local
+**Current release: `0.0.2`.** Use the hosted dependencies below, or the local
 overrides for source development.
 
 ## Features and platform support
@@ -28,8 +28,8 @@ Or add these dependencies to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  effect_core: ^0.0.1
-  effect_sql: ^0.0.1
+  effect_core: ^0.0.3
+  effect_sql: ^0.0.2
 ```
 
 Then run `dart pub get` or `flutter pub get`. Your Flutter installation must
@@ -189,7 +189,7 @@ with Effect-TS. The advertised scope is documented here, not full upstream parit
 
 See the [core and SQL performance guide](https://effect-dart.ginjustice4.chatgpt.site/docs/remaining-performance/) for direct-driver comparisons, post-GC owner checks, cancellation recovery and bounded database load. Results are dated and workload-specific; they do not promise a speedup or universal leak freedom. Benchmark tools are development-only and excluded from the package archive.
 
-## Unpublished pool admission budget
+## pool admission budget
 
 `SqlClient(driver, maxConnections: 10, maxPending: 100)` bounds queued leases as
 well as open leases. The default pending bound is 1024. Saturation returns
@@ -197,4 +197,4 @@ well as open leases. The default pending bound is 1024. Saturation returns
 pool, interruption and programming defects. Large result sets remain materialized:
 use SQL pagination and bounded queries. Timeout still awaits query drain and
 rollback before reusing a socket. Native acceptance and memory-fix evidence are
-recorded separately in [the follow-up report](../../docs/effect-port/memory-fixes.md).
+recorded separately in [the follow-up report](https://github.com/iamudesharma/dart-effect/blob/codex/package-memory-release/docs/effect-port/memory-fixes.md).

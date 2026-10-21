@@ -1,8 +1,6 @@
-## Unreleased
+## 0.0.2 — 2026-10-21
 
-- Bound pending/active work and reduce retained allocations; preserve protected
-  cleanup and typed overload diagnostics. See `docs/effect-port/memory-fixes.md`
-  in the source repository for package-specific changes and executed evidence.
+Store immutable response bodies in packed bytes. Bound active requests and SSE sessions (32 by default) and aggregate response accumulation (32 MiB by default); retain admission until actual I/O settles.
 
 ## 0.0.1
 

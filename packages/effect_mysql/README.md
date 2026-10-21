@@ -3,7 +3,7 @@
 MySQL queries and transactions as lazy, typed Effect computations, backed by
 [`mysql_client_plus`](https://pub.dev/packages/mysql_client_plus).
 
-**Initial release: `0.0.1`.** Use the hosted dependencies below, or the local
+**Current release: `0.0.2`.** Use the hosted dependencies below, or the local
 overrides for source development.
 
 ## Features and platform support
@@ -32,8 +32,8 @@ Or add these dependencies to `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  effect_core: ^0.0.1
-  effect_mysql: ^0.0.1
+  effect_core: ^0.0.3
+  effect_mysql: ^0.0.2
 ```
 
 Then run `dart pub get` or `flutter pub get`. Your Flutter installation must
@@ -177,7 +177,7 @@ with Effect-TS. The advertised scope is documented here, not full upstream parit
 
 See the [core and SQL performance guide](https://effect-dart.ginjustice4.chatgpt.site/docs/remaining-performance/) for direct-driver comparisons, post-GC owner checks, cancellation recovery and bounded database load. Results are dated and workload-specific; they do not promise a speedup or universal leak freedom. Benchmark tools are development-only and excluded from the package archive.
 
-## Unpublished bounded admission
+## bounded admission
 
 `MySqlClient.create` and `.layer` now accept `maxPending` (default 1024). Saturation
 returns `SqlFailureKind.overloaded`, without opening another socket or retrying a

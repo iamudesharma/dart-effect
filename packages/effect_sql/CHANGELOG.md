@@ -1,10 +1,6 @@
-## Unreleased
+## 0.0.2 — 2026-10-21
 
-- Bound pending/active work and reduce retained allocations; preserve protected
-  cleanup and typed overload diagnostics. See `docs/effect-port/memory-fixes.md`
-  in the source repository for package-specific changes and executed evidence.
-
-# Changelog
+Bound pending leases (1024 by default) and report typed overload before opening a connection. Preserve command and prepared-statement cleanup failures together; discard sessions with uncertain cleanup. Accept iterable result rows without intermediate materialization.
 
 ## 0.0.1
 

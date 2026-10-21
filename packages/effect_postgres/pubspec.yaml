@@ -1,11 +1,11 @@
 name: effect_postgres
 description: Lazy typed PostgreSQL effects with bounded connection pools, scoped transactions and resource cleanup for Dart API services.
-version: 0.0.2
+version: 0.0.3
 environment:
   sdk: ">=3.13.0 <4.0.0"
 dependencies:
-  effect_core: ^0.0.1
-  effect_sql: ^0.0.1
+  effect_core: ^0.0.3
+  effect_sql: ^0.0.2
   postgres: ^3.5.19
 dev_dependencies:
   test: ^1.26.0

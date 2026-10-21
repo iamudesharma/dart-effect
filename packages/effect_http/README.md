@@ -1,12 +1,12 @@
 # effect_http
 
 Optional HTTP and SSE support for Effect Dart, using Dart's `http` package.
-Version `0.0.1` integrates with `effect_core 0.0.2`.
+Version `0.0.2` requires `effect_core 0.0.3`.
 
 ```yaml
 dependencies:
-  effect_core: ^0.0.2
-  effect_http: ^0.0.1
+  effect_core: ^0.0.3
+  effect_http: ^0.0.2
 ```
 
 ```dart
@@ -67,7 +67,7 @@ Validation: `dart analyze`, `dart test`, and
 loopback HTTP/SSE, including cancellation before headers and early stop. Browser
 fixtures prove portable parsing/outcomes, not live BrowserClient abort behavior.
 
-## Unpublished memory budgets
+## memory budgets
 
 Responses now use immutable packed bytes with defensive copying of caller input.
 Requests accumulate using the SDK BytesBuilder. `EffectHttp` accepts

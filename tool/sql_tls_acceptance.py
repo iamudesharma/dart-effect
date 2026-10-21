@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Offline, isolated trusted-CA acceptance. Never imports the legacy SQL runner."""
+import argparse
 import datetime
 import hashlib
 import json
@@ -59,11 +60,14 @@ def certificates(directory):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--report", default="docs/effect-port/sql-tls-validation.json")
+    args = parser.parse_args()
     report = {'started_at_utc': now(), 'images': IMAGES, 'suites': {},
               'scope': 'Isolated root/intermediate CA chains, unrelated-root and hostname rejection; not production infrastructure acceptance.',
               'success': False}
     created = []
-    output = ROOT / 'docs/effect-port/sql-tls-validation.json'
+    output = ROOT / args.report
     build = ROOT / 'build'
     build.mkdir(exist_ok=True)
     try:
