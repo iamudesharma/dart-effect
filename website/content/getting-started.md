@@ -4,7 +4,7 @@ Effect Dart is an independent, Effect-inspired toolkit for Dart API services and
 
 ## Install from pub.dev
 
-All six packages are published. Start with `effect_core` 0.0.2; add only the integrations your application uses. PostgreSQL is 0.0.2; SQL, MySQL, OpenAI and the optional HTTP/SSE adapter are 0.0.1.
+Seven packages are published. Start with `effect_core` 0.0.3; add only the integrations your application uses. PostgreSQL is 0.0.3; SQL, MySQL, OpenAI and HTTP are 0.0.2. The new cache package is 0.0.1.
 
 ```sh
 dart pub add effect_core
@@ -16,7 +16,7 @@ Or add the hosted dependency to your application's `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  effect_core: ^0.0.2
+  effect_core: ^0.0.3
 ```
 
 Run `dart pub get` or `flutter pub get`. No repository checkout or local overrides are needed for the published packages.
@@ -69,12 +69,12 @@ The full set of current version constraints is shown below; most applications ne
 
 ```yaml
 dependencies:
-  effect_core: ^0.0.2
-  effect_sql: ^0.0.1
-  effect_postgres: ^0.0.2
+  effect_core: ^0.0.3
+  effect_sql: ^0.0.2
+  effect_postgres: ^0.0.3
   postgres: ^3.5.19
-  effect_mysql: ^0.0.1
-  effect_openai: ^0.0.1
+  effect_mysql: ^0.0.2
+  effect_openai: ^0.0.2
 ```
 
 PostgreSQL and MySQL are native adapters intended for backend/API services. Keep database credentials and production OpenAI API keys on the backend; Flutter and browser clients should call that API. Follow the package guides for connection settings, ownership, errors and cancellation.
@@ -128,3 +128,13 @@ dart pub add effect_http
 The [HTTP/SSE guide](../../packages/effect_http/README.md) covers borrowed client
 ownership, cancellation and bounded parsing. Requests and SSE never replay
 automatically.
+
+## Bounded caching and admission
+
+Install `effect_cache` with `dart pub add effect_cache`. Keep cache ownership at
+an awaited service boundary, include authorization identity in keys, and close
+the cache before its borrowed runtime. See the [cache guide](../../packages/effect_cache/README.md).
+
+The [October release](../../docs/effect-port/release-2026-10-21.md) adds explicit
+pending-work limits, packed HTTP bodies and improved cleanup diagnostics. Handle
+overload outcomes and choose capacity and concurrency limits for your workload.

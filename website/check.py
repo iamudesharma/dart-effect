@@ -49,7 +49,7 @@ print(f'PASS: {len(files)} pages; internal routes, assets, anchors, search JSON,
 data=json.loads((ROOT/'site-data.json').read_text())
 released=[p for p in data['packages'] if not p.get('unpublished')]
 development=[p for p in data['packages'] if p.get('unpublished')]
-assert len(released)==6 and len(development)==13
+assert len(released)==7 and len(development)==12
 assert all(p['url'].startswith('https://pub.dev/packages/') for p in released)
 assert all('url' not in p and p['version']=='0.1.0-dev.1' for p in development)
 for p in development:
@@ -60,13 +60,13 @@ assert data['development_validation']['packages_analyzed']==19
 assert data['development_validation']['vm_flutter_passed_without_duplicate_native_suites']==283
 assert data['development_validation']['chrome_passed']==226
 assert data['vm_tests']==230 and data['browser_tests']==184
-print('PASS: 6 released / 13 unpublished guides; installation examples and dated validation totals remain separate.')
+print('PASS: 7 released / 12 unpublished guides; installation examples and dated validation totals remain separate.')
 
-assert data['cache_validation']=={'vm':35, 'chrome':34, 'unpublished':True}
-assert next(p for p in development if p['name']=='effect_cache')['vm']==35
-print('PASS: cache follow-up uses its own evidence and remains unpublished.')
+assert data['cache_validation']=={'vm':38, 'chrome':37, 'unpublished':False}
+assert next(p for p in released if p['name']=='effect_cache')['vm']==38
+print('PASS: cache uses current release evidence and is published.')
 
 assert len([p for p in development if p.get('draft')]) == 12
-assert not next(p for p in development if p['name']=='effect_cache')['draft']
+assert next(p for p in released if p['name']=='effect_cache')['version']=='0.0.1'
 assert 'Draft PR #13' in data['draft_toolkit_snapshot']['status']
-print('PASS: only cache is ready; twelve other package guides are draft snapshots.')
+print('PASS: cache is released; twelve other package guides remain draft snapshots.')

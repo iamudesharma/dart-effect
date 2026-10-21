@@ -1,0 +1,175 @@
+{
+  "packages": {
+    "effect_core": {
+      "version": "0.0.3",
+      "url": "https://pub.dev/packages/effect_core",
+      "published_at_utc": "2026-10-21T12:29:20.238944Z",
+      "archive_sha256": "318da1cd970debe4b7b50148f82135c99bbeb860bbd2ec99984a3d60b39ec5c8",
+      "verified_archive_files": {
+        "pubspec.yaml": "fb7a8b3ffa0be5f9530d926f17dc9af68eb0973ea597dad1503ead09fbe328f3",
+        "LICENSE": "a839975af2467e60fe35dcbbadc3bbfc08bb12f4b04f8ebf6a87707305260235",
+        "CHANGELOG.md": "21eba2374500e6e67561eeb6a6809758c94b56ad89b50a1b15bc9255dd361d10",
+        "README.md": "1c969eda7d3f484dc336963d8a17353939e7313e45349de29217987737a21f21",
+        "analysis_options.yaml": "e30cd08abf28af7ba2f5129cce32ab6852c509eca116c2f451432b045aa7a9c4",
+        "lib/effect_core.dart": "2f8a90b18f05ca619e93933350c55ea3ac3ee99f1eb2ac6bb74b05db2fc8906d",
+        "lib/src/core.dart": "065d0e53107d6d5e757a80f29efcceb5d22293bc34b6168b4b694421421ac922",
+        "lib/src/stream.dart": "a2e1df1f755e335685b23c50775e30a01ae604d94a3fa64578862227706cb8c9",
+        "lib/src/reliability.dart": "5b1b5488a2b7cac9d072f257e18b2ab243f9a60fa7d83f5f4d83cb3f8a328efc",
+        "lib/src/ergonomics.dart": "025690a9842112040a650fea8d78ca696e559bd0f765f38a9664c3534d9ef870",
+        "lib/src/services.dart": "466a0d8ea0f0d05c2cbe8a39a16abfb6a76fca545d9167acaff90e042b68146f",
+        "lib/src/concurrency.dart": "ed9eee8a07c174ca8ead6f8f25fc746ebbc4fe6a24aa1d313551a23f4aa276b2",
+        "example/retry.dart": "37b36b61bd349cf21d50575709ea435510db4c46a88bd500b96db2ef41d29881",
+        "example/web.dart": "1473462741bce3b27334e1403a5ada09c4117dcda6af36f0377ef8c6984d7493",
+        "example/bounded.dart": "a47cb8925b094af0dc4ba515a7ca3d7a6b65ae60edd2781952d1644a3c3d76fa",
+        "example/stream.dart": "026a358e3cc6f287db85e2f7fdf8368a7a65fd1981412d03333be52dd108f651",
+        "example/resources.dart": "c6d68fbee4285904e4ff55d94b4c1977a592ea5252b003f13a44607b85605ad8",
+        "example/reliability.dart": "ef3d5f7e70782021329159ebebf9f36e1fb273ef1faf36433c09065d534face3",
+        "example/services.dart": "e800fe88493734960555c0b56facf94be8092a9c4ad842bd4bf7b22efa05e176"
+      }
+    },
+    "effect_sql": {
+      "version": "0.0.2",
+      "url": "https://pub.dev/packages/effect_sql",
+      "published_at_utc": "2026-10-21T12:30:53.884252Z",
+      "archive_sha256": "0688489873ae1716cf591843546f2ddc565a9d8ce0b51a72a64f74a4ace583f1",
+      "verified_archive_files": {
+        "pubspec.yaml": "7ef34feedff01ccc1958c2f0eca24ac7ece9f6968477b0c0fb994f7c151148fd",
+        "LICENSE": "a839975af2467e60fe35dcbbadc3bbfc08bb12f4b04f8ebf6a87707305260235",
+        "CHANGELOG.md": "f592c053768b65fb9586ae8d9892d61474e79b2454a81edb1493697d56e552a5",
+        "README.md": "b3fe63a0b9c0fd2a49ee5b38115da0c8cc8a1cb79ecf3ccf6aad366750d40907",
+        "analysis_options.yaml": "69d5fc7c4dc082613882215d52d18b02b1688b833d674ce9b281f45821626b7d",
+        "lib/effect_sql.dart": "5956aae16d46b92934956cc759d04be6cb9469134ba85c5a6bdee474d545ecd6"
+      }
+    },
+    "effect_postgres": {
+      "version": "0.0.3",
+      "url": "https://pub.dev/packages/effect_postgres",
+      "published_at_utc": "2026-10-21T12:33:38.094654Z",
+      "archive_sha256": "989a740b642db49bc15515abd173d59afaaa2b2ef17f7d322f317be5a3fc047b",
+      "verified_archive_files": {
+        "pubspec.yaml": "5b672721199fccdb91eb813bf788b9de932f67156255819fa219135a05fd6ac1",
+        "LICENSE": "a839975af2467e60fe35dcbbadc3bbfc08bb12f4b04f8ebf6a87707305260235",
+        "CHANGELOG.md": "89aa429dd9c8836a0cfe94d0d746a5a8850ddfce59f5bfab2d282633e5ef056c",
+        "README.md": "a7582ba60e305e74ec4abb03f1c0484fa964f6feca51a8ad515978781411eaae",
+        "analysis_options.yaml": "5366239453ed4f78b7b2d0c38f9cd84ac1cf866b497c01d95a08ddfa299fbc73",
+        "lib/effect_postgres.dart": "eb7da4e426c550de8168322cda9a67e028d886ec42edc6a2956e63eafb5469aa",
+        "example/main.dart": "b30e967d4069ec87ced5944994e3924b74192b2b9ff6bea21d53cfec9c3d8e94"
+      }
+    },
+    "effect_mysql": {
+      "version": "0.0.2",
+      "url": "https://pub.dev/packages/effect_mysql",
+      "published_at_utc": "2026-10-21T12:33:48.068037Z",
+      "archive_sha256": "458c03be244031150c87f3aeaed2aecb05b081cec64c50c863b65fae23733dfc",
+      "verified_archive_files": {
+        "pubspec.yaml": "e667fb0892dc82e8fbd8dcbddb28709e5c65c04661cb0917ae2360354b3e7665",
+        "LICENSE": "a839975af2467e60fe35dcbbadc3bbfc08bb12f4b04f8ebf6a87707305260235",
+        "CHANGELOG.md": "63bb23032c8a554cb0c0778f233abd352f7c40a46f8c8d5e198bd8648a04c425",
+        "README.md": "0572180f0b590dbaafa9dcea01edced99f4410ade192a9731de0e24341848c26",
+        "analysis_options.yaml": "69d5fc7c4dc082613882215d52d18b02b1688b833d674ce9b281f45821626b7d",
+        "lib/effect_mysql.dart": "ed94d7ed14cd43b9c57c9cddb3fbdabe102e3a1811cb82932ea372f47b7dd15b",
+        "example/main.dart": "aef4b3acab6dcbfc4c470ff75babb54bc973f0149a05dc9464b6d689ec5faf7a"
+      }
+    },
+    "effect_http": {
+      "version": "0.0.2",
+      "url": "https://pub.dev/packages/effect_http",
+      "published_at_utc": "2026-10-21T12:33:56.877333Z",
+      "archive_sha256": "e746dea58c310ce0dced429a3589552c24ecb61cc0a7b29ad9fe33e3a5c89d19",
+      "verified_archive_files": {
+        "pubspec.yaml": "ec9f901fe022bfc5a5311b681786db4882c69950563aced76bc1619cf2e907ea",
+        "LICENSE": "a839975af2467e60fe35dcbbadc3bbfc08bb12f4b04f8ebf6a87707305260235",
+        "CHANGELOG.md": "7758b7c55552c02f60bc5d04d822c503f59cd4c8c3c0da9ab9ee7a67e926f7d8",
+        "README.md": "9e60627082a0a3a81eb6484f0ba1c2cabc30e5f20fbaa42d7008cf0fd784ca3b",
+        "analysis_options.yaml": "69d5fc7c4dc082613882215d52d18b02b1688b833d674ce9b281f45821626b7d",
+        "lib/effect_http.dart": "42a8ff4e3148f89202e0882d9123a6a3e754732a9d6147cd14b5b117c1955864",
+        "example/main.dart": "2749a90798edca4f3641d3e9f41d203899adbbcecbb09d08df60b7b7e63fa653"
+      }
+    },
+    "effect_openai": {
+      "version": "0.0.2",
+      "url": "https://pub.dev/packages/effect_openai",
+      "published_at_utc": "2026-10-21T12:34:07.465090Z",
+      "archive_sha256": "7b9e20abe82e8db0b27c7ee2756e3b3b27afcf70cf132ec2e137e4475b9b0c24",
+      "verified_archive_files": {
+        "pubspec.yaml": "e44b324389068635d2c15af6f2e983e80790e472c4fa4d2671e652b5066d77fd",
+        "LICENSE": "a839975af2467e60fe35dcbbadc3bbfc08bb12f4b04f8ebf6a87707305260235",
+        "CHANGELOG.md": "e038e8e62ee8e9849f92b039eee8487b986b635ccd910c6d3b32f00bdb8258fb",
+        "README.md": "4767f18dea1e4898c162c5281b55d41624447fdb74a82f5b10d7fe1295d73b4b",
+        "analysis_options.yaml": "69d5fc7c4dc082613882215d52d18b02b1688b833d674ce9b281f45821626b7d",
+        "lib/effect_openai.dart": "68b3950da17c9449c9ef981f8caee205f60bb7664f17ddbf8d61bc7f2481e496",
+        "example/main.dart": "71417e416f555e7f9733a42dd0a6f3eff7f457230922a0fecf825b0a34953742",
+        "example/live.dart": "457e71b4c17de7ccc3707795f9de1ef239d4f8fc19d23096bc2e0308972c1a63"
+      }
+    },
+    "effect_cache": {
+      "version": "0.0.1",
+      "url": "https://pub.dev/packages/effect_cache",
+      "published_at_utc": "2026-10-21T12:34:16.984018Z",
+      "archive_sha256": "3898e17bd11d6fce3dc4cc4f3aeb219deb362d700ec73e7d51bf7c970aa0b59d",
+      "verified_archive_files": {
+        "pubspec.yaml": "d646a38c63b9ce4f18adc05585f2b777e2b53bd1eb5026144bebd76777bbc4ea",
+        "LICENSE": "a839975af2467e60fe35dcbbadc3bbfc08bb12f4b04f8ebf6a87707305260235",
+        "CHANGELOG.md": "951abf6bea3ef174be6173aba89ed40d257c630ca06090dc06ea31547e4c38a3",
+        "README.md": "2ccd097895e481e10971c0b1120976cca7de443d7fbc5df75310bfcf13932e20",
+        "analysis_options.yaml": "69d5fc7c4dc082613882215d52d18b02b1688b833d674ce9b281f45821626b7d",
+        "lib/effect_cache.dart": "ca762b6b055ace6543c82abb00f5e4dec1f1f1068b668185a718379150cfbfa5",
+        "example/main.dart": "c010aa314fbab6de66fe7c38e410e665948407019cb877e8cc055da52af3f9fc"
+      }
+    }
+  },
+  "source_sha256": {
+    "pubspec.yaml": "fb7a8b3ffa0be5f9530d926f17dc9af68eb0973ea597dad1503ead09fbe328f3",
+    "lib/effect_core.dart": "2f8a90b18f05ca619e93933350c55ea3ac3ee99f1eb2ac6bb74b05db2fc8906d",
+    "lib/src/core.dart": "065d0e53107d6d5e757a80f29efcceb5d22293bc34b6168b4b694421421ac922",
+    "lib/src/stream.dart": "a2e1df1f755e335685b23c50775e30a01ae604d94a3fa64578862227706cb8c9",
+    "lib/src/reliability.dart": "5b1b5488a2b7cac9d072f257e18b2ab243f9a60fa7d83f5f4d83cb3f8a328efc",
+    "lib/src/ergonomics.dart": "025690a9842112040a650fea8d78ca696e559bd0f765f38a9664c3534d9ef870",
+    "lib/src/services.dart": "466a0d8ea0f0d05c2cbe8a39a16abfb6a76fca545d9167acaff90e042b68146f",
+    "lib/src/concurrency.dart": "ed9eee8a07c174ca8ead6f8f25fc746ebbc4fe6a24aa1d313551a23f4aa276b2",
+    "packages/effect_sql/pubspec.yaml": "7ef34feedff01ccc1958c2f0eca24ac7ece9f6968477b0c0fb994f7c151148fd",
+    "packages/effect_sql/lib/effect_sql.dart": "5956aae16d46b92934956cc759d04be6cb9469134ba85c5a6bdee474d545ecd6",
+    "packages/effect_postgres/pubspec.yaml": "5b672721199fccdb91eb813bf788b9de932f67156255819fa219135a05fd6ac1",
+    "packages/effect_postgres/lib/effect_postgres.dart": "eb7da4e426c550de8168322cda9a67e028d886ec42edc6a2956e63eafb5469aa",
+    "packages/effect_mysql/pubspec.yaml": "e667fb0892dc82e8fbd8dcbddb28709e5c65c04661cb0917ae2360354b3e7665",
+    "packages/effect_mysql/lib/effect_mysql.dart": "ed94d7ed14cd43b9c57c9cddb3fbdabe102e3a1811cb82932ea372f47b7dd15b",
+    "packages/effect_http/pubspec.yaml": "ec9f901fe022bfc5a5311b681786db4882c69950563aced76bc1619cf2e907ea",
+    "packages/effect_http/lib/effect_http.dart": "42a8ff4e3148f89202e0882d9123a6a3e754732a9d6147cd14b5b117c1955864",
+    "packages/effect_openai/pubspec.yaml": "e44b324389068635d2c15af6f2e983e80790e472c4fa4d2671e652b5066d77fd",
+    "packages/effect_openai/lib/effect_openai.dart": "68b3950da17c9449c9ef981f8caee205f60bb7664f17ddbf8d61bc7f2481e496",
+    "packages/effect_cache/pubspec.yaml": "d646a38c63b9ce4f18adc05585f2b777e2b53bd1eb5026144bebd76777bbc4ea",
+    "packages/effect_cache/lib/effect_cache.dart": "ca762b6b055ace6543c82abb00f5e4dec1f1f1068b668185a718379150cfbfa5"
+  },
+  "published": true,
+  "consumer": {
+    "checks": [
+      {
+        "command": [
+          "dart",
+          "pub",
+          "get"
+        ],
+        "exit_code": 0
+      },
+      {
+        "command": [
+          "dart",
+          "analyze"
+        ],
+        "exit_code": 0
+      },
+      {
+        "command": [
+          "dart",
+          "run",
+          "main.dart"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "hosted_only": true,
+    "dependency_overrides": false,
+    "directory_removed": true
+  },
+  "verified_at_utc": "2026-10-21T12:36:26.376389+00:00"
+}

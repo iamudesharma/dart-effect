@@ -1,8 +1,6 @@
-## Unreleased
+## 0.0.3 — 2026-10-21
 
-- Bound pending/active work and reduce retained allocations; preserve protected
-  cleanup and typed overload diagnostics. See `docs/effect-port/memory-fixes.md`
-  in the source repository for package-specific changes and executed evidence.
+Use monotonic elapsed budgets; preserve deep cleanup causes without recursive traversal. Reduce empty-scope and completed-effect allocations, pull traversal input on demand, and bound semaphore, queue and subscriber waiters. Add bounded stream collection and cache lifecycle prerequisites.
 
 ## 0.0.3-dev.1
 
