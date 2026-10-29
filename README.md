@@ -300,3 +300,16 @@ final bounded = stream.runCollect(
 `AppFailure` must belong to the stream's declared error family. Pending queue
 saturation returns `QueueFull`; semaphore operations accept `onFull` for a typed
 application error. Event-queue fairness and protected finalization remain in place.
+
+
+## Local schema package and Flutter example
+
+The unpublished [`effect_schema`](packages/effect_schema/README.md) package
+validates and encodes JSON with typed models, field paths and bounded validation
+diagnostics. It does not generate Dart classes or Flutter forms.
+
+Try the [`Flutter example`](examples/schema_flutter/README.md) for profile
+decoding, form validation and outgoing JSON. See the
+[schema evidence](docs/effect-port/schema-validation-2026-10-24.md) and
+[Flutter checks](docs/effect-port/schema-flutter-validation-2026-10-28.md).
+This package is isolated from the remaining toolkit draft and is not yet on pub.dev.

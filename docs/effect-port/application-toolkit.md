@@ -1,6 +1,10 @@
 # Application toolkit — draft PR #13 snapshot
 
-**Implementation status:** The twelve non-cache packages and broader runtime changes below remain in draft PR #13, not in the cache-only checkout. Website package pages are documentation snapshots. The cache and its minimal core prerequisites are isolated for independent review and merge.
+**Schema extraction update:** `effect_schema` and its Flutter example are now included
+independently in this checkout. They remain unpublished. The draft inventory below
+is historical; the other unfinished packages remain in PR #13.
+
+**Original snapshot status:** The twelve non-cache packages and broader runtime changes below remain in draft PR #13, not in the cache-only checkout. Website package pages are documentation snapshots. The cache and its minimal core prerequisites are isolated for independent review and merge.
 
 This work follows the 18 October 2026 attached review's recommended application
 toolkit. RPC, workflows, clustering, CLI and GraphQL remain future product
@@ -8,7 +12,7 @@ proposals by explicit user choice. The review used default-branch d7dcbbb;
 core 0.0.2 / HTTP 0.0.1 publication and website synchronization already existed
 on the release branch before this work. Their published status is unchanged.
 
-## Inventory and release boundary
+## Historical inventory and release boundary
 
 **None of these development additions are published.** Core is 0.0.3-dev.1,
 HTTP is 0.0.2-dev.1, and thirteen new packages are 0.1.0-dev.1. Use explicit local
@@ -142,3 +146,22 @@ GitHub CI also passed for implementation revision ffd5523: [portable-and-native 
 ## Cache follow-up
 
 The cache package now has dedicated end-to-end validation: 35 VM and 34 Chrome tests, a real HTTP fixture, deterministic state-model checks, JIT/AOT measurements, post-GC reachability and an isolated archive dry-run. See [cache evidence and release gates](cache-validation.md). The original toolkit totals above remain the initial snapshot, not fresh totals for this follow-up.
+
+
+## Schema hardening (2026-10-24)
+
+`effect_schema` is the current package being completed independently. The local
+draft now bounds validation depth and diagnostic counts, rejects rename/preserve
+collisions, and reports default-factory and union encoding errors with paths.
+See [schema validation evidence](schema-validation-2026-10-24.md). This is local
+implementation and packaging evidence, not a hosted release. Generated models,
+recursive JSON Schema references and other toolkit packages remain separate work.
+
+## Flutter schema example (2026-10-28)
+
+A runnable local consumer now lives in `examples/schema_flutter`: typed profile
+decoding, structured field errors, form validation and JSON encoding. The demo
+keeps transport failures separate from schema failures, loads outside `build`,
+and verifies stale completion/unmount behavior. See its README and
+[Flutter validation evidence](schema-flutter-validation-2026-10-28.md).
+This does not publish schema or complete the other toolkit packages.

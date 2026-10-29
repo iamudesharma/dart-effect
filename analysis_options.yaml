@@ -6,3 +6,4 @@ analyzer:
     # Generated probes and the separate Flutter profile template are not core.
     - build/**
     - benchmarks/**
+    - examples/**
