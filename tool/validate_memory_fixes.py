@@ -37,10 +37,15 @@ def main():
     BUILD.mkdir(parents=True, exist_ok=True)
     initial=fingerprints()
     report={'started_at_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(), 'base_revision':subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(), 'source_sha256':initial, 'checks':{}, 'success':False}
-    for pkg in ['', 'effect_cache', 'effect_http', 'effect_sql', 'effect_postgres', 'effect_mysql', 'effect_openai']:
+    # Resolve every package inspected by the Dart analysis below.
+    for pkg in ['', 'effect_cache', 'effect_http', 'effect_sql', 'effect_postgres', 'effect_mysql', 'effect_openai', 'effect_schema']:
         cwd=ROOT/'packages'/pkg if pkg else ROOT
         report['checks'][f'{pkg or "core"}-resolve']=run(f'{pkg or "core"}-resolve', ['dart','pub','get','--offline'],cwd)[0]
-    report['checks']['analysis']=run('analysis', ['dart','analyze','--fatal-infos'])[0]
+    # The Flutter example is analyzed by Schema quality with a Flutter SDK.
+    # Keep all core and package sources covered in this Dart-only job.
+    for directory in ['lib', 'test', 'example', 'tool', 'packages']:
+        name=f'analysis-{directory}'
+        report['checks'][name]=run(name, ['dart','analyze','--fatal-infos',directory])[0]
     for pkg in ['', 'effect_cache', 'effect_http', 'effect_sql', 'effect_openai']:
         cwd=ROOT/'packages'/pkg if pkg else ROOT
         name=pkg or 'core'

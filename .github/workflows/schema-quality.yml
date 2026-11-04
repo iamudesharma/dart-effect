@@ -1,0 +1,53 @@
+name: Schema quality
+on:
+  pull_request:
+    paths:
+      - 'packages/effect_schema/**'
+      - 'examples/schema_flutter/**'
+      - 'lib/**'
+      - '.github/workflows/schema-quality.yml'
+  push:
+    branches: [dart-effect]
+jobs:
+  schema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: '3.13.0'
+      - name: Resolve core and schema
+        run: |
+          dart pub get
+          cd packages/effect_schema
+          dart pub get
+      - name: Format, analyze and validate contracts
+        working-directory: packages/effect_schema
+        run: |
+          dart format --output=none --set-exit-if-changed lib test example tool
+          dart analyze
+          dart test
+          dart test --platform chrome
+          dart run example/main.dart
+      - name: Validate isolated hosted-dependency candidate
+        run: python3 packages/effect_schema/tool/check_package.py
+  flutter-example:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.0'
+          channel: stable
+          cache: true
+      - name: Resolve, analyze and test
+        working-directory: examples/schema_flutter
+        run: |
+          flutter pub get
+          dart format --output=none --set-exit-if-changed lib test
+          flutter analyze
+          flutter test
+          flutter test --platform chrome
+          flutter build web

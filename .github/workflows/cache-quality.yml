@@ -27,7 +27,7 @@ jobs:
       - name: Resolve prerequisites
         run: |
           dart pub get
-          for package in effect_cache effect_http effect_sql effect_postgres effect_mysql effect_openai; do
+          for package in effect_cache effect_http effect_sql effect_postgres effect_mysql effect_openai effect_schema; do
             (cd packages/$package && dart pub get)
           done
       - name: Contracts, examples, JIT/AOT and post-GC retention
